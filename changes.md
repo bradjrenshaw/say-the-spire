@@ -16,6 +16,7 @@
 * Added: When a new event occurs, the event buffer's position is changed to that event
 * Fixed: The player name is now correct for when text above them is read during combat (this would break when changing save slots).
 * Fixed: Sort button headers for card grids should now be reading properly
+* Added: Initial support for the daily climb screen. Only the challenge info is read currently, the leaderboard will come in the next beta.
 
 ## Beta 3
 

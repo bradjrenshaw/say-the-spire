@@ -1,0 +1,1 @@
+cp mods/sayTheSpire.jar "C:\Program Files (x86)\Steam\steamapps\common\SlayTheSpire\mods\sayTheSpire.jar"
