@@ -2,6 +2,7 @@ package sayTheSpire;
 
 import java.io.IOException;
 import java.io.File;
+import java.util.Map;
 import java.util.HashMap;
 import com.moandjiezana.toml.Toml;
 import com.evacipated.cardcrawl.modthespire.lib.ConfigUtils;
@@ -16,14 +17,28 @@ public class STSConfig {
         File dir = new File(getDirectoryPath());
         dir.mkdirs();
         File file = new File(getFilePath());
-        this.toml = new Toml(getDefaults());
+        HashMap<String, Object> defaults = this.getDefaults();
         try {
-            Toml fileToml = this.toml.read(file);
-            if (fileToml != null) this.toml = fileToml;
+            HashMap<String, Object> fileSettings = (HashMap<String, Object>)new Toml().read(file).toMap();
+            merge(defaults, fileSettings);
+            this.toml = new Toml().read(new TomlWriter().write(defaults));
                 System.out.println("STSConfig: Config loaded from existing file.");
         }catch (Exception e) {
             System.out.println("STSConfig: No config file found, using defaults.");
+            this.toml = new Toml().read(new TomlWriter().write(defaults));
         }
+            }
+
+            public static void merge(HashMap<String, Object> base, HashMap<String, Object>merger) {
+                for (Map.Entry<String, Object> entry:merger.entrySet()) {
+                    String key = entry.getKey();
+                    Object value = entry.getValue();
+                    if (base.containsKey(key) && base.get(key) instanceof HashMap && value instanceof HashMap) {
+                        merge((HashMap<String, Object>)base.get(key), (HashMap<String, Object>)value);
+                    } else {
+                        base.put(key, value);
+                    }
+                }
             }
 
     public void save() throws IOException {
@@ -32,7 +47,7 @@ public class STSConfig {
         writer.write(this.toml.toMap(), file);
     }
 
-    public static Toml getDefaults() {
+    public static HashMap<String, Object> getDefaults() {
         HashMap<String, Object> defaults = new HashMap();
         HashMap<String, Object> uiDefaults = new HashMap();
         uiDefaults.put("read_positions", true);
@@ -43,9 +58,7 @@ public class STSConfig {
                 defaults.put("ui", uiDefaults);
         defaults.put("map", mapDefaults);
 
-        Toml defaultToml = new Toml();
-        String defaultCode = (new TomlWriter()).write(defaults);
-        return defaultToml.read(defaultCode);
+        return defaults;
     }
 
     public static String getDirectoryPath() {
