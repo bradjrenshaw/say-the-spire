@@ -64,6 +64,16 @@ In general keep in mind:
 * For the options screen, for some reason you have to move the right stick left and right to adjust the volume sliders.
 * In many circumstances a grid or hand card select screen will appear. Note that this is not the normal turn play card from hand screen. For example an instance of this is playing warcry (where you have to select a card to put on top of your draw pile). You need to hit proceed to exit this screen after selecting cards. For the hand card select screens, they are laid out in two rows (top row is cards selected, bottom row is cards in hand).
 
+# Config
+
+After first launching the game, a config file is created that allows you to modify certain aspects of the mod. This file can be found at:
+
+* Windows: %LOCALAPPDATA%\ModTheSpire\
+* Linux: ~/.config/ModTheSpire/
+* Mac: ~/Library/Preferences/ModTheSpire/
+
+The config file is divided into a number of sections. Change the values after each equals sign to change the settings
+
 # The Map
 
 While viewing the map, the buffer system is replaced with a map viewer. This allows you to quickly follow paths.
