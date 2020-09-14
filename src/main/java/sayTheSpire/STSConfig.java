@@ -55,9 +55,12 @@ public class STSConfig {
         uiDefaults.put("read_proceed_text", true);
         HashMap<String, Object> mapDefaults = new HashMap();
         mapDefaults.put("read_reversed_paths", true);
+
+        HashMap<String, Object> combatDefaults = new HashMap();
+        combatDefaults.put("buff_debuff_text", true);
                 defaults.put("ui", uiDefaults);
         defaults.put("map", mapDefaults);
-
+        defaults.put("combat", combatDefaults);
         return defaults;
     }
 

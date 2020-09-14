@@ -27,7 +27,9 @@ public class EventManager {
     while (iter.hasNext()) {
       Event event = (Event) iter.next();
       event.update();
-      if (event.isComplete()) {
+      if (event.shouldAbandon()) {
+        iter.remove();
+      } else if (event.isComplete()) {
         iter.remove();
         queueForLog(event);
       }
