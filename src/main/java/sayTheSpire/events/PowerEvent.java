@@ -26,8 +26,6 @@ public class PowerEvent extends Event {
         }
     }
 
-
-
     public String getText() {
         return OutputUtils.getCreatureName(this.target) + " " + this.text;
     }

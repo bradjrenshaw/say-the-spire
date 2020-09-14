@@ -7,7 +7,7 @@
 * Added: the proceed option is now read out
 * Fixed: You can no longer view card information if the cards are visually face down or locked
 * Added: Match and Keep (the gremlin card matching event) is now supported
-* Added: A config file can now be found in either your local app data (windows) or home config directory (linux). Currently the only supported config options are UI position reading, banner text reading, proceed reading, in battle buff/debuff text, and reversed path reading.
+* Added: A config file can now be found in either your local app data (windows) or home config directory (linux). Currently the only supported config options are UI position reading, banner text reading, proceed reading, in battle block gains, in battle buff/debuff text, and reversed path reading.
 * Fixed: Removed some redundant checks for hovered cards, hopefully this should remove some of the UI issues like some cards being read multiple times (this does not effect the hand, which I cannot fix)
 * Added: All controller inputs now interrupt speech (as per normal screen reader behavior when using a keyboard application). This should make the game feel less sluggish.
 * Changed: There have been some behind the scenes UI changes. Please report any buttons labeled incorrectly.
@@ -18,6 +18,7 @@
 * Fixed: Sort button headers for card grids should now be reading properly
 * Added: Initial support for the daily climb screen. Only the challenge info is read currently, the leaderboard will come in the next beta.
 * Fixed: Power text in combat should now be reading properly again. This is currently experimental and may still be broken. There are some oddities in the way text is displayed; I'm outputting how the game displays the text (for example when a buf is initially applied, it only says the name and not the initial amount).
+* Added: In combat block gains are announced.
 
 ## Beta 3
 
