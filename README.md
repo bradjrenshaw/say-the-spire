@@ -1,6 +1,6 @@
 # Say the Spire
 
-A mod for the game Slay the Spire to provide blind accessibility. this is a template readme I hastily threw together that will resemble the final readme.
+A mod for the game Slay the Spire to provide blind accessibility.
 
 * This only works on Windows for now
 * Only controllers are supported; keyboard support is coming soon.
