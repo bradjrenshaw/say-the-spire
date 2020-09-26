@@ -57,6 +57,8 @@ private String priceString;
         }
 
     public String getLabel() {
+        if (this.card.isFlipped) return "face down card";
+        else if (this.card.isLocked) return this.card.LOCKED_STRING;
         return this.card.name;
     }
 

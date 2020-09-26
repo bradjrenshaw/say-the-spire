@@ -24,7 +24,6 @@ public abstract class UIElement {
    * Updates any needed values and performs any triggers on UI elements.
    */
   public void update() {
-
   }
 
   /**

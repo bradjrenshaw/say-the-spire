@@ -27,7 +27,7 @@ public class MonsterGroupPatch {
         Output.text(MonsterUtils.getMonsterShort(current), true);
         Output.setupBuffers(current);
       }
-      prevHoveredMonster = current;
+          prevHoveredMonster = current;
     }
   }
 }

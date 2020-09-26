@@ -23,10 +23,10 @@ public class GremlinMatchCardElement extends CardElement {
             if (!card.isFlipped) {
                 Output.text("Flippd card is " + this.card.name, false);
             } else {
-                Output.text(this.card.name + " is flipped face down", false);
-            }
+            Output.text(this.card.name + " is flipped face down", false);
         }
         this.isFlipped = this.card.isFlipped;
+    }
     }
 
     public String getPositionString() {
