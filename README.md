@@ -4,34 +4,43 @@ A mod for the game Slay the Spire to provide blind accessibility.
 
 * This only works on Windows for now
 * Only controllers are supported; keyboard support is coming soon.
+* Only the Steam version of the game is supported.
 
 ## Mod Installation and Usage
 
 For compilation instructions for developers, go [here](devs.md).
-## Setup
 
-### Installation Instructions
+### Setup Instructions for Steam
 
-* Say the Spire can be subscribed to (installed) from the Steam Workshop.
-* Alternatively, copy sayTheSpire.jar to your Slay the Spire mods directory. If using steam this is probably C:\Program Files (x86)\Steam\Steamapps\Common\Slay the Spire\mods
-* Make sure that you do not have multiple instances of the same mod installed from different sources for Say the Spire or any mods it depends on. for example, do not have both the steam workshop and mods folder versions of basemod as things can break in unexpected ways.
+If you own the game on Steam, Say the Spire can be subscribed to (installed) from the Steam Workshop. If you are doing this, it will require you to subscribe to ModTheSpire and BaseMod. Check the bottom of the page after clicking subscribe and it will link you to the required mods. 
 
-### Running the Mod
+If you do not want to install from the steam workshop, copy sayTheSpire.jar to your Slay the Spire mods directory. This is probably C:\Program Files (x86)\Steam\Steamapps\Common\Slay the Spire\mods but may be different depending on where steam is installed. You can either install the dependencies (ModTheSpire and BaseMod) from the steam workshop, or download them from their respective GitHub pages listed below. If you do not have a mods folder in your slayTheSpire directory, create one and everything should work.
 
-To play the game using the mod, you need to first launch mod the spire and then enable the mod there. To do so, follow one of the following steps:
+* [ModTheSpire](https://github.com/kiooeht/ModTheSpire)
+* [BaseMod](https://github.com/daviscook477/BaseMod)
 
-* Run the mts.cmd file included in the zip file for the current release (it should not matter where this is run from, so long as the zip is extracted). This is the recommended option if not using the steam workshop version.
+Make sure that you do not have multiple instances of the same mod installed from different sources for Say the Spire or any mods it depends on. for example, do not have both the steam workshop and mods folder versions of BaseMod installed. Conflicting mods can cause the game to break and prevent mods from functioning properly.
+
+After you have installed the needed mods, you can launch the game using one of the following options. See the Mod the Spire section for how to handle some accessibility issues with the modding tool.
+
+* Recommended: Download and run the [mts_steam.cmd](scripts/mts_steam.cmd) file. It shouldn't matter where this file is launched from. If your steam directory is not the default, open the mts_steam.cmd file in notepad or wordpad and change the path after the /d to the correct directory. Whenever you want to play the game using mods, launch that file.
 * in steam, right click on the game, click play, OCR, left click on play with mods, then left click on play. This is not ideal but it works.
 * Launch using a manual call to java (not recommended)
 
-Mod the Spire is not the most accessible piece of software, however it can be worked with. If you are using NVDA you can use object nav to enable/disable particular mods.
+### Mod the Spire
 
-Note that if you are using jaws, Mod the Spire will not work with jaws due to jaws having issues with Java Access Bridge (no controls will be read). If you are using jaws, you can hit enter as soon as mod the spire opens to play. If setting up mods though you will have to switch to NVDA or some other scree nreader that has Java Access Bridge support.
+Mod the Spire is the software that handles game mods. It allows you to activate and deactivate mods. When play is pressed, the mods are loaded into the game and the game is run.
+
+Mod the Spire is not the most accessible piece of software, however it can be worked with. If you are using NVDA you can use object nav to enable/disable particular mods (see below).
+
+Note that if you are using jaws, Mod the Spire will not work with certain older versions of jaws due to them not supporting Java Access Bridge (no controls will be read). If you are using jaws, you can hit enter as soon as mod the spire opens to play. Note that doing this will play with the currently enabled mods, however by default no mods are enabled. If setting up mods though you will have to switch to NVDA or some other scree nreader that has Java Access Bridge support.
 
 If you want to quickly enable/disable all mods, do the following:
 
 * If this is the first time running Mod the Spire, click toggle all mods on/off, then click play.
 * If this is a subsequent run of Mod the Spire, you want to enable all mods (maybe after adding a new one), and you have already enabled mods, click the toggle all mods on/off button twice then click play. If you haven't changed your mods since the previous run you can just hit play; your mod state is saved.
+
+If you are using NVDA, you can use object Nav to view the information for each mod and to enable/disable the mod. To do so, arrow over the list item for a mod and press the move to first contained object key. You can then use move to previous and next object to interact with this section. This collection of objects includes the mod checkbox (toggle with Activate current Navigator object) as well as the mod's name and other information.
 
 ## Usage
 
@@ -94,7 +103,9 @@ Use right stick left and right to move between possible choices (rooms you can m
 For example if given the following 3x4 map:
 
 monster, elite, unknown, monster
+
 blank, merchant, unknown, blank
+
 monster, blank, blank, blank
 
 Say you are starting below the  bottom row. You have a single choice (monster, far bottom left) The only choice from there is merchant. There are however three choices (monster, elite, or unknown).
@@ -112,4 +123,5 @@ After that it will allow you to browse the choices as before. Note that it reads
 * The UI can jump between cards a few times (for example when retaining cards as the silent). this isn't an issue I can fix and does not break the game in any way.
 * Currently certain text is only read in English (for example UI element types).
 * Not all UI positions read as you would expect (for example potions and relics don't have position information). This is being worked on
+
 
