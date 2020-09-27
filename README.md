@@ -33,6 +33,14 @@ Mod the Spire is the software that handles game mods. It allows you to activate 
 
 Mod the Spire is not the most accessible piece of software, however it can be worked with. If you are using NVDA you can use object nav to enable/disable particular mods (see below).
 
+If your NVDA doesn't recognize objects in the window, run the following command using cmd prompt or batch. If your steam directory is not default, change the steam path accordingly.
+
+```
+"C:\Program Files (x86)\Steam\steamapps\common\SlayTheSpire\jre\bin\jabswitch" -enable
+```
+
+This command enables Java Access Bridge. If you run this command on the command prompt, it should output "Java Access Bridge has been enabled".
+
 Note that if you are using jaws, Mod the Spire will not work with certain older versions of jaws due to them not supporting Java Access Bridge (no controls will be read). If you are using jaws, you can hit enter as soon as mod the spire opens to play. Note that doing this will play with the currently enabled mods, however by default no mods are enabled. If setting up mods though you will have to switch to NVDA or some other scree nreader that has Java Access Bridge support.
 
 If you want to quickly enable/disable all mods, do the following:
