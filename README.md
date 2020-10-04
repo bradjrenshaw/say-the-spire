@@ -8,6 +8,8 @@ A mod for the game Slay the Spire to provide blind accessibility.
 
 ## Mod Installation and Usage
 
+For recent changes, see the [change log](changes.md).
+
 For compilation instructions for developers, go [here](devs.md).
 
 ### Setup Instructions for Steam

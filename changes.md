@@ -1,6 +1,12 @@
 # Change Log
 
-## Beta 4
+## Public Beta 2
+
+* Fixed: Strategic (attack and debuff intent) damage now correctly shows multihitting attacks
+* Fixed: If no screen reader is running, the mod now correctly defaults to using SAPI on Windows.
+* Fixed: Strings of single characters will no longer crash the game in certain situations
+
+## Beta 4/Public Beta 1
 
 * Added: Certain UI elements (such as cards and orbs) now read their relative positions
 * Fixed: The death text quote now reads correctly if you lose multiple runs in the same game session

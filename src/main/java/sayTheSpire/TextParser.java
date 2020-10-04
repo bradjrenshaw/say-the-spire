@@ -91,6 +91,7 @@ public class TextParser {
       String text, String context, HashMap<String, String> dynamicVariables) {
     // This is parsing the text as the game does.
     if (text == null) return null;
+    if (text.length() <= 0) return text;
     StringBuilder sb = new StringBuilder();
     Scanner s = new Scanner(text);
     while (s.hasNext()) {

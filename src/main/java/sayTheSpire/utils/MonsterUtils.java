@@ -60,7 +60,14 @@ public class MonsterUtils {
           return TEXT[6] + " " + getMonsterIntentDmg(monster);
         }
       case ATTACK_DEBUFF:
-        return TEXT[10] + " " + getMonsterIntentDmg(monster);
+      if (getMonsterIsMultiDmg(monster)) {
+        return TEXT[10]
+        + " "
+        + getMonsterIntentDmg(monster)
+        + "x"
+        + getMonsterIntentMultiAmt(monster);
+      } else {
+        return TEXT[10] + " " + getMonsterIntentDmg(monster);}
       case ATTACK_DEFEND:
         if (getMonsterIsMultiDmg(monster)) {
           return TEXT[0]

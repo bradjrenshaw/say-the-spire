@@ -22,6 +22,7 @@ public class TolkHandler extends SpeechHandler {
   }
 
   public Boolean output(String text, Boolean interrupt) {
+    Tolk.trySAPI(true);
     Tolk.output(text, interrupt);
     return true;
   }
