@@ -59,9 +59,14 @@ public class STSConfig {
         HashMap<String, Object> combatDefaults = new HashMap();
         combatDefaults.put("block_text", true);
         combatDefaults.put("buff_debuff_text", true);
+
+        HashMap<String, Object> inputDefaults = new HashMap();
+        inputDefaults.put("virtual_input", false);
+
                 defaults.put("ui", uiDefaults);
         defaults.put("map", mapDefaults);
         defaults.put("combat", combatDefaults);
+        defaults.put("input", inputDefaults);
         return defaults;
     }
 

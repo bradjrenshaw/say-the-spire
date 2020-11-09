@@ -20,6 +20,8 @@ import sayTheSpire.speech.TolkHandler;
 import sayTheSpire.speech.TolkResourceHandler;
 import sayTheSpire.ui.UIElement;
 import sayTheSpire.ui.UIRegistry;
+import sayTheSpire.ui.mod.InputManager;
+
 public class Output {
   public enum Direction {
     NONE,
@@ -35,6 +37,7 @@ public class Output {
   public static BufferManager buffers = new BufferManager();
   public static Boolean tolkSetup = false;
   public static Boolean shouldInterruptSpeech = false;
+  public static InputManager inputManager = null;
   public static SpeechManager speechManager = null;
   public static MonsterGroup currentMonsterGroup = null;
   public static String eventText = null;
@@ -42,6 +45,7 @@ public class Output {
   public static STSConfig config = null;
 
   public static void setup() {
+    System.out.println("Say the Spire setup was called");
     speechManager = new SpeechManager();
     speechManager.registerHandler(new TolkResourceHandler());
     speechManager.registerHandler(new TolkHandler());
@@ -72,6 +76,7 @@ public class Output {
       System.err.println(e.getMessage());
       e.printStackTrace();
     }
+    inputManager = new InputManager();
   }
 
   public static void shutdown() {
@@ -108,18 +113,18 @@ public class Output {
     return defaults;
         }
 
-  public static void infoControls() {
+  public static void infoControls(Direction direction) {
     if (bufferContext.equals("")) return;
     if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.MAP
         && bufferContext.equals("map")) {
-      mapInfoControls();
+      mapInfoControls(direction);
     } else {
-      bufferInfoControls();
+      bufferInfoControls(direction);
     }
   }
 
-  public static void bufferInfoControls() {
-    switch (getInfoDirection()) {
+  public static void bufferInfoControls(Direction direction) {
+    switch (direction) {
       case UP:
         BufferControls.nextItem();
         break;
@@ -135,8 +140,8 @@ public class Output {
     }
   }
 
-  public static void mapInfoControls() {
-    switch (getInfoDirection()) {
+  public static void mapInfoControls(Direction direction) {
+    switch (direction) {
       case UP:
         MapControls.followPath(true);
         break;
