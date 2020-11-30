@@ -14,13 +14,13 @@ public class InputAction {
     
     
     private String name;
-    private Boolean pressed, justPressed, justReleased;
+    private Boolean controllerPressed, controllerJustPressed, controllerJustReleased;
 
     public InputAction(String name) {
         this.name = name;
-        this.pressed = false;
-        this.justPressed = false;
-        this.justReleased = false;
+        this.controllerPressed = false;
+        this.controllerJustPressed = false;
+        this.controllerJustReleased = false;
     }
 
     public CInputAction getGameControllerAction() {
@@ -91,15 +91,15 @@ public class InputAction {
     }
 
     public Boolean isPressed() {
-        return this.pressed;
+        return this.controllerPressed;
     }
 
-    public Boolean isJustPressed() {
-        return this.justPressed;
+    public Boolean controllerIsJustPressed() {
+        return this.controllerJustPressed;
     }
 
     public Boolean isJustReleased() {
-        return this.justReleased;
+        return this.controllerJustReleased;
     }
 
     public void setGameControllerActionJustPressed(Boolean value) {
@@ -118,19 +118,19 @@ public class InputAction {
     }
 
     public void clearJust() {
-        this.justPressed = false;
-        this.justReleased = false;
+        this.controllerJustPressed = false;
+        this.controllerJustReleased = false;
     }
 
     public void press() {
-        this.pressed = true;
-        this.justPressed = true;
-        this.justReleased = false;
+        this.controllerPressed = true;
+        this.controllerJustPressed = true;
+        this.controllerJustReleased = false;
     }
 
     public void release() {
-        this.pressed = false;
-        this.justPressed = false;
-        this.justReleased = true;
+        this.controllerPressed = false;
+        this.controllerJustPressed = false;
+        this.controllerJustReleased = true;
     }
 }

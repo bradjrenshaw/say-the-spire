@@ -1,3 +1,4 @@
+/*
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.screens.options.AbandonConfirmPopup;
 import sayTheSpire.Output;
@@ -15,3 +16,4 @@ public class AbandonConfirmPopupPatch {
     }
   }
 }
+*/
