@@ -1,3 +1,5 @@
+/*
+ * An update to Slay the Spire removed this class from the game. this file is kept here for now in case it is needed at some point.
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.screens.options.AbandonConfirmPopup;
 import sayTheSpire.Output;
@@ -15,3 +17,4 @@ public class AbandonConfirmPopupPatch {
     }
   }
 }
+*/

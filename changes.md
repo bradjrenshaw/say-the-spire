@@ -1,6 +1,8 @@
 # Change Log
 
-## Beta 4
+## Beta 4/Public Beta 1
+
+* Fixed: An update to Slay the Spire broke the mod due to a game file being removed; this has been fixed. Please report any other issues that may have been introduced in the most recent Slay the Spire update.
 
 * Added: Certain UI elements (such as cards and orbs) now read their relative positions
 * Fixed: The death text quote now reads correctly if you lose multiple runs in the same game session
