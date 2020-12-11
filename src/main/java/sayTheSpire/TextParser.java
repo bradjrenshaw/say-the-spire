@@ -53,6 +53,7 @@ public class TextParser {
     }
     // ~ and @ characters for word effects seem to be mutually exclusive so this is kept as per the
     // game behavior
+    if (word.length() < 2) return word + " ";
     if (word.charAt(0) == '~' && word.charAt(word.length() - 1) == '~') {
       word = word.substring(1, word.length() - 1);
     } else if (word.charAt(0) == '@' && word.charAt(word.length() - 1) == '@') {
@@ -92,10 +93,12 @@ public class TextParser {
     // This is parsing the text as the game does.
     if (text == null) return null;
     if (text.length() <= 0) return text;
+    if (text.equals("")) return text;
     StringBuilder sb = new StringBuilder();
     Scanner s = new Scanner(text);
     while (s.hasNext()) {
       String word = s.next();
+      if (word.equals("")) continue;
       if (context.equals("card")) word = handleWordCardContext(word);
       else if (context.equals("relic")) word = handleWordRelicContext(word);
       word = handleWordEnergies(word);
