@@ -15,7 +15,7 @@ public class CardCrawlGamePatch {
   }
 
   @SpirePatch(clz = CardCrawlGame.class, method = "update")
-  public static class UpdatePatch {
+  public static class UpdatePatchPostfix {
 
     public static void updateGameEvents() {
       if (Output.eventText != null) {

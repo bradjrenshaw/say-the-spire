@@ -275,9 +275,22 @@ public class Output {
     setupBuffers("UI");
   }
 
+  public static void updateInfoControls() {
+    if (CInputActionSet.inspectUp.isJustPressed()) {
+      infoControls(Direction.UP);
+    } else if (CInputActionSet.inspectRight.isJustPressed()) {
+      infoControls(Direction.RIGHT);
+    } else if (CInputActionSet.inspectDown.isJustPressed()) {
+      infoControls(Direction.DOWN);
+    } else if (CInputActionSet.inspectLeft.isJustPressed()) {
+      infoControls(Direction.LEFT);
+    }
+  }
+
   public static void update() {
     MiscTriggers.update();
     EventManager.update();
     UIRegistry.update();
+
   }
 }

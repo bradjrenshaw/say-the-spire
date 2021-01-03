@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
+import sayTheSpire.Output;
 
 public class InputManager {
     private static final Logger logger = LogManager.getLogger(InputManager.class.getName());
@@ -90,6 +90,7 @@ public class InputManager {
     }
 
     public void updateLast() {
+        if (!Output.config.getBoolean("input.virtual_input")) return;
         for (InputAction action:this.actions.values()) {
             action.update();
             int keycode = action.getControllerKeycode();

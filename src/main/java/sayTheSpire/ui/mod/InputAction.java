@@ -131,11 +131,6 @@ public class InputAction {
         ReflectionHacks.setPrivate(gameAction, CInputAction.class, "justReleased", value);
     }
 
-    public void clearJust() {
-        this.controllerJustPressed = false;
-        this.controllerJustReleased = false;
-    }
-
     private void updateControllerState() {
         int keycode = this.getControllerKeycode();
         if (this.manager.isControllerPressed(keycode)) {
