@@ -1,5 +1,7 @@
 package sayTheSpire.ui.mod;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import com.megacrit.cardcrawl.helpers.controller.CInputAction;
 import com.megacrit.cardcrawl.helpers.controller.CInputHelper;
 import com.megacrit.cardcrawl.helpers.Prefs;
@@ -8,16 +10,20 @@ import basemod.ReflectionHacks;
 
 
 public class InputAction {
-    
+
+    private static final Logger logger = LogManager.getLogger(InputAction.class.getName());
+
     private static Prefs keyboardPrefs = SaveHelper.getPrefs("STSInputSettings");
     private static Prefs controllerPrefs = SaveHelper.getPrefs("STSInputSettings_Controller");
     
     
     private String name;
+    private InputManager manager;
     private Boolean controllerPressed, controllerJustPressed, controllerJustReleased;
 
-    public InputAction(String name) {
+    public InputAction(String name, InputManager manager) {
         this.name = name;
+        this.manager = manager;
         this.controllerPressed = false;
         this.controllerJustPressed = false;
         this.controllerJustReleased = false;
@@ -49,7 +55,11 @@ public class InputAction {
             return controllerPrefs.getInteger("PAGE_LEFT_KEY", 4);
             case "page right":
             return controllerPrefs.getInteger("PAGE_RIGHT_KEY", 5);
-            case "map":
+            case "draw pile":
+            return controllerPrefs.getInteger("DRAW_PILE", 1004);
+            case "discard pile":
+            return controllerPrefs.getInteger("DISCARD_PILE", -1004);
+                       case "map":
             return controllerPrefs.getInteger("MAP", 6);
             case "settings":
             return controllerPrefs.getInteger("SETTINGS", 7);
@@ -98,6 +108,10 @@ public class InputAction {
         return this.controllerJustPressed;
     }
 
+    public Boolean isJustPressed() {
+        return this.controllerJustPressed;
+    }
+
     public Boolean isJustReleased() {
         return this.controllerJustReleased;
     }
@@ -122,15 +136,34 @@ public class InputAction {
         this.controllerJustReleased = false;
     }
 
-    public void press() {
-        this.controllerPressed = true;
-        this.controllerJustPressed = true;
-        this.controllerJustReleased = false;
+    private void updateControllerState() {
+        int keycode = this.getControllerKeycode();
+        if (this.manager.isControllerPressed(keycode)) {
+            if (this.controllerPressed && this.controllerJustPressed) {
+                this.controllerJustPressed = false;
+            } else if (this.manager.isControllerJustPressed(keycode)) {
+                this.controllerPressed = true;
+                this.controllerJustPressed = true;
+            }
+        } else {
+            if (this.controllerJustReleased) {
+                this.controllerJustReleased = false;
+            } else if (this.controllerPressed) {
+                this.controllerPressed = false;
+                this.controllerJustPressed = false;
+                this.controllerJustReleased = true;
+            }
+        }
     }
 
-    public void release() {
-        this.controllerPressed = false;
-        this.controllerJustPressed = false;
-        this.controllerJustReleased = true;
+    public void update() {
+        this.updateControllerState();
+        if (this.isJustPressed()) {
+            this.manager.emitAction(this, "justPressed");
+        } else if (this.isPressed()) {
+            this.manager.emitAction(this, "pressed");
+        } else if (this.isJustReleased()) {
+            this.manager.emitAction(this, "justReleased");
+        }
     }
 }

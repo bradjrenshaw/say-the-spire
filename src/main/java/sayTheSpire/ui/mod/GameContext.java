@@ -33,11 +33,18 @@ public class GameContext extends Context {
         return true;
     }
 
+    public Boolean onPress(InputAction action) {
+        action.setGameControllerActionJustPressed(false);
+        return true;
+    }
+
     public Boolean onJustRelease(InputAction action) {
         CInputAction gameAction = action.getGameControllerAction();
+        System.err.println("Just released was called.");
         if (gameAction != null) {
             action.setGameControllerActionJustReleased(true);
             action.setGameControllerActionPressed(false);
+            action.setGameControllerActionJustPressed(false);
         }
         return true;
     }

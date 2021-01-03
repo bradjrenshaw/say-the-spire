@@ -18,7 +18,7 @@ public class Context {
         return false;
     }
 
-    public Boolean onJustReleased(InputAction action) {
+    public Boolean onJustRelease(InputAction action) {
         return false;
     }
 

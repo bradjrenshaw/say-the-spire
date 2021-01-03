@@ -2,18 +2,26 @@ package sayTheSpire.ui.mod;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 public class InputManager {
+    private static final Logger logger = LogManager.getLogger(InputManager.class.getName());
 
     private ArrayList<Context> contexts;
     private HashMap<String, InputAction> actions;
+    private HashMap<Integer, Boolean> controllerPressed;
+
+
 
     public InputManager() {
         this.contexts = new ArrayList();
     this.actions = new HashMap();
     this.setupActions();
     this.pushContext(new GameContext());
+    this.controllerPressed = new HashMap();
     }
 
     public void addAction(InputAction action) {
@@ -25,36 +33,32 @@ public class InputManager {
     }
 
     public void emitAction(InputAction action, String reason) {
-        System.out.println("Emiting action " + action.getName() + " with reason " + reason);
         for (Context context:this.contexts) {
             Boolean result = false;
             if (reason.equals("justPressed")) result = context.onJustPress(action);
-            else if (reason.equals("justReleased")) result = context.onJustReleased(action);
-            else throw new RuntimeException("Invalud action for " + action.getName());
+            else if (reason.equals("pressed")) result = context.onPress(action);
+            else if (reason.equals("justReleased")) result = context.onJustRelease(action);
+            else throw new RuntimeException("Invalud emit action " + reason + " for " + action.getName());
             if (result) { //input stopped
                 break;
             }
         }
     }
 
-    public void handleKeycodePress(int keycode, Boolean isController) {
-        if (!isController) return; //not yet
-        for (InputAction action:this.actions.values()) {
-            if (isController && keycode == action.getControllerKeycode()) {
-                action.press();
-                this.emitAction(action, "justPressed");
-            }
-        }
+    public void handleControllerKeycodePress(int keycode) {
+        this.controllerPressed.put(keycode, true);
     }
 
-    public void handleKeycodeRelease(int keycode, Boolean isController) {
-        if (!isController) return; //not yet
-        for (InputAction action:this.actions.values()) {
-            if (isController && keycode == action.getControllerKeycode()) {
-                action.release();
-                this.emitAction(action, "justReleased");
-            }
-        }
+    public void handleControllerKeycodeRelease(int keycode) {
+        this.controllerPressed.remove(keycode);
+    }
+
+    public Boolean isControllerJustPressed(int keycode) {
+        return this.controllerPressed.getOrDefault(keycode, false);
+    }
+
+    public Boolean isControllerPressed(int keycode) {
+        return this.controllerPressed.containsKey(keycode);
     }
 
     public void pushContext(Context context) {
@@ -79,15 +83,19 @@ public class InputManager {
     }
 
     private void setupActions() {
-        String actionNames[] = {"select", "cancel", "top panel", "proceed", "peek", "page left", "page right", "map", "settings", "up", "down", "left", "right", "alt up", "alt down", "alt left", "alt right", "inspect up", "inspect down", "inspect left", "inspect right"};
+        String actionNames[] = {"select", "cancel", "top panel", "proceed", "peek", "page left", "page right", "draw pile", "discard pile", "map", "settings", "up", "down", "left", "right", "alt up", "alt down", "alt left", "alt right", "inspect up", "inspect down", "inspect left", "inspect right"};
         for (String name:actionNames) {
-            this.addAction(new InputAction(name));
+            this.addAction(new InputAction(name, this));
         }
     }
 
     public void updateLast() {
         for (InputAction action:this.actions.values()) {
-            action.clearJust();
+            action.update();
+            int keycode = action.getControllerKeycode();
+            if (this.isControllerJustPressed(keycode)) {
+                this.controllerPressed.put(keycode, false);
+            }
         }
     }
 }
