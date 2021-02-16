@@ -291,6 +291,5 @@ public class Output {
     MiscTriggers.update();
     EventManager.update();
     UIRegistry.update();
-
   }
 }
