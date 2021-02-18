@@ -1,12 +1,17 @@
 package sayTheSpire.ui.mod;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.HashMap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import com.badlogic.gdx.Input.Keys;
 import com.megacrit.cardcrawl.helpers.controller.CInputAction;
 import com.megacrit.cardcrawl.helpers.controller.CInputHelper;
 import com.megacrit.cardcrawl.helpers.Prefs;
 import com.megacrit.cardcrawl.helpers.SaveHelper;
 import basemod.ReflectionHacks;
+import sayTheSpire.utils.MapBuilder;
 
 
 public class InputAction {
@@ -20,6 +25,32 @@ public class InputAction {
     private String name;
     private InputManager manager;
     private Boolean controllerPressed, controllerJustPressed, controllerJustReleased;
+    private Boolean keyboardJustPressed, keyboardPressed, keyboardJustReleased;
+    private static HashMap<String, HashSet<Integer>> defaultKeyboardKeys;
+
+    static {
+        defaultKeyboardKeys = new MapBuilder()
+        .put("select", keySet(Keys.ENTER))
+        .put("cancel", keySet(Keys.BACKSPACE))
+        .put("top panel", keySet(Keys.T))
+        .put("proceed", keySet(Keys.E))
+        .put("peek", keySet(Keys.X))
+        .put("page left", keySet(Keys.D))
+        .put("page right", keySet(Keys.F))
+        .put("draw pile", keySet(Keys.Q))
+        .put("discard pile", keySet(Keys.W))
+        .put("map", keySet(Keys.M))
+        .put("settings", keySet(Keys.ESCAPE))
+        .put("up", keySet(Keys.UP))
+        .put("down", keySet(Keys.DOWN))
+        .put("left", keySet(Keys.LEFT))
+        .put("right", keySet(Keys.RIGHT))
+        .put("inspect up", keySet(Keys.CONTROL_LEFT, Keys.UP))
+        .put("inspect down", keySet(Keys.CONTROL_LEFT, Keys.DOWN))
+        .put("inspect left", keySet(Keys.CONTROL_LEFT, Keys.LEFT))
+        .put("inspect right", keySet(Keys.CONTROL_LEFT, Keys.RIGHT))
+        .toHashMap();
+    }
 
     public InputAction(String name, InputManager manager) {
         this.name = name;
@@ -27,6 +58,9 @@ public class InputAction {
         this.controllerPressed = false;
         this.controllerJustPressed = false;
         this.controllerJustReleased = false;
+        this.keyboardPressed = false;
+        this.keyboardJustPressed = false;
+        this.keyboardJustReleased = false;
     }
 
     public CInputAction getGameControllerAction() {
@@ -38,6 +72,10 @@ public class InputAction {
         }
         return null;
     }
+
+public HashSet<Integer> getDefaultKeyboardKeys() {
+    return defaultKeyboardKeys.getOrDefault(this.getName(), null);
+}
 
     public int getGameControllerKeycode() {
         switch (this.name) {
@@ -114,6 +152,10 @@ public class InputAction {
 
     public Boolean isJustReleased() {
         return this.controllerJustReleased;
+    }
+
+    public static HashSet<Integer> keySet(Integer... args) {
+        return new HashSet<Integer>(Arrays.asList(args));
     }
 
     public void setGameControllerActionJustPressed(Boolean value) {

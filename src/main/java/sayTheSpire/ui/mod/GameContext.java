@@ -10,7 +10,6 @@ public class GameContext extends Context {
     }
 
     public Boolean onJustPress(InputAction action) {
-        Output.silenceSpeech();
         switch(action.getName()) {
             case "inspect up":
             Output.infoControls(Output.Direction.UP);
@@ -40,7 +39,6 @@ public class GameContext extends Context {
 
     public Boolean onJustRelease(InputAction action) {
         CInputAction gameAction = action.getGameControllerAction();
-        System.err.println("Just released was called.");
         if (gameAction != null) {
             action.setGameControllerActionJustReleased(true);
             action.setGameControllerActionPressed(false);

@@ -5,6 +5,7 @@
 * Fixed: Strategic (attack and debuff intent) damage now correctly shows multihitting attacks
 * Fixed: If no screen reader is running, the mod now correctly defaults to using SAPI on Windows.
 * Fixed: Strings of single characters will no longer crash the game in certain situations
+* Fixed: Potential issues with speech not stopping on button press or stopping at the wrong time
 
 ## Beta 4/Public Beta 1
 

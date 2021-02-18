@@ -11,7 +11,7 @@ public class CInputHelperPatch {
   public static class ListenerPressPatch {
     
     public static SpireReturn<Boolean> Prefix(int keycode) {
-      //Output.silenceSpeech();
+      Output.silenceSpeech();
       if (Output.config.getBoolean("input.virtual_input")) {
         Output.inputManager.handleControllerKeycodePress(keycode);
         return SpireReturn.Return(false);
