@@ -68,7 +68,7 @@ public class DropdownElement extends UIElement {
       this.name = graphicsOptions[0];
       this.options = new String[Settings.displayOptions.size()];
       for (int i = 0; i < Settings.displayOptions.size(); i++) {
-        this.options[i] = Settings.displayOptions.get(i).uiString();
+        this.options[i] = TextParser.parse(Settings.displayOptions.get(i).uiString());
       }
     } else if (this.dropdown == language) {
       this.name = TEXT[13];
