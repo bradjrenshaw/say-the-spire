@@ -63,7 +63,14 @@ public class CardBuffer extends Buffer {
     }
     this.add(card.name);
     this.add(CardUtils.getCardCostString(card) + " energy");
-    this.add(CardUtils.getCardTypeString(card) + " type");
+    // add card type and rarity as one buffer item.
+    String typeAndRarity = CardUtils.getCardTypeString(card) +" type";
+    String rarity = CardUtils.getCardRarityString(card);
+    // not sure if rarity info can be missing so better check for it
+    if (rarity != null) {
+      typeAndRarity += ", " +rarity  +" rarity";
+    }
+    this.add(typeAndRarity);
     this.add(CardUtils.getCardDescriptionString(card));
     for (String keyword : card.keywords) {
       String name = TextParser.parse(keyword);
