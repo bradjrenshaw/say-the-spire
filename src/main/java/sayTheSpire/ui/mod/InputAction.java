@@ -1,6 +1,7 @@
 package sayTheSpire.ui.mod;
 
 import java.util.Arrays;
+import java.util.EnumSet;    
 import java.util.HashSet;
 import java.util.HashMap;
 import org.apache.logging.log4j.LogManager;
@@ -18,37 +19,45 @@ public class InputAction {
 
     private static final Logger logger = LogManager.getLogger(InputAction.class.getName());
 
+
     private static Prefs keyboardPrefs = SaveHelper.getPrefs("STSInputSettings");
     private static Prefs controllerPrefs = SaveHelper.getPrefs("STSInputSettings_Controller");
     
-    
+    public static enum Modifiers {CONTROL, SHIFT, ALT};
     private String name;
     private InputManager manager;
     private Boolean controllerPressed, controllerJustPressed, controllerJustReleased;
     private Boolean keyboardJustPressed, keyboardPressed, keyboardJustReleased;
-    private static HashMap<String, HashSet<Integer>> defaultKeyboardKeys;
+    private static HashMap<String, Integer> defaultKeyboardKeys;
+    private static HashMap<String, EnumSet<Modifiers>> defaultKeyboardModifiers;
 
     static {
         defaultKeyboardKeys = new MapBuilder()
-        .put("select", keySet(Keys.ENTER))
-        .put("cancel", keySet(Keys.BACKSPACE))
-        .put("top panel", keySet(Keys.T))
-        .put("proceed", keySet(Keys.E))
-        .put("peek", keySet(Keys.X))
-        .put("page left", keySet(Keys.D))
-        .put("page right", keySet(Keys.F))
-        .put("draw pile", keySet(Keys.Q))
-        .put("discard pile", keySet(Keys.W))
-        .put("map", keySet(Keys.M))
-        .put("settings", keySet(Keys.ESCAPE))
-        .put("up", keySet(Keys.UP))
-        .put("down", keySet(Keys.DOWN))
-        .put("left", keySet(Keys.LEFT))
-        .put("right", keySet(Keys.RIGHT))
-        .put("inspect up", keySet(Keys.CONTROL_LEFT, Keys.UP))
-        .put("inspect down", keySet(Keys.CONTROL_LEFT, Keys.DOWN))
-        .put("inspect left", keySet(Keys.CONTROL_LEFT, Keys.LEFT))
-        .put("inspect right", keySet(Keys.CONTROL_LEFT, Keys.RIGHT))
+        .put("select", Keys.ENTER)
+        .put("cancel", Keys.BACKSPACE)
+        .put("top panel", Keys.T)
+        .put("proceed", Keys.E)
+        .put("peek", Keys.X)
+        .put("page left", Keys.D)
+        .put("page right", Keys.F)
+        .put("draw pile", Keys.Q)
+        .put("discard pile", Keys.W)
+        .put("map", Keys.M)
+        .put("settings", Keys.ESCAPE)
+        .put("up", Keys.UP)
+        .put("down", Keys.DOWN)
+        .put("left", Keys.LEFT)
+        .put("right", Keys.RIGHT)
+        .put("inspect up", Keys.UP)
+        .put("inspect down", Keys.DOWN)
+        .put("inspect left", Keys.LEFT)
+        .put("inspect right", Keys.RIGHT)
+        .toHashMap();
+        defaultKeyboardModifiers = new MapBuilder()
+        .put("inspect up", EnumSet.of(Modifiers.CONTROL))
+        .put("inspect down", EnumSet.of(Modifiers.CONTROL))
+        .put("inspect left", EnumSet.of(Modifiers.CONTROL))
+        .put("inspect right", EnumSet.of(Modifiers.CONTROL))
         .toHashMap();
     }
 
@@ -63,6 +72,18 @@ public class InputAction {
         this.keyboardJustReleased = false;
     }
 
+    public void clearStates() {
+        this.controllerJustPressed = false;
+        this.controllerPressed = false;
+        this.controllerJustReleased = false;
+        this.keyboardJustPressed = false;
+        this.keyboardPressed = false;
+        this.keyboardJustReleased = false;
+        this.setGameControllerActionJustPressed(false);
+        this.setGameControllerActionPressed(false);
+        this.setGameControllerActionJustReleased(false);
+    }
+
     public CInputAction getGameControllerAction() {
         int keycode = this.getGameControllerKeycode();
         for (CInputAction action:CInputHelper.actions) {
@@ -73,9 +94,13 @@ public class InputAction {
         return null;
     }
 
-public HashSet<Integer> getDefaultKeyboardKeys() {
+public Integer getDefaultKeyboardKey() {
     return defaultKeyboardKeys.getOrDefault(this.getName(), null);
 }
+
+    public EnumSet<Modifiers> getDefaultKeyboardModifiers() {
+        return defaultKeyboardModifiers.getOrDefault(this.getName(), EnumSet.noneOf(Modifiers.class));
+    }
 
     public int getGameControllerKeycode() {
         switch (this.name) {
@@ -134,12 +159,20 @@ public HashSet<Integer> getDefaultKeyboardKeys() {
         return this.getGameControllerKeycode();
     }
 
+    public Integer getKeyboardKey() {
+        return this.getDefaultKeyboardKey();
+    }
+
+    public EnumSet<Modifiers> getKeyboardModifiers() {
+        return this.getDefaultKeyboardModifiers();
+    }
+
     public String getName() {
         return this.name;
     }
 
     public Boolean isPressed() {
-        return this.controllerPressed;
+        return this.keyboardPressed || this.controllerPressed;
     }
 
     public Boolean controllerIsJustPressed() {
@@ -147,11 +180,11 @@ public HashSet<Integer> getDefaultKeyboardKeys() {
     }
 
     public Boolean isJustPressed() {
-        return this.controllerJustPressed;
+        return this.keyboardJustPressed || this.controllerJustPressed;
     }
 
     public Boolean isJustReleased() {
-        return this.controllerJustReleased;
+        return this.keyboardJustReleased || this.controllerJustReleased;
     }
 
     public static HashSet<Integer> keySet(Integer... args) {
@@ -193,8 +226,31 @@ public HashSet<Integer> getDefaultKeyboardKeys() {
         }
     }
 
+    private void updateKeyboardState() {
+        Boolean managerJustPressed = this.manager.isKeyboardJustPressed(this);
+        Boolean managerPressed = this.manager.isKeyboardPressed(this);
+        if (managerJustPressed) {
+            this.keyboardJustPressed = true;
+            this.keyboardPressed = true;
+            this.keyboardJustReleased = false;
+        } else if (managerPressed) {
+            this.keyboardJustPressed = false;
+            this.keyboardPressed = true;
+            this.keyboardJustReleased = false;
+        } else {
+            if (this.keyboardJustReleased) {
+                this.keyboardJustReleased = false;
+            } else if (this.keyboardPressed && !managerPressed) {
+                this.keyboardJustReleased = true;
+            }
+            this.keyboardJustPressed = false;
+            this.keyboardPressed = false;
+        }
+    }
+
     public void update() {
-        this.updateControllerState();
+        this.updateKeyboardState();
+        //this.updateControllerState();
         if (this.isJustPressed()) {
             this.manager.emitAction(this, "justPressed");
         } else if (this.isPressed()) {

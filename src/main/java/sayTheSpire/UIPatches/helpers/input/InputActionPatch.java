@@ -10,12 +10,7 @@ public class InputActionPatch {
     public static class isJustPressedPatch {
 
         public static SpireReturn<Boolean> Prefix(InputAction action) {
-
-
-
-
-
-            if (Output.config.getBoolean("input.virtual_input")) {
+            if (Output.getAllowVirtualInput()) {
                 return SpireReturn.Return(false);
             }
             return SpireReturn.Continue();
@@ -26,7 +21,7 @@ public class InputActionPatch {
     public static class isPressedPatch {
 
         public static SpireReturn<Boolean> Prefix(InputAction action) {
-            if (Output.config.getBoolean("input.virtual_input")) {
+            if (Output.getAllowVirtualInput()) {
                 return SpireReturn.Return(false);
             }
             return SpireReturn.Continue();

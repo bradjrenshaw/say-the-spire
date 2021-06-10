@@ -5,6 +5,10 @@ import sayTheSpire.Output;
 
 public class GameContext extends Context {
 
+    public GameContext() {
+        this.shouldForceControllerMode = true;
+    }
+
     public void onClearJust() {
         //clear here
     }

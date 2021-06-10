@@ -106,12 +106,10 @@ public class Output {
     shouldInterruptSpeech = interrupt;
   }
 
-  public static Properties getDefaultConfigSettings() {
-    Properties defaults = new Properties();
-    defaults.setProperty("ui_readPositions", "true");
-    defaults.setProperty("map_readReversedPaths", "true");
-    return defaults;
-        }
+  public static Boolean getAllowVirtualInput() {
+    if (inputManager == null) return false;
+    return inputManager.getAllowVirtualInput() && config.getBoolean("input.virtual_input", false);
+  }
 
   public static void infoControls(Direction direction) {
     if (bufferContext.equals("")) return;

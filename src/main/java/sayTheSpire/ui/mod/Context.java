@@ -5,6 +5,16 @@ import sayTheSpire.ui.mod.InputAction;
 
 public class Context {
 
+    protected Boolean shouldForceControllerMode = false;
+    protected Boolean allowVirtualInput = true;
+
+    public Boolean getAllowVirtualInput() {
+        return this.allowVirtualInput;
+    }
+
+    public Boolean getShouldForceControllerMode() {
+        return this.shouldForceControllerMode;
+    }
 
     public void onFocus() {
         return;

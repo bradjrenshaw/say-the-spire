@@ -50,6 +50,7 @@ private String priceString;
     }
 
         public String getExtrasString() {
+            if (this.card.isFlipped || this.card.isLocked) return null;
             StringBuilder sb = new StringBuilder();
             sb.append(CardUtils.getCardCostString(this.card));
             if (this.priceString != null) sb.append(", " + this.priceString);

@@ -1,5 +1,8 @@
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import com.megacrit.cardcrawl.helpers.controller.CInputHelper;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import sayTheSpire.Output;
 import sayTheSpire.TextParser;
 import sayTheSpire.events.EventTextEvent;
@@ -11,6 +14,10 @@ public class CardCrawlGamePatch {
 
     public static void Postfix() {
       Output.setup();
+      if (Output.config.getBoolean("input.virtual_input", false) && CInputHelper.controller == null) {
+      CInputHelper.model = CInputHelper.ControllerModel.XBOX_ONE;
+            ImageMaster.loadControllerImages(CInputHelper.ControllerModel.XBOX_ONE);
+      }
     }
   }
 
