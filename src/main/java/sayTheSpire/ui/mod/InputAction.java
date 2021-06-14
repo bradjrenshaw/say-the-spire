@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.helpers.Prefs;
 import com.megacrit.cardcrawl.helpers.SaveHelper;
 import basemod.ReflectionHacks;
 import sayTheSpire.utils.MapBuilder;
-
+import sayTheSpire.Output;
 
 public class InputAction {
 
@@ -91,6 +91,7 @@ public class InputAction {
                 return action;
             }
         }
+        Output.text("error: game action for " + this.getName() + " not found", false);
         return null;
     }
 
@@ -208,26 +209,29 @@ public Integer getDefaultKeyboardKey() {
 
     private void updateControllerState() {
         int keycode = this.getControllerKeycode();
-        if (this.manager.isControllerPressed(keycode)) {
-            if (this.controllerPressed && this.controllerJustPressed) {
-                this.controllerJustPressed = false;
-            } else if (this.manager.isControllerJustPressed(keycode)) {
-                this.controllerPressed = true;
-                this.controllerJustPressed = true;
-            }
+        Boolean managerJustPressed = this.manager.isControllerJustPressed(keycode);
+        Boolean managerPressed = this.manager.isControllerPressed(keycode);
+        if (managerJustPressed) {
+            this.controllerJustPressed = true;
+            this.controllerPressed = true;
+            this.controllerJustReleased = false;
+        } else if (managerPressed) {
+            this.controllerJustPressed = false;
+            this.controllerPressed = true;
+            this.controllerJustReleased = false;
         } else {
             if (this.controllerJustReleased) {
                 this.controllerJustReleased = false;
-            } else if (this.controllerPressed) {
-                this.controllerPressed = false;
-                this.controllerJustPressed = false;
+            } else if (this.controllerPressed && !managerPressed) {
                 this.controllerJustReleased = true;
             }
+            this.controllerJustPressed = false;
+            this.controllerPressed = false;
         }
     }
 
     private void updateKeyboardState() {
-        Boolean managerJustPressed = this.manager.isKeyboardJustPressed(this);
+                Boolean managerJustPressed = this.manager.isKeyboardJustPressed(this);
         Boolean managerPressed = this.manager.isKeyboardPressed(this);
         if (managerJustPressed) {
             this.keyboardJustPressed = true;
@@ -250,7 +254,7 @@ public Integer getDefaultKeyboardKey() {
 
     public void update() {
         this.updateKeyboardState();
-        //this.updateControllerState();
+     this.updateControllerState();
         if (this.isJustPressed()) {
             this.manager.emitAction(this, "justPressed");
         } else if (this.isPressed()) {

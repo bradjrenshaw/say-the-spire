@@ -38,7 +38,8 @@ public class GameContext extends Context {
 
     public Boolean onPress(InputAction action) {
         action.setGameControllerActionJustPressed(false);
-        return true;
+        action.setGameControllerActionPressed(true);
+                return true;
     }
 
     public Boolean onJustRelease(InputAction action) {

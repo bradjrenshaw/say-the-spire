@@ -14,10 +14,6 @@ public class CardCrawlGamePatch {
 
     public static void Postfix() {
       Output.setup();
-      if (Output.config.getBoolean("input.virtual_input", false) && CInputHelper.controller == null) {
-      CInputHelper.model = CInputHelper.ControllerModel.XBOX_ONE;
-            ImageMaster.loadControllerImages(CInputHelper.ControllerModel.XBOX_ONE);
-      }
     }
   }
 
