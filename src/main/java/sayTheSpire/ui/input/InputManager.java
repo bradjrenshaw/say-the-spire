@@ -1,6 +1,7 @@
 package sayTheSpire.ui.input;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -8,7 +9,6 @@ import java.util.HashSet;
 import java.util.Set;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Gdx;
@@ -23,7 +23,6 @@ public class InputManager {
     private HashMap<Integer, Boolean> controllerPressed, keyboardPressed;
     private HashSet<Integer> keysToCheck;
     private EnumSet<InputAction.Modifiers> keyboardModifiers;
-
     UIManager uiManager;
 
     public InputManager(UIManager uiManager) {
@@ -120,7 +119,7 @@ public class InputManager {
         }
     }
 
-    public void updateLast() {
+    public void updateFirst() {
         if (!Output.config.getBoolean("input.virtual_input")) return;
 Context current  = this.uiManager.getCurrentContext();
     if (current.getShouldForceControllerMode()) {
@@ -129,10 +128,15 @@ Context current  = this.uiManager.getCurrentContext();
         updateKeyboardState();
         for (InputAction action:this.actions.values()) {
             action.update();
-            int keycode = action.getControllerKeycode();
-            if (this.isControllerJustPressed(keycode)) {
-                this.controllerPressed.put(keycode, false);
-            }
         }
     }
+
+    public void updateLast() {
+                if (!Output.config.getBoolean("input.virtual_input")) return;
+        for (Map.Entry<Integer, Boolean> entry:this.controllerPressed.entrySet()) {
+            if (entry.getValue()) {
+                entry.setValue(false);
+            }
+        }
+}
 }

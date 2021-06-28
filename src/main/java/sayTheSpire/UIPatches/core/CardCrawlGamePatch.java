@@ -17,6 +17,14 @@ public class CardCrawlGamePatch {
     }
   }
 
+  @SpirePatch(clz=CardCrawlGame.class, method="update")
+  public static class updatePatchPrefix {
+
+    public static void Prefix(CardCrawlGame __instance) {
+      Output.uiManager.updateFirst();
+    }
+  }
+
   @SpirePatch(clz = CardCrawlGame.class, method = "update")
   public static class UpdatePatchPostfix {
 

@@ -74,6 +74,12 @@ public class UIManager {
         }
     }
 
+    public void updateFirst() {
+        if (!this.temporaryInputHalt) {
+            this.inputManager.updateFirst();
+        }
+    }
+
     public void updateLast() {
         if (!this.temporaryInputHalt) {
         this.inputManager.updateLast();
