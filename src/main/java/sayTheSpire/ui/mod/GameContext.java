@@ -1,6 +1,7 @@
 package sayTheSpire.ui.mod;
 
 import com.megacrit.cardcrawl.helpers.controller.CInputAction;
+import sayTheSpire.ui.input.InputAction;
 import sayTheSpire.Output;
 
 public class GameContext extends Context {

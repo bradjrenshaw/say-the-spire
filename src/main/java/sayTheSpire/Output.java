@@ -20,7 +20,8 @@ import sayTheSpire.speech.TolkHandler;
 import sayTheSpire.speech.TolkResourceHandler;
 import sayTheSpire.ui.UIElement;
 import sayTheSpire.ui.UIRegistry;
-import sayTheSpire.ui.mod.InputManager;
+import sayTheSpire.ui.input.InputManager;
+import sayTheSpire.ui.mod.UIManager;
 
 public class Output {
   public enum Direction {
@@ -38,6 +39,7 @@ public class Output {
   public static Boolean tolkSetup = false;
   public static Boolean shouldInterruptSpeech = false;
   public static InputManager inputManager = null;
+  public static UIManager uiManager = null;
   public static SpeechManager speechManager = null;
   public static MonsterGroup currentMonsterGroup = null;
   public static String eventText = null;
@@ -76,7 +78,8 @@ public class Output {
       System.err.println(e.getMessage());
       e.printStackTrace();
     }
-    inputManager = new InputManager();
+    uiManager = new UIManager();
+    inputManager = uiManager.getInputManager();
   }
 
   public static void shutdown() {
@@ -107,8 +110,8 @@ public class Output {
   }
 
   public static Boolean getAllowVirtualInput() {
-    if (inputManager == null) return false;
-    return inputManager.getAllowVirtualInput() && config.getBoolean("input.virtual_input", false);
+    if (uiManager == null) return false;
+    return uiManager.getAllowVirtualInput() && config.getBoolean("input.virtual_input", false);
   }
 
   public static void infoControls(Direction direction) {

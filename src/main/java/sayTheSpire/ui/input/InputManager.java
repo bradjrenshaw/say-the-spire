@@ -1,4 +1,4 @@
-package sayTheSpire.ui.mod;
+package sayTheSpire.ui.input;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,25 +14,24 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.core.Settings;
 import sayTheSpire.Output;
+import sayTheSpire.ui.mod.UIManager;
+import sayTheSpire.ui.mod.Context;
 
 public class InputManager {
     private static final Logger logger = LogManager.getLogger(InputManager.class.getName());
-    private ArrayList<Context> contexts;
     private HashMap<String, InputAction> actions;
     private HashMap<Integer, Boolean> controllerPressed, keyboardPressed;
     private HashSet<Integer> keysToCheck;
     private EnumSet<InputAction.Modifiers> keyboardModifiers;
 
-    //We need this to prevent unintentional controller actions registering on context change
-    private Boolean temporaryInputHalt = false;
+    UIManager uiManager;
 
-    public InputManager() {
-        this.contexts = new ArrayList();
+    public InputManager(UIManager uiManager) {
+        this.uiManager = uiManager;
     this.actions = new HashMap();
     this.setupActions();
     this.keysToCheck = new HashSet();
     this.determineKeysToCheck();
-    this.pushContext(new GameContext());
     this.controllerPressed = new HashMap();
     this.keyboardPressed = new HashMap();
     this.keyboardModifiers = EnumSet.noneOf(InputAction.Modifiers.class);
@@ -62,34 +61,6 @@ public class InputManager {
             if (key == null) continue; //not assigned
                             keysToCheck.add(key);
         }
-    }
-
-    public void emitAction(InputAction action, String reason) {
-        for (Context context:this.contexts) {
-            Boolean result = false;
-            if (reason.equals("justPressed")) result = context.onJustPress(action);
-            else if (reason.equals("pressed")) result = context.onPress(action);
-            else if (reason.equals("justReleased")) result = context.onJustRelease(action);
-            else throw new RuntimeException("Invalud emit action " + reason + " for " + action.getName());
-            if (result == true) { //input stopped
-                break;
-            }
-        }
-    }
-
-    public Boolean getAllowVirtualInput() {
-        Context current = this.getCurrentContext();
-        if (current != null) {
-            return current.getAllowVirtualInput();
-        }
-        return false;
-    }
-
-    public Context getCurrentContext() {
-        if (contexts.size() <= 0) {
-            return null;
-        }
-        return this.contexts.get(0);
     }
 
     public void handleControllerKeycodePress(int keycode) {
@@ -122,29 +93,6 @@ public class InputManager {
         return actionModifiers.equals(this.keyboardModifiers) && this.keyboardPressed.containsKey(actionKey);
     }
 
-    public void pushContext(Context context) {
-            if (contexts.size() > 0) {
-            contexts.get(0).onUnfocus();
-        }
-    this.clearActionStates();
-        this.contexts.add(0, context);
-        context.onFocus();
-        this.temporaryInputHalt = true;
-    }
-
-    public void popContext() {
-        if (this.contexts.size() > 0) {
-            Context context = this.contexts.get(0);
-            context.onUnfocus();
-            this.contexts.remove(0);
-        }
-        this.clearActionStates();
-        this.temporaryInputHalt = true;
-        if (this.contexts.size() > 0) {
-            this.contexts.get(0).onFocus();
-        }
-    }
-
     private void setupActions() {
         String actionNames[] = {"select", "cancel", "top panel", "proceed", "peek", "page left", "page right", "draw pile", "discard pile", "map", "settings", "up", "down", "left", "right", "alt up", "alt down", "alt left", "alt right", "inspect up", "inspect down", "inspect left", "inspect right"};
         for (String name:actionNames) {
@@ -173,12 +121,8 @@ public class InputManager {
     }
 
     public void updateLast() {
-        if (this.temporaryInputHalt) {
-            this.temporaryInputHalt = false;
-            return;
-        }
         if (!Output.config.getBoolean("input.virtual_input")) return;
-Context current  = this.getCurrentContext();
+Context current  = this.uiManager.getCurrentContext();
     if (current.getShouldForceControllerMode()) {
         Settings.isControllerMode = true;
     }

@@ -1,4 +1,4 @@
-package sayTheSpire.ui.mod;
+package sayTheSpire.ui.input;
 
 import java.util.Arrays;
 import java.util.EnumSet;    
@@ -256,11 +256,11 @@ public Integer getDefaultKeyboardKey() {
         this.updateKeyboardState();
      this.updateControllerState();
         if (this.isJustPressed()) {
-            this.manager.emitAction(this, "justPressed");
+            this.manager.uiManager.emitAction(this, "justPressed");
         } else if (this.isPressed()) {
-            this.manager.emitAction(this, "pressed");
+            this.manager.uiManager.emitAction(this, "pressed");
         } else if (this.isJustReleased()) {
-            this.manager.emitAction(this, "justReleased");
+            this.manager.uiManager.emitAction(this, "justReleased");
         }
     }
 }

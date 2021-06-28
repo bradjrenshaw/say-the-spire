@@ -15,7 +15,7 @@ public class RenamePopupPatch {
   public static class OpenPatch {
 
     public static void Postfix(RenamePopup __instance) {
-      Output.inputManager.pushContext(new KeyboardContext());
+      Output.uiManager.pushContext(new KeyboardContext());
       Output.text(TEXT[1] + "\nAccessibility note: Use keyboard to enter name.", true);
       Output.setupUIBufferMany(TEXT[1], "Accessibility note: Use keyboard to enter name.");
     }
@@ -25,7 +25,7 @@ public class RenamePopupPatch {
   public static class CancelPatch {
 
     public static void Postfix(RenamePopup __instance) {
-      Output.inputManager.popContext();
+      Output.uiManager.popContext();
     }
   }
 
@@ -33,7 +33,7 @@ public class RenamePopupPatch {
   public static class ConfirmPatch {
 
     public static void Postfix(RenamePopup __instance) {
-      Output.inputManager.popContext();
+      Output.uiManager.popContext();
     }
   }
 }

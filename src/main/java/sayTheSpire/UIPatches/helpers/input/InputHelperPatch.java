@@ -13,7 +13,7 @@ public class InputHelperPatch {
     
     public static SpireReturn Prefix() {
       if (Output.getAllowVirtualInput()) {
-        Output.inputManager.updateLast();
+        Output.uiManager.updateLast();
         return SpireReturn.Return(null);
       }
       Output.updateInfoControls();

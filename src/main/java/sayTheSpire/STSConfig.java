@@ -11,21 +11,22 @@ import com.moandjiezana.toml.TomlWriter;
 
 public class STSConfig {
 
-    private Toml toml;
+    private Toml settingsToml;
+
 
     public STSConfig() {
         File dir = new File(getDirectoryPath());
         dir.mkdirs();
-        File file = new File(getFilePath());
+        File file = new File(getSettingsFilePath());
         HashMap<String, Object> defaults = this.getDefaults();
         try {
             HashMap<String, Object> fileSettings = (HashMap<String, Object>)new Toml().read(file).toMap();
             merge(defaults, fileSettings);
-            this.toml = new Toml().read(new TomlWriter().write(defaults));
+            this.settingsToml = new Toml().read(new TomlWriter().write(defaults));
                 System.out.println("STSConfig: Config loaded from existing file.");
         }catch (Exception e) {
             System.out.println("STSConfig: No config file found, using defaults.");
-            this.toml = new Toml().read(new TomlWriter().write(defaults));
+            this.settingsToml = new Toml().read(new TomlWriter().write(defaults));
         }
             }
 
@@ -43,8 +44,8 @@ public class STSConfig {
 
     public void save() throws IOException {
         TomlWriter writer = new TomlWriter();
-        File file = new File(getFilePath());
-        writer.write(this.toml.toMap(), file);
+        File file = new File(getSettingsFilePath());
+        writer.write(this.settingsToml.toMap(), file);
     }
 
     public static HashMap<String, Object> getDefaults() {
@@ -74,39 +75,39 @@ public class STSConfig {
         return ConfigUtils.CONFIG_DIR + File.separator + "sayTheSpire" + File.separator;
     }
 
-    public static String getFilePath() {
+    public static String getSettingsFilePath() {
         return getDirectoryPath() + "settings.ini";
     }
 
     public String getString(String key) {
-        return this.toml.getString(key);
+        return this.settingsToml.getString(key);
     }
 
     public String getString(String key, String defaultValue) {
-        return this.toml.getString(key, defaultValue);
+        return this.settingsToml.getString(key, defaultValue);
     }
 
     public Long getLong(String key) {
-        return this.toml.getLong(key);
+        return this.settingsToml.getLong(key);
     }
 
     public Long getLong(String key, Long defaultValue) {
-        return this.toml.getLong(key, defaultValue);
+        return this.settingsToml.getLong(key, defaultValue);
     }
 
     public Boolean getBoolean(String key) {
-        return this.toml.getBoolean(key);
+        return this.settingsToml.getBoolean(key);
     }
 
     public Boolean getBoolean(String key, Boolean defaultValue) {
-        return this.toml.getBoolean(key, defaultValue);
+        return this.settingsToml.getBoolean(key, defaultValue);
     }
 
     public Double getDouble(String key) {
-        return this.toml.getDouble(key);
+        return this.settingsToml.getDouble(key);
     }
 
     public Double getDouble(String key, Double defaultValue) {
-        return this.toml.getDouble(key, defaultValue);
+        return this.settingsToml.getDouble(key, defaultValue);
     }
 }

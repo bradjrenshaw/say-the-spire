@@ -16,7 +16,7 @@ public class SeedPanelPatch {
   public static class ClosePatch {
 
     public static void Prefix(SeedPanel __instance) {
-      Output.inputManager.popContext();
+      Output.uiManager.popContext();
     }
   }
 
@@ -27,7 +27,7 @@ public class SeedPanelPatch {
   public static class ShowPatch {
 
     public static void Prefix(SeedPanel __instance) {
-      Output.inputManager.pushContext(new KeyboardContext());
+      Output.uiManager.pushContext(new KeyboardContext());
       Output.text(TEXT[1] + "\nAccessibility note: Use keyboard to enter seed.", false);
       Output.setupUIBufferMany(
           TEXT[1],

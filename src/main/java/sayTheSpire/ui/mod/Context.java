@@ -1,6 +1,6 @@
 package sayTheSpire.ui.mod;
 
-import sayTheSpire.ui.mod.InputAction;
+import sayTheSpire.ui.input.InputAction;
 
 
 public class Context {
