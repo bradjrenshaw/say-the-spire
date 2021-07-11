@@ -47,7 +47,6 @@ public class Output {
   public static STSConfig config = null;
 
   public static void setup() {
-    System.out.println("Say the Spire setup was called");
     speechManager = new SpeechManager();
     speechManager.registerHandler(new TolkResourceHandler());
     speechManager.registerHandler(new TolkHandler());
@@ -78,7 +77,7 @@ public class Output {
       System.err.println(e.getMessage());
       e.printStackTrace();
     }
-    uiManager = new UIManager();
+    uiManager = new UIManager(config);
     inputManager = uiManager.getInputManager();
   }
 

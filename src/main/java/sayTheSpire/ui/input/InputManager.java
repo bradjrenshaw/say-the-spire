@@ -22,18 +22,21 @@ public class InputManager {
     private HashMap<String, InputAction> actions;
     private HashMap<Integer, Boolean> controllerPressed, keyboardPressed;
     private HashSet<Integer> keysToCheck;
-    private EnumSet<InputAction.Modifiers> keyboardModifiers;
+    private EnumSet keyboardPressedModifiers;
+    private InputConfig inputConfig;
     UIManager uiManager;
 
-    public InputManager(UIManager uiManager) {
+    public InputManager(UIManager uiManager, InputConfig inputConfig) {
         this.uiManager = uiManager;
+        this.inputConfig = inputConfig;
     this.actions = new HashMap();
     this.setupActions();
     this.keysToCheck = new HashSet();
-    this.determineKeysToCheck();
     this.controllerPressed = new HashMap();
     this.keyboardPressed = new HashMap();
-    this.keyboardModifiers = EnumSet.noneOf(InputAction.Modifiers.class);
+    this.keyboardPressedModifiers = EnumSet.noneOf(InputMapping.Modifiers.class);
+    this.inputConfig.populateActions(this.actions);
+    this.determineKeysToCheck();
     }
 
     public void addAction(InputAction action) {
@@ -47,18 +50,18 @@ public class InputManager {
     public void clearActionStates() {
         if (this.controllerPressed != null) this.controllerPressed.clear();
         if (this.keyboardPressed != null) this.keyboardPressed.clear();
-        if (this.keyboardModifiers != null) this.keyboardModifiers.clear();
         for (InputAction action:this.actions.values()) {
             action.clearStates();
         }
     }
 
-    public void determineKeysToCheck() {
-        keysToCheck.clear();
+    private void determineKeysToCheck() {
+        this.keysToCheck.clear();
         for (InputAction action:this.actions.values()) {
-            Integer key = action.getKeyboardKey();
-            if (key == null) continue; //not assigned
-                            keysToCheck.add(key);
+            for (InputMapping mapping:action.getMappings()) {
+                int keycode = mapping.getKeycode();
+                this.keysToCheck.add(keycode);
+            }
         }
     }
 
@@ -70,26 +73,44 @@ public class InputManager {
         this.controllerPressed.remove(keycode);
     }
 
-    public Boolean isControllerJustPressed(int keycode) {
+    private Boolean isMappingJustPressedController(InputMapping mapping) {
+        int keycode = mapping.getKeycode();
         return this.controllerPressed.getOrDefault(keycode, false);
     }
 
-    public Boolean isControllerPressed(int keycode) {
+    private Boolean isMappingPressedController(InputMapping mapping) {
+        int keycode = mapping.getKeycode();
         return this.controllerPressed.containsKey(keycode);
     }
 
-    public Boolean isKeyboardJustPressed(InputAction action) {
-        EnumSet<InputAction.Modifiers> actionModifiers = action.getKeyboardModifiers();
-        Integer actionKey = action.getKeyboardKey();
-        if (actionModifiers == null || actionKey == null) return false;
-        return actionModifiers.equals(this.keyboardModifiers) && this.keyboardPressed.getOrDefault(actionKey, false);
+    private Boolean isMappingJustPressedKeyboard(InputMapping mapping) {
+        return mapping.getModifiers().equals(this.keyboardPressedModifiers) && this.keyboardPressed.getOrDefault(mapping.getKeycode(), false);
     }
 
-    public Boolean isKeyboardPressed(InputAction action) {
-        EnumSet<InputAction.Modifiers> actionModifiers = action.getKeyboardModifiers();
-        Integer actionKey = action.getKeyboardKey();
-        if (actionModifiers == null || actionKey == null) return false;
-        return actionModifiers.equals(this.keyboardModifiers) && this.keyboardPressed.containsKey(actionKey);
+    private Boolean isMappingPressedKeyboard(InputMapping mapping) {
+        return mapping.getModifiers().equals(this.keyboardPressedModifiers) && this.keyboardPressed.containsKey(mapping.getKeycode());
+    }
+
+    public Boolean isMappingJustPressed(InputMapping mapping) {
+        switch (mapping.getInputType()) {
+            case "controller":
+            return this.isMappingJustPressedController(mapping);
+            case "keyboard":
+            return this.isMappingJustPressedKeyboard(mapping);
+            default:
+            return false;
+        }
+    }
+
+    public Boolean isMappingPressed(InputMapping mapping) {
+        switch (mapping.getInputType()) {
+            case "controller":
+            return this.isMappingPressedController(mapping);
+            case "keyboard":
+            return this.isMappingPressedKeyboard(mapping);
+            default:
+            return false;
+        }
     }
 
     private void setupActions() {
@@ -99,23 +120,14 @@ public class InputManager {
         }
     }
 
-    private void updateKeyboardModifiers() {
-        this.keyboardModifiers.clear();
-        if (Gdx.input.isKeyPressed(Keys.CONTROL_LEFT) || Gdx.input.isKeyPressed(Keys.CONTROL_RIGHT)) this.keyboardModifiers.add(InputAction.Modifiers.CONTROL);
-        if (Gdx.input.isKeyPressed(Keys.SHIFT_LEFT) || Gdx.input.isKeyPressed(Keys.SHIFT_RIGHT)) this.keyboardModifiers.add(InputAction.Modifiers.SHIFT);
-        if (Gdx.input.isKeyPressed(Keys.ALT_LEFT) || Gdx.input.isKeyPressed(Keys.ALT_RIGHT)) this.keyboardModifiers.add(InputAction.Modifiers.ALT);
-    }
-
-    public void updateKeyboardState() {
-        updateKeyboardModifiers();
-        for (Integer key:keysToCheck) {
-            if (Gdx.input.isKeyJustPressed(key)) {
-                keyboardPressed.put(key, true);
-            } else if (Gdx.input.isKeyPressed(key)) {
-                keyboardPressed.put(key, false);
-            } else {
-                keyboardPressed.remove(key);
-            }
+    private void updateKeyboardState() {
+        this.keyboardPressedModifiers.clear();
+        if (Gdx.input.isKeyPressed(Keys.CONTROL_LEFT) || Gdx.input.isKeyPressed(Keys.CONTROL_RIGHT)) this.keyboardPressedModifiers.add(InputMapping.Modifiers.CONTROL);
+        if (Gdx.input.isKeyPressed(Keys.SHIFT_LEFT) || Gdx.input.isKeyPressed(Keys.SHIFT_RIGHT)) this.keyboardPressedModifiers.add(InputMapping.Modifiers.SHIFT);
+        if (Gdx.input.isKeyPressed(Keys.ALT_LEFT) || Gdx.input.isKeyPressed(Keys.ALT_RIGHT)) this.keyboardPressedModifiers.add(InputMapping.Modifiers.ALT);
+        for (int keycode:this.keysToCheck) {
+            if (Gdx.input.isKeyPressed(keycode)) this.keyboardPressed.put(keycode, Gdx.input.isKeyJustPressed(keycode));
+            else this.keyboardPressed.remove(keycode);
         }
     }
 
@@ -125,7 +137,7 @@ Context current  = this.uiManager.getCurrentContext();
     if (current.getShouldForceControllerMode()) {
         Settings.isControllerMode = true;
     }
-        updateKeyboardState();
+        this.updateKeyboardState();
         for (InputAction action:this.actions.values()) {
             action.update();
         }
@@ -135,7 +147,7 @@ Context current  = this.uiManager.getCurrentContext();
                 if (!Output.config.getBoolean("input.virtual_input")) return;
         for (Map.Entry<Integer, Boolean> entry:this.controllerPressed.entrySet()) {
             if (entry.getValue()) {
-                entry.setValue(false);
+                entry.setValue(false); //change just pressed to pressed
             }
         }
 }

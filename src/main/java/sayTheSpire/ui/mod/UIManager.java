@@ -3,17 +3,20 @@ package sayTheSpire.ui.mod;
 import java.util.ArrayList;
 import sayTheSpire.ui.input.InputManager;
 import sayTheSpire.ui.input.InputAction;
+import sayTheSpire.STSConfig;
 
 public class UIManager {
 
         private ArrayList<Context> contexts;
     private InputManager inputManager;
+    private STSConfig config;
 
         //We need this to prevent unintentional controller actions registering on context change
     private Boolean temporaryInputHalt;
 
-    public UIManager() {
-        this.inputManager = new InputManager(this);
+    public UIManager(STSConfig config) {
+        this.config = config;
+        this.inputManager = new InputManager(this, config.getInputConfig());
         this.contexts = new ArrayList();
         this.temporaryInputHalt = false;
             this.pushContext(new GameContext());
