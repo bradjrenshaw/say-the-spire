@@ -46,15 +46,12 @@ public class DropdownElement extends UIElement {
       panel = AbstractDungeon.settingsScreen.panel;
     } else if (CardCrawlGame.mainMenuScreen.isSettingsUp) {
       panel = CardCrawlGame.mainMenuScreen.optionPanel;
-    } else {
-      System.err.println("Could not retrieve options panel.");
     }
     DropdownMenu fps = panel.fpsDropdown;
     DropdownMenu reso = panel.resoDropdown;
     DropdownMenu language =
         (DropdownMenu) ReflectionHacks.getPrivate(panel, OptionsPanel.class, "languageDropdown");
     if (fps == null || reso == null || language == null) {
-      System.err.println("Error: issue when detecting dropdown type, report to mod developer.");
       return;
     }
     if (this.dropdown == fps) {
@@ -62,7 +59,6 @@ public class DropdownElement extends UIElement {
       this.options =
           (String[]) ReflectionHacks.getPrivate(panel, OptionsPanel.class, "FRAMERATE_LABELS");
       if (this.options == null) {
-        System.out.println("framerate labels are null.");
       }
     } else if (this.dropdown == reso) {
       this.name = graphicsOptions[0];
@@ -73,10 +69,7 @@ public class DropdownElement extends UIElement {
     } else if (this.dropdown == language) {
       this.name = TEXT[13];
       this.options = panel.languageLabels();
-    } else {
-      System.err.println("Unknown dropdown type detected, report to mod developer.");
     }
-    System.out.println("dropdown set up");
   }
 
   public DropdownMenu getDropdownMenu() {

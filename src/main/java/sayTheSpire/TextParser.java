@@ -5,8 +5,10 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 import sayTheSpire.utils.CardUtils;
 import sayTheSpire.utils.OutputUtils;
+
 
 public class TextParser {
 
@@ -18,10 +20,10 @@ public class TextParser {
   public static String handleWordDynamicVariables(
       String word, HashMap<String, String> dynamicVariables) {
     if (word == null || dynamicVariables == null) return word;
-    for (Map.Entry<String, String> entry : dynamicVariables.entrySet()) {
-      word = word.replaceAll("!" + entry.getKey() + "!", entry.getValue());
-    }
-    return word;
+    String tempWord = word.trim();
+    if (tempWord.length() != 3 || !tempWord.startsWith("!") || !tempWord.endsWith("!")) return word;
+        String variable = tempWord.substring(1, 2);
+        return dynamicVariables.getOrDefault(variable, tempWord);
   }
 
   public static String handleWordEmphasized(String word) {
@@ -40,25 +42,21 @@ public class TextParser {
     return word;
   }
 
-  public static String handleWordStyling(String word) {
-    if (word.equals("NL")) return "\n";
-    if (word.equals("TAB")) return "\t ";
+  public static String extractMainWord(String word) {
+    //This removes all styling tags to allow for propper word parsing.
     if (hasColor(word)) {
       word = word.substring(2);
     }
 
-    if (hasOrb(word)) {
-      return ""; // Since the word is an orb, (visual icon) skip
-    }
     // ~ and @ characters for word effects seem to be mutually exclusive so this is kept as per the
     // game behavior
-    if (word.length() < 2) return word + " ";
+    if (word.length() < 2) return word;
     if (word.charAt(0) == '~' && word.charAt(word.length() - 1) == '~') {
       word = word.substring(1, word.length() - 1);
     } else if (word.charAt(0) == '@' && word.charAt(word.length() - 1) == '@') {
       word = word.substring(1, word.length() - 1);
     }
-    return word + " ";
+    return word;
   }
 
   public static boolean hasColor(String word) {
@@ -94,14 +92,24 @@ public class TextParser {
     if (text.length() <= 0) return text;
     if (text.equals("")) return text;
     StringBuilder sb = new StringBuilder();
-    for (String word : text.split(" ")) {
+    for (String word:text.split(" ")) {
       if (word.equals("")) continue;
+      word = extractMainWord(word);
+      if (word.equals("NL")) {
+        sb.append("\n");
+        continue;
+      } else if (word.equals("TAB")) {
+        sb.append("\t");
+        continue;
+      }
       if (context.equals("card")) word = handleWordCardContext(word);
       else if (context.equals("relic")) word = handleWordRelicContext(word);
       word = handleWordEnergies(word);
-      word = handleWordStyling(word);
       word = handleWordDynamicVariables(word, dynamicVariables);
-      sb.append(word);
+      if (hasOrb(word)) {
+        continue;
+      }
+      sb.append(word + " ");
     }
     return sb.toString();
   }

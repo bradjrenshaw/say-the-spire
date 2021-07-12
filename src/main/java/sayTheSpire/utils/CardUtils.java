@@ -20,12 +20,7 @@ public class CardUtils {
   }
 
   public static String getCardDescriptionString(AbstractCard card) {
-    StringBuilder sb = new StringBuilder();
-    for (DescriptionLine d : card.description) {
-      String text = d.getText();
-      sb.append(TextParser.parse(text, card) + "\n");
-    }
-    return sb.toString();
+    return TextParser.parse(card.rawDescription, card);
   }
 
   public static HashMap<String, String> getCardDynamicVariables(AbstractCard card) {
