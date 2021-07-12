@@ -55,19 +55,19 @@ public class DropdownElement extends UIElement {
       return;
     }
     if (this.dropdown == fps) {
-      this.name = graphicsOptions[1];
+      this.name = TextParser.parse(graphicsOptions[1]);
       this.options =
           (String[]) ReflectionHacks.getPrivate(panel, OptionsPanel.class, "FRAMERATE_LABELS");
       if (this.options == null) {
       }
     } else if (this.dropdown == reso) {
-      this.name = graphicsOptions[0];
+      this.name = TextParser.parse(graphicsOptions[0]);
       this.options = new String[Settings.displayOptions.size()];
       for (int i = 0; i < Settings.displayOptions.size(); i++) {
         this.options[i] = TextParser.parse(Settings.displayOptions.get(i).uiString());
       }
     } else if (this.dropdown == language) {
-      this.name = TEXT[13];
+      this.name = TextParser.parse(TEXT[13]);
       this.options = panel.languageLabels();
     }
   }

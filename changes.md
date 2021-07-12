@@ -5,11 +5,14 @@
 * Added: Introduction of the virtual input system allowing for keyboard support and additional mod specific menus. See the Virtual Input section of the readme for more information.
 * Fixed: Strategic (attack and debuff intent) damage now correctly shows multihitting attacks
 * Fixed: If no screen reader is running, the mod now correctly defaults to using SAPI on Windows.
-* Fixed: Strings of single characters will no longer crash the game in certain situations. This may fix issues with certain non-English language strings crashing the game.
 * Fixed: Potential issues with speech not stopping on button press or stopping at the wrong time
 * Fixed: Resolution options in settings no longer have "tab tab" after them
 * Fixed: You can no longer see a face down or locked card's energy cost.
 * Fixed: Buffers should no longer eroniously report null items.
+* Fixed: A number of issues related to parsing text in certain languages
+    * Variable numbers on cards should now be read for all languages (such as damage or block)
+    * Fixed issue in settings menu where the language dropdown would have formatting tags read for some languages
+    * Strings of single characters will no longer crash the game in certain situations. This may fix issues with certain non-English language strings crashing the game.
 
 
 ## Beta 4/Public Beta 1
