@@ -9,6 +9,8 @@
 * Fixed: Potential issues with speech not stopping on button press or stopping at the wrong time
 * Fixed: Resolution options in settings no longer have "tab tab" after them
 * Fixed: You can no longer see a face down or locked card's energy cost.
+* Fixed: Buffers should no longer eroniously report null items.
+
 
 ## Beta 4/Public Beta 1
 

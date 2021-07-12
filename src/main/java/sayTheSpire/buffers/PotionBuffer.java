@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.potions.PotionSlot;
 import sayTheSpire.TextParser;
 
+
 public class PotionBuffer extends Buffer {
 
   private AbstractPotion potion;

@@ -36,6 +36,10 @@ public class BufferControls {
       return;
     }
     current.update();
+    if (current.isEmpty()) {
+      Output.text(current.getName() + " is empty.", true);
+      return;
+    }
     String currentItem = current.getCurrentItem();
     if (currentItem == null) {
       Output.text(
@@ -46,6 +50,10 @@ public class BufferControls {
   }
 
   public static void reportCurrentItem(Buffer buffer) {
+    if (buffer.isEmpty()) {
+      Output.text("empty", true);
+      return;
+    }
     if (buffer == null) {
       Output.text("Tried to read current item of null buffer, report to mod dev.", false);
       return;
