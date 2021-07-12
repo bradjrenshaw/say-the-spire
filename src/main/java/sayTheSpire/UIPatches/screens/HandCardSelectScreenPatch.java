@@ -2,8 +2,8 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.screens.select.HandCardSelectScreen;
-import sayTheSpire.ui.CardElement;
 import sayTheSpire.Output;
+import sayTheSpire.ui.CardElement;
 
 public class HandCardSelectScreenPatch {
 

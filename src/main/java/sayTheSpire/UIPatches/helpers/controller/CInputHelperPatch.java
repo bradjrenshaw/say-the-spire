@@ -1,28 +1,29 @@
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.controller.CInputAction;
-import com.megacrit.cardcrawl.helpers.controller.CInputHelper;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import sayTheSpire.utils.InputUtils;
+import com.megacrit.cardcrawl.helpers.controller.CInputHelper;
 import sayTheSpire.Output;
 
 public class CInputHelperPatch {
 
-  @SpirePatch(clz=CInputHelper.class, method="initializeIfAble")
+  @SpirePatch(clz = CInputHelper.class, method = "initializeIfAble")
   public static class InitializeIfAblePatch {
 
     public static void Postfix() {
-            if (Output.config.getBoolean("input.virtual_input", false) && CInputHelper.controller == null) {
-      CInputHelper.model = CInputHelper.ControllerModel.XBOX_ONE;
-            ImageMaster.loadControllerImages(CInputHelper.ControllerModel.XBOX_ONE);
+      if (Output.config.getBoolean("input.virtual_input", false)
+          && CInputHelper.controller == null) {
+        CInputHelper.model = CInputHelper.ControllerModel.XBOX_ONE;
+        ImageMaster.loadControllerImages(CInputHelper.ControllerModel.XBOX_ONE);
       }
     }
   }
 
-  @SpirePatch(clz = CInputHelper.class, method = "listenerPress", paramtypez={int.class})
+  @SpirePatch(
+      clz = CInputHelper.class,
+      method = "listenerPress",
+      paramtypez = {int.class})
   public static class ListenerPressPatch {
-    
+
     public static SpireReturn<Boolean> Prefix(int keycode) {
       Output.silenceSpeech();
       if (Output.getAllowVirtualInput()) {
@@ -32,10 +33,13 @@ public class CInputHelperPatch {
       return SpireReturn.Continue();
     }
   }
-  
-  @SpirePatch(clz = CInputHelper.class, method = "listenerRelease", paramtypez={int.class})
+
+  @SpirePatch(
+      clz = CInputHelper.class,
+      method = "listenerRelease",
+      paramtypez = {int.class})
   public static class ListenerReleasePatch {
-    
+
     public static SpireReturn<Boolean> Prefix(int keycode) {
       if (Output.getAllowVirtualInput()) {
         Output.inputManager.handleControllerKeycodeRelease(keycode);
@@ -43,9 +47,9 @@ public class CInputHelperPatch {
       }
       return SpireReturn.Continue();
     }
-  }  
+  }
 
-  @SpirePatch(clz=CInputHelper.class, method="updateLast")
+  @SpirePatch(clz = CInputHelper.class, method = "updateLast")
   public static class UpdateLastPatch {
 
     public static SpireReturn Prefix() {

@@ -3,7 +3,7 @@ package sayTheSpire.ui;
 import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.screens.custom.CustomMod;
 import java.util.HashSet;
-import sayTheSpire.BufferManager;
+import sayTheSpire.buffers.BufferManager;
 import sayTheSpire.Output;
 import sayTheSpire.TextParser;
 

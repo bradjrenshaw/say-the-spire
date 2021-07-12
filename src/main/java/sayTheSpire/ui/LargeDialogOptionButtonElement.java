@@ -4,10 +4,10 @@ import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.ui.buttons.LargeDialogOptionButton;
-import sayTheSpire.Buffer;
-import sayTheSpire.BufferManager;
-import sayTheSpire.CardBuffer;
-import sayTheSpire.RelicBuffer;
+import sayTheSpire.buffers.Buffer;
+import sayTheSpire.buffers.BufferManager;
+import sayTheSpire.buffers.CardBuffer;
+import sayTheSpire.buffers.RelicBuffer;
 import sayTheSpire.TextParser;
 
 public class LargeDialogOptionButtonElement extends UIElement {

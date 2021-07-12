@@ -48,11 +48,9 @@ public class UIRegistry {
     return false;
   }
 
-  /**
-   * Updates all UIElements in the registry
-   */
+  /** Updates all UIElements in the registry */
   public static void update() {
-    for (UIElement value:entries.values()) {
+    for (UIElement value : entries.values()) {
       value.update();
     }
   }

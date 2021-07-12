@@ -31,7 +31,8 @@ public class MapControls {
       sb.append(MapUtils.getRoomTypeString(r) + MapUtils.getNodeExtra(r) + ", ");
     }
 
-    if (forward || Output.config.getBoolean("map.read_reversed_paths")) Output.text(sb.toString(), false);
+    if (forward || Output.config.getBoolean("map.read_reversed_paths"))
+      Output.text(sb.toString(), false);
     if (navigator.getPathChoices().size() > 1) {
       Output.text("choice", false);
     }

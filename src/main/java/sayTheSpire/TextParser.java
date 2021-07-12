@@ -5,7 +5,6 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 import sayTheSpire.utils.CardUtils;
 import sayTheSpire.utils.OutputUtils;
 
@@ -95,9 +94,7 @@ public class TextParser {
     if (text.length() <= 0) return text;
     if (text.equals("")) return text;
     StringBuilder sb = new StringBuilder();
-    Scanner s = new Scanner(text);
-    while (s.hasNext()) {
-      String word = s.next();
+    for (String word : text.split(" ")) {
       if (word.equals("")) continue;
       if (context.equals("card")) word = handleWordCardContext(word);
       else if (context.equals("relic")) word = handleWordRelicContext(word);

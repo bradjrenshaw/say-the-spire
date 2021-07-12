@@ -5,10 +5,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.shop.OnSaleTag;
 import com.megacrit.cardcrawl.shop.ShopScreen;
-import sayTheSpire.ui.CardElement;
 import sayTheSpire.Output;
 import sayTheSpire.TextParser;
 import sayTheSpire.events.DialogueEvent;
+import sayTheSpire.ui.CardElement;
 
 public class ShopScreenPatch {
 

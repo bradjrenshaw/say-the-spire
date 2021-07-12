@@ -1,5 +1,8 @@
 package sayTheSpire;
 
+import sayTheSpire.buffers.BufferManager;
+import sayTheSpire.buffers.Buffer;
+
 public class BufferControls {
 
   public static BufferManager buffers = null;

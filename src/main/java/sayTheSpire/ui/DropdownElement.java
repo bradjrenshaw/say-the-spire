@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.localization.TutorialStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.screens.options.DropdownMenu;
 import com.megacrit.cardcrawl.screens.options.OptionsPanel;
-import sayTheSpire.BufferManager;
+import sayTheSpire.buffers.BufferManager;
 import sayTheSpire.Output;
 import sayTheSpire.TextParser;
 import sayTheSpire.utils.OutputUtils;

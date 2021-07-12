@@ -1,6 +1,5 @@
 package sayTheSpire;
 
-import java.util.Properties;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
@@ -22,6 +21,7 @@ import sayTheSpire.ui.UIElement;
 import sayTheSpire.ui.UIRegistry;
 import sayTheSpire.ui.input.InputManager;
 import sayTheSpire.ui.mod.UIManager;
+import sayTheSpire.buffers.*;
 
 public class Output {
   public enum Direction {
@@ -69,7 +69,7 @@ public class Output {
     // Create MapNavigator
     MapControls.navigator = new MapNavigator();
 
-    //initialize config
+    // initialize config
     try {
       config = new STSConfig();
       config.save();
@@ -83,7 +83,7 @@ public class Output {
 
   public static void shutdown() {
     try {
-        config.save();
+      config.save();
     } catch (Exception e) {
       System.out.println(e.getMessage());
       e.printStackTrace();

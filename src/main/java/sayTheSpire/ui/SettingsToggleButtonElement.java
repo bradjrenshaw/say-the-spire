@@ -5,12 +5,11 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.TutorialStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.screens.options.ToggleButton;
-import sayTheSpire.BufferManager;
+import sayTheSpire.buffers.BufferManager;
 import sayTheSpire.Output;
 import sayTheSpire.TextParser;
 
 public class SettingsToggleButtonElement extends ToggleButtonElement {
-
 
   private static final TutorialStrings tutorialStrings =
       CardCrawlGame.languagePack.getTutorialString("Options Tip");
@@ -91,9 +90,9 @@ public class SettingsToggleButtonElement extends ToggleButtonElement {
     }
   }
 
-    public String getLabel() {
-      return TextParser.parse(this.getDescriptor().getName());
-    }
+  public String getLabel() {
+    return TextParser.parse(this.getDescriptor().getName());
+  }
 
   public Boolean getEnabled() {
     return this.button.enabled;

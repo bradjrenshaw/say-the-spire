@@ -1,6 +1,6 @@
 package sayTheSpire.ui;
 
-import sayTheSpire.BufferManager;
+import sayTheSpire.buffers.BufferManager;
 import sayTheSpire.Output;
 
 public class ButtonElement extends UIElement {
@@ -35,10 +35,7 @@ public class ButtonElement extends UIElement {
     this.name = name;
   }
 
-
   public String getDescription() {
     return this.description;
   }
-
-  
 }

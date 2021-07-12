@@ -1,6 +1,6 @@
 package sayTheSpire.ui;
 
-import sayTheSpire.BufferManager;
+import sayTheSpire.buffers.BufferManager;
 import sayTheSpire.Output;
 
 public class ToggleButtonElement extends UIElement {

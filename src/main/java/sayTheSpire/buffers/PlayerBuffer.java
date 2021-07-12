@@ -1,4 +1,4 @@
-package sayTheSpire;
+package sayTheSpire.buffers;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -7,6 +7,8 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import sayTheSpire.utils.OutputUtils;
+import sayTheSpire.TextParser;
+
 
 public class PlayerBuffer extends Buffer {
 

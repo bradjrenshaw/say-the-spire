@@ -1,8 +1,5 @@
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.helpers.input.InputHelper;
-import com.megacrit.cardcrawl.helpers.controller.CInputHelper;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import sayTheSpire.Output;
 import sayTheSpire.TextParser;
 import sayTheSpire.events.EventTextEvent;
@@ -17,7 +14,7 @@ public class CardCrawlGamePatch {
     }
   }
 
-  @SpirePatch(clz=CardCrawlGame.class, method="update")
+  @SpirePatch(clz = CardCrawlGame.class, method = "update")
   public static class updatePatchPrefix {
 
     public static void Prefix(CardCrawlGame __instance) {
@@ -41,4 +38,3 @@ public class CardCrawlGamePatch {
     }
   }
 }
-  

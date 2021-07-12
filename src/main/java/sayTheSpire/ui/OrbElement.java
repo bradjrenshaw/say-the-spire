@@ -2,7 +2,7 @@ package sayTheSpire.ui;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import sayTheSpire.BufferManager;
+import sayTheSpire.buffers.BufferManager;
 import sayTheSpire.Output;
 import sayTheSpire.utils.OutputUtils;
 

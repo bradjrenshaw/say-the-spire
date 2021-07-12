@@ -1,6 +1,8 @@
-package sayTheSpire;
+package sayTheSpire.buffers;
 
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import sayTheSpire.TextParser;
+
 
 public class OrbBuffer extends Buffer {
 

@@ -1,171 +1,167 @@
 package sayTheSpire.ui.input;
 
-import java.util.Arrays;
+import basemod.ReflectionHacks;
+import com.megacrit.cardcrawl.helpers.controller.CInputAction;
+import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import java.util.ArrayList;
-import java.util.EnumSet;    
-import java.util.HashSet;
-import java.util.HashMap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import com.megacrit.cardcrawl.helpers.controller.CInputAction;
-import com.megacrit.cardcrawl.helpers.controller.CInputHelper;
-import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
-import basemod.ReflectionHacks;
-import sayTheSpire.utils.MapBuilder;
-import sayTheSpire.Output;
 
 public class InputAction {
 
-    private static final Logger logger = LogManager.getLogger(InputAction.class.getName());
-    
-    private String name;
-    private InputManager inputManager;
-    private Boolean isJustPressed, isPressed, isJustReleased;
-    private ArrayList<InputMapping> mappings;
+  private static final Logger logger = LogManager.getLogger(InputAction.class.getName());
 
-    public InputAction(String name, InputManager inputManager) {
-        this.name = name;
-        this.mappings = new ArrayList();
-        this.inputManager = inputManager;
-        this.isJustPressed = false;
-        this.isPressed = false;
-        this.isJustReleased = false;
-    }
+  private String name;
+  private InputManager inputManager;
+  private Boolean isJustPressed, isPressed, isJustReleased;
+  private ArrayList<InputMapping> mappings;
 
-    public void clearStates() {
-        this.isJustPressed = false;
-        this.isPressed = false;
-        this.isJustReleased = false;
-        this.setGameControllerActionJustPressed(false);
-        this.setGameControllerActionPressed(false);
-        this.setGameControllerActionJustReleased(false);
-    }
+  public InputAction(String name, InputManager inputManager) {
+    this.name = name;
+    this.mappings = new ArrayList();
+    this.inputManager = inputManager;
+    this.isJustPressed = false;
+    this.isPressed = false;
+    this.isJustReleased = false;
+  }
 
-    public CInputAction getGameControllerAction() {
-        switch(this.name) {
-        case "select":
+  public void clearStates() {
+    this.isJustPressed = false;
+    this.isPressed = false;
+    this.isJustReleased = false;
+    this.setGameControllerActionJustPressed(false);
+    this.setGameControllerActionPressed(false);
+    this.setGameControllerActionJustReleased(false);
+  }
+
+  public CInputAction getGameControllerAction() {
+    switch (this.name) {
+      case "select":
         return CInputActionSet.select;
-        case "cancel":
-return CInputActionSet.cancel;
-        case "top panel":
+      case "cancel":
+        return CInputActionSet.cancel;
+      case "top panel":
         return CInputActionSet.topPanel;
-        case "proceed":
+      case "proceed":
         return CInputActionSet.proceed;
-        case "peek":
+      case "peek":
         return CInputActionSet.peek;
-        case "page left":
+      case "page left":
         return CInputActionSet.pageLeftViewDeck;
-        case "page right":
+      case "page right":
         return CInputActionSet.pageRightViewExhaust;
-        case "draw pile":
+      case "draw pile":
         return CInputActionSet.drawPile;
-        case "discard pile":
+      case "discard pile":
         return CInputActionSet.discardPile;
-                   case "map":
-                   return CInputActionSet.map;
-        case "settings":
+      case "map":
+        return CInputActionSet.map;
+      case "settings":
         return CInputActionSet.settings;
-        case "up":
+      case "up":
         return CInputActionSet.up;
-        case "down":
+      case "down":
         return CInputActionSet.down;
-        case "left":
+      case "left":
         return CInputActionSet.left;
-        case "right":
+      case "right":
         return CInputActionSet.right;
-        case "inspect up":
+      case "inspect up":
         return CInputActionSet.inspectUp;
-        case "inspect down":
+      case "inspect down":
         return CInputActionSet.inspectDown;
-        case "inspect left":
+      case "inspect left":
         return CInputActionSet.inspectLeft;
-        case "inspect right":
+      case "inspect right":
         return CInputActionSet.inspectRight;
-        case "alt up":
+      case "alt up":
         return CInputActionSet.altUp;
-        case "alt down":
+      case "alt down":
         return CInputActionSet.altDown;
-        case "alt left":
+      case "alt left":
         return CInputActionSet.altLeft;
-        case "alt right":
+      case "alt right":
         return CInputActionSet.altRight;
-        default:
+      default:
         return null;
     }
+  }
+
+  public String getName() {
+    return this.name;
+  }
+
+  public ArrayList<InputMapping> getMappings() {
+    return this.mappings;
+  }
+
+  public Boolean isPressed() {
+    return this.isPressed;
+  }
+
+  public Boolean isJustPressed() {
+    return this.isJustPressed;
+  }
+
+  public Boolean isJustReleased() {
+    return this.isJustReleased;
+  }
+
+  public void setGameControllerActionJustPressed(Boolean value) {
+    CInputAction gameAction = this.getGameControllerAction();
+    if (gameAction != null)
+      ReflectionHacks.setPrivate(gameAction, CInputAction.class, "justPressed", value);
+  }
+
+  public void setGameControllerActionPressed(Boolean value) {
+    CInputAction gameAction = this.getGameControllerAction();
+    if (gameAction != null)
+      ReflectionHacks.setPrivate(gameAction, CInputAction.class, "pressed", value);
+  }
+
+  public void setGameControllerActionJustReleased(Boolean value) {
+    CInputAction gameAction = this.getGameControllerAction();
+    if (gameAction != null)
+      ReflectionHacks.setPrivate(gameAction, CInputAction.class, "justReleased", value);
+  }
+
+  void setMappings(ArrayList<InputMapping> mappings) {
+    this.mappings = mappings;
+  }
+
+  private void updateStates() {
+    for (InputMapping mapping : this.mappings) {
+      if (!this.isPressed && this.inputManager.isMappingJustPressed(mapping)) {
+        this.isJustPressed = true;
+        this.isPressed = true;
+        this.isJustReleased = false;
+        return;
+      } else if (this.isJustPressed && this.inputManager.isMappingPressed(mapping)) {
+        this.isJustPressed = false;
+        this.isPressed = true;
+        this.isJustReleased = false;
+        return;
+      }
     }
 
-    public String getName() {
-        return this.name;
+    // No mappings were detected as justPressed or pressed, so handle release
+    if (this.isPressed) {
+      this.isJustPressed = false;
+      this.isPressed = false;
+      this.isJustReleased = true;
+    } else if (this.isJustReleased) {
+      this.isJustReleased = false;
     }
+  }
 
-    public ArrayList<InputMapping> getMappings() {
-        return this.mappings;
+  public void update() {
+    this.updateStates();
+    if (this.isJustPressed()) {
+      this.inputManager.uiManager.emitAction(this, "justPressed");
+    } else if (this.isPressed()) {
+      this.inputManager.uiManager.emitAction(this, "pressed");
+    } else if (this.isJustReleased()) {
+      this.inputManager.uiManager.emitAction(this, "justReleased");
     }
-
-    public Boolean isPressed() {
-        return this.isPressed;
-    }
-
-    public Boolean isJustPressed() {
-        return this.isJustPressed;
-    }
-
-    public Boolean isJustReleased() {
-        return this.isJustReleased;
-    }
-
-    public void setGameControllerActionJustPressed(Boolean value) {
-        CInputAction gameAction = this.getGameControllerAction();
-        if (gameAction != null) ReflectionHacks.setPrivate(gameAction, CInputAction.class, "justPressed", value);
-    }
-
-     public void setGameControllerActionPressed(Boolean value) {
-        CInputAction gameAction = this.getGameControllerAction();
-        if (gameAction != null) ReflectionHacks.setPrivate(gameAction, CInputAction.class, "pressed", value);
-    }
-
-    public void setGameControllerActionJustReleased(Boolean value) {
-        CInputAction gameAction = this.getGameControllerAction();
-        if (gameAction != null) ReflectionHacks.setPrivate(gameAction, CInputAction.class, "justReleased", value);
-    }
-
-    void setMappings(ArrayList<InputMapping> mappings) {
-        this.mappings = mappings;
-    }
-
-    private void updateStates() {
-        for (InputMapping mapping:this.mappings) {
-            if (!this.isPressed && this.inputManager.isMappingJustPressed(mapping)) {
-                this.isJustPressed = true;
-                this.isPressed = true;
-                this.isJustReleased = false;
-                return;
-            } else if (this.isJustPressed && this.inputManager.isMappingPressed(mapping)) {
-                this.isJustPressed = false;
-                this.isPressed = true;
-                this.isJustReleased = false;
-                return;
-            }
-        }
-
-        //No mappings were detected as justPressed or pressed, so handle release
-        if (this.isPressed) {
-            this.isJustPressed = false;
-            this.isPressed = false;
-            this.isJustReleased = true;
-        } else if (this.isJustReleased) {
-            this.isJustReleased = false;
-        }
-    }
-
-    public void update() {
-        this.updateStates();
-        if (this.isJustPressed()) {
-            this.inputManager.uiManager.emitAction(this, "justPressed");
-        } else if (this.isPressed()) {
-            this.inputManager.uiManager.emitAction(this, "pressed");
-        } else if (this.isJustReleased()) {
-            this.inputManager.uiManager.emitAction(this, "justReleased");
-        }
-    }
+  }
 }

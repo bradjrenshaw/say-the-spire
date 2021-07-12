@@ -1,4 +1,4 @@
-package sayTheSpire;
+package sayTheSpire.buffers;
 
 import java.util.ArrayList;
 import java.util.Collection;

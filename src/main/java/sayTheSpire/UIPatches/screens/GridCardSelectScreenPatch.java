@@ -2,9 +2,8 @@ import basemod.ReflectionHacks;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
-import sayTheSpire.ui.CardElement;
 import sayTheSpire.Output;
-import sayTheSpire.utils.CardUtils;
+import sayTheSpire.ui.CardElement;
 
 @SpirePatch(clz = GridCardSelectScreen.class, method = "update")
 public class GridCardSelectScreenPatch {

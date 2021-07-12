@@ -1,9 +1,5 @@
-package sayTheSpire;
+package sayTheSpire.buffers;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import sayTheSpire.events.Event;
-import sayTheSpire.events.EventManager;
 
 public class EventBuffer extends Buffer {
 

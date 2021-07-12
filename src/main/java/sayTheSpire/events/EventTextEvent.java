@@ -18,6 +18,4 @@ public class EventTextEvent extends Event {
   public Boolean isComplete() {
     return !AbstractDungeon.isScreenUp;
   }
-
-
 }

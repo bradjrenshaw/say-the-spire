@@ -2,8 +2,8 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.ui.panels.RenamePopup;
-import sayTheSpire.ui.mod.KeyboardContext;
 import sayTheSpire.Output;
+import sayTheSpire.ui.mod.KeyboardContext;
 
 public class RenamePopupPatch {
 
@@ -21,7 +21,7 @@ public class RenamePopupPatch {
     }
   }
 
-  @SpirePatch(clz=RenamePopup.class, method="cancel")
+  @SpirePatch(clz = RenamePopup.class, method = "cancel")
   public static class CancelPatch {
 
     public static void Postfix(RenamePopup __instance) {
@@ -29,7 +29,7 @@ public class RenamePopupPatch {
     }
   }
 
-  @SpirePatch(clz=RenamePopup.class, method="confirm")
+  @SpirePatch(clz = RenamePopup.class, method = "confirm")
   public static class ConfirmPatch {
 
     public static void Postfix(RenamePopup __instance) {

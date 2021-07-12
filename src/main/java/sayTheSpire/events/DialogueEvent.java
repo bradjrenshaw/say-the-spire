@@ -18,5 +18,4 @@ public class DialogueEvent extends TextEvent {
   public Boolean isComplete() {
     return this.source != null && this.message != null;
   }
-
 }

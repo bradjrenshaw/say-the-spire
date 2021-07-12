@@ -16,5 +16,4 @@ public class TextEvent extends Event {
   public Boolean isComplete() {
     return this.message != null && !this.message.equals("");
   }
-
 }

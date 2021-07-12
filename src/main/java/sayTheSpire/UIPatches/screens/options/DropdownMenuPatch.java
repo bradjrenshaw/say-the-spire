@@ -1,17 +1,6 @@
-import com.evacipated.cardcrawl.modthespire.lib.LineFinder;
-import com.evacipated.cardcrawl.modthespire.lib.Matcher;
-import com.evacipated.cardcrawl.modthespire.lib.SpireInsertLocator;
-import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
-import com.megacrit.cardcrawl.helpers.controller.CInputHelper;
 import com.megacrit.cardcrawl.screens.options.DropdownMenu;
-import java.util.ArrayList;
-import java.util.Arrays;
-import javassist.CannotCompileException;
-import javassist.CtBehavior;
-import basemod.ReflectionHacks;
 import sayTheSpire.Output;
 import sayTheSpire.ui.DropdownElement;
 import sayTheSpire.ui.UIRegistry;
@@ -48,14 +37,15 @@ public class DropdownMenuPatch {
       DropdownElement currentDropdown = (DropdownElement) UIRegistry.getUI(__instance);
       if (currentDropdown == null) return;
       int targetIndex = currentDropdown.getIndex();
-      if (CInputActionSet.up.isJustPressed() || CInputActionSet.altUp.isJustPressed()) targetIndex--;
-      else if (CInputActionSet.down.isJustPressed() || CInputActionSet.altDown.isJustPressed()) targetIndex++;
+      if (CInputActionSet.up.isJustPressed() || CInputActionSet.altUp.isJustPressed())
+        targetIndex--;
+      else if (CInputActionSet.down.isJustPressed() || CInputActionSet.altDown.isJustPressed())
+        targetIndex++;
       else return;
       if (targetIndex < 0) targetIndex = currentDropdown.getOptionCount() - 1;
       if (targetIndex >= currentDropdown.getOptionCount()) targetIndex = 0;
       currentDropdown.setIndex(targetIndex);
       Output.text(currentDropdown.getStatusString(), true);
     }
-
   }
 }

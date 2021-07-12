@@ -1,6 +1,6 @@
 package sayTheSpire.ui;
 
-import sayTheSpire.BufferManager;
+import sayTheSpire.buffers.BufferManager;
 
 /**
  * A virtual UI element represents a game object and various properties it may have. Virtual UI
@@ -20,34 +20,33 @@ public abstract class UIElement {
    */
   public abstract String handleBuffers(BufferManager buffers);
 
-  /**
-   * Updates any needed values and performs any triggers on UI elements.
-   */
-  public void update() {
-  }
+  /** Updates any needed values and performs any triggers on UI elements. */
+  public void update() {}
 
-  /**
-   * Returns the label of the element (usually the name)
-   */
+  /** Returns the label of the element (usually the name) */
   public String getLabel() {
     return null;
   }
 
   /**
-   * Returns the status of the element as a string (checked for checkboxes, on/off for toggle buttons, etc). Null means no status string is available.
+   * Returns the status of the element as a string (checked for checkboxes, on/off for toggle
+   * buttons, etc). Null means no status string is available.
    */
   public String getStatusString() {
     return null;
   }
 
   /**
-   * Returns extras for an element as a string (extras can be things such as price in the shop). Null means there are none.
+   * Returns extras for an element as a string (extras can be things such as price in the shop).
+   * Null means there are none.
    */
-  public String getExtrasString() {return null;}
+  public String getExtrasString() {
+    return null;
+  }
 
-public String getTypeString() {
-  return elementType;
-}
+  public String getTypeString() {
+    return elementType;
+  }
 
   /**
    * Returns the position of the object (for example, 1 of 3). For grids this is usually a

@@ -2,9 +2,9 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.ui.panels.SeedPanel;
-import sayTheSpire.ui.mod.KeyboardContext;
 import sayTheSpire.Output;
 import sayTheSpire.TextParser;
+import sayTheSpire.ui.mod.KeyboardContext;
 
 public class SeedPanelPatch {
 
@@ -12,7 +12,7 @@ public class SeedPanelPatch {
 
   public static final String[] TEXT = uiStrings.TEXT;
 
-  @SpirePatch(clz=SeedPanel.class, method="close")
+  @SpirePatch(clz = SeedPanel.class, method = "close")
   public static class ClosePatch {
 
     public static void Prefix(SeedPanel __instance) {
