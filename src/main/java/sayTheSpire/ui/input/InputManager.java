@@ -3,7 +3,6 @@ package sayTheSpire.ui.input;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.megacrit.cardcrawl.core.Settings;
-import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -18,7 +17,7 @@ public class InputManager {
   private HashMap<String, InputAction> actions;
   private HashMap<Integer, Boolean> controllerPressed, keyboardPressed;
   private HashSet<Integer> keysToCheck;
-  private EnumSet keyboardPressedModifiers;
+  private HashSet<InputMapping.Modifiers> keyboardPressedModifiers;
   private InputConfig inputConfig;
   UIManager uiManager;
 
@@ -30,7 +29,7 @@ public class InputManager {
     this.keysToCheck = new HashSet();
     this.controllerPressed = new HashMap();
     this.keyboardPressed = new HashMap();
-    this.keyboardPressedModifiers = EnumSet.noneOf(InputMapping.Modifiers.class);
+    this.keyboardPressedModifiers = new HashSet();
     this.inputConfig.populateActions(this.actions);
     this.determineKeysToCheck();
   }

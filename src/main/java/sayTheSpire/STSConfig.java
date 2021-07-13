@@ -1,5 +1,9 @@
 package sayTheSpire;
 
+import java.io.FileReader;
+import java.io.FileWriter;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import com.evacipated.cardcrawl.modthespire.lib.ConfigUtils;
 import com.moandjiezana.toml.Toml;
 import com.moandjiezana.toml.TomlWriter;
@@ -22,13 +26,14 @@ public class STSConfig {
   }
 
   private void loadInput() {
-    File file = new File(getInputFilePath());
     try {
-      Toml inputToml = new Toml().read(file);
-      this.inputConfig = inputToml.to(InputConfig.class);
+      JSONParser parser = new JSONParser();
+      JSONObject obj = (JSONObject)parser.parse(new FileReader(this.getInputFilePath()));
+      this.inputConfig = new InputConfig(obj);
       System.out.println("STSConfig: Input settings file loaded successfully.");
     } catch (Exception e) {
-      System.out.println("STSConfig: No input mappings file found, using defaults.");
+      System.out.println("STSConfig: Issue loading input mappings file.");
+      e.printStackTrace();
       this.inputConfig = new InputConfig();
     }
   }
@@ -61,11 +66,23 @@ public class STSConfig {
   }
 
   public void save() throws IOException {
+    try (    FileWriter file = new FileWriter(getSettingsFilePath())) {
     TomlWriter writer = new TomlWriter();
-    File file = new File(getSettingsFilePath());
     writer.write(this.settingsToml.toMap(), file);
-    File inputFile = new File(getInputFilePath());
-    writer.write(this.inputConfig, inputFile);
+    file.flush();
+    System.out.println("STSConfig: Successfully wrote settings file.");
+    } catch (Exception e) {
+      System.err.println("STSConfig: Issue writing to settings file.");
+      e.printStackTrace();
+    }
+    try (FileWriter file = new FileWriter(getInputFilePath())) {
+      file.write(this.getInputConfig().toJSONObject().toJSONString());
+      file.flush();
+      System.out.println("STSConfig: Successfully wrote input mappings file.");
+    } catch(Exception e) {
+      System.err.println("STSConfig: Error writing to input mappings file.");
+      e.printStackTrace();
+    }
   }
 
   public static HashMap<String, Object> getDefaults() {
@@ -96,7 +113,7 @@ public class STSConfig {
   }
 
   public static String getInputFilePath() {
-    return getDirectoryPath() + "input.ini";
+    return getDirectoryPath() + "input.json";
   }
 
   public InputConfig getInputConfig() {

@@ -1,7 +1,9 @@
 package sayTheSpire.ui.input;
 
+
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
 import com.badlogic.gdx.Input.Keys;
-import java.util.EnumSet;
 import java.util.HashSet;
 
 public class InputMapping {
@@ -14,12 +16,12 @@ public class InputMapping {
 
   private String actionName;
   private String inputType;
-  private EnumSet modifiers;
+  private HashSet<Modifiers> modifiers;
   private int keycode;
   private Boolean isDefault;
 
   public InputMapping(
-      String actionName, String inputType, Boolean isDefault, EnumSet modifiers, int keycode) {
+      String actionName, String inputType, Boolean isDefault, HashSet<Modifiers> modifiers, int keycode) {
     this.actionName = actionName;
     this.inputType = inputType;
     this.isDefault = isDefault;
@@ -32,9 +34,9 @@ public class InputMapping {
     this.actionName = actionName;
     this.inputType = inputType;
     this.isDefault = isDefault;
+    this.modifiers = new HashSet();
     switch (inputType) {
       case "keyboard":
-        this.modifiers = EnumSet.noneOf(Modifiers.class);
         this.keycode = -4000; // hacky
         for (int testCode : keycodes) {
           if (testCode == Keys.CONTROL_LEFT || testCode == Keys.CONTROL_RIGHT)
@@ -57,7 +59,6 @@ public class InputMapping {
               "Tried to assign incorrect number of keycodes to controller mapping.");
         }
         this.keycode = (int) keycodes.toArray()[0];
-        this.modifiers = EnumSet.noneOf(Modifiers.class);
         break;
       default:
         throw new RuntimeException("Invalid InputMapping type " + inputType + ".");
@@ -65,7 +66,33 @@ public class InputMapping {
   }
 
   public InputMapping(String actionName, String inputType, Boolean isDefault, int keycode) {
-    this(actionName, inputType, isDefault, EnumSet.noneOf(Modifiers.class), keycode);
+    this(actionName, inputType, isDefault, new HashSet<Modifiers>(), keycode);
+  }
+
+  public InputMapping(JSONObject mappingObj) {
+    String actionName = (String)mappingObj.get("actionName");
+    String inputType = (String)mappingObj.get("inputType");
+    JSONArray modifiersArray = (JSONArray)mappingObj.get("modifiers");
+    int keycode = ((Long)mappingObj.get("keycode")).intValue();
+    HashSet<Modifiers> modifiers = new HashSet();
+    for (Object obj:modifiersArray) {
+      switch((String)obj) {
+        case "CONTROL":
+        modifiers.add(Modifiers.CONTROL);
+        break;
+        case "SHIFT":
+        modifiers.add(Modifiers.SHIFT);
+        break;
+  case "ALT":
+        modifiers.add(Modifiers.ALT);
+        break;
+      }
+    }
+    this.actionName = actionName;
+    this.inputType = inputType;
+    this.modifiers = modifiers;
+    this.keycode = keycode;
+    this.isDefault = false;
   }
 
   public String getActionName() {
@@ -84,7 +111,20 @@ public class InputMapping {
     return this.keycode;
   }
 
-  public EnumSet getModifiers() {
+  public HashSet<Modifiers> getModifiers() {
     return this.modifiers;
+  }
+
+  public JSONObject toJSONObject() {
+    JSONObject obj = new JSONObject();
+    obj.put("actionName", this.getActionName());
+    obj.put("inputType", this.getInputType());
+    JSONArray modifiersArray = new JSONArray();
+    for (Modifiers modifier:this.modifiers) {
+     modifiersArray.add(modifier.toString());
+    }
+    obj.put("modifiers", modifiersArray);
+   obj.put("keycode", this.getKeycode());
+   return obj;
   }
 }
