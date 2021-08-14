@@ -53,7 +53,10 @@ public class CInputHelperPatch {
   public static class UpdateLastPatch {
 
     public static SpireReturn Prefix() {
+      if (Output.getAllowVirtualInput()) {
       return SpireReturn.Return(null);
+      }
+      return SpireReturn.Continue();
     }
   }
 }
