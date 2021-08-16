@@ -20,7 +20,7 @@ public class CardUtils {
   }
 
   public static String getCardDescriptionString(AbstractCard card) {
-    return TextParser.parse(card.rawDescription, card);
+    return TextParser.parse(card.rawDescription.replaceAll("([^ ])(![A-Z]!)", "$1 $2"), card); // Ensures that dynamic variables have a preceding white space
   }
 
   public static HashMap<String, String> getCardDynamicVariables(AbstractCard card) {
