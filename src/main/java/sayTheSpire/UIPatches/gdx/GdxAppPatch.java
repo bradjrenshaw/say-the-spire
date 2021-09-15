@@ -1,3 +1,4 @@
+/*
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import sayTheSpire.Output;
@@ -9,3 +10,4 @@ public class GdxAppPatch {
     Output.shutdown();
   }
 }
+*/

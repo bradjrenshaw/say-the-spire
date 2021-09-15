@@ -73,6 +73,8 @@ public class InputMapping {
     String actionName = (String)mappingObj.get("actionName");
     String inputType = (String)mappingObj.get("inputType");
     JSONArray modifiersArray = (JSONArray)mappingObj.get("modifiers");
+    
+    //Yes this really is required
     int keycode = ((Long)mappingObj.get("keycode")).intValue();
     HashSet<Modifiers> modifiers = new HashSet();
     for (Object obj:modifiersArray) {

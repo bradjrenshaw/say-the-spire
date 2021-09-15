@@ -6,8 +6,13 @@ import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Vector;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import sayTheSpire.Output;
 
 public class TolkResourceHandler extends TolkHandler {
+
+  private static Logger logger = LogManager.getLogger(TolkResourceHandler.class.getName());
 
   public void disposeResources() {
     String resources[] = getResources();
@@ -17,10 +22,10 @@ public class TolkResourceHandler extends TolkHandler {
         file.delete();
       }
     } catch (Exception e) {
-      System.out.println(e.getMessage());
+      logger.error(e.getMessage());
       e.printStackTrace();
     }
-    System.out.println("speech.TolkResourceHandler: All files cleared.");
+    logger.info("All files cleared.");
   }
 
   public Boolean loadResources() {
@@ -41,23 +46,27 @@ public class TolkResourceHandler extends TolkHandler {
         outStream.close();
       }
     } catch (Exception e) {
-      System.out.println("exception thrown");
-      System.out.println(e.getMessage());
+      logger.info(e.getMessage());
       e.printStackTrace();
       return false;
     }
-    System.out.println("speech.TolkResourceHandler: all files written");
+    logger.info("speech.TolkResourceHandler: all files written");
     return true;
   }
 
   public void unload() {
     super.unload();
     try {
+      if (Output.config.getBoolean("resources.unload_native_libs")) {
+      logger.info("attempting to unload native libs");
       unloadNativeLibs();
-    } catch (Throwable t) {
-      System.out.println(t.getMessage());
+      logger.info("Native libs successfully unloaded.");
+    }
+  } catch (Throwable t) {
+      logger.error(t.getMessage());
       t.printStackTrace();
     }
+    logger.info("Tolk successfully unloaded.");
   }
 
   public static String getPath() {

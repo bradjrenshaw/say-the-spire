@@ -1,5 +1,7 @@
 package sayTheSpire;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
@@ -24,6 +26,7 @@ import sayTheSpire.ui.mod.UIManager;
 import sayTheSpire.buffers.*;
 
 public class Output {
+
   public enum Direction {
     NONE,
     UP,
@@ -31,6 +34,8 @@ public class Output {
     LEFT,
     RIGHT
   };
+
+  private static Logger logger = LogManager.getLogger(Output.class.getName());
 
   public static String bufferContext = "";
   public static AbstractCard hoveredCard = null;
@@ -45,7 +50,7 @@ public class Output {
   public static String eventText = null;
   public static UIElement currentUI = null;
   public static STSConfig config = null;
-
+  
   public static void setup() {
     speechManager = new SpeechManager();
     speechManager.registerHandler(new TolkResourceHandler());
@@ -53,7 +58,7 @@ public class Output {
     speechManager.registerHandler(new ClipboardHandler());
     speechManager.setup();
     tolkSetup = true;
-
+    
     // create buffers
     BufferControls.buffers = buffers;
     buffers.add(new Buffer("UI"));
@@ -65,41 +70,41 @@ public class Output {
     buffers.add(new MonsterBuffer("monster"));
     buffers.add(new PotionBuffer("potion"));
     buffers.add(new RelicBuffer("relic"));
-
+    
     // Create MapNavigator
     MapControls.navigator = new MapNavigator();
-
+    
     // initialize config
     try {
       config = new STSConfig();
       config.save();
     } catch (Exception e) {
-      System.err.println(e.getMessage());
+      logger.error(e.getMessage());
       e.printStackTrace();
     }
     uiManager = new UIManager(config);
     inputManager = uiManager.getInputManager();
   }
-
+  
   public static void shutdown() {
     try {
       config.save();
+      speechManager.unload();
+      if (config.getBoolean("resources.dispose_resource_files")) speechManager.disposeResources();
     } catch (Exception e) {
-      System.out.println(e.getMessage());
+      logger.error(e.getMessage());
       e.printStackTrace();
     }
-    speechManager.unload();
-    speechManager.disposeResources();
-  }
-
+      }
+  
   public static void event(Event event) {
     EventManager.add(event);
   }
-
+  
   public static void silenceSpeech() {
     speechManager.silence();
   }
-
+  
   public static void text(String text, Boolean interrupt) {
     if (!tolkSetup) {
       setup();
@@ -107,60 +112,60 @@ public class Output {
     speechManager.output(text, shouldInterruptSpeech && interrupt);
     shouldInterruptSpeech = interrupt;
   }
-
+  
   public static Boolean getAllowVirtualInput() {
     if (uiManager == null) return false;
     return uiManager.getAllowVirtualInput() && config.getBoolean("input.virtual_input", false);
   }
-
+  
   public static void infoControls(Direction direction) {
     if (bufferContext.equals("")) return;
     if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.MAP
-        && bufferContext.equals("map")) {
+    && bufferContext.equals("map")) {
       mapInfoControls(direction);
     } else {
       bufferInfoControls(direction);
     }
   }
-
+  
   public static void bufferInfoControls(Direction direction) {
     switch (direction) {
       case UP:
-        BufferControls.nextItem();
-        break;
+      BufferControls.nextItem();
+      break;
       case DOWN:
-        BufferControls.previousItem();
-        break;
+      BufferControls.previousItem();
+      break;
       case LEFT:
-        BufferControls.previousBuffer();
-        break;
+      BufferControls.previousBuffer();
+      break;
       case RIGHT:
-        BufferControls.nextBuffer();
-        break;
+      BufferControls.nextBuffer();
+      break;
     }
   }
-
+  
   public static void mapInfoControls(Direction direction) {
     switch (direction) {
       case UP:
-        MapControls.followPath(true);
-        break;
+      MapControls.followPath(true);
+      break;
       case DOWN:
-        MapControls.followPath(false);
-        break;
+      MapControls.followPath(false);
+      break;
       case LEFT:
-        MapControls.changePathChoice(-1);
-        break;
+      MapControls.changePathChoice(-1);
+      break;
       case RIGHT:
-        MapControls.changePathChoice(1);
-        break;
+      MapControls.changePathChoice(1);
+      break;
       case NONE:
-        return;
+      return;
       default:
-        text("it's a map", true);
+      text("it's a map", true);
     }
   }
-
+  
   public static Direction getInfoDirection() {
     if (CInputActionSet.inspectUp.isJustPressed()) return Direction.UP;
     else if (CInputActionSet.inspectDown.isJustPressed()) return Direction.DOWN;
@@ -168,7 +173,7 @@ public class Output {
     else if (CInputActionSet.inspectRight.isJustPressed()) return Direction.RIGHT;
     else return Direction.NONE;
   }
-
+  
   public static void setUI(UIElement element) {
     String current = element.handleBuffers(buffers);
     currentUI = element;
@@ -189,35 +194,35 @@ public class Output {
     if (current == null) return; // current buffer should be unchanged
     buffers.setCurrentBuffer(current);
   }
-
+  
   public static void setupBuffers(AbstractCard card) {
     buffers.getBuffer("current card").setObject(card);
     buffers.getBuffer("upgrade preview").setObject(card);
     setupBuffers("card");
   }
-
+  
   public static void setupBuffers(AbstractMonster monster) {
     Buffer buffer = buffers.getBuffer("monster");
     buffer.setObject(monster);
     setupBuffers("monster");
   }
-
+  
   public static void setupBuffers(AbstractOrb orb) {
     buffers.getBuffer("orb").setObject(orb);
     setupBuffers("orb");
   }
-
+  
   public static void setupBuffers(AbstractPotion potion) {
     Buffer buffer = buffers.getBuffer("potion");
     buffer.setObject(potion);
     setupBuffers("potion");
   }
-
+  
   public static void setupBuffers(AbstractRelic relic) {
     buffers.getBuffer("relic").setObject(relic);
     setupBuffers("relic");
   }
-
+  
   public static void setupBuffers(MapRoomNode node, Boolean viewing) {
     setupBuffers("map");
     if (viewing) {
@@ -226,46 +231,46 @@ public class Output {
       MapControls.navigator.handleFocusedNode(node);
     }
   }
-
+  
   public static void setupBuffers(String context) {
     bufferContext = context;
     buffers.setAllEnabled(false);
     switch (context) {
       case "card":
-        buffers.enableBuffer("current card");
-        buffers.enableBuffer("upgrade preview");
-        buffers.setCurrentBuffer("current card");
-        break;
+      buffers.enableBuffer("current card");
+      buffers.enableBuffer("upgrade preview");
+      buffers.setCurrentBuffer("current card");
+      break;
       case "monster":
-        buffers.enableBuffer("monster");
-        buffers.setCurrentBuffer("monster");
-        break;
+      buffers.enableBuffer("monster");
+      buffers.setCurrentBuffer("monster");
+      break;
       case "orb":
-        buffers.enableBuffer("orb");
-        buffers.setCurrentBuffer("orb");
-        break;
+      buffers.enableBuffer("orb");
+      buffers.setCurrentBuffer("orb");
+      break;
       case "potion":
-        buffers.enableBuffer("potion");
-        buffers.setCurrentBuffer("potion");
-        break;
+      buffers.enableBuffer("potion");
+      buffers.setCurrentBuffer("potion");
+      break;
       case "relic":
-        buffers.enableBuffer("relic");
-        buffers.setCurrentBuffer("relic");
-        break;
+      buffers.enableBuffer("relic");
+      buffers.setCurrentBuffer("relic");
+      break;
       case "UI":
-        buffers.enableBuffer("UI");
-        buffers.setCurrentBuffer("UI");
-        break;
+      buffers.enableBuffer("UI");
+      buffers.setCurrentBuffer("UI");
+      break;
     }
   }
-
+  
   public static void setupUIBuffer(ArrayList<String> contents) {
     Buffer buffer = buffers.getBuffer("UI");
     buffer.clear();
     buffer.addMany(contents);
     setupBuffers("UI");
   }
-
+  
   public static void setupUIBufferMany(String... contents) {
     Buffer buffer = buffers.getBuffer("UI");
     buffer.clear();
@@ -274,7 +279,7 @@ public class Output {
     }
     setupBuffers("UI");
   }
-
+  
   public static void updateInfoControls() {
     if (CInputActionSet.inspectUp.isJustPressed()) {
       infoControls(Direction.UP);
@@ -286,7 +291,7 @@ public class Output {
       infoControls(Direction.LEFT);
     }
   }
-
+  
   public static void update() {
     MiscTriggers.update();
     EventManager.update();

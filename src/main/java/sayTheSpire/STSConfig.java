@@ -2,6 +2,8 @@ package sayTheSpire;
 
 import java.io.FileReader;
 import java.io.FileWriter;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import com.evacipated.cardcrawl.modthespire.lib.ConfigUtils;
@@ -14,6 +16,8 @@ import java.util.Map;
 import sayTheSpire.ui.input.InputConfig;
 
 public class STSConfig {
+
+  private static final Logger logger = LogManager.getLogger(STSConfig.class.getName());
 
   private Toml settingsToml;
   private InputConfig inputConfig;
@@ -30,9 +34,9 @@ public class STSConfig {
       JSONParser parser = new JSONParser();
       JSONObject obj = (JSONObject)parser.parse(new FileReader(this.getInputFilePath()));
       this.inputConfig = new InputConfig(obj);
-      System.out.println("STSConfig: Input settings file loaded successfully.");
+      logger.info("STSConfig: Input settings file loaded successfully.");
     } catch (Exception e) {
-      System.out.println("STSConfig: Issue loading input mappings file.");
+      logger.info("STSConfig: Issue loading input mappings file.");
       e.printStackTrace();
       this.inputConfig = new InputConfig();
     }
@@ -46,9 +50,9 @@ public class STSConfig {
           (HashMap<String, Object>) new Toml().read(file).toMap();
       merge(defaults, fileSettings);
       this.settingsToml = new Toml().read(new TomlWriter().write(defaults));
-      System.out.println("STSConfig: Config loaded from existing file.");
+      logger.info("STSConfig: Config loaded from existing file.");
     } catch (Exception e) {
-      System.out.println("STSConfig: No config file found, using defaults.");
+      logger.info("STSConfig: No config file found, using defaults.");
       this.settingsToml = new Toml().read(new TomlWriter().write(defaults));
     }
   }
@@ -70,23 +74,28 @@ public class STSConfig {
     TomlWriter writer = new TomlWriter();
     writer.write(this.settingsToml.toMap(), file);
     file.flush();
-    System.out.println("STSConfig: Successfully wrote settings file.");
+    logger.info("STSConfig: Successfully wrote settings file.");
     } catch (Exception e) {
-      System.err.println("STSConfig: Issue writing to settings file.");
+      logger.error("STSConfig: Issue writing to settings file.");
       e.printStackTrace();
     }
     try (FileWriter file = new FileWriter(getInputFilePath())) {
       file.write(this.getInputConfig().toJSONObject().toJSONString());
       file.flush();
-      System.out.println("STSConfig: Successfully wrote input mappings file.");
+      logger.info("STSConfig: Successfully wrote input mappings file.");
     } catch(Exception e) {
-      System.err.println("STSConfig: Error writing to input mappings file.");
+      logger.error("STSConfig: Error writing to input mappings file.");
       e.printStackTrace();
     }
   }
 
   public static HashMap<String, Object> getDefaults() {
     HashMap<String, Object> defaults = new HashMap();
+
+    HashMap<String, Object> resourceDefaults = new HashMap();
+    resourceDefaults.put("dispose_resource_files", true);
+    resourceDefaults.put("unload_native_libs", true);
+
     HashMap<String, Object> uiDefaults = new HashMap();
     uiDefaults.put("read_positions", true);
     uiDefaults.put("read_banner_text", true);
@@ -101,6 +110,7 @@ public class STSConfig {
     HashMap<String, Object> inputDefaults = new HashMap();
     inputDefaults.put("virtual_input", false);
 
+    defaults.put("resources", resourceDefaults);
     defaults.put("ui", uiDefaults);
     defaults.put("map", mapDefaults);
     defaults.put("combat", combatDefaults);

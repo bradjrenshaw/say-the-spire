@@ -10,9 +10,14 @@
 * Fixed: You can no longer see a face down or locked card's energy cost.
 * Fixed: Buffers should no longer eroniously report null items.
 * Fixed: A number of issues related to parsing text in certain languages
-    * Variable numbers on cards should now be read for all languages (such as damage or block)
+    * Variable numbers on cards should now be read for all languages such as damage or block (thanks to @yncat for the code contribution).
     * Fixed issue in settings menu where the language dropdown would have formatting tags read for some languages
     * Strings of single characters will no longer crash the game in certain situations. This may fix issues with certain non-English language strings crashing the game.
+* Added: Two new settings have been added to the config file: resources.dispose_resource_files and resources.unload_native_libs. These were added to deal with a rare issue with certain Steam setups that can cause the game to crash upon closing. These are both on by default but should be set to false if people are experiencing game crashes.
+
+### Known Issues
+
+* There is a rare crash for certain Steam setups that occurs when the game is closed. If this happens, open settings.ini and change dispose_resource_files and unload_native_libs to false under the resources section. Screen reader dlls and a few .lib files will be left in your Slay the Spire program directory but nothing else will be effected.
 
 
 ## Beta 4/Public Beta 1
