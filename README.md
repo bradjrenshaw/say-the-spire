@@ -3,7 +3,6 @@
 A mod for the game Slay the Spire to provide blind accessibility.
 
 * This only works on Windows for now
-* Only controllers are supported; keyboard support is coming soon.
 * Only the Steam version of the game is supported.
 
 ## Mod Installation and Usage
@@ -131,7 +130,6 @@ monster, merchant, choice
 After that it will allow you to browse the choices as before. Note that it reads the choice again at the start of the path to avoid confusion, this isn't a bug. If moving backwards, the path is read in reverse as you would expect, unless you disable this setting in the config file.
 
 
-
 ## Known Issues
 
 * daily climb (leaderboard section doesn't read), input settings, and credits screens do not read. These are being worked on.
@@ -140,5 +138,3 @@ After that it will allow you to browse the choices as before. Note that it reads
 * The UI can jump between cards a few times (for example when retaining cards as the silent). this isn't an issue I can fix and does not break the game in any way.
 * Currently certain text is only read in English (for example UI element types).
 * Not all UI positions read as you would expect (for example potions and relics don't have position information). This is being worked on
-
-

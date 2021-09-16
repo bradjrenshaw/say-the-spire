@@ -108,7 +108,7 @@ public class STSConfig {
     combatDefaults.put("buff_debuff_text", true);
 
     HashMap<String, Object> inputDefaults = new HashMap();
-    inputDefaults.put("virtual_input", false);
+    inputDefaults.put("virtual_input", true);
 
     defaults.put("resources", resourceDefaults);
     defaults.put("ui", uiDefaults);
