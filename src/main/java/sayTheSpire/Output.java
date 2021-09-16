@@ -25,7 +25,10 @@ import sayTheSpire.ui.input.InputManager;
 import sayTheSpire.ui.mod.UIManager;
 import sayTheSpire.buffers.*;
 
+
 public class Output {
+
+  public static String modVersion = "Beta 0.2.0";
 
   public enum Direction {
     NONE,
@@ -51,6 +54,10 @@ public class Output {
   public static UIElement currentUI = null;
   public static STSConfig config = null;
   
+  public static void announceVersion() {
+    text("Using Say the Spire version " + modVersion, false);
+  }
+
   public static void setup() {
     speechManager = new SpeechManager();
     speechManager.registerHandler(new TolkResourceHandler());
