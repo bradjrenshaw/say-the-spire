@@ -1,7 +1,8 @@
 # Change Log
 
-## Public Beta 2
+## Public Beta 0.2.0
 
+* The versioning scheme has been changed to semantic versioning. This should allow for more clear version numbering for frequent updates instead of large spread out beta releases as it has been so far.
 * Added: Introduction of the virtual input system allowing for keyboard support and additional mod specific menus. See the Virtual Input section of the readme for more information.
 * Fixed: Strategic (attack and debuff intent) damage now correctly shows multihitting attacks
 * Fixed: If no screen reader is running, the mod now correctly defaults to using SAPI on Windows.
@@ -14,6 +15,7 @@
     * Fixed issue in settings menu where the language dropdown would have formatting tags read for some languages
     * Strings of single characters will no longer crash the game in certain situations. This may fix issues with certain non-English language strings crashing the game.
 * Added: Two new settings have been added to the config file: resources.dispose_resource_files and resources.unload_native_libs. These were added to deal with a rare issue with certain Steam setups that can cause the game to crash upon closing. These are both on by default but should be set to false if people are experiencing game crashes.
+* Added: Messages sent to logs by Say the Spire have been standardized to fit the style of Slay the Spire's logs. This should make debug output a lot more clear.
 
 ### Known Issues
 

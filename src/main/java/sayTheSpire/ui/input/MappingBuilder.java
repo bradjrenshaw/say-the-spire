@@ -30,6 +30,7 @@ public class MappingBuilder {
     if (!this.mappings.containsKey(name)) {
       this.mappings.put(name, new ArrayList<InputMapping>());
     }
+    this.currentActionName = name;
     this.currentActionList = this.mappings.get(name);
     return this;
   }
