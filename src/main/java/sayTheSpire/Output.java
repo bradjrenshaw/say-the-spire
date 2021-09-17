@@ -199,7 +199,7 @@ public class Output {
     }
     text(sb.toString(), true);
     if (current == null) return; // current buffer should be unchanged
-    buffers.setCurrentBuffer(current);
+    BufferControls.setCurrentBuffer(current);
   }
   
   public static void setupBuffers(AbstractCard card) {
@@ -244,29 +244,29 @@ public class Output {
     buffers.setAllEnabled(false);
     switch (context) {
       case "card":
-      buffers.enableBuffer("current card");
-      buffers.enableBuffer("upgrade preview");
-      buffers.setCurrentBuffer("current card");
+      buffers.enableBuffer("current card", true);
+      buffers.enableBuffer("upgrade preview", true);
+      BufferControls.setCurrentBuffer("current card");
       break;
       case "monster":
-      buffers.enableBuffer("monster");
-      buffers.setCurrentBuffer("monster");
+      buffers.enableBuffer("monster", true);
+      BufferControls.setCurrentBuffer("monster");
       break;
       case "orb":
-      buffers.enableBuffer("orb");
-      buffers.setCurrentBuffer("orb");
+      buffers.enableBuffer("orb", true);
+      BufferControls.setCurrentBuffer("orb");
       break;
       case "potion":
-      buffers.enableBuffer("potion");
-      buffers.setCurrentBuffer("potion");
+      buffers.enableBuffer("potion", true);
+      BufferControls.setCurrentBuffer("potion");
       break;
       case "relic":
-      buffers.enableBuffer("relic");
-      buffers.setCurrentBuffer("relic");
+      buffers.enableBuffer("relic", true);
+      BufferControls.setCurrentBuffer("relic");
       break;
       case "UI":
-      buffers.enableBuffer("UI");
-      buffers.setCurrentBuffer("UI");
+      buffers.enableBuffer("UI", true);
+      BufferControls.setCurrentBuffer("UI");
       break;
     }
   }
