@@ -1,4 +1,13 @@
+import java.util.ArrayList;
+import org.apache.logging.log4j.LogManager;
+import javassist.CannotCompileException;
+import javassist.CtBehavior;
+import com.evacipated.cardcrawl.modthespire.lib.LineFinder;
+import com.evacipated.cardcrawl.modthespire.lib.Matcher;
+import com.evacipated.cardcrawl.modthespire.lib.SpireInsertLocator;
+import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import sayTheSpire.Output;
 import sayTheSpire.TextParser;
@@ -16,9 +25,22 @@ public class CardCrawlGamePatch {
   
   @SpirePatch(clz = CardCrawlGame.class, method = "dispose")
   public static class DisposePatch {
-    
-    public static void Prefix(CardCrawlGame __instance) {
+
+    @SpireInsertPatch(
+      locator = Locator.class
+      )
+
+    public static void Insert(CardCrawlGame __instance) {
       Output.shutdown();
+    }
+
+    public static class Locator extends SpireInsertLocator {
+
+      public int[] Locate(CtBehavior ctMethodToPatch)
+      throws CannotCompileException, PatchingException {
+    Matcher matcher = new Matcher.MethodCallMatcher(LogManager.class, "shutdown");
+    return LineFinder.findAllInOrder(ctMethodToPatch, new ArrayList<Matcher>(), matcher);
+  }
     }
   }
   
