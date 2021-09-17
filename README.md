@@ -138,3 +138,15 @@ After that it will allow you to browse the choices as before. Note that it reads
 * The UI can jump between cards a few times (for example when retaining cards as the silent). this isn't an issue I can fix and does not break the game in any way.
 * Currently certain text is only read in English (for example UI element types).
 * Not all UI positions read as you would expect (for example potions and relics don't have position information). This is being worked on
+
+
+## Beta Testers
+
+Thanks to the beta testers who tested the public and private betas, including but not limited to:
+
+* Ahmad Abukhdair
+* Austin Hicks
+* Brandon Cole (https://brandoncole.net/)
+* Kelsey Hendrix
+* Mike Breedlove
+* SightlessKombat (https://www.SightlessKombat.com/)
