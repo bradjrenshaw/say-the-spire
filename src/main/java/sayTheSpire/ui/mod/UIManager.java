@@ -1,28 +1,29 @@
 package sayTheSpire.ui.mod;
 
 import java.util.ArrayList;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import sayTheSpire.STSConfig;
 import sayTheSpire.ui.input.InputAction;
 import sayTheSpire.ui.input.InputManager;
 
 public class UIManager {
 
+  private static Logger logger = LogManager.getLogger(UIManager.class.getName());
+
   private ArrayList<Context> contexts;
   private InputManager inputManager;
   private STSConfig config;
-
-  // We need this to prevent unintentional controller actions registering on context change
-  private Boolean temporaryInputHalt;
 
   public UIManager(STSConfig config) {
     this.config = config;
     this.inputManager = new InputManager(this, config.getInputConfig());
     this.contexts = new ArrayList();
-    this.temporaryInputHalt = false;
     this.pushContext(new GameContext());
   }
 
   public void emitAction(InputAction action, String reason) {
+    logger.info("Emitting action " + action.getName() + " with reason " + reason);
     for (Context context : this.contexts) {
       Boolean result = false;
       if (reason.equals("justPressed")) result = context.onJustPress(action);
@@ -30,6 +31,7 @@ public class UIManager {
       else if (reason.equals("justReleased")) result = context.onJustRelease(action);
       else throw new RuntimeException("Invalud emit action " + reason + " for " + action.getName());
       if (result == true) { // input stopped
+        logger.info("Action stopped.");
         break;
       }
     }
@@ -59,9 +61,9 @@ public class UIManager {
       contexts.get(0).onUnfocus();
     }
     this.inputManager.clearActionStates();
+    logger.info("Pushing context " + context.getClass().getName());
     this.contexts.add(0, context);
     context.onFocus();
-    this.temporaryInputHalt = true;
   }
 
   public void popContext() {
@@ -69,24 +71,20 @@ public class UIManager {
       Context context = this.contexts.get(0);
       context.onUnfocus();
       this.contexts.remove(0);
+      logger.info("Popped context " + context.getClass().getName());
     }
     this.inputManager.clearActionStates();
-    this.temporaryInputHalt = true;
     if (this.contexts.size() > 0) {
       this.contexts.get(0).onFocus();
+      logger.info("Context " + this.contexts.get(0).getClass().getName() + " is now focused.");
     }
   }
 
   public void updateFirst() {
-    if (!this.temporaryInputHalt) {
-      this.inputManager.updateFirst();
-    }
+      if (this.getAllowVirtualInput()) this.inputManager.updateFirst();
   }
 
   public void updateLast() {
-    if (!this.temporaryInputHalt) {
-      this.inputManager.updateLast();
-    }
-    this.temporaryInputHalt = false;
+      if (this.getAllowVirtualInput()) this.inputManager.updateLast();
   }
 }

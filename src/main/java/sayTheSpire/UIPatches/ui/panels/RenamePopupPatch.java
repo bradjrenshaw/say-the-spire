@@ -1,4 +1,5 @@
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.ui.panels.RenamePopup;
@@ -24,8 +25,11 @@ public class RenamePopupPatch {
   @SpirePatch(clz = RenamePopup.class, method = "cancel")
   public static class CancelPatch {
 
-    public static void Postfix(RenamePopup __instance) {
-      Output.uiManager.popContext();
+    public static void Prefix(RenamePopup __instance) {
+      Boolean shown = (Boolean) ReflectionHacks.getPrivate(__instance, RenamePopup.class, "shown");
+      if (shown) {
+        Output.uiManager.popContext();
+      }
     }
   }
 

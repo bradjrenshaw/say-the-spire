@@ -20,15 +20,15 @@ public class Context {
   }
 
   public Boolean onJustPress(InputAction action) {
-    return false;
+    return true;
   }
 
   public Boolean onPress(InputAction action) {
-    return false;
+    return true;
   }
 
   public Boolean onJustRelease(InputAction action) {
-    return false;
+    return true;
   }
 
   public void onUnfocus() {
