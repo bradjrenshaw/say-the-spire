@@ -75,15 +75,6 @@ public class CardUtils {
         // localizations)
     }
   }
-  
-  public static String getCardRarityString(AbstractCard card) {
-    AbstractCard.CardRarity rarity = card.rarity;
-    // not sure if this can be null so better check it.
-    if (rarity == null) {
-      return null;
-    }
-    return rarity.name().toLowerCase();
-  }
 
   public static String getCardShort(AbstractCard card) {
     if (card.isLocked) {
