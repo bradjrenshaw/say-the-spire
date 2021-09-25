@@ -12,9 +12,10 @@ public class DropdownMenuPatch {
 
     public static void Postfix(DropdownMenu __instance) {
       if (__instance.getHitbox().justHovered) {
-        DropdownElement currentDropdown = new DropdownElement(__instance);
-        UIRegistry.register(__instance, currentDropdown);
+        DropdownElement currentDropdown = (DropdownElement)UIRegistry.getUI(__instance);
+        if (currentDropdown != null) {
         Output.setUI(currentDropdown);
+        }
       }
     }
   }

@@ -21,6 +21,7 @@
 * Added: Messages sent to logs by Say the Spire have been standardized to fit the style of Slay the Spire's logs. This should make debug output a lot more clear.
 * Added: The Say the Spire version is announced after the splash screen fully fades out.
 * Fixed: The game should no longer crash on shutdown for some steam setups due to unloading the wrong native libraries too early. If a crash on shutdown occurs please report it (see the known issues section of this change log).
+* Fixed: Dropdown menus that are not yet recognized by the mod will no longer cause the game to crash. As a result the run history screen will no longer crash the game. Note that the screen itself is still not yet read by the mod.
 
 ### Known Issues
 
