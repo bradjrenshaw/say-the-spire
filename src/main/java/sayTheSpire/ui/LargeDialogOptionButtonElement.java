@@ -18,7 +18,7 @@ public class LargeDialogOptionButtonElement extends UIElement {
     private String msg;
 
     public LargeDialogOptionButtonElement(LargeDialogOptionButton button) {
-        this.elementType = "button";
+        super("button");
         this.button = button;
         this.msg = TextParser.parse(button.msg);
         this.previewCard = (AbstractCard) ReflectionHacks.getPrivate(button, LargeDialogOptionButton.class,

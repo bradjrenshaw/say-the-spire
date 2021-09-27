@@ -9,6 +9,7 @@ import sayTheSpire.Output;
 import sayTheSpire.TextParser;
 import sayTheSpire.ui.UIRegistry;
 import sayTheSpire.ui.custom.GremlinMatchCardElement;
+import sayTheSpire.ui.positions.GridPosition;
 
 public class GremlinMatchGamePatch {
     private static final EventStrings eventStrings = CardCrawlGame.languagePack.getEventString("Match and Keep!");
@@ -26,7 +27,7 @@ public class GremlinMatchGamePatch {
                 // This screen lays out cards very weirdly relative to their array index
                 int x = p % 4 + 1;
                 int y = p % 3 + 1;
-                UIRegistry.register(card, new GremlinMatchCardElement(card, x, y));
+                UIRegistry.register(card, new GremlinMatchCardElement(card, new GridPosition(x, y)));
             }
         }
     }

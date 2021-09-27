@@ -20,7 +20,7 @@ public class DropdownElement extends UIElement {
     private int index;
 
     public DropdownElement(DropdownMenu dropdown, String name, String options[]) {
-        this.elementType = "dropdown";
+        super("dropdown");
         this.dropdown = dropdown;
         this.index = dropdown.getSelectedIndex();
         this.name = name;

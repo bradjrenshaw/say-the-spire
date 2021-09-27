@@ -1,6 +1,7 @@
 package sayTheSpire.ui;
 
 import sayTheSpire.buffers.BufferManager;
+import sayTheSpire.ui.positions.AbstractPosition;
 
 /**
  * A virtual UI element represents a game object and various properties it may have. Virtual UI Elements also include
@@ -10,6 +11,16 @@ import sayTheSpire.buffers.BufferManager;
 public abstract class UIElement {
 
     protected String elementType = null;
+    protected AbstractPosition position;
+
+    public UIElement(String type) {
+        this(type, null);
+    }
+
+    public UIElement(String elementType, AbstractPosition position) {
+        this.elementType = elementType;
+        this.position = position;
+    }
 
     /**
      * This method handles setting up buffers when this element is focused.
@@ -23,6 +34,10 @@ public abstract class UIElement {
 
     /** Updates any needed values and performs any triggers on UI elements. */
     public void update() {
+    }
+
+    public AbstractPosition getPosition() {
+        return this.position;
     }
 
     /** Returns the label of the element (usually the name) */
@@ -48,15 +63,5 @@ public abstract class UIElement {
 
     public String getTypeString() {
         return elementType;
-    }
-
-    /**
-     * Returns the position of the object (for example, 1 of 3). For grids this is usually a coordinate string (IE 2,
-     * 3).
-     *
-     * @return String or null if there is no position
-     */
-    public String getPositionString() {
-        return null;
     }
 }

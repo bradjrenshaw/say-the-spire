@@ -28,7 +28,7 @@ public class SliderElement extends UIElement {
     private Slider.SliderType type;
 
     public SliderElement(Slider slider) {
-        this.elementType = "slider";
+        super("slider");
         this.slider = slider;
         this.type = (Slider.SliderType) ReflectionHacks.getPrivate(slider, Slider.class, "type");
     }

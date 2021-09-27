@@ -23,7 +23,7 @@ public class ToggleButtonElement extends UIElement {
     }
 
     public ToggleButtonElement(String name, String label, String description, Boolean enabled) {
-        this.elementType = "toggle button";
+        super("toggle button");
         this.descriptor = new Descriptor(name, label, description);
         this.enabled = enabled;
         this.setStatusTexts("on", "off");

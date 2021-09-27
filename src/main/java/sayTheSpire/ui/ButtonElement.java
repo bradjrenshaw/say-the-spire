@@ -1,6 +1,7 @@
 package sayTheSpire.ui;
 
 import sayTheSpire.buffers.BufferManager;
+import sayTheSpire.ui.positions.AbstractPosition;
 import sayTheSpire.Output;
 
 public class ButtonElement extends UIElement {
@@ -16,7 +17,11 @@ public class ButtonElement extends UIElement {
     }
 
     public ButtonElement(String name, String label, String description) {
-        this.elementType = "button";
+        this(name, label, description, null);
+    }
+
+    public ButtonElement(String name, String label, String description, AbstractPosition position) {
+        super("button", position);
         this.name = name;
         this.label = label;
         this.description = description;

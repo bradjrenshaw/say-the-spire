@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.screens.ExhaustPileViewScreen;
 import com.megacrit.cardcrawl.screens.MasterDeckViewScreen;
 import com.megacrit.cardcrawl.screens.select.HandCardSelectScreen;
 import java.util.ArrayList;
+import sayTheSpire.ui.positions.*;
 import sayTheSpire.buffers.BufferManager;
 import sayTheSpire.Output;
 import sayTheSpire.utils.CardUtils;
@@ -31,6 +32,7 @@ public class CardElement extends UIElement {
     }
 
     public CardElement(AbstractCard card, LocationType location) {
+        super("card");
         this.card = card;
         this.location = location;
         this.priceString = null; // Not in shop
@@ -59,7 +61,7 @@ public class CardElement extends UIElement {
         return this.card.name;
     }
 
-    public String getGridPositionString(ArrayList<AbstractCard> grid, int width) {
+    public GridPosition getGridPosition(ArrayList<AbstractCard> grid, int width) {
         if (grid == null)
             return null;
         int gridIndex = grid.indexOf(this.card);
@@ -67,26 +69,26 @@ public class CardElement extends UIElement {
             return null;
         int row = gridIndex / width + 1;
         int column = gridIndex % width + 1;
-        return column + ", " + row;
+        return new GridPosition(column, row);
     }
 
-    public String getListPositionString(ArrayList<AbstractCard> list) {
+    public ListPosition getListPosition(ArrayList<AbstractCard> list) {
         if (list == null)
             return null;
         int index = list.indexOf(this.card);
         if (index < 0)
             return null;
-        return (index + 1) + " of " + list.size();
+        return new ListPosition(index, list.size());
     }
 
-    public String getPositionString() {
+    public AbstractPosition getPosition() {
         int cardsPerLine = 5; // default
         switch (this.location) {
         case HAND:
-            return this.getListPositionString(OutputUtils.getPlayer().hand.group);
+            return this.getListPosition(OutputUtils.getPlayer().hand.group);
         case GRID_SELECT:
             ArrayList<AbstractCard> grid = AbstractDungeon.gridSelectScreen.targetGroup.group;
-            return this.getGridPositionString(grid, cardsPerLine);
+            return this.getGridPosition(grid, cardsPerLine);
         case HAND_SELECT:
             HandCardSelectScreen screen = AbstractDungeon.handCardSelectScreen;
             if (screen == null)
@@ -95,9 +97,9 @@ public class CardElement extends UIElement {
                     "hand");
             ArrayList<AbstractCard> unselected = unselectedGroup.group;
             ArrayList<AbstractCard> selected = screen.selectedCards.group;
-            String result = this.getListPositionString(selected);
+            AbstractPosition result = this.getListPosition(selected);
             if (result == null)
-                result = getListPositionString(unselected);
+                result = this.getListPosition(unselected);
             return result;
         case MASTER_DECK_VIEW:
             MasterDeckViewScreen masterScreen = AbstractDungeon.deckViewScreen;
@@ -106,7 +108,7 @@ public class CardElement extends UIElement {
             if (group == null) {
                 group = AbstractDungeon.player.masterDeck.group;
             }
-            return this.getGridPositionString(group, cardsPerLine);
+            return this.getGridPosition(group, cardsPerLine);
         case EXHAUST_PILE_VIEW:
             CardGroup exhaustGroup = (CardGroup) ReflectionHacks.getPrivate(AbstractDungeon.exhaustPileViewScreen,
                     ExhaustPileViewScreen.class, "exhaustPileCopy");
@@ -114,8 +116,7 @@ public class CardElement extends UIElement {
                 return null;
             cardsPerLine = (int) ReflectionHacks.getPrivate(AbstractDungeon.exhaustPileViewScreen,
                     ExhaustPileViewScreen.class, "CARDS_PER_LINE");
-
-            return this.getGridPositionString(exhaustGroup.group, cardsPerLine);
+            return this.getGridPosition(exhaustGroup.group, cardsPerLine);
         case DRAW_PILE_VIEW:
             CardGroup drawGroup = (CardGroup) ReflectionHacks.getPrivate(AbstractDungeon.gameDeckViewScreen,
                     DrawPileViewScreen.class, "drawPileCopy");
@@ -123,7 +124,7 @@ public class CardElement extends UIElement {
                 return null;
             cardsPerLine = (int) ReflectionHacks.getPrivate(AbstractDungeon.gameDeckViewScreen,
                     DrawPileViewScreen.class, "CARDS_PER_LINE");
-            return this.getListPositionString(drawGroup.group);
+            return this.getListPosition(drawGroup.group);
         case DISCARD_PILE_VIEW:
             CardGroup discardGroup = (CardGroup) ReflectionHacks.getPrivate(AbstractDungeon.discardPileViewScreen,
                     DiscardPileViewScreen.class, "discardPileCopy");
@@ -131,7 +132,7 @@ public class CardElement extends UIElement {
                 return null;
             cardsPerLine = (int) ReflectionHacks.getPrivate(AbstractDungeon.discardPileViewScreen,
                     DiscardPileViewScreen.class, "CARDS_PER_LINE");
-            return this.getGridPositionString(discardGroup.group, cardsPerLine);
+            return this.getGridPosition(discardGroup.group, cardsPerLine);
         default:
             return null;
         }

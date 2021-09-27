@@ -19,6 +19,7 @@ import sayTheSpire.speech.ClipboardHandler;
 import sayTheSpire.speech.SpeechManager;
 import sayTheSpire.speech.TolkHandler;
 import sayTheSpire.speech.TolkResourceHandler;
+import sayTheSpire.ui.positions.AbstractPosition;
 import sayTheSpire.ui.UIElement;
 import sayTheSpire.ui.UIRegistry;
 import sayTheSpire.ui.input.InputManager;
@@ -199,9 +200,9 @@ public class Output {
         String status = element.getStatusString();
         if (status != null)
             sb.append(" " + status);
-        String position = element.getPositionString();
+        AbstractPosition position = element.getPosition();
         if (position != null && config.getBoolean("ui.read_positions")) {
-            sb.append(". " + position);
+            sb.append(". " + position.getPositionString());
         }
         text(sb.toString(), true);
         if (current == null)

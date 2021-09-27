@@ -14,7 +14,7 @@ public class CustomModElement extends UIElement {
     private HashSet<CustomMod> mutuallyExclusive;
 
     public CustomModElement(CustomMod mod) {
-        this.elementType = "toggle button";
+        super("toggle button");
         this.mod = mod;
         this.label = (String) ReflectionHacks.getPrivate(mod, CustomMod.class, "label");
         this.mutuallyExclusive = (HashSet<CustomMod>) ReflectionHacks.getPrivate(mod, CustomMod.class,

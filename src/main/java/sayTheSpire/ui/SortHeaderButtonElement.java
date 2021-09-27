@@ -12,7 +12,7 @@ public class SortHeaderButtonElement extends UIElement {
     private boolean isAscending;
 
     public SortHeaderButtonElement(SortHeaderButton button) {
-        this.elementType = "button";
+        super("button");
         this.button = button;
         this.isActive = this.getIsActive();
         this.isAscending = this.getIsAscending();

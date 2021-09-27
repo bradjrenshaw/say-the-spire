@@ -2,18 +2,16 @@ package sayTheSpire.ui.custom;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import sayTheSpire.Output;
+import sayTheSpire.ui.positions.AbstractPosition;
 import sayTheSpire.ui.CardElement;
 
 public class GremlinMatchCardElement extends CardElement {
 
     private Boolean isFlipped;
-    private int x;
-    private int y;
 
-    public GremlinMatchCardElement(AbstractCard card, int x, int y) {
+    public GremlinMatchCardElement(AbstractCard card, AbstractPosition position) {
         super(card, CardElement.LocationType.OTHER);
-        this.x = x;
-        this.y = y;
+        this.position = position;
         this.isFlipped = card.isFlipped;
     }
 
@@ -28,7 +26,4 @@ public class GremlinMatchCardElement extends CardElement {
         }
     }
 
-    public String getPositionString() {
-        return x + ", " + y;
-    }
 }
