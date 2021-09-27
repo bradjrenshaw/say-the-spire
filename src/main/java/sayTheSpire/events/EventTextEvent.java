@@ -4,20 +4,18 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 public class EventTextEvent extends Event {
 
-  String text;
+    String text;
 
-  public EventTextEvent(String text) {
-    super();
-    this.text = text;
-  }
+    public EventTextEvent(String text) {
+        super();
+        this.text = text;
+    }
 
-  public String getText() {
-    return this.text;
-  }
+    public String getText() {
+        return this.text;
+    }
 
-  public Boolean isComplete() {
-    return !AbstractDungeon.isScreenUp;
-  }
-
-
+    public Boolean isComplete() {
+        return !AbstractDungeon.isScreenUp;
+    }
 }

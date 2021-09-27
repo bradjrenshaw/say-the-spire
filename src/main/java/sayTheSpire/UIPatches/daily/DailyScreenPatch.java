@@ -1,12 +1,12 @@
-import java.util.ArrayList;
+import basemod.ReflectionHacks;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.daily.mods.AbstractDailyMod;
 import com.megacrit.cardcrawl.daily.DailyScreen;
 import com.megacrit.cardcrawl.daily.TimeHelper;
+import com.megacrit.cardcrawl.daily.mods.AbstractDailyMod;
 import com.megacrit.cardcrawl.helpers.ModHelper;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import basemod.ReflectionHacks;
+import java.util.ArrayList;
 import sayTheSpire.Output;
 import sayTheSpire.TextParser;
 
@@ -36,7 +36,7 @@ public class DailyScreenPatch {
     }
 
     public static String getProgressString(DailyScreen screen) {
-        long lastDaily = (long)ReflectionHacks.getPrivate(screen, DailyScreen.class, "lastDaily");
+        long lastDaily = (long) ReflectionHacks.getPrivate(screen, DailyScreen.class, "lastDaily");
         if (lastDaily == TimeHelper.daySince1970()) {
             return TEXT[2];
         }
@@ -48,12 +48,15 @@ public class DailyScreenPatch {
         sb.append(getDateString() + "\n");
         sb.append(getTimeRemainingString());
         String character = getCharacterString(screen);
-        if (character != null) sb.append(character + "\n");
+        if (character != null)
+            sb.append(character + "\n");
         String progress = getProgressString(screen);
-        if (progress != null) sb.append(progress + "\n");
+        if (progress != null)
+            sb.append(progress + "\n");
         sb.append(getModsString() + "\n");
-      String achievements = getAchievementsString();
-      if (achievements != null) sb.append(achievements);
+        String achievements = getAchievementsString();
+        if (achievements != null)
+            sb.append(achievements);
         return sb.toString();
     }
 
@@ -70,7 +73,7 @@ public class DailyScreenPatch {
         modInfo.add(getDateString());
         modInfo.add(getTimeRemainingString());
         modInfo.add(getCharacterString(screen));
-        for (AbstractDailyMod mod:ModHelper.enabledMods) {
+        for (AbstractDailyMod mod : ModHelper.enabledMods) {
             modInfo.add(mod.name + ": " + TextParser.parse(mod.description));
         }
         modInfo.add(getAchievementsString());
@@ -79,13 +82,13 @@ public class DailyScreenPatch {
 
     public static String getModsString() {
         StringBuilder sb = new StringBuilder();
-        for (AbstractDailyMod mod:ModHelper.enabledMods) {
+        for (AbstractDailyMod mod : ModHelper.enabledMods) {
             sb.append(mod.name + ": " + TextParser.parse(mod.description) + "\n");
         }
         return sb.toString();
     }
 
-    @SpirePatch(clz=DailyScreen.class, method="determineLoadout")
+    @SpirePatch(clz = DailyScreen.class, method = "determineLoadout")
     public static class OpenPatch {
 
         public static void Postfix(DailyScreen __instance) {
@@ -93,7 +96,7 @@ public class DailyScreenPatch {
         }
     }
 
-    @SpirePatch(clz=DailyScreen.class, method="update")
+    @SpirePatch(clz = DailyScreen.class, method = "update")
     public static class UpdatePatch {
 
         public static void Postfix(DailyScreen __instance) {

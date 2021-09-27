@@ -15,14 +15,14 @@ public class TimedTextEvent extends Event {
     public String getText() {
         return this.text;
     }
-    
+
     public Boolean isComplete() {
         return this.timer <= 0.0;
     }
 
     public void update() {
-        if (this.timer <= 0) return;
+        if (this.timer <= 0)
+            return;
         this.timer -= Gdx.graphics.getDeltaTime();
     }
-    
 }

@@ -3,10 +3,12 @@
 A mod for the game Slay the Spire to provide blind accessibility.
 
 * This only works on Windows for now
-* Only controllers are supported; keyboard support is coming soon.
 * Only the Steam version of the game is supported.
+* It is highly recommended that new players read the UI Querks and Virtual Input sections (if using a keyboard).
 
 ## Mod Installation and Usage
+
+For recent changes, see the [change log](changes.md).
 
 For compilation instructions for developers, go [here](devs.md).
 
@@ -54,48 +56,59 @@ If you are using NVDA, you can use object Nav to view the information for each m
 
 ### How it works
 
-The mod automatically sets up dll files needed for screen reader functionality and removes them after the game is closed. If the mod is working correctly, after the splash screen closes and the main menu is fully loaded, you will hear your screen reader announce the UI Element you are on (most likely the play/continue button).
+The mod automatically sets up dll files needed for screen reader functionality and removes them after the game is closed. If the mod is working correctly, you will hear the current version of Say the Spire read out by either your screen reader or SAPI if your screen reader is not running.
 
-You can interact with the game using normal game controls. However, there is an extra set of controller inputs to provide information. This is generally refered to as the buffer system and is mapped to the right stick.
+You can interact with the game using normal game controls. However, there is an extra set of controller and keyboard inputs to provide information. This is generally refered to as the buffer system and is mapped to the right stick or control plus the arrow keys on keyboard.
 
 As you move over various UI Elements, contextual buffers will appear. These are just lists of various pieces of information about the element you're focusing on. For example, if you hover over a card, the card buffer will be automatically focused and will contain information such as the card's name, energy cost, description, etc.
 
-Move the right stick left and right to switch between buffers; use up and down to review their contents. Think of buffers as a way to refer to different areas of the screen quickly, similarly to how you could scan visually. For example, while hovered over a card, you can move the right stick to the player buffer to view player info without having to move there with the other controls. Buffers are also used to provide access to UI Tooltips (for example character information on the character selection screen, etc).
+Think of buffers as a way to refer to different areas of the screen quickly, similarly to how you could scan visually. For example, while hovered over a card, you can move to the player buffer to view player info without having to move there with the other controls. Buffers are also used to provide access to UI Tooltips (for example character information on the character selection screen, etc).
 
 ### UI Querks
 
 This game has some unusual qualities to the UI (due to the fact that controller support was added in later; the game was primarily mouse support before that). The default controls are listed here for reference:
 
-* Movement (menus, general UI): d-pad or left stick
-* Confirm: a/x
-* Top panel: x/square
-* Proceed: y/triangle
-* Cancel: b/circle
-* Master deck view/scroll certain things left: lb/l1
-* Draw pile view/some other contextual options: lt/l2
-* Exhaust pile/scroll some things right: rb/r1
-* Discard pile/some contextual options: rt/r2
-* Buffers/some contextual options: right stick
-* Settings (pause): start
-* Map/general back option: select
+| Action | Controller (xbox/ps) | Keyboard |
+| ------------------------------ | ----------- | ----------- |
+| movement (menus, general UI) | d-pad or left stick | arrow keys |
+| confirm | a/x | enter |
+| top panel, delete save slot | x/square | t |
+| proceed, rename save slot, toggle ascension mode | y/triangle | e |
+| cancel | b/circle | escape |
+| master deck view, decrease ascension level | lb/l1 | d |
+| Draw pile view/some other contextual options | lt/l2 | q |
+| Exhaust pile, Singing Bowl hp increase, increase ascension level | rb/r1 | f |
+| Discard pile/some contextual options | rt/r2 | w |
+| buffers, map, and settings sliders | right stick | control arrows |
+| settings/pause | start | backspace |
+| Map, save slots (from main menu), general back option | select | m |
 
 In general keep in mind:
 
-* Certain prompts (confirmation, tutorial, hand card selection, etc) require you to hit proceed to get out of them. For confirmation prompts, you can also hit cancel to back out
+* Certain prompts (confirmation, tutorial, hand card selection, etc) require you to hit proceed to get out of them. For confirmation prompts, you can also hit cancel to back out. Note that this is not always the case.
     * Note that if you have the disable confirm for single card selection option on, you do not have to hit proceed after selecting a card.
 * Nearly everything has contextual actions mapped to the various controls. For example, hitting top panel/x/square will allow you to delete a save slot and proceed/y/triangle will allow you to rename that slot.
-* For the options screen, for some reason you have to move the right stick left and right to adjust the volume sliders.
+* For the options screen, for some reason you have to move the right stick left and right to adjust the volume sliders (or ctrl left/right by default on keyboard).
 * In many circumstances a grid or hand card select screen will appear. Note that this is not the normal turn play card from hand screen. For example an instance of this is playing warcry (where you have to select a card to put on top of your draw pile). You need to hit proceed to exit this screen after selecting cards. For the hand card select screens, they are laid out in two rows (top row is cards selected, bottom row is cards in hand).
 
 ### Config
 
-After first launching the game, a config file is created that allows you to modify certain aspects of the mod. This file can be found at:
+After first launching the game, two config files are created that allow you to modify certain aspects of the mod. This file can be found at:
 
-* Windows: %LOCALAPPDATA%\ModTheSpire\
-* Linux: ~/.config/ModTheSpire/
-* Mac: ~/Library/Preferences/ModTheSpire/
+* Windows: %LOCALAPPDATA%\ModTheSpire\sayTheSpire\
+* Linux: ~/.config/ModTheSpire/sayTheSpire/
+* Mac: ~/Library/Preferences/ModTheSpire/sayTheSpire/
 
-The config file is divided into a number of sections. Change the values after each equals sign to change the settings
+The settings.ini file allows you to change various settings related to the mod. The input.json stores keyboard mappings.
+
+### Virtual Input
+
+The virtual input setting allows you to play the game using a keyboard and will provide some future functionality (for both keyboard and controllers) yet to be implemented. Virtual input defaults to enabled, so keyboard support should work as soon as you launch the game for the first time. If you are upgrading from a previous version of Say the Spire, or if you want to disable virtual input, you can modify settings.ini. Set the virtual_input setting to true or false if you want it enabled or disabled respectively. Note that keyboard input will not work with virtual input disabled (it will use the game's existing limited keyboard support).
+
+Virtual Input works by emulating a gamepad. For example, hitting proceed (e by default) corresponds to hitting y or triangle on a gamepad.
+
+Keyboard remappings can currently be modified by editing input.json. A better method for remapping is being worked on.
+
 
 ### The Map
 
@@ -103,18 +116,17 @@ While viewing the map, the buffer system is replaced with a map viewer. This all
 
 When playing Slay the Spire, you can view the whole map for a given act at any time by pressing map, as well as it being automatically shown between rooms. The map consists of rooms with curved lines indicating where you can travel to. The location of the player is either below the map (beginning of an act) or the room they last completed. 
 
-The map viewer is essentially a virtual cursor. If you move over a map node normally in the course of gameplay (that is, using the d-pad or left stick), the virtual cursor will be set to that map node.
+The map viewer is essentially a virtual cursor. If you move over a map node normally in the course of gameplay (that is, using the d-pad, arrow keys, or left stick), the virtual cursor will be set to that map node.
 
-
-Use right stick left and right to move between possible choices (rooms you can move to from this node, only in the forward direction). Use right stick up to follow the path forward; this will move continuously until you hit a choice or dead end (such as a boss). Use right stick down to retrace your steps.
+Use right stick left and right or control left and right arrows to move between possible choices (rooms you can move to from this node, only in the forward direction). Use right stick up or control up arrow to follow the path forward; this will move continuously until you hit a choice or dead end (such as a boss). Use right stick down or control down arrow to retrace your steps.
 
 For example if given the following 3x4 map:
 
-monster, elite, unknown, monster
-
-blank, merchant, unknown, blank
-
-monster, blank, blank, blank
+||1|2|3|4|
+|-----|-----------|-----------|-----------|-----------|
+|2|monster|elite|unknown|monster|
+|1|blank|merchant|unknown|blank|
+|0|monster|blank|blank|blank|
 
 Say you are starting below the  bottom row. You have a single choice (monster, far bottom left) The only choice from there is merchant. There are however three choices (monster, elite, or unknown).
 From the bottom room your map focus will be on the first choice (monster). hitting forward will follow the path until it hits a branch point, so it will read something like this.
@@ -122,9 +134,9 @@ monster, merchant, choice
 After that it will allow you to browse the choices as before. Note that it reads the choice again at the start of the path to avoid confusion, this isn't a bug. If moving backwards, the path is read in reverse as you would expect, unless you disable this setting in the config file.
 
 
-
 ## Known Issues
 
+* there is possibly a bug with some Steam setups where closing the game will crash due to native library files not being unloaded. It is believed this is fixed, but if this still occurs change resources.dispose_resource_files and resources.unload_native_libs to false in settings.ini.
 * daily climb (leaderboard section doesn't read), input settings, and credits screens do not read. These are being worked on.
 * Certain text (such as the character select text screen's title) doesn't automatically read. This is being worked on.
 * Required controller inputs are not read/viewable. This is being worked on.
@@ -133,3 +145,13 @@ After that it will allow you to browse the choices as before. Note that it reads
 * Not all UI positions read as you would expect (for example potions and relics don't have position information). This is being worked on
 
 
+## Beta Testers
+
+Thanks to the beta testers who tested the public and private betas, including but not limited to:
+
+* Ahmad Abukhdair
+* Austin Hicks
+* Brandon Cole (https://brandoncole.net/)
+* Kelsey Hendrix
+* Mike Breedlove
+* SightlessKombat (https://www.SightlessKombat.com/)

@@ -1,11 +1,10 @@
 package sayTheSpire.ui.custom;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import sayTheSpire.ui.CardElement;
 import sayTheSpire.Output;
+import sayTheSpire.ui.CardElement;
 
 public class GremlinMatchCardElement extends CardElement {
-
 
     private Boolean isFlipped;
     private int x;
@@ -23,10 +22,10 @@ public class GremlinMatchCardElement extends CardElement {
             if (!card.isFlipped) {
                 Output.text("Flippd card is " + this.card.name, false);
             } else {
-            Output.text(this.card.name + " is flipped face down", false);
+                Output.text(this.card.name + " is flipped face down", false);
+            }
+            this.isFlipped = this.card.isFlipped;
         }
-        this.isFlipped = this.card.isFlipped;
-    }
     }
 
     public String getPositionString() {

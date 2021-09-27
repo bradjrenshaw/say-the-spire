@@ -6,7 +6,7 @@ import sayTheSpire.utils.ActionUtils;
 @SpirePatch(clz = ShowMoveNameAction.class, method = "update")
 public class ShowMoveNameActionPatch {
 
-  public static void Prefix(ShowMoveNameAction __instance) {
-    Output.text(ActionUtils.getShowMoveNameText(__instance), false);
-  }
+    public static void Prefix(ShowMoveNameAction __instance) {
+        Output.text(ActionUtils.getShowMoveNameText(__instance), false);
+    }
 }

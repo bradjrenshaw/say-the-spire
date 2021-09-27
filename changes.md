@@ -1,5 +1,35 @@
 # Change Log
 
+## Beta 0.2.0
+
+* The versioning scheme has been changed to semantic versioning. This should allow for more clear version numbering for frequent updates instead of large spread out beta releases as it has been so far.
+* Added: Introduction of the virtual input system allowing for keyboard support and additional mod specific menus. See the Virtual Input section of the readme for more information.
+* Fixed: Strategic (attack and debuff intent) damage now correctly shows multihitting attacks
+* Fixed: If no screen reader is running, the mod now correctly defaults to using SAPI on Windows.
+* Fixed: Potential issues with speech not stopping on button press or stopping at the wrong time
+* Fixed: Resolution options in settings no longer have "tab tab" after them
+* Fixed: You can no longer see a face down or locked card's energy cost.
+* Fixed: A number of issues related to buffers have been fixed
+    * Buffers should no longer eroniously report null items
+    * When the mod focuses a buffer (for example when moving over a card and the buffer for that card is selected), the buffer now correctly updates. this should prevent needing to refocus the buffer to read card information in some situations.
+    * Fixed a potential crash if no buffer was selected and you tried to read the next or previous item.
+    * Fixed a long standing bug where trying to review buffer items on the treasure chest screen would crash the game.
+* Fixed: A number of issues related to parsing text in certain languages
+    * Variable numbers on cards should now be read for all languages such as damage or block (thanks to @yncat for the code contribution).
+    * Fixed issue in settings menu where the language dropdown would have formatting tags read for some languages
+    * Strings of single characters will no longer crash the game in certain situations. This may fix issues with certain non-English language strings crashing the game.
+* Added: Two new settings have been added to the config file: resources.dispose_resource_files and resources.unload_native_libs. These were added to deal with a rare issue with certain Steam setups that can cause the game to crash upon closing. These are both on by default but should be set to false if people are experiencing game crashes. The issue has most likely been fixed but these settings are left here just in case.
+* Added: Messages sent to logs by Say the Spire have been standardized to fit the style of Slay the Spire's logs. This should make debug output a lot more clear.
+* Added: The Say the Spire version is announced after the splash screen fully fades out.
+* Fixed: The game should no longer crash on shutdown for some steam setups due to unloading the wrong native libraries too early. If a crash on shutdown occurs please report it (see the known issues section of this change log).
+* Fixed: Dropdown menus that are not yet recognized by the mod will no longer cause the game to crash. As a result the run history screen will no longer crash the game. Note that the screen itself is still not yet read by the mod.
+* Added: Card rarity is now included in the card buffer (thanks to @ohylli for the code contribution).
+
+### Known Issues
+
+* There was a rare crash for certain Steam setups that occured when the game is closed. It is believed that this issue is fixed, however if this happens, open settings.ini and change dispose_resource_files and unload_native_libs to false under the resources section. Screen reader dlls and a few .lib files will be left in your Slay the Spire program directory but nothing else will be effected.
+
+
 ## Beta 4/Public Beta 1
 
 * Fixed: An update to Slay the Spire broke the mod due to a game file being removed; this has been fixed. Please report any other issues that may have been introduced in the most recent Slay the Spire update.

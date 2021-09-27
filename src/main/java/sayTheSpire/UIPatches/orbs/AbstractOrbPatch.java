@@ -6,9 +6,9 @@ import sayTheSpire.ui.OrbElement;
 @SpirePatch(clz = AbstractOrb.class, method = "update")
 public class AbstractOrbPatch {
 
-  public static void Postfix(AbstractOrb __instance) {
-    if (__instance.hb.justHovered) {
-      Output.setUI(new OrbElement(__instance));
+    public static void Postfix(AbstractOrb __instance) {
+        if (__instance.hb.justHovered) {
+            Output.setUI(new OrbElement(__instance));
+        }
     }
-  }
 }

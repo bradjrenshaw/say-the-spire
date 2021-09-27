@@ -1,8 +1,8 @@
 package sayTheSpire.events;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import sayTheSpire.utils.OutputUtils;
 import sayTheSpire.Output;
+import sayTheSpire.utils.OutputUtils;
 
 public class GainBlockEvent extends Event {
 

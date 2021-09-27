@@ -7,12 +7,11 @@ import sayTheSpire.Output;
 @SpirePatch(clz = GiantToggleButton.class, method = "update")
 public class GiantToggleButtonPatch {
 
-  public static void Postfix(GiantToggleButton __instance) {
-    Hitbox hb = (Hitbox) ReflectionHacks.getPrivate(__instance, GiantToggleButton.class, "hb");
-    if (hb.justHovered) {
-      String label =
-          (String) ReflectionHacks.getPrivate(__instance, GiantToggleButton.class, "label");
-      Output.text(label + " button", true);
+    public static void Postfix(GiantToggleButton __instance) {
+        Hitbox hb = (Hitbox) ReflectionHacks.getPrivate(__instance, GiantToggleButton.class, "hb");
+        if (hb.justHovered) {
+            String label = (String) ReflectionHacks.getPrivate(__instance, GiantToggleButton.class, "label");
+            Output.text(label + " button", true);
+        }
     }
-  }
 }

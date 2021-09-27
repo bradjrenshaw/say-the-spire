@@ -6,16 +6,16 @@ import sayTheSpire.Output;
 
 public class DeleteSaveConfirmPopupPatch {
 
-  private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("DeletePopup");
+    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("DeletePopup");
 
-  public static final String[] TEXT = uiStrings.TEXT;
+    public static final String[] TEXT = uiStrings.TEXT;
 
-  @SpirePatch(clz = DeleteSaveConfirmPopup.class, method = "open")
-  public static class OpenPatch {
+    @SpirePatch(clz = DeleteSaveConfirmPopup.class, method = "open")
+    public static class OpenPatch {
 
-    public static void Postfix(DeleteSaveConfirmPopup __instance) {
-      Output.text(TEXT[0] + "\n" + TEXT[3], true);
-      Output.setupUIBufferMany(TEXT[0], TEXT[3]);
+        public static void Postfix(DeleteSaveConfirmPopup __instance) {
+            Output.text(TEXT[0] + "\n" + TEXT[3], true);
+            Output.setupUIBufferMany(TEXT[0], TEXT[3]);
+        }
     }
-  }
 }

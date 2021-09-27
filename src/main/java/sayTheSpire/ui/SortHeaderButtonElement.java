@@ -1,8 +1,8 @@
 package sayTheSpire.ui;
 
-import com.megacrit.cardcrawl.screens.mainMenu.SortHeaderButton;
 import basemod.ReflectionHacks;
-import sayTheSpire.BufferManager;
+import com.megacrit.cardcrawl.screens.mainMenu.SortHeaderButton;
+import sayTheSpire.buffers.BufferManager;
 import sayTheSpire.Output;
 
 public class SortHeaderButtonElement extends UIElement {
@@ -29,25 +29,27 @@ public class SortHeaderButtonElement extends UIElement {
         if (newIsActive != this.isActive || newIsAscending != this.isAscending) {
             this.isActive = newIsActive;
             this.isAscending = newIsAscending;
-            if (Output.currentUI == this) Output.text(this.getStatusString(), false);
+            if (Output.currentUI == this)
+                Output.text(this.getStatusString(), false);
         }
     }
 
     public boolean getIsActive() {
-        return (boolean)ReflectionHacks.getPrivate(this.button, SortHeaderButton.class, "isActive");
+        return (boolean) ReflectionHacks.getPrivate(this.button, SortHeaderButton.class, "isActive");
     }
 
-public boolean getIsAscending() {
-    return (boolean)ReflectionHacks.getPrivate(this.button, SortHeaderButton.class, "isAscending");
+    public boolean getIsAscending() {
+        return (boolean) ReflectionHacks.getPrivate(this.button, SortHeaderButton.class, "isAscending");
     }
 
     public String getLabel() {
-        String name = (String)ReflectionHacks.getPrivate(this.button, SortHeaderButton.class, "text");
+        String name = (String) ReflectionHacks.getPrivate(this.button, SortHeaderButton.class, "text");
         return name;
     }
 
     public String getStatusString() {
-        if (!this.isActive) return "disabled";
+        if (!this.isActive)
+            return "disabled";
         return this.isAscending ? "ascending" : "descending";
     }
 }
