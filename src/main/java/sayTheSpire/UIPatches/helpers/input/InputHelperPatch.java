@@ -5,16 +5,16 @@ import sayTheSpire.Output;
 
 public class InputHelperPatch {
 
-  @SpirePatch(clz = InputHelper.class, method = "updateLast")
-  public static class UpdateLastPatch {
+    @SpirePatch(clz = InputHelper.class, method = "updateLast")
+    public static class UpdateLastPatch {
 
-    public static SpireReturn Prefix() {
-      if (Output.getAllowVirtualInput()) {
-        Output.uiManager.updateLast();
-        return SpireReturn.Return(null);
-      }
-      Output.updateInfoControls();
-      return SpireReturn.Continue();
+        public static SpireReturn Prefix() {
+            if (Output.getAllowVirtualInput()) {
+                Output.uiManager.updateLast();
+                return SpireReturn.Return(null);
+            }
+            Output.updateInfoControls();
+            return SpireReturn.Continue();
+        }
     }
-  }
 }

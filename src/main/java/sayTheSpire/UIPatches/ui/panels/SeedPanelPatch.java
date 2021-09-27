@@ -8,32 +8,26 @@ import sayTheSpire.ui.mod.KeyboardContext;
 
 public class SeedPanelPatch {
 
-  private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("SeedPanel");
+    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("SeedPanel");
 
-  public static final String[] TEXT = uiStrings.TEXT;
+    public static final String[] TEXT = uiStrings.TEXT;
 
-  @SpirePatch(clz = SeedPanel.class, method = "close")
-  public static class ClosePatch {
+    @SpirePatch(clz = SeedPanel.class, method = "close")
+    public static class ClosePatch {
 
-    public static void Prefix(SeedPanel __instance) {
-      Output.uiManager.popContext();
+        public static void Prefix(SeedPanel __instance) {
+            Output.uiManager.popContext();
+        }
     }
-  }
 
-  @SpirePatch(
-      clz = SeedPanel.class,
-      method = "show",
-      paramtypez = {})
-  public static class ShowPatch {
+    @SpirePatch(clz = SeedPanel.class, method = "show", paramtypez = {})
+    public static class ShowPatch {
 
-    public static void Prefix(SeedPanel __instance) {
-      Output.uiManager.pushContext(new KeyboardContext());
-      Output.text(TEXT[1] + "\nAccessibility note: Use keyboard to enter seed.", false);
-      Output.setupUIBufferMany(
-          TEXT[1],
-          "Accessibility note: Use keyboard to enter seed.",
-          TextParser.parse(TEXT[4]),
-          TextParser.parse(TEXT[5]));
+        public static void Prefix(SeedPanel __instance) {
+            Output.uiManager.pushContext(new KeyboardContext());
+            Output.text(TEXT[1] + "\nAccessibility note: Use keyboard to enter seed.", false);
+            Output.setupUIBufferMany(TEXT[1], "Accessibility note: Use keyboard to enter seed.",
+                    TextParser.parse(TEXT[4]), TextParser.parse(TEXT[5]));
+        }
     }
-  }
 }

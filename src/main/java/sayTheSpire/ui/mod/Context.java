@@ -4,34 +4,34 @@ import sayTheSpire.ui.input.InputAction;
 
 public class Context {
 
-  protected Boolean shouldForceControllerMode = false;
-  protected Boolean allowVirtualInput = true;
+    protected Boolean shouldForceControllerMode = false;
+    protected Boolean allowVirtualInput = true;
 
-  public Boolean getAllowVirtualInput() {
-    return this.allowVirtualInput;
-  }
+    public Boolean getAllowVirtualInput() {
+        return this.allowVirtualInput;
+    }
 
-  public Boolean getShouldForceControllerMode() {
-    return this.shouldForceControllerMode;
-  }
+    public Boolean getShouldForceControllerMode() {
+        return this.shouldForceControllerMode;
+    }
 
-  public void onFocus() {
-    return;
-  }
+    public void onFocus() {
+        return;
+    }
 
-  public Boolean onJustPress(InputAction action) {
-    return true;
-  }
+    public Boolean onJustPress(InputAction action) {
+        return true;
+    }
 
-  public Boolean onPress(InputAction action) {
-    return true;
-  }
+    public Boolean onPress(InputAction action) {
+        return true;
+    }
 
-  public Boolean onJustRelease(InputAction action) {
-    return true;
-  }
+    public Boolean onJustRelease(InputAction action) {
+        return true;
+    }
 
-  public void onUnfocus() {
-    return;
-  }
+    public void onUnfocus() {
+        return;
+    }
 }

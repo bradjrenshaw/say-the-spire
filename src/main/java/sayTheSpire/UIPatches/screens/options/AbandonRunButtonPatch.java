@@ -7,11 +7,11 @@ import sayTheSpire.Output;
 @SpirePatch(clz = AbandonRunButton.class, method = "update")
 public class AbandonRunButtonPatch {
 
-  public static void Postfix(AbandonRunButton __instance) {
-    Hitbox hb = (Hitbox) ReflectionHacks.getPrivate(__instance, AbandonRunButton.class, "hb");
-    if (hb.justHovered) {
-      Output.text(AbandonRunButton.TEXT[0] + " button", true);
-      Output.setupUIBufferMany(AbandonRunButton.TEXT[0]);
+    public static void Postfix(AbandonRunButton __instance) {
+        Hitbox hb = (Hitbox) ReflectionHacks.getPrivate(__instance, AbandonRunButton.class, "hb");
+        if (hb.justHovered) {
+            Output.text(AbandonRunButton.TEXT[0] + " button", true);
+            Output.setupUIBufferMany(AbandonRunButton.TEXT[0]);
+        }
     }
-  }
 }

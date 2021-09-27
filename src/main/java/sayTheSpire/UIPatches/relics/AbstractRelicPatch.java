@@ -6,10 +6,10 @@ import sayTheSpire.utils.RelicUtils;
 @SpirePatch(clz = AbstractRelic.class, method = "update")
 public class AbstractRelicPatch {
 
-  public static void Prefix(AbstractRelic __instance) {
-    if (__instance.hb.justHovered) {
-      Output.text(RelicUtils.getRelicShort(__instance), true);
-      Output.setupBuffers(__instance);
+    public static void Prefix(AbstractRelic __instance) {
+        if (__instance.hb.justHovered) {
+            Output.text(RelicUtils.getRelicShort(__instance), true);
+            Output.setupBuffers(__instance);
+        }
     }
-  }
 }

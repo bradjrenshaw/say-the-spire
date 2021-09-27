@@ -6,50 +6,50 @@ import sayTheSpire.ui.input.InputAction;
 
 public class GameContext extends Context {
 
-  public GameContext() {
-    this.shouldForceControllerMode = true;
-  }
-
-  public void onClearJust() {
-    // clear here
-  }
-
-  public Boolean onJustPress(InputAction action) {
-    switch (action.getName()) {
-      case "inspect up":
-        Output.infoControls(Output.Direction.UP);
-        break;
-      case "inspect down":
-        Output.infoControls(Output.Direction.DOWN);
-        break;
-      case "inspect left":
-        Output.infoControls(Output.Direction.LEFT);
-        break;
-      case "inspect right":
-        Output.infoControls(Output.Direction.RIGHT);
-        break;
+    public GameContext() {
+        this.shouldForceControllerMode = true;
     }
-    CInputAction gameAction = action.getGameControllerAction();
-    if (gameAction != null) {
-      action.setGameControllerActionPressed(true);
-      action.setGameControllerActionJustPressed(true);
-    }
-    return true;
-  }
 
-  public Boolean onPress(InputAction action) {
-    action.setGameControllerActionJustPressed(false);
-    action.setGameControllerActionPressed(true);
-    return true;
-  }
-
-  public Boolean onJustRelease(InputAction action) {
-    CInputAction gameAction = action.getGameControllerAction();
-    if (gameAction != null) {
-      action.setGameControllerActionJustReleased(true);
-      action.setGameControllerActionPressed(false);
-      action.setGameControllerActionJustPressed(false);
+    public void onClearJust() {
+        // clear here
     }
-    return true;
-  }
+
+    public Boolean onJustPress(InputAction action) {
+        switch (action.getName()) {
+        case "inspect up":
+            Output.infoControls(Output.Direction.UP);
+            break;
+        case "inspect down":
+            Output.infoControls(Output.Direction.DOWN);
+            break;
+        case "inspect left":
+            Output.infoControls(Output.Direction.LEFT);
+            break;
+        case "inspect right":
+            Output.infoControls(Output.Direction.RIGHT);
+            break;
+        }
+        CInputAction gameAction = action.getGameControllerAction();
+        if (gameAction != null) {
+            action.setGameControllerActionPressed(true);
+            action.setGameControllerActionJustPressed(true);
+        }
+        return true;
+    }
+
+    public Boolean onPress(InputAction action) {
+        action.setGameControllerActionJustPressed(false);
+        action.setGameControllerActionPressed(true);
+        return true;
+    }
+
+    public Boolean onJustRelease(InputAction action) {
+        CInputAction gameAction = action.getGameControllerAction();
+        if (gameAction != null) {
+            action.setGameControllerActionJustReleased(true);
+            action.setGameControllerActionPressed(false);
+            action.setGameControllerActionJustPressed(false);
+        }
+        return true;
+    }
 }

@@ -6,25 +6,25 @@ import sayTheSpire.ui.UIRegistry;
 
 public class SliderPatch {
 
-  @SpirePatch(clz = Slider.class, method = "update")
-  public static class updatePatch {
-    public static void Prefix(Slider __instance) {
-      if (__instance.bgHb.justHovered) {
-        SliderElement currentSlider = new SliderElement(__instance);
-        UIRegistry.register(__instance, currentSlider);
-        Output.setUI(currentSlider);
-      }
+    @SpirePatch(clz = Slider.class, method = "update")
+    public static class updatePatch {
+        public static void Prefix(Slider __instance) {
+            if (__instance.bgHb.justHovered) {
+                SliderElement currentSlider = new SliderElement(__instance);
+                UIRegistry.register(__instance, currentSlider);
+                Output.setUI(currentSlider);
+            }
+        }
     }
-  }
 
-  @SpirePatch(clz = Slider.class, method = "modifyVolume")
-  public static class modifyVolumePatch {
+    @SpirePatch(clz = Slider.class, method = "modifyVolume")
+    public static class modifyVolumePatch {
 
-    public static void Postfix(Slider __instance) {
-      SliderElement currentSlider = (SliderElement) UIRegistry.getUI(__instance);
-      if (__instance == currentSlider.getSlider()) {
-        currentSlider.onVolumeChange();
-      }
+        public static void Postfix(Slider __instance) {
+            SliderElement currentSlider = (SliderElement) UIRegistry.getUI(__instance);
+            if (__instance == currentSlider.getSlider()) {
+                currentSlider.onVolumeChange();
+            }
+        }
     }
-  }
 }

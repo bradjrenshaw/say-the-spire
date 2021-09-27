@@ -6,8 +6,8 @@ import sayTheSpire.utils.MapUtils;
 @SpirePatch(clz = MapRoomNode.class, method = "playNodeHoveredSound")
 public class MapRoomNodePatch {
 
-  public static void Prefix(MapRoomNode __instance) {
-    Output.text(MapUtils.getMapNodeShort(__instance), true);
-    Output.setupBuffers(__instance, false);
-  }
+    public static void Prefix(MapRoomNode __instance) {
+        Output.text(MapUtils.getMapNodeShort(__instance), true);
+        Output.setupBuffers(__instance, false);
+    }
 }

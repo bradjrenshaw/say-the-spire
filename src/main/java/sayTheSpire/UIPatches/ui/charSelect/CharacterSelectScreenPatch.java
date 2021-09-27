@@ -8,39 +8,33 @@ import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import sayTheSpire.Output;
 
 public class CharacterSelectScreenPatch {
-  private static final UIStrings uiStrings =
-      CardCrawlGame.languagePack.getUIString("CharacterSelectScreen");
+    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("CharacterSelectScreen");
 
-  public static final String[] TEXT = uiStrings.TEXT;
+    public static final String[] TEXT = uiStrings.TEXT;
 
-  @SpirePatch(clz = CharacterSelectScreen.class, method = "updateAscensionToggle")
-  public static class UpdateAscensionTogglePatch {
+    @SpirePatch(clz = CharacterSelectScreen.class, method = "updateAscensionToggle")
+    public static class UpdateAscensionTogglePatch {
 
-    public static void Postfix(CharacterSelectScreen __instance) {
-      Hitbox ascensionModeHb =
-          (Hitbox)
-              ReflectionHacks.getPrivate(
-                  __instance, CharacterSelectScreen.class, "ascensionModeHb");
-      Hitbox ascLeftHb =
-          (Hitbox) ReflectionHacks.getPrivate(__instance, CharacterSelectScreen.class, "ascLeftHb");
-      Hitbox ascRightHb =
-          (Hitbox)
-              ReflectionHacks.getPrivate(__instance, CharacterSelectScreen.class, "ascRightHb");
-      if (ascensionModeHb.clicked || CInputActionSet.proceed.isJustPressed()) {
-        if (__instance.isAscensionMode) {
-          Output.text(TEXT[8] + ", " + __instance.ascLevelInfoString, true);
-          Output.setupUIBufferMany(TEXT[8], TEXT[9]);
-        } else {
-          Output.text(TEXT[8] + " off", true);
+        public static void Postfix(CharacterSelectScreen __instance) {
+            Hitbox ascensionModeHb = (Hitbox) ReflectionHacks.getPrivate(__instance, CharacterSelectScreen.class,
+                    "ascensionModeHb");
+            Hitbox ascLeftHb = (Hitbox) ReflectionHacks.getPrivate(__instance, CharacterSelectScreen.class,
+                    "ascLeftHb");
+            Hitbox ascRightHb = (Hitbox) ReflectionHacks.getPrivate(__instance, CharacterSelectScreen.class,
+                    "ascRightHb");
+            if (ascensionModeHb.clicked || CInputActionSet.proceed.isJustPressed()) {
+                if (__instance.isAscensionMode) {
+                    Output.text(TEXT[8] + ", " + __instance.ascLevelInfoString, true);
+                    Output.setupUIBufferMany(TEXT[8], TEXT[9]);
+                } else {
+                    Output.text(TEXT[8] + " off", true);
+                }
+            } else if (ascLeftHb.clicked || CInputActionSet.pageLeftViewDeck.isJustPressed() || ascRightHb.clicked
+                    || CInputActionSet.pageRightViewExhaust.isJustPressed()) {
+                if (__instance.isAscensionMode) {
+                    Output.text(__instance.ascLevelInfoString, true);
+                }
+            }
         }
-      } else if (ascLeftHb.clicked
-          || CInputActionSet.pageLeftViewDeck.isJustPressed()
-          || ascRightHb.clicked
-          || CInputActionSet.pageRightViewExhaust.isJustPressed()) {
-        if (__instance.isAscensionMode) {
-          Output.text(__instance.ascLevelInfoString, true);
-        }
-      }
     }
-  }
 }

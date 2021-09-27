@@ -16,19 +16,16 @@ import sayTheSpire.events.DialogueEvent;
 @SpirePatch(clz = Merchant.class, method = "update")
 public class MerchantPatch {
 
-  @SpireInsertPatch(
-      locator = Locator.class,
-      localvars = {"msg"})
-  public static void Insert(Merchant __instance, String msg) {
-    Output.event(new DialogueEvent("says", "merchant", TextParser.parse(msg)));
-  }
-
-  private static class Locator extends SpireInsertLocator {
-
-    public int[] Locate(CtBehavior ctMethodToPatch)
-        throws CannotCompileException, PatchingException {
-      Matcher matcher = new Matcher.NewExprMatcher(SpeechBubble.class);
-      return LineFinder.findAllInOrder(ctMethodToPatch, new ArrayList<Matcher>(), matcher);
+    @SpireInsertPatch(locator = Locator.class, localvars = { "msg" })
+    public static void Insert(Merchant __instance, String msg) {
+        Output.event(new DialogueEvent("says", "merchant", TextParser.parse(msg)));
     }
-  }
+
+    private static class Locator extends SpireInsertLocator {
+
+        public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
+            Matcher matcher = new Matcher.NewExprMatcher(SpeechBubble.class);
+            return LineFinder.findAllInOrder(ctMethodToPatch, new ArrayList<Matcher>(), matcher);
+        }
+    }
 }

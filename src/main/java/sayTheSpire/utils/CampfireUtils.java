@@ -7,19 +7,19 @@ import sayTheSpire.TextParser;
 
 public class CampfireUtils {
 
-  public static String getOptionLabel(AbstractCampfireOption option) {
-    return (String) ReflectionHacks.getPrivate(option, AbstractCampfireOption.class, "label");
-  }
+    public static String getOptionLabel(AbstractCampfireOption option) {
+        return (String) ReflectionHacks.getPrivate(option, AbstractCampfireOption.class, "label");
+    }
 
-  public static String getOptionDescription(AbstractCampfireOption option) {
-    return TextParser.parse(
-        (String) ReflectionHacks.getPrivate(option, AbstractCampfireOption.class, "description"));
-  }
+    public static String getOptionDescription(AbstractCampfireOption option) {
+        return TextParser
+                .parse((String) ReflectionHacks.getPrivate(option, AbstractCampfireOption.class, "description"));
+    }
 
-  public static ArrayList<String> getOptionUIBuffer(AbstractCampfireOption option) {
-    ArrayList<String> contents = new ArrayList();
-    contents.add(getOptionLabel(option));
-    contents.add(getOptionDescription(option));
-    return contents;
-  }
+    public static ArrayList<String> getOptionUIBuffer(AbstractCampfireOption option) {
+        ArrayList<String> contents = new ArrayList();
+        contents.add(getOptionLabel(option));
+        contents.add(getOptionDescription(option));
+        return contents;
+    }
 }

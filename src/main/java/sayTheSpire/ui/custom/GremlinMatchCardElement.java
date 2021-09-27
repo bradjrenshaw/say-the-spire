@@ -6,29 +6,29 @@ import sayTheSpire.ui.CardElement;
 
 public class GremlinMatchCardElement extends CardElement {
 
-  private Boolean isFlipped;
-  private int x;
-  private int y;
+    private Boolean isFlipped;
+    private int x;
+    private int y;
 
-  public GremlinMatchCardElement(AbstractCard card, int x, int y) {
-    super(card, CardElement.LocationType.OTHER);
-    this.x = x;
-    this.y = y;
-    this.isFlipped = card.isFlipped;
-  }
-
-  public void update() {
-    if (card.isFlipped != this.isFlipped) {
-      if (!card.isFlipped) {
-        Output.text("Flippd card is " + this.card.name, false);
-      } else {
-        Output.text(this.card.name + " is flipped face down", false);
-      }
-      this.isFlipped = this.card.isFlipped;
+    public GremlinMatchCardElement(AbstractCard card, int x, int y) {
+        super(card, CardElement.LocationType.OTHER);
+        this.x = x;
+        this.y = y;
+        this.isFlipped = card.isFlipped;
     }
-  }
 
-  public String getPositionString() {
-    return x + ", " + y;
-  }
+    public void update() {
+        if (card.isFlipped != this.isFlipped) {
+            if (!card.isFlipped) {
+                Output.text("Flippd card is " + this.card.name, false);
+            } else {
+                Output.text(this.card.name + " is flipped face down", false);
+            }
+            this.isFlipped = this.card.isFlipped;
+        }
+    }
+
+    public String getPositionString() {
+        return x + ", " + y;
+    }
 }

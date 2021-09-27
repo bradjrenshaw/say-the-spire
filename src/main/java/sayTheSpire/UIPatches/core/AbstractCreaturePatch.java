@@ -13,24 +13,20 @@ import sayTheSpire.events.GainBlockEvent;
 
 public class AbstractCreaturePatch {
 
-  @SpirePatch(clz = AbstractCreature.class, method = "addBlock")
-  public static class addBlockPatch {
+    @SpirePatch(clz = AbstractCreature.class, method = "addBlock")
+    public static class addBlockPatch {
 
-    @SpireInsertPatch(
-        locator = Locator.class,
-        localvars = {"tmp"})
-    public static void Insert(AbstractCreature __instance, float tmp) {
-      Output.event(new GainBlockEvent(__instance, (int) Math.floor(tmp)));
+        @SpireInsertPatch(locator = Locator.class, localvars = { "tmp" })
+        public static void Insert(AbstractCreature __instance, float tmp) {
+            Output.event(new GainBlockEvent(__instance, (int) Math.floor(tmp)));
+        }
+
+        private static class Locator extends SpireInsertLocator {
+
+            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
+                Matcher matcher = new Matcher.MethodCallMatcher(AbstractCreature.class, "gainBlockAnimation");
+                return LineFinder.findAllInOrder(ctMethodToPatch, new ArrayList<Matcher>(), matcher);
+            }
+        }
     }
-
-    private static class Locator extends SpireInsertLocator {
-
-      public int[] Locate(CtBehavior ctMethodToPatch)
-          throws CannotCompileException, PatchingException {
-        Matcher matcher =
-            new Matcher.MethodCallMatcher(AbstractCreature.class, "gainBlockAnimation");
-        return LineFinder.findAllInOrder(ctMethodToPatch, new ArrayList<Matcher>(), matcher);
-      }
-    }
-  }
 }
