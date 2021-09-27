@@ -95,7 +95,7 @@ public class BufferManager {
   }
 
   public Buffer getCurrentBuffer() {
-    if (this.buffers.isEmpty()) return null;
+    if (this.position < 0 || this.buffers.isEmpty()) return null;
     Buffer buffer = this.buffers.get(this.position);
     if (!buffer.getEnabled()) return null;
     return buffer;

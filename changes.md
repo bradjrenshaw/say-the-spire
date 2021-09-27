@@ -13,6 +13,7 @@
     * Buffers should no longer eroniously report null items
     * When the mod focuses a buffer (for example when moving over a card and the buffer for that card is selected), the buffer now correctly updates. this should prevent needing to refocus the buffer to read card information in some situations.
     * Fixed a potential crash if no buffer was selected and you tried to read the next or previous item.
+    * Fixed a long standing bug where trying to review buffer items on the treasure chest screen would crash the game.
 * Fixed: A number of issues related to parsing text in certain languages
     * Variable numbers on cards should now be read for all languages such as damage or block (thanks to @yncat for the code contribution).
     * Fixed issue in settings menu where the language dropdown would have formatting tags read for some languages
