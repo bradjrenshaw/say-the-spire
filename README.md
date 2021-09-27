@@ -4,6 +4,7 @@ A mod for the game Slay the Spire to provide blind accessibility.
 
 * This only works on Windows for now
 * Only the Steam version of the game is supported.
+* It is highly recommended that new players read the UI Querks and Virtual Input sections (if using a keyboard).
 
 ## Mod Installation and Usage
 
@@ -55,9 +56,9 @@ If you are using NVDA, you can use object Nav to view the information for each m
 
 ### How it works
 
-The mod automatically sets up dll files needed for screen reader functionality and removes them after the game is closed. If the mod is working correctly, after the splash screen closes and the main menu is fully loaded, you will hear your screen reader announce the UI Element you are on (most likely the play/continue button).
+The mod automatically sets up dll files needed for screen reader functionality and removes them after the game is closed. If the mod is working correctly, you will hear the current version of Say the Spire read out by either your screen reader or SAPI if your screen reader is not running.
 
-You can interact with the game using normal game controls. However, there is an extra set of and keyboard controller inputs to provide information. This is generally refered to as the buffer system and is mapped to the right stick or control plus the arrow keys on keyboard.
+You can interact with the game using normal game controls. However, there is an extra set of controller and keyboard inputs to provide information. This is generally refered to as the buffer system and is mapped to the right stick or control plus the arrow keys on keyboard.
 
 As you move over various UI Elements, contextual buffers will appear. These are just lists of various pieces of information about the element you're focusing on. For example, if you hover over a card, the card buffer will be automatically focused and will contain information such as the card's name, energy cost, description, etc.
 
@@ -68,19 +69,19 @@ Think of buffers as a way to refer to different areas of the screen quickly, sim
 This game has some unusual qualities to the UI (due to the fact that controller support was added in later; the game was primarily mouse support before that). The default controls are listed here for reference:
 
 | Action | Controller (xbox/ps) | Keyboard |
-| ----------- | ----------- | ----------- |
-| Movement (menus, general UI) | d-pad or left stick | arrow keys |
-| Confirm | a/x | enter |
-| Top panel | x/square | t |
-| Proceed | y/triangle | e |
-| Cancel | b/circle | escape |
-| Master deck view/scroll certain things left | lb/l1 | d |
+| ------------------------------ | ----------- | ----------- |
+| movement (menus, general UI) | d-pad or left stick | arrow keys |
+| confirm | a/x | enter |
+| top panel, delete save slot | x/square | t |
+| proceed, rename save slot, toggle ascension mode | y/triangle | e |
+| cancel | b/circle | escape |
+| master deck view, decrease ascension level | lb/l1 | d |
 | Draw pile view/some other contextual options | lt/l2 | q |
-| Exhaust pile/scroll some things right | rb/r1 | f |
+| Exhaust pile, Singing Bowl hp increase, increase ascension level | rb/r1 | f |
 | Discard pile/some contextual options | rt/r2 | w |
-| Buffers/some contextual options | right stick | control arrows |
+| buffers, map, and settings sliders | right stick | control arrows |
 | settings/pause | start | backspace |
-| Map/general back option | select | m |
+| Map, save slots (from main menu), general back option | select | m |
 
 In general keep in mind:
 
@@ -104,7 +105,10 @@ The settings.ini file allows you to change various settings related to the mod. 
 
 The virtual input setting allows you to play the game using a keyboard and will provide some future functionality (for both keyboard and controllers) yet to be implemented. Virtual input defaults to enabled, so keyboard support should work as soon as you launch the game for the first time. If you are upgrading from a previous version of Say the Spire, or if you want to disable virtual input, you can modify settings.ini. Set the virtual_input setting to true or false if you want it enabled or disabled respectively. Note that keyboard input will not work with virtual input disabled (it will use the game's existing limited keyboard support).
 
+Virtual Input works by emulating a gamepad. For example, hitting proceed (e by default) corresponds to hitting y or triangle on a gamepad.
+
 Keyboard remappings can currently be modified by editing input.json. A better method for remapping is being worked on.
+
 
 ### The Map
 
@@ -118,11 +122,11 @@ Use right stick left and right or control left and right arrows to move between 
 
 For example if given the following 3x4 map:
 
-monster, elite, unknown, monster
-
-blank, merchant, unknown, blank
-
-monster, blank, blank, blank
+||1|2|3|4|
+|-----|-----------|-----------|-----------|-----------|
+|2|monster|elite|unknown|monster|
+|1|blank|merchant|unknown|blank|
+|0|monster|blank|blank|blank|
 
 Say you are starting below the  bottom row. You have a single choice (monster, far bottom left) The only choice from there is merchant. There are however three choices (monster, elite, or unknown).
 From the bottom room your map focus will be on the first choice (monster). hitting forward will follow the path until it hits a branch point, so it will read something like this.
@@ -132,6 +136,7 @@ After that it will allow you to browse the choices as before. Note that it reads
 
 ## Known Issues
 
+* there is possibly a bug with some Steam setups where closing the game will crash due to native library files not being unloaded. It is believed this is fixed, but if this still occurs change resources.dispose_resource_files and resources.unload_native_libs to false in settings.ini.
 * daily climb (leaderboard section doesn't read), input settings, and credits screens do not read. These are being worked on.
 * Certain text (such as the character select text screen's title) doesn't automatically read. This is being worked on.
 * Required controller inputs are not read/viewable. This is being worked on.
