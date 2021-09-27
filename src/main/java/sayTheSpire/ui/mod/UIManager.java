@@ -23,7 +23,6 @@ public class UIManager {
   }
 
   public void emitAction(InputAction action, String reason) {
-    logger.info("Emitting action " + action.getName() + " with reason " + reason);
     for (Context context : this.contexts) {
       Boolean result = false;
       if (reason.equals("justPressed")) result = context.onJustPress(action);
@@ -31,7 +30,6 @@ public class UIManager {
       else if (reason.equals("justReleased")) result = context.onJustRelease(action);
       else throw new RuntimeException("Invalud emit action " + reason + " for " + action.getName());
       if (result == true) { // input stopped
-        logger.info("Action stopped.");
         break;
       }
     }
@@ -61,7 +59,6 @@ public class UIManager {
       contexts.get(0).onUnfocus();
     }
     this.inputManager.clearActionStates();
-    logger.info("Pushing context " + context.getClass().getName());
     this.contexts.add(0, context);
     context.onFocus();
   }
@@ -71,12 +68,10 @@ public class UIManager {
       Context context = this.contexts.get(0);
       context.onUnfocus();
       this.contexts.remove(0);
-      logger.info("Popped context " + context.getClass().getName());
     }
     this.inputManager.clearActionStates();
     if (this.contexts.size() > 0) {
       this.contexts.get(0).onFocus();
-      logger.info("Context " + this.contexts.get(0).getClass().getName() + " is now focused.");
     }
   }
 

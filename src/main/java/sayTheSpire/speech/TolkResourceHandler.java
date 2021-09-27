@@ -50,7 +50,7 @@ public class TolkResourceHandler extends TolkHandler {
       e.printStackTrace();
       return false;
     }
-    logger.info("speech.TolkResourceHandler: all files written");
+    logger.info("All files written");
     return true;
   }
 

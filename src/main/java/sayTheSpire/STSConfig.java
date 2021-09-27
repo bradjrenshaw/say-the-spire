@@ -34,9 +34,9 @@ public class STSConfig {
       JSONParser parser = new JSONParser();
       JSONObject obj = (JSONObject)parser.parse(new FileReader(this.getInputFilePath()));
       this.inputConfig = new InputConfig(obj);
-      logger.info("STSConfig: Input settings file loaded successfully.");
+      logger.info("Input settings file loaded successfully.");
     } catch (Exception e) {
-      logger.info("STSConfig: Issue loading input mappings file.");
+      logger.info("Issue loading input mappings file.");
       e.printStackTrace();
       this.inputConfig = new InputConfig();
     }
@@ -50,9 +50,9 @@ public class STSConfig {
           (HashMap<String, Object>) new Toml().read(file).toMap();
       merge(defaults, fileSettings);
       this.settingsToml = new Toml().read(new TomlWriter().write(defaults));
-      logger.info("STSConfig: Config loaded from existing file.");
+      logger.info("Config loaded from existing file.");
     } catch (Exception e) {
-      logger.info("STSConfig: No config file found, using defaults.");
+      logger.info("No config file found, using defaults.");
       this.settingsToml = new Toml().read(new TomlWriter().write(defaults));
     }
   }
@@ -74,17 +74,17 @@ public class STSConfig {
     TomlWriter writer = new TomlWriter();
     writer.write(this.settingsToml.toMap(), file);
     file.flush();
-    logger.info("STSConfig: Successfully wrote settings file.");
+    logger.info("Successfully wrote settings file.");
     } catch (Exception e) {
-      logger.error("STSConfig: Issue writing to settings file.");
+      logger.error("Issue writing to settings file.");
       e.printStackTrace();
     }
     try (FileWriter file = new FileWriter(getInputFilePath())) {
       file.write(this.getInputConfig().toJSONObject().toJSONString());
       file.flush();
-      logger.info("STSConfig: Successfully wrote input mappings file.");
+      logger.info("Successfully wrote input mappings file.");
     } catch(Exception e) {
-      logger.error("STSConfig: Error writing to input mappings file.");
+      logger.error("Error writing to input mappings file.");
       e.printStackTrace();
     }
   }
