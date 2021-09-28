@@ -3,7 +3,7 @@
   "name": "Say the Spire",
   "author_list": ["Bradley Renshaw"],
   "description": "A Slay the Spire mod that provides screen reader support.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "sts_version": "06-15-2018",
   "mts_version": "3.6.3"
 }

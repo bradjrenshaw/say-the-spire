@@ -1,5 +1,11 @@
 # Change Log
 
+## Beta 0.2.1
+This patch fixes a number of issues related to UI.
+* Potions
+    * Potion location is now properly announced (currently for main screen and combat rewards)
+    * Fixed a bug where you could not read the tooltip for a nempty potion slot
+    
 ## Beta 0.2.0
 
 * The versioning scheme has been changed to semantic versioning. This should allow for more clear version numbering for frequent updates instead of large spread out beta releases as it has been so far.

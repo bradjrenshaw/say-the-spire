@@ -29,9 +29,6 @@ public class PotionBuffer extends Buffer {
         if (potion == null) {
             this.add("No potion available.");
             return;
-        } else if (potion instanceof PotionSlot) {
-            this.add("Empty potion slot.");
-            return;
         }
         this.add(potion.name);
         this.add(TextParser.parse(potion.description, potion));
