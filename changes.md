@@ -5,11 +5,12 @@ This patch fixes a number of issues related to UI.
 * Cards
     * Location now properly announced (currently for shop)
 * Potions
-    * Potion location is now properly announced (currently for main screen and, shop, combat rewards)
+    * Potion location is now properly announced (currently for main screen, shop, and combat rewards)
     * Fixed a bug where you could not read the tooltip for a nempty potion slot
 * Relics
-    * Location is now properly announced (now for shops)
+    * Location is now properly announced (now for main screen, rewards, and shops)
 * Shops
+    * All shop items now have location information approximately corresponding to their on screen position
     * The button to sell a card is now actually announced as a button and has location information
 
 ## Beta 0.2.0

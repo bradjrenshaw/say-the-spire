@@ -1,6 +1,7 @@
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import sayTheSpire.ui.PotionElement;
+import sayTheSpire.ui.RelicElement;
 import sayTheSpire.Output;
 
 @SpirePatch(clz = RewardItem.class, method = "update")
@@ -15,7 +16,8 @@ public class RewardItemPatch {
                     Output.setUI(new PotionElement(__instance.potion, PotionElement.PotionLocation.COMBAT_REWARDS));
                 break;
             case RELIC:
-                Output.setupBuffers(__instance.relic);
+                if (__instance.relic != null)
+                    Output.setUI(new RelicElement(__instance.relic, RelicElement.RelicLocation.COMBAT_REWARDS));
                 break;
             default:
                 break;

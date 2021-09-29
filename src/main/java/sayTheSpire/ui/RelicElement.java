@@ -1,10 +1,16 @@
 package sayTheSpire.ui;
 
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.rewards.RewardItem;
+import com.megacrit.cardcrawl.screens.CombatRewardScreen;
 import sayTheSpire.buffers.BufferManager;
 import sayTheSpire.ui.positions.AbstractPosition;
 import sayTheSpire.ui.positions.GridPosition;
 import sayTheSpire.ui.positions.ListPosition;
+import sayTheSpire.utils.RelicUtils;
+import sayTheSpire.utils.OutputUtils;
 import sayTheSpire.Output;
 
 public class RelicElement extends GameObjectElement {
@@ -39,13 +45,43 @@ public class RelicElement extends GameObjectElement {
     }
 
     public String getLabel() {
-        return this.relic.name;
+        return RelicUtils.getRelicShort(this.relic);
     }
 
     public AbstractPosition getPosition() {
         switch (this.location) {
+        case MAIN_SCREEN:
+            return this.getInventoryPosition();
+        case COMBAT_REWARDS:
+            return this.getCombatRewardsPosition();
         default:
             return super.getPosition();
         }
+    }
+
+    public AbstractPosition getCombatRewardsPosition() {
+        if (AbstractDungeon.combatRewardScreen == null || AbstractDungeon.combatRewardScreen.rewards == null)
+            return null;
+        int rewardCount = AbstractDungeon.combatRewardScreen.rewards.size();
+        for (int r = 0; r < rewardCount; r++) {
+            RewardItem reward = AbstractDungeon.combatRewardScreen.rewards.get(r);
+            if (reward.type == RewardItem.RewardType.RELIC && reward.relic != null && reward.relic == this.relic) {
+                return new ListPosition(r, rewardCount);
+            }
+        }
+        return null;
+    }
+
+    public AbstractPosition getInventoryPosition() {
+        AbstractPlayer player = OutputUtils.getPlayer();
+        if (player == null)
+            return null;
+        int relicCount = player.relics.size();
+        for (int r = 0; r < relicCount; r++) {
+            if (this.relic == player.relics.get(r)) {
+                return new ListPosition(r, relicCount);
+            }
+        }
+        return null;
     }
 }

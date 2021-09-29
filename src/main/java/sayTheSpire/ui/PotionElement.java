@@ -58,7 +58,7 @@ public class PotionElement extends GameObjectElement {
         int rewardCount = AbstractDungeon.combatRewardScreen.rewards.size();
         for (int r = 0; r < rewardCount; r++) {
             RewardItem reward = AbstractDungeon.combatRewardScreen.rewards.get(r);
-            if (reward.type == RewardItem.RewardType.POTION && reward.potion != null && reward.potion == potion) {
+            if (reward.type == RewardItem.RewardType.POTION && reward.potion != null && reward.potion == this.potion) {
                 return new ListPosition(r, rewardCount);
             }
         }
