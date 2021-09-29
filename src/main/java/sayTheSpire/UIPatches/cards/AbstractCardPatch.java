@@ -8,11 +8,11 @@ import sayTheSpire.ui.CardElement;
 public class AbstractCardPatch {
 
     public static void Prefix(AbstractCard __instance) {
-        CardElement.LocationType location = CardElement.LocationType.OTHER;
+        CardElement.CardLocation location = CardElement.CardLocation.OTHER;
         if (AbstractDungeon.screen != null) {
             switch (AbstractDungeon.screen) {
             case MASTER_DECK_VIEW:
-                location = CardElement.LocationType.MASTER_DECK_VIEW;
+                location = CardElement.CardLocation.MASTER_DECK_VIEW;
                 break;
             case DISCARD_VIEW:
             case EXHAUST_VIEW:

@@ -12,7 +12,7 @@ public class HandCardSelectScreenPatch {
 
         public static void Prefix(HandCardSelectScreen __instance, AbstractCard card) {
             if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.HAND_SELECT && card != null) {
-                Output.setUI(new CardElement(card, CardElement.LocationType.HAND_SELECT));
+                Output.setUI(new CardElement(card, CardElement.CardLocation.HAND_SELECT));
             }
         }
     }
@@ -26,7 +26,7 @@ public class HandCardSelectScreenPatch {
             AbstractCard current = __instance.selectedCards.getHoveredCard();
             if (current != selectedCard) {
                 if (current != null) {
-                    Output.setUI(new CardElement(current, CardElement.LocationType.HAND_SELECT));
+                    Output.setUI(new CardElement(current, CardElement.CardLocation.HAND_SELECT));
                 }
                 selectedCard = current;
             }

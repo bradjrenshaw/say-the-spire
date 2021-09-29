@@ -10,7 +10,7 @@ public class GremlinMatchCardElement extends CardElement {
     private Boolean isFlipped;
 
     public GremlinMatchCardElement(AbstractCard card, AbstractPosition position) {
-        super(card, CardElement.LocationType.OTHER);
+        super(card, CardElement.CardLocation.OTHER);
         this.position = position;
         this.isFlipped = card.isFlipped;
     }

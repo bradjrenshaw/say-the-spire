@@ -11,7 +11,7 @@ import sayTheSpire.utils.OutputUtils;
 import sayTheSpire.buffers.BufferManager;
 import sayTheSpire.Output;
 
-public class PotionElement extends UIElement {
+public class PotionElement extends GameObjectElement {
 
     public enum PotionLocation {
         MAIN_SCREEN, COMBAT_REWARDS, COMPENDIUM, SHOP, OTHER
@@ -28,6 +28,13 @@ public class PotionElement extends UIElement {
         super("potion", position);
         this.potion = potion;
         this.location = location;
+    }
+
+    public String getExtrasString() {
+        if (this.location == PotionLocation.SHOP) {
+            return this.getPriceString();
+        }
+        return null;
     }
 
     public String getLabel() {

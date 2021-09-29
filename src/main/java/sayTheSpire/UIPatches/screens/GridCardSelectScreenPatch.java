@@ -13,7 +13,7 @@ public class GridCardSelectScreenPatch {
         AbstractCard currentCard = (AbstractCard) ReflectionHacks.getPrivate(__instance, GridCardSelectScreen.class,
                 "hoveredCard");
         if (currentCard != null && currentCard != hoveredCard) {
-            Output.setUI(new CardElement(currentCard, CardElement.LocationType.GRID_SELECT));
+            Output.setUI(new CardElement(currentCard, CardElement.CardLocation.GRID_SELECT));
             hoveredCard = currentCard;
         }
     }

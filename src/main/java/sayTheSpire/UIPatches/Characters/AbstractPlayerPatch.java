@@ -22,7 +22,7 @@ public class AbstractPlayerPatch {
             return;
         if (__instance.hoveredCard != prevHoveredCard) {
             if (__instance.hoveredCard != null) {
-                Output.setUI(new CardElement(__instance.hoveredCard, CardElement.LocationType.HAND));
+                Output.setUI(new CardElement(__instance.hoveredCard, CardElement.CardLocation.HAND));
             }
             prevHoveredCard = __instance.hoveredCard;
         }

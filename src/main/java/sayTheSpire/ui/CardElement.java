@@ -16,26 +16,28 @@ import sayTheSpire.Output;
 import sayTheSpire.utils.CardUtils;
 import sayTheSpire.utils.OutputUtils;
 
-public class CardElement extends UIElement {
+public class CardElement extends GameObjectElement {
 
-    public enum LocationType {
+    public enum CardLocation {
         HAND, GRID_SELECT, HAND_SELECT, MASTER_DECK_VIEW, EXHAUST_PILE_VIEW, DISCARD_PILE_VIEW, DRAW_PILE_VIEW, SHOP,
         OTHER
     }
 
     protected AbstractCard card;
-    private LocationType location;
-    private String priceString;
+    private CardLocation location;
 
     public CardElement(AbstractCard card) {
-        this(card, LocationType.OTHER);
+        this(card, CardLocation.OTHER);
     }
 
-    public CardElement(AbstractCard card, LocationType location) {
-        super("card");
+    public CardElement(AbstractCard card, CardLocation location) {
+        this(card, location, null);
+    }
+
+    public CardElement(AbstractCard card, CardLocation location, AbstractPosition position) {
+        super("card", position);
         this.card = card;
         this.location = location;
-        this.priceString = null; // Not in shop
     }
 
     public String handleBuffers(BufferManager buffers) {
@@ -48,8 +50,8 @@ public class CardElement extends UIElement {
             return null;
         StringBuilder sb = new StringBuilder();
         sb.append(CardUtils.getCardCostString(this.card));
-        if (this.priceString != null)
-            sb.append(", " + this.priceString);
+        if (this.location == CardLocation.SHOP)
+            sb.append(", " + this.getPriceString());
         return sb.toString();
     }
 
@@ -134,11 +136,8 @@ public class CardElement extends UIElement {
                     DiscardPileViewScreen.class, "CARDS_PER_LINE");
             return this.getGridPosition(discardGroup.group, cardsPerLine);
         default:
-            return null;
+            return super.getPosition();
         }
     }
 
-    public void setPriceString(String priceString) {
-        this.priceString = priceString;
-    }
 }
