@@ -1,7 +1,7 @@
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.screens.options.ToggleButton;
 import sayTheSpire.Output;
-import sayTheSpire.ui.SettingsToggleButtonElement;
+import sayTheSpire.ui.elements.SettingsToggleButtonElement;
 import sayTheSpire.ui.UIRegistry;
 
 public class ToggleButtonPatch {

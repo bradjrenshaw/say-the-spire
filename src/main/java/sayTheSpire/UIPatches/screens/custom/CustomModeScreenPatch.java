@@ -6,8 +6,8 @@ import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import com.megacrit.cardcrawl.screens.custom.CustomModeScreen;
 import sayTheSpire.Output;
-import sayTheSpire.ui.ButtonElement;
-import sayTheSpire.ui.ToggleButtonElement;
+import sayTheSpire.ui.elements.ButtonElement;
+import sayTheSpire.ui.elements.ToggleButtonElement;
 
 public class CustomModeScreenPatch {
 

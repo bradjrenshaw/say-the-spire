@@ -13,7 +13,7 @@ import sayTheSpire.buffers.BufferManager;
 import sayTheSpire.Output;
 import sayTheSpire.TextParser;
 import sayTheSpire.ui.UIRegistry;
-import sayTheSpire.ui.DropdownElement;
+import sayTheSpire.ui.elements.DropdownElement;
 
 public class OptionsPanelPatch {
 

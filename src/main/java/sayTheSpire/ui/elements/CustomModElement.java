@@ -1,4 +1,4 @@
-package sayTheSpire.ui;
+package sayTheSpire.ui.elements;
 
 import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.screens.custom.CustomMod;

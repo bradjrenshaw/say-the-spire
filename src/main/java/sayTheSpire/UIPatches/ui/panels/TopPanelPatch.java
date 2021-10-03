@@ -3,7 +3,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.potions.PotionSlot;
 import com.megacrit.cardcrawl.ui.panels.TopPanel;
-import sayTheSpire.ui.PotionElement;
+import sayTheSpire.ui.elements.PotionElement;
 import sayTheSpire.Output;
 
 @SpirePatch(clz = TopPanel.class, method = "updatePotions")

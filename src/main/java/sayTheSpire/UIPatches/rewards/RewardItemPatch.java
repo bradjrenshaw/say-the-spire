@@ -1,6 +1,6 @@
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.rewards.RewardItem;
-import sayTheSpire.ui.RewardItemElement;
+import sayTheSpire.ui.elements.RewardItemElement;
 import sayTheSpire.Output;
 
 @SpirePatch(clz = RewardItem.class, method = "update")

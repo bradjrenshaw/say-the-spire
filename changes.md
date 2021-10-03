@@ -2,6 +2,7 @@
 
 ## Beta 0.2.1
 This patch fixes a number of issues related to UI.
+
 * Cards
     * Location now properly announced (currently excluding compendium)
 * Combat Rewards Screen
@@ -10,9 +11,9 @@ This patch fixes a number of issues related to UI.
     * Power tips (the descriptions of any applied powers in the buffer) will no longer incorrectly show formatting information if that information occurs at the start of the first word of the effect description (for example #y at the beginning of weak's description)
 * Potions
     * Potion location is now properly announced (excluding compendium)
-    * Fixed a bug where you could not read the tooltip for a nempty potion slot
+    * Fixed a bug where you could not read the tooltip for an empty potion slot
     * Potion rarity has been added to the potion buffer
-* Relics
+* Relics    
     * Location is now properly announced (excluding compendium)
 * Shops
     * All shop items now have location information approximately corresponding to their on screen position

@@ -1,7 +1,7 @@
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import sayTheSpire.ui.RelicElement;
+import sayTheSpire.ui.elements.RelicElement;
 import sayTheSpire.Output;
 import sayTheSpire.utils.RelicUtils;
 import sayTheSpire.utils.OutputUtils;

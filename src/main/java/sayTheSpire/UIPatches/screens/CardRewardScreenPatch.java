@@ -3,7 +3,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import sayTheSpire.Output;
-import sayTheSpire.ui.CardElement;
+import sayTheSpire.ui.elements.CardElement;
 
 @SpirePatch(clz = CardRewardScreen.class, method = "update")
 public class CardRewardScreenPatch {

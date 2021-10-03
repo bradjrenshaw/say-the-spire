@@ -1,4 +1,4 @@
-package sayTheSpire.ui;
+package sayTheSpire.ui.elements;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;

@@ -1,7 +1,7 @@
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.screens.custom.CustomMod;
 import sayTheSpire.Output;
-import sayTheSpire.ui.CustomModElement;
+import sayTheSpire.ui.elements.CustomModElement;
 import sayTheSpire.ui.UIRegistry;
 
 public class CustomModPatch {

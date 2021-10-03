@@ -2,7 +2,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import com.megacrit.cardcrawl.screens.options.DropdownMenu;
 import sayTheSpire.Output;
-import sayTheSpire.ui.DropdownElement;
+import sayTheSpire.ui.elements.DropdownElement;
 import sayTheSpire.ui.UIRegistry;
 
 public class DropdownMenuPatch {

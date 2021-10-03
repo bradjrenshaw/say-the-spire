@@ -1,7 +1,7 @@
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.ui.buttons.LargeDialogOptionButton;
 import sayTheSpire.Output;
-import sayTheSpire.ui.LargeDialogOptionButtonElement;
+import sayTheSpire.ui.elements.LargeDialogOptionButtonElement;
 
 @SpirePatch(clz = LargeDialogOptionButton.class, method = "update")
 public class LargeDialogOptionButtonPatch {

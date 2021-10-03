@@ -20,7 +20,7 @@ import sayTheSpire.speech.SpeechManager;
 import sayTheSpire.speech.TolkHandler;
 import sayTheSpire.speech.TolkResourceHandler;
 import sayTheSpire.ui.positions.AbstractPosition;
-import sayTheSpire.ui.UIElement;
+import sayTheSpire.ui.elements.UIElement;
 import sayTheSpire.ui.UIRegistry;
 import sayTheSpire.ui.input.InputManager;
 import sayTheSpire.ui.mod.UIManager;

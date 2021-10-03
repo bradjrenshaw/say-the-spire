@@ -3,7 +3,7 @@ package sayTheSpire.ui.custom;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import sayTheSpire.Output;
 import sayTheSpire.ui.positions.AbstractPosition;
-import sayTheSpire.ui.CardElement;
+import sayTheSpire.ui.elements.CardElement;
 
 public class GremlinMatchCardElement extends CardElement {
 

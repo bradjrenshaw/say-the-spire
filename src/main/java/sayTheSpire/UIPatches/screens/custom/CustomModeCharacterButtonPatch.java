@@ -1,7 +1,7 @@
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.screens.custom.CustomModeCharacterButton;
 import sayTheSpire.Output;
-import sayTheSpire.ui.ToggleButtonElement;
+import sayTheSpire.ui.elements.ToggleButtonElement;
 
 public class CustomModeCharacterButtonPatch {
 

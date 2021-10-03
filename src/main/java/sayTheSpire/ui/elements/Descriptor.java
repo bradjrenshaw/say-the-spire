@@ -1,4 +1,4 @@
-package sayTheSpire.ui;
+package sayTheSpire.ui.elements;
 
 import java.util.ArrayList;
 import sayTheSpire.TextParser;

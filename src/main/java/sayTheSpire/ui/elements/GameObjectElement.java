@@ -1,4 +1,4 @@
-package sayTheSpire.ui;
+package sayTheSpire.ui.elements;
 
 import sayTheSpire.ui.positions.AbstractPosition;
 

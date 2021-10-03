@@ -2,6 +2,7 @@ package sayTheSpire.ui;
 
 import java.util.HashMap;
 import java.util.Map;
+import sayTheSpire.ui.elements.UIElement;
 
 /** The UIRegistry allows you to associate in game objects with virtual UI elements */
 public class UIRegistry {
