@@ -9,6 +9,7 @@ This patch fixes a number of issues related to UI.
 * Potions
     * Potion location is now properly announced (currently for main screen, shop, and combat rewards)
     * Fixed a bug where you could not read the tooltip for a nempty potion slot
+    * Potion rarity has been added to the potion buffer
 * Relics
     * Location is now properly announced (now for main screen, rewards, and shops)
 * Shops

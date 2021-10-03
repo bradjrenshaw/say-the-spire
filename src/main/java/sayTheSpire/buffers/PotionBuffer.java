@@ -4,6 +4,7 @@ import java.util.ListIterator;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.potions.PotionSlot;
+import sayTheSpire.utils.PotionUtils;
 import sayTheSpire.TextParser;
 
 public class PotionBuffer extends Buffer {
@@ -30,7 +31,12 @@ public class PotionBuffer extends Buffer {
             this.add("No potion available.");
             return;
         }
-        this.add(potion.name);
+        String potionShort = this.potion.name;
+        String potionRarity = PotionUtils.getPotionRarityString(this.potion);
+        if (potionRarity != null) {
+            potionShort += " " + potionRarity + " rarity";
+        }
+        this.add(potionShort);
         this.add(TextParser.parse(potion.description, potion));
         ListIterator iter = potion.tips.listIterator(1);
         while (iter.hasNext()) {
