@@ -33,8 +33,9 @@ public class RelicElement extends GameObjectElement {
     }
 
     public String handleBuffers(BufferManager buffers) {
-        Output.setupBuffers(this.relic);
-        return null;
+        buffers.getBuffer("relic").setObject(relic);
+        buffers.enableBuffer("relic", true);
+        return "relic";
     }
 
     public String getExtrasString() {

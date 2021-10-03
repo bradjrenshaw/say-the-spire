@@ -1,8 +1,9 @@
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
-import sayTheSpire.Output;
+import sayTheSpire.ui.elements.MonsterElement;
 import sayTheSpire.utils.MonsterUtils;
+import sayTheSpire.Output;
 
 @SpirePatch(clz = MonsterGroup.class, method = "update")
 public class MonsterGroupPatch {
@@ -23,8 +24,7 @@ public class MonsterGroupPatch {
         AbstractMonster current = getHoveredMonster(__instance);
         if (current != prevHoveredMonster) {
             if (current != null) {
-                Output.text(MonsterUtils.getMonsterShort(current), true);
-                Output.setupBuffers(current);
+                Output.setUI(new MonsterElement(current));
             }
             prevHoveredMonster = current;
         }

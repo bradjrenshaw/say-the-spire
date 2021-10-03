@@ -184,7 +184,18 @@ public class Output {
             return Direction.NONE;
     }
 
+    public static void setupBuffers(MapRoomNode node, Boolean viewing) {
+        bufferContext = "map";
+        if (viewing) {
+            MapControls.navigator.handleViewingNode(node, true);
+        } else {
+            MapControls.navigator.handleFocusedNode(node);
+        }
+    }
+
     public static void setUI(UIElement element) {
+        bufferContext = "buffers";
+        buffers.setAllEnabled(false);
         String current = element.handleBuffers(buffers);
         currentUI = element;
         StringBuilder sb = new StringBuilder();
@@ -210,89 +221,24 @@ public class Output {
         BufferControls.setCurrentBuffer(current);
     }
 
-    public static void setupBuffers(AbstractCard card) {
-        buffers.getBuffer("current card").setObject(card);
-        buffers.getBuffer("upgrade preview").setObject(card);
-        setupBuffers("card");
-    }
-
-    public static void setupBuffers(AbstractMonster monster) {
-        Buffer buffer = buffers.getBuffer("monster");
-        buffer.setObject(monster);
-        setupBuffers("monster");
-    }
-
-    public static void setupBuffers(AbstractOrb orb) {
-        buffers.getBuffer("orb").setObject(orb);
-        setupBuffers("orb");
-    }
-
-    public static void setupBuffers(AbstractPotion potion) {
-        Buffer buffer = buffers.getBuffer("potion");
-        buffer.setObject(potion);
-        setupBuffers("potion");
-    }
-
-    public static void setupBuffers(AbstractRelic relic) {
-        buffers.getBuffer("relic").setObject(relic);
-        setupBuffers("relic");
-    }
-
-    public static void setupBuffers(MapRoomNode node, Boolean viewing) {
-        setupBuffers("map");
-        if (viewing) {
-            MapControls.navigator.handleViewingNode(node, true);
-        } else {
-            MapControls.navigator.handleFocusedNode(node);
-        }
-    }
-
-    public static void setupBuffers(String context) {
-        bufferContext = context;
-        buffers.setAllEnabled(false);
-        switch (context) {
-        case "card":
-            buffers.enableBuffer("current card", true);
-            buffers.enableBuffer("upgrade preview", true);
-            BufferControls.setCurrentBuffer("current card");
-            break;
-        case "monster":
-            buffers.enableBuffer("monster", true);
-            BufferControls.setCurrentBuffer("monster");
-            break;
-        case "orb":
-            buffers.enableBuffer("orb", true);
-            BufferControls.setCurrentBuffer("orb");
-            break;
-        case "potion":
-            buffers.enableBuffer("potion", true);
-            BufferControls.setCurrentBuffer("potion");
-            break;
-        case "relic":
-            buffers.enableBuffer("relic", true);
-            BufferControls.setCurrentBuffer("relic");
-            break;
-        case "UI":
-            buffers.enableBuffer("UI", true);
-            BufferControls.setCurrentBuffer("UI");
-            break;
-        }
-    }
-
     public static void setupUIBuffer(ArrayList<String> contents) {
+        bufferContext = "buffers";
         Buffer buffer = buffers.getBuffer("UI");
         buffer.clear();
         buffer.addMany(contents);
-        setupBuffers("UI");
+        buffers.enableBuffer("UI", true);
+        BufferControls.setCurrentBuffer("UI");
     }
 
     public static void setupUIBufferMany(String... contents) {
+        bufferContext = "buffers";
         Buffer buffer = buffers.getBuffer("UI");
         buffer.clear();
         for (String s : contents) {
             buffer.add(s);
         }
-        setupBuffers("UI");
+        buffers.enableBuffer("UI", true);
+        BufferControls.setCurrentBuffer("UI");
     }
 
     public static void updateInfoControls() {

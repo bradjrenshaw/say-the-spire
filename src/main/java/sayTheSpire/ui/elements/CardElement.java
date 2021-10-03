@@ -41,8 +41,11 @@ public class CardElement extends GameObjectElement {
     }
 
     public String handleBuffers(BufferManager buffers) {
-        Output.setupBuffers(this.card);
-        return null;
+        buffers.getBuffer("current card").setObject(card);
+        buffers.getBuffer("upgrade preview").setObject(card);
+        buffers.enableBuffer("current card", true);
+        buffers.enableBuffer("upgrade preview", true);
+        return "current card";
     }
 
     public String getExtrasString() {

@@ -61,7 +61,8 @@ public class PotionElement extends GameObjectElement {
     }
 
     public String handleBuffers(BufferManager buffers) {
-        Output.setupBuffers(potion);
-        return null;
+        buffers.getBuffer("potion").setObject(potion);
+        buffers.enableBuffer("potion", true);
+        return "potion";
     }
 }

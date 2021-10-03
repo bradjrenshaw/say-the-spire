@@ -18,8 +18,9 @@ public class OrbElement extends UIElement {
     }
 
     public String handleBuffers(BufferManager buffers) {
-        Output.setupBuffers(this.orb);
-        return null;
+        buffers.getBuffer("orb").setObject(orb);
+        buffers.enableBuffer("orb", true);
+        return "orb";
     }
 
     public String getLabel() {
