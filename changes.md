@@ -4,6 +4,8 @@
 This patch fixes a number of issues related to UI.
 * Cards
     * Location now properly announced (currently for shop)
+* Monsters
+    * Power tips (the descriptions of any applied powers in the buffer) will no longer incorrectly show formatting information if that information occurs at the start of the first word of the effect description (for example #y at the beginning of weak's description)
 * Potions
     * Potion location is now properly announced (currently for main screen, shop, and combat rewards)
     * Fixed a bug where you could not read the tooltip for a nempty potion slot

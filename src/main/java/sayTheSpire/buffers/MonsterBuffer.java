@@ -37,7 +37,7 @@ public class MonsterBuffer extends Buffer {
         this.add(monster.currentBlock + " block");
         this.add(OutputUtils.getCreaturePowersString(monster));
         for (PowerTip tip : (ArrayList<PowerTip>) ReflectionHacks.getPrivate(monster, AbstractCreature.class, "tips")) {
-            this.add(TextParser.parse(tip.header + "\n" + tip.body));
+            this.add(TextParser.parse(tip.header + " NL " + tip.body));
         }
     }
 }

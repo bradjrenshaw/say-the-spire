@@ -90,6 +90,10 @@ public class TextParser {
             return text;
         if (text.equals(""))
             return text;
+
+        // Make sure to convert any return characters to NL to not break parsing
+        text = text.replaceAll("\n", " NL ");
+
         StringBuilder sb = new StringBuilder();
         for (String word : text.split(" ")) {
             if (word.equals(""))
