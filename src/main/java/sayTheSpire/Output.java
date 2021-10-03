@@ -37,15 +37,12 @@ public class Output {
     private static Logger logger = LogManager.getLogger(Output.class.getName());
 
     public static String bufferContext = "";
-    public static AbstractCard hoveredCard = null;
-    public static AbstractMonster hoveredMonster = null;
     public static BufferManager buffers = new BufferManager();
     public static Boolean tolkSetup = false;
     public static Boolean shouldInterruptSpeech = false;
     public static InputManager inputManager = null;
     public static UIManager uiManager = null;
     public static SpeechManager speechManager = null;
-    public static MonsterGroup currentMonsterGroup = null;
     public static String eventText = null;
     public static UIElement currentUI = null;
     public static STSConfig config = null;

@@ -1,6 +1,8 @@
 package sayTheSpire.ui.elements;
 
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import sayTheSpire.buffers.BufferManager;
 import sayTheSpire.ui.positions.AbstractPosition;
 import sayTheSpire.ui.positions.ListPosition;
@@ -29,4 +31,13 @@ public class MonsterElement extends UIElement {
         return MonsterUtils.getMonsterShort(this.monster);
     }
 
+    public AbstractPosition getPosition() {
+        MonsterGroup group = AbstractDungeon.getCurrRoom().monsters;
+        if (group == null)
+            return null;
+        int index = group.monsters.indexOf(this.monster);
+        if (index < 0)
+            return null;
+        return new ListPosition(index, group.monsters.size());
+    }
 }
