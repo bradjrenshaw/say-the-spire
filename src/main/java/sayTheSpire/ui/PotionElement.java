@@ -45,24 +45,9 @@ public class PotionElement extends GameObjectElement {
         switch (this.location) {
         case MAIN_SCREEN:
             return this.getInventoryPosition();
-        case COMBAT_REWARDS:
-            return this.getCombatRewardsPosition();
         default:
             return super.getPosition();
         }
-    }
-
-    public AbstractPosition getCombatRewardsPosition() {
-        if (AbstractDungeon.combatRewardScreen == null || AbstractDungeon.combatRewardScreen.rewards == null)
-            return null;
-        int rewardCount = AbstractDungeon.combatRewardScreen.rewards.size();
-        for (int r = 0; r < rewardCount; r++) {
-            RewardItem reward = AbstractDungeon.combatRewardScreen.rewards.get(r);
-            if (reward.type == RewardItem.RewardType.POTION && reward.potion != null && reward.potion == this.potion) {
-                return new ListPosition(r, rewardCount);
-            }
-        }
-        return null;
     }
 
     public AbstractPosition getInventoryPosition() {
