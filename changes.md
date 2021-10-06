@@ -15,7 +15,7 @@ This patch fixes a number of issues related to UI.
     * Fixed a bug where you could not read the tooltip for an empty potion slot
     * Potion rarity has been added to the potion buffer
 * Relics    
-    * Location is now properly announced (excluding compendium)
+    * Location is now properly announced
 * Shops
     * All shop items now have location information approximately corresponding to their on screen position
     * The button to sell a card is now actually announced as a button and has location information
