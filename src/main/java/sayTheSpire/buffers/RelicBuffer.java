@@ -30,7 +30,12 @@ public class RelicBuffer extends Buffer {
             this.add("No relic available.");
             return;
         }
-        this.add(relic.name);
+        String nameString = relic.name;
+        String rarity = RelicUtils.getRelicRarityString(relic);
+        if (rarity != null) {
+            nameString += " " + rarity + " rarity";
+        }
+        this.add(nameString);
         if (relic.counter >= 0) {
             this.add(relic.counter + " counter");
         }

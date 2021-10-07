@@ -6,6 +6,12 @@ import sayTheSpire.TextParser;
 
 public class RelicUtils {
 
+    public static String getRelicRarityString(AbstractRelic relic) {
+        if (relic.tier == null)
+            return null;
+        return relic.tier.name().toLowerCase();
+    }
+
     public static String getRelicShort(AbstractRelic relic) {
         if (relic.counter >= 0) {
             return relic.name + " (" + relic.counter + ")";
