@@ -5,6 +5,7 @@ This patch fixes a number of issues related to UI.
 
 * Cards
     * Location now properly announced (currently excluding compendium)
+    * A new config setting has been added to improve mod compatibility as the localization fixes in the last beta broke certain card descriptions that were updated during gameplay by various mods. If you want to use certain mods that do this, set advanced.use_updated_card_description in your settings.ini file to true. Note that this will most likely break localization for certain languages (currently confirmed to break for Japanese).
 * Combat Rewards Screen
     * All rewards now have location information and properly update buffers
 * Monsters
@@ -16,6 +17,7 @@ This patch fixes a number of issues related to UI.
     * Potion rarity has been added to the potion buffer
 * Relics    
     * Location is now properly announced
+    * Relic rarity has been added to the relic buffer
 * Shops
     * All shop items now have location information approximately corresponding to their on screen position
     * The button to sell a card is now actually announced as a button and has location information

@@ -109,11 +109,15 @@ public class STSConfig {
         HashMap<String, Object> inputDefaults = new HashMap();
         inputDefaults.put("virtual_input", true);
 
+        HashMap<String, Object> advancedDefaults = new HashMap();
+        advancedDefaults.put("use_updated_card_description", false);
+
         defaults.put("resources", resourceDefaults);
         defaults.put("ui", uiDefaults);
         defaults.put("map", mapDefaults);
         defaults.put("combat", combatDefaults);
         defaults.put("input", inputDefaults);
+        defaults.put("advanced", advancedDefaults);
         return defaults;
     }
 

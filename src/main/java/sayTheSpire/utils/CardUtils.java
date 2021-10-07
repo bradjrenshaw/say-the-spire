@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DescriptionLine;
 import java.util.HashMap;
 import sayTheSpire.TextParser;
+import sayTheSpire.Output;
 
 public class CardUtils {
 
@@ -22,11 +23,31 @@ public class CardUtils {
             return Integer.toString(cost);
     }
 
+    private static String extractUpdatedDescription(AbstractCard card) {
+        StringBuilder sb = new StringBuilder();
+        int lineCount = card.description.size();
+        for (int d = 0; d < lineCount; d++) {
+            DescriptionLine line = card.description.get(d);
+            for (String token : line.getText().split("\\s+")) {
+                sb.append(token);
+                sb.append(' ');
+            }
+            if (d < lineCount - 1)
+                sb.append(" NL ");
+        }
+        return sb.toString();
+    }
+
     public static String getCardDescriptionString(AbstractCard card) {
-        return TextParser.parse(card.rawDescription.replaceAll("([^ ])(![A-Z]!)", "$1 $2"), card); // Ensures that
-                                                                                                   // dynamic variables
-                                                                                                   // have a preceding
-                                                                                                   // white space
+        String description;
+        if (Output.config.getBoolean("advanced.use_updated_card_description", false))
+            description = extractUpdatedDescription(card);
+        else
+            description = card.rawDescription;
+        return TextParser.parse(description.replaceAll("([^ ])(![A-Z]!)", "$1 $2"), card); // Ensures that
+        // dynamic variables
+        // have a preceding
+        // white space
     }
 
     public static HashMap<String, String> getCardDynamicVariables(AbstractCard card) {
