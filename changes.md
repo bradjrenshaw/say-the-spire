@@ -4,10 +4,11 @@
 This patch fixes a number of issues related to UI.
 
 * Cards
-    * Location now properly announced (currently excluding compendium)
+    * Location now properly announced
     * A new config setting has been added to improve mod compatibility as the localization fixes in the last beta broke certain card descriptions that were updated during gameplay by various mods. If you want to use certain mods that do this, set advanced.use_updated_card_description in your settings.ini file to true. Note that this will most likely break localization for certain languages (currently confirmed to break for Japanese).
 * Combat Rewards Screen
     * All rewards now have location information and properly update buffers
+* The compendium screens are now fully supported
 * Monsters
     * Power tips (the descriptions of any applied powers in the buffer) will no longer incorrectly show formatting information if that information occurs at the start of the first word of the effect description (for example #y at the beginning of weak's description)
     * Monsters now have location information

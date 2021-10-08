@@ -25,9 +25,9 @@ public class AbstractCardPatch {
             // AbstractCard.hb.justHovered can be set repeatedly for some reason and
             // AbstractCard.hb.hovered follows some strange alien logic I'm unfamiliar with
             }
-        }
-        if (__instance.hb.justHovered) {
-            Output.setUI(new CardElement(__instance, location));
+            if (__instance.hb.justHovered) {
+                Output.setUI(new CardElement(__instance, location));
+            }
         }
     }
 }
