@@ -11,6 +11,15 @@ public class GridCardSelectScreenPatch {
 
     private static Boolean initialWait = false;
 
+    @SpirePatch(clz = GridCardSelectScreen.class, method = "openConfirmationGrid", paramtypez = { CardGroup.class,
+            String.class })
+    public static class OpenConfirmationGridPatch {
+
+        public static void Postfix(GridCardSelectScreen __instance, CardGroup group, String tipMsg) {
+            Output.text(tipMsg, false);
+        }
+    }
+
     @SpirePatch(clz = GridCardSelectScreen.class, method = "open", paramtypez = { CardGroup.class, int.class,
             String.class, boolean.class, boolean.class, boolean.class, boolean.class })
     public static class OpenPatch {
@@ -42,7 +51,9 @@ public class GridCardSelectScreenPatch {
                 if (initialWait) {
                     GridPosition position = (GridPosition) newElement.getPosition();
                     if (position.x != 1 || position.y != 1)
-                        return; //internally this screen hovers a lot of cards over multiple frames but it will always end up at position (1, 1) and the other cards aren't visually noticeable. As a result, the goal is to only read the intended initially focused card.
+                        return; // internally this screen hovers a lot of cards over multiple frames but it will always
+                                // end up at position (1, 1) and the other cards aren't visually noticeable. As a
+                                // result, the goal is to only read the intended initially focused card.
                 }
                 initialWait = false;
                 Output.setUI(newElement);
