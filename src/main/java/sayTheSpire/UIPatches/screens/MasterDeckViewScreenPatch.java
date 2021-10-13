@@ -11,11 +11,6 @@ import sayTheSpire.Output;
 
 public class MasterDeckViewScreenPatch {
 
-    public static ArrayList<AbstractCard> getCards(MasterDeckViewScreen screen) {
-        return (ArrayList<AbstractCard>) ReflectionHacks.getPrivate(screen, MasterDeckViewScreen.class,
-                "tmpSortedDeck");
-    }
-
     @SpirePatch(clz = MasterDeckViewScreen.class, method = "open")
     public static class OpenPatch {
 
