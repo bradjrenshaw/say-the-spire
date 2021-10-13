@@ -16,7 +16,7 @@ import sayTheSpire.Output;
 public class RelicElement extends GameObjectElement {
 
     public enum RelicLocation {
-        MAIN_SCREEN, COMPENDIUM, COMBAT_REWARDS, SHOP, OTHER
+        MAIN_SCREEN, COMPENDIUM, BOSS_REWARDS, COMBAT_REWARDS, SHOP, OTHER
     }
 
     private AbstractRelic relic;
@@ -57,6 +57,17 @@ public class RelicElement extends GameObjectElement {
             return super.getPosition();
         }
     }
+
+    /*
+     * public AbstractPosition getBossRewardsPosition() { if (AbstractDungeon.screen !=
+     * AbstractDungeon.CurrentScreen.BOSS_REWARD) return null; AbstractRoom currentRoom = AbstractDungeon.getCurrRoom();
+     * if (currentRoom == null) return null; if (!(currentRoom instanceof TreasureRoomBoss)) return null;
+     * TreasureRoomBoss bossRoom = (TreasureRoomBoss)currentRoom; if (bossRoom.chest == null || !(bossRoom.chest
+     * instanceof BossChest)) return null; if (bossRoom.chest.relics == null) return null; int relicCount =
+     * bossRoom.chest.relics.size();
+     * 
+     * }
+     */
 
     public AbstractPosition getInventoryPosition() {
         AbstractPlayer player = OutputUtils.getPlayer();

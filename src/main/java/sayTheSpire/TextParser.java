@@ -19,11 +19,15 @@ public class TextParser {
     public static String handleWordDynamicVariables(String word, HashMap<String, String> dynamicVariables) {
         if (word == null || dynamicVariables == null)
             return word;
-        String tempWord = word.trim();
-        if (tempWord.length() != 3 || !tempWord.startsWith("!") || !tempWord.endsWith("!"))
-            return word;
-        String variable = tempWord.substring(1, 2);
-        return dynamicVariables.getOrDefault(variable, tempWord);
+        word = word.trim();
+        for (Map.Entry<String, String> entry : dynamicVariables.entrySet()) {
+            String variable = entry.getKey();
+            String value = entry.getValue();
+            if (word.contains("!" + variable + "!")) {
+                word = word.replaceAll("\\!" + variable + "\\!", value);
+            }
+        }
+        return word;
     }
 
     public static String handleWordEmphasized(String word) {

@@ -1,5 +1,6 @@
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import sayTheSpire.ui.elements.RelicElement;
 import sayTheSpire.Output;
@@ -15,9 +16,9 @@ public class AbstractRelicPatch {
             RelicElement.RelicLocation location = RelicElement.RelicLocation.OTHER;
             if (player != null && player.relics.indexOf(__instance) >= 0) {
                 location = RelicElement.RelicLocation.MAIN_SCREEN;
-            }
-            if (location != RelicElement.RelicLocation.MAIN_SCREEN)
+            } else {
                 return;
+            }
             RelicElement element = new RelicElement(__instance, location);
             Output.setUI(element);
         }

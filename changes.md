@@ -6,6 +6,7 @@ This patch fixes a number of issues related to UI.
 * Cards
     * Location now properly announced
     * A new config setting has been added to improve mod compatibility as the localization fixes in the last beta broke certain card descriptions that were updated during gameplay by various mods. If you want to use certain mods that do this, set advanced.use_updated_card_description in your settings.ini file to true. Note that this will most likely break localization for certain languages (currently confirmed to break for Japanese).
+        * Fixed an issue where numbers followed by punctuation would read incorrectly, for example the Feed card. See the text parsing section.
 * Combat Rewards Screen
     * All rewards now have location information and properly update buffers
 * The compendium screens are now fully supported
@@ -22,6 +23,8 @@ This patch fixes a number of issues related to UI.
 * Shops
     * All shop items now have location information approximately corresponding to their on screen position
     * The button to sell a card is now actually announced as a button and has location information
+* Text Parsing
+    * Fixed a bug where words containing numbers would break if the number was immediately followed by punctuation. this primarily effected cards such as feed, where the 3 hp increase was read as !m!.
 
 ## Beta 0.2.0
 

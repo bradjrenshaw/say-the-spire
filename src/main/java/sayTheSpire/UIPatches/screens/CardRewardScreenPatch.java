@@ -8,11 +8,11 @@ import sayTheSpire.ui.elements.CardElement;
 @SpirePatch(clz = CardRewardScreen.class, method = "update")
 public class CardRewardScreenPatch {
 
-    public static AbstractCard hoveredCard = null;
+    public static AbstractCard prevHoveredCard = null;
 
     public static AbstractCard getHoveredCard(CardRewardScreen screen) {
         for (AbstractCard card : screen.rewardGroup) {
-            if (card.hb.justHovered) {
+            if (card.hb.hovered) {
                 return card;
             }
         }
@@ -23,11 +23,11 @@ public class CardRewardScreenPatch {
         if (AbstractDungeon.screen != AbstractDungeon.CurrentScreen.CARD_REWARD)
             return;
         AbstractCard current = getHoveredCard(__instance);
-        if (current != hoveredCard) {
+        if (current != prevHoveredCard) {
             if (current != null) {
                 Output.setUI(new CardElement(current));
             }
-            hoveredCard = current;
+            prevHoveredCard = current;
         }
     }
 }

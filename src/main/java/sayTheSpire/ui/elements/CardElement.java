@@ -19,8 +19,8 @@ import sayTheSpire.utils.OutputUtils;
 public class CardElement extends GameObjectElement {
 
     public enum CardLocation {
-        HAND, GRID_SELECT, HAND_SELECT, MASTER_DECK_VIEW, EXHAUST_PILE_VIEW, DISCARD_PILE_VIEW, DRAW_PILE_VIEW, SHOP,
-        COMPENDIUM, OTHER
+        CARD_REWARD, HAND, GRID_SELECT, HAND_SELECT, MASTER_DECK_VIEW, EXHAUST_PILE_VIEW, DISCARD_PILE_VIEW,
+        DRAW_PILE_VIEW, SHOP, COMPENDIUM, OTHER
     }
 
     protected AbstractCard card;

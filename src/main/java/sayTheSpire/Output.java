@@ -212,7 +212,7 @@ public class Output {
         if (position != null && config.getBoolean("ui.read_positions")) {
             sb.append(". " + position.getPositionString());
         }
-        text(sb.toString(), true);
+        text(sb.toString(), false);
         if (current == null)
             return; // current buffer should be unchanged
         BufferControls.setCurrentBuffer(current);
