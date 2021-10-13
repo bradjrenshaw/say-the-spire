@@ -2,7 +2,7 @@ package sayTheSpire.ui.positions;
 
 public class GridPosition extends AbstractPosition {
 
-    protected int x, y;
+    public int x, y;
 
     public GridPosition(int x, int y) {
         this.x = x;
