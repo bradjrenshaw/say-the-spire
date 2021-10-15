@@ -6,21 +6,31 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import basemod.ReflectionHacks;
 import sayTheSpire.ui.elements.CardElement;
 import sayTheSpire.ui.positions.GridPosition;
+import sayTheSpire.utils.CardUtils;
 import sayTheSpire.utils.OutputUtils;
 import sayTheSpire.Output;
 
 public class MasterDeckViewScreenPatch {
 
+    public static ArrayList<AbstractCard> getSortedDeck(MasterDeckViewScreen screen) {
+        ArrayList<AbstractCard> deck = (ArrayList<AbstractCard>) ReflectionHacks.getPrivate(screen,
+                MasterDeckViewScreen.class, "tmpSortedDeck");
+        if (deck == null) {
+            AbstractPlayer player = OutputUtils.getPlayer();
+            if (player != null && player.masterDeck != null) {
+                deck = player.masterDeck.group;
+            }
+        }
+        return deck;
+    }
+
     @SpirePatch(clz = MasterDeckViewScreen.class, method = "open")
     public static class OpenPatch {
 
         public static void Postfix(MasterDeckViewScreen __instance) {
-            AbstractPlayer player = OutputUtils.getPlayer();
-            if (player != null) {
-                ArrayList<AbstractCard> cards = player.masterDeck.group;
-                if (cards == null)
-                    return;
-                Output.text("Master deck view, " + cards.size() + " cards", false);
+            ArrayList<AbstractCard> deck = getSortedDeck(__instance);
+            if (deck != null) {
+                Output.text("master deck view, " + deck.size() + " cards", false);
             }
         }
     }
@@ -34,7 +44,13 @@ public class MasterDeckViewScreenPatch {
             if (controllerCard == null)
                 return;
             if (controllerCard.hb.justHovered) {
-                Output.setUI(new CardElement(controllerCard, CardElement.CardLocation.MASTER_DECK_VIEW));
+                GridPosition position = null;
+                ArrayList<AbstractCard> sortedDeck = getSortedDeck(__instance);
+                if (sortedDeck != null) {
+                    position = CardUtils.getGridPosition(controllerCard, sortedDeck,
+                            (int) ReflectionHacks.getPrivateStatic(MasterDeckViewScreen.class, "CARDS_PER_LINE"));
+                }
+                Output.setUI(new CardElement(controllerCard, CardElement.CardLocation.MASTER_DECK_VIEW, position));
             }
         }
     }

@@ -11,9 +11,6 @@ public class AbstractCardPatch {
         CardElement.CardLocation location = CardElement.CardLocation.OTHER;
         if (AbstractDungeon.screen != null) {
             switch (AbstractDungeon.screen) {
-            case DISCARD_VIEW:
-            case EXHAUST_VIEW:
-            case GAME_DECK_VIEW:
             case BOSS_REWARD:
             case TRANSFORM:
                 break;

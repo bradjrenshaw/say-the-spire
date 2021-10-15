@@ -66,17 +66,6 @@ public class CardElement extends GameObjectElement {
         return this.card.name;
     }
 
-    public GridPosition getGridPosition(ArrayList<AbstractCard> grid, int width) {
-        if (grid == null)
-            return null;
-        int gridIndex = grid.indexOf(this.card);
-        if (gridIndex < 0)
-            return null;
-        int row = gridIndex / width + 1;
-        int column = gridIndex % width + 1;
-        return new GridPosition(column, row);
-    }
-
     public ListPosition getListPosition(ArrayList<AbstractCard> list) {
         if (list == null)
             return null;
@@ -93,7 +82,7 @@ public class CardElement extends GameObjectElement {
             return this.getListPosition(OutputUtils.getPlayer().hand.group);
         case GRID_SELECT:
             ArrayList<AbstractCard> grid = AbstractDungeon.gridSelectScreen.targetGroup.group;
-            return this.getGridPosition(grid, cardsPerLine);
+            return CardUtils.getGridPosition(this.card, grid, cardsPerLine);
         case HAND_SELECT:
             HandCardSelectScreen screen = AbstractDungeon.handCardSelectScreen;
             if (screen == null)
@@ -106,38 +95,6 @@ public class CardElement extends GameObjectElement {
             if (result == null)
                 result = this.getListPosition(unselected);
             return result;
-        case MASTER_DECK_VIEW:
-            MasterDeckViewScreen masterScreen = AbstractDungeon.deckViewScreen;
-            ArrayList<AbstractCard> group = (ArrayList<AbstractCard>) ReflectionHacks.getPrivate(masterScreen,
-                    MasterDeckViewScreen.class, "tmpSortedDeck");
-            if (group == null) {
-                group = AbstractDungeon.player.masterDeck.group;
-            }
-            return this.getGridPosition(group, cardsPerLine);
-        case EXHAUST_PILE_VIEW:
-            CardGroup exhaustGroup = (CardGroup) ReflectionHacks.getPrivate(AbstractDungeon.exhaustPileViewScreen,
-                    ExhaustPileViewScreen.class, "exhaustPileCopy");
-            if (exhaustGroup == null)
-                return null;
-            cardsPerLine = (int) ReflectionHacks.getPrivate(AbstractDungeon.exhaustPileViewScreen,
-                    ExhaustPileViewScreen.class, "CARDS_PER_LINE");
-            return this.getGridPosition(exhaustGroup.group, cardsPerLine);
-        case DRAW_PILE_VIEW:
-            CardGroup drawGroup = (CardGroup) ReflectionHacks.getPrivate(AbstractDungeon.gameDeckViewScreen,
-                    DrawPileViewScreen.class, "drawPileCopy");
-            if (drawGroup == null)
-                return null;
-            cardsPerLine = (int) ReflectionHacks.getPrivate(AbstractDungeon.gameDeckViewScreen,
-                    DrawPileViewScreen.class, "CARDS_PER_LINE");
-            return this.getListPosition(drawGroup.group);
-        case DISCARD_PILE_VIEW:
-            CardGroup discardGroup = (CardGroup) ReflectionHacks.getPrivate(AbstractDungeon.discardPileViewScreen,
-                    DiscardPileViewScreen.class, "discardPileCopy");
-            if (discardGroup == null)
-                return null;
-            cardsPerLine = (int) ReflectionHacks.getPrivate(AbstractDungeon.discardPileViewScreen,
-                    DiscardPileViewScreen.class, "CARDS_PER_LINE");
-            return this.getGridPosition(discardGroup.group, cardsPerLine);
         default:
             return super.getPosition();
         }

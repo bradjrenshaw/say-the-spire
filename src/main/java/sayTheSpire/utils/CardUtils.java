@@ -1,8 +1,10 @@
 package sayTheSpire.utils;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DescriptionLine;
-import java.util.HashMap;
+import sayTheSpire.ui.positions.GridPosition;
 import sayTheSpire.TextParser;
 import sayTheSpire.Output;
 
@@ -114,5 +116,16 @@ public class CardUtils {
             return "face down card";
         }
         return card.name + ", " + getCardCostString(card);
+    }
+
+    public static GridPosition getGridPosition(AbstractCard card, ArrayList<AbstractCard> grid, int width) {
+        if (grid == null)
+            return null;
+        int gridIndex = grid.indexOf(card);
+        if (gridIndex < 0)
+            return null;
+        int row = gridIndex / width + 1;
+        int column = gridIndex % width + 1;
+        return new GridPosition(column, row);
     }
 }
