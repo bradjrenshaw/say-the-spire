@@ -1,4 +1,4 @@
-# Change Log
+    # Change Log
 
 ## Beta 0.2.1
 This patch fixes a number of issues related to UI.
@@ -8,7 +8,7 @@ This patch fixes a number of issues related to UI.
 * Cards
     * Location now properly announced
     * A new config setting has been added to improve mod compatibility as the localization fixes in the last beta broke certain card descriptions that were updated during gameplay by various mods. If you want to use certain mods that do this, set advanced.use_updated_card_description in your settings.ini file to true. Note that this will most likely break localization for certain languages (currently confirmed to break for Japanese).
-        * Fixed an issue where numbers followed by punctuation would read incorrectly, for example the Feed card. See the text parsing section.
+    * Fixed an issue where numbers followed by punctuation would read incorrectly, for example the Feed card. See the text parsing section.
 * Combat Rewards Screen
     * All rewards now have location information and properly update buffers
 * Monsters

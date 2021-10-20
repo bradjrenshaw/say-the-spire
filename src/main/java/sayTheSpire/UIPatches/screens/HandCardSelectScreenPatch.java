@@ -7,6 +7,30 @@ import sayTheSpire.ui.elements.CardElement;
 
 public class HandCardSelectScreenPatch {
 
+    private static void openLogic(HandCardSelectScreen screen, String msg) {
+        Output.text(msg, true);
+    }
+
+    @SpirePatch(clz = HandCardSelectScreen.class, method = "open", paramtypez = { String.class, int.class,
+            boolean.class, boolean.class, boolean.class, boolean.class, boolean.class })
+    public static class LargeOpenPatch {
+
+        public static void Postfix(HandCardSelectScreen __instance, String msg, int amount, boolean anyNumber,
+                boolean canPickZero, boolean forTransform, boolean forUpgrade, boolean upTo) {
+            openLogic(__instance, msg);
+        }
+    }
+
+    @SpirePatch(clz = HandCardSelectScreen.class, method = "open", paramtypez = { String.class, int.class,
+            boolean.class, boolean.class })
+    public static class SmallOpenPatch {
+
+        public static void Postfix(HandCardSelectScreen __instance, String msg, int amount, boolean anyNumber,
+                boolean canPickZero) {
+            openLogic(__instance, msg);
+        }
+    }
+
     @SpirePatch(clz = HandCardSelectScreen.class, method = "setHoveredCard", paramtypez = { AbstractCard.class })
     public static class setHoveredCardPatch {
 

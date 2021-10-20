@@ -2,6 +2,7 @@ package sayTheSpire.ui.elements;
 
 import sayTheSpire.buffers.BufferManager;
 import sayTheSpire.ui.positions.AbstractPosition;
+import sayTheSpire.Output;
 
 /**
  * A virtual UI element represents a game object and various properties it may have. Virtual UI Elements also include
@@ -36,6 +37,30 @@ public abstract class UIElement {
     public void update() {
     }
 
+    public String getFocusString() {
+        StringBuilder sb = new StringBuilder();
+        String label = this.getLabel();
+        if (label != null)
+            sb.append(label);
+        String extras = this.getExtrasString();
+        if (extras != null)
+            sb.append(", " + extras);
+        String type = this.getTypeString();
+        if (type != null)
+            sb.append(" " + type);
+        String status = this.getStatusString();
+        if (status != null)
+            sb.append(" " + status);
+        AbstractPosition position = this.getPosition();
+        if (position != null && Output.config.getBoolean("ui.read_positions")) {
+            sb.append(". " + position.getPositionString());
+        }
+        return sb.toString();
+    }
+
+    /**
+     * Returns an AbstractPosition corresponding to a contextual position of the element.
+     */
     public AbstractPosition getPosition() {
         return this.position;
     }
@@ -61,6 +86,7 @@ public abstract class UIElement {
         return null;
     }
 
+    /** Returns the type of the element */
     public String getTypeString() {
         return elementType;
     }

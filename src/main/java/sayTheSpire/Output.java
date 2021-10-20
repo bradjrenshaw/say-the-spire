@@ -195,24 +195,8 @@ public class Output {
         buffers.setAllEnabled(false);
         String current = element.handleBuffers(buffers);
         currentUI = element;
-        StringBuilder sb = new StringBuilder();
-        String label = element.getLabel();
-        if (label != null)
-            sb.append(label);
-        String extras = element.getExtrasString();
-        if (extras != null)
-            sb.append(", " + extras);
-        String type = element.getTypeString();
-        if (type != null)
-            sb.append(" " + type);
-        String status = element.getStatusString();
-        if (status != null)
-            sb.append(" " + status);
-        AbstractPosition position = element.getPosition();
-        if (position != null && config.getBoolean("ui.read_positions")) {
-            sb.append(". " + position.getPositionString());
-        }
-        text(sb.toString(), false);
+        String focusString = element.getFocusString();
+        text(focusString, false);
         if (current == null)
             return; // current buffer should be unchanged
         BufferControls.setCurrentBuffer(current);
