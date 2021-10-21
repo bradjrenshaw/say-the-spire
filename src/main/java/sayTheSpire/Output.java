@@ -102,6 +102,10 @@ public class Output {
         EventManager.add(event);
     }
 
+    public static void forceSpeechInterrupt() {
+        shouldInterruptSpeech = true;
+    }
+
     public static void silenceSpeech() {
         speechManager.silence();
     }

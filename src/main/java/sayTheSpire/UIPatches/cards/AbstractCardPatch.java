@@ -20,6 +20,8 @@ public class AbstractCardPatch {
             // AbstractCard.hb.hovered follows some strange alien logic I'm unfamiliar with
             }
             if (__instance.hb.justHovered) {
+                if (AbstractDungeon.actionManager.cardQueue.size() > 0)
+                    return;
                 Output.setUI(new CardElement(__instance, location));
             }
         }
