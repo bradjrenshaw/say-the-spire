@@ -26,7 +26,6 @@ public class GridCardSelectScreenPatch {
 
         public static void Postfix(GridCardSelectScreen __instance, CardGroup group, int numCards, String tipMsg,
                 boolean forUpgrade, boolean forTransform, boolean canCancel, boolean forPurge) {
-            Output.forceSpeechInterrupt();
             Output.text(tipMsg, false);
             initialWait = true;
         }
