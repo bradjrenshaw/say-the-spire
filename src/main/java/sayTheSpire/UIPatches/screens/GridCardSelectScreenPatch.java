@@ -16,7 +16,6 @@ public class GridCardSelectScreenPatch {
     public static class OpenConfirmationGridPatch {
 
         public static void Postfix(GridCardSelectScreen __instance, CardGroup group, String tipMsg) {
-            Output.forceSpeechInterrupt();
             Output.text(tipMsg, false);
         }
     }

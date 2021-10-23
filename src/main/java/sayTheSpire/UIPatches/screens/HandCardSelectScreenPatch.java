@@ -8,7 +8,6 @@ import sayTheSpire.ui.elements.CardElement;
 public class HandCardSelectScreenPatch {
 
     private static void openLogic(HandCardSelectScreen screen, String msg) {
-        Output.forceSpeechInterrupt();
         Output.text(msg, true);
     }
 
