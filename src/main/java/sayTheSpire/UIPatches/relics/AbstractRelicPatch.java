@@ -16,8 +16,6 @@ public class AbstractRelicPatch {
             RelicElement.RelicLocation location = RelicElement.RelicLocation.OTHER;
             if (player != null && player.relics.indexOf(__instance) >= 0) {
                 location = RelicElement.RelicLocation.MAIN_SCREEN;
-            } else {
-                return;
             }
             RelicElement element = new RelicElement(__instance, location);
             Output.setUI(element);
