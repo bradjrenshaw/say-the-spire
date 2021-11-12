@@ -1,33 +1,55 @@
+import java.util.ArrayList;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import sayTheSpire.Output;
+import sayTheSpire.ui.positions.ListPosition;
 import sayTheSpire.ui.elements.CardElement;
 
-@SpirePatch(clz = CardRewardScreen.class, method = "update")
 public class CardRewardScreenPatch {
 
-    public static AbstractCard prevHoveredCard = null;
+    private static Boolean initialWait = false;
+    private static AbstractCard prevHoveredCard = null;
 
-    public static AbstractCard getHoveredCard(CardRewardScreen screen) {
-        for (AbstractCard card : screen.rewardGroup) {
-            if (card.hb.hovered) {
-                return card;
-            }
+    @SpirePatch(clz = CardRewardScreen.class, method = "open")
+    public static class OpenPatch {
+
+        public static void Postfix(CardRewardScreen __instance, ArrayList<AbstractCard> cards, RewardItem rItem,
+                String header) {
+            initialWait = true;
+            prevHoveredCard = null;
         }
-        return null;
     }
 
-    public static void Postfix(CardRewardScreen __instance) {
-        if (AbstractDungeon.screen != AbstractDungeon.CurrentScreen.CARD_REWARD)
-            return;
-        AbstractCard current = getHoveredCard(__instance);
-        if (current != prevHoveredCard) {
-            if (current != null) {
-                Output.setUI(new CardElement(current));
+    @SpirePatch(clz = CardRewardScreen.class, method = "update")
+    public static class UpdatePatch {
+
+        public static AbstractCard getHoveredCard(CardRewardScreen screen) {
+            for (AbstractCard card : screen.rewardGroup) {
+                if (card.hb.hovered) {
+                    return card;
+                }
             }
-            prevHoveredCard = current;
+            return null;
+        }
+
+        public static void Postfix(CardRewardScreen __instance) {
+            if (AbstractDungeon.screen != AbstractDungeon.CurrentScreen.CARD_REWARD)
+                return;
+            AbstractCard current = getHoveredCard(__instance);
+            if (current != prevHoveredCard) {
+                if (current != null) {
+                    int index = __instance.rewardGroup.indexOf(current);
+                    if (initialWait && index != 0)
+                        return;
+                    ListPosition position = new ListPosition(index, __instance.rewardGroup.size());
+                    Output.setUI(new CardElement(current, CardElement.CardLocation.CARD_REWARD, position));
+                    initialWait = false;
+                }
+                prevHoveredCard = current;
+            }
         }
     }
 }

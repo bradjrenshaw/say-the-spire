@@ -10,6 +10,7 @@ import sayTheSpire.Output;
 public class GridCardSelectScreenPatch {
 
     private static Boolean initialWait = false;
+    private static AbstractCard prevHoveredCard = null;
 
     @SpirePatch(clz = GridCardSelectScreen.class, method = "openConfirmationGrid", paramtypez = { CardGroup.class,
             String.class })
@@ -17,6 +18,8 @@ public class GridCardSelectScreenPatch {
 
         public static void Postfix(GridCardSelectScreen __instance, CardGroup group, String tipMsg) {
             Output.text(tipMsg, false);
+            initialWait = false;
+            prevHoveredCard = null;
         }
     }
 
@@ -28,13 +31,12 @@ public class GridCardSelectScreenPatch {
                 boolean forUpgrade, boolean forTransform, boolean canCancel, boolean forPurge) {
             Output.text(tipMsg, false);
             initialWait = true;
+            prevHoveredCard = null;
         }
     }
 
     @SpirePatch(clz = GridCardSelectScreen.class, method = "update")
     public static class UpdatePatch {
-
-        public static AbstractCard prevHoveredCard = null;
 
         public static AbstractCard getHoveredCard(GridCardSelectScreen screen) {
             for (AbstractCard card : screen.targetGroup.group) {
