@@ -12,7 +12,7 @@ public class GremlinMatchCardElement extends CardElement {
     public GremlinMatchCardElement(AbstractCard card, AbstractPosition position) {
         super(card, CardElement.CardLocation.OTHER);
         this.position = position;
-        this.isFlipped = card.isFlipped;
+        this.isFlipped = true; //We don't want it reading the cards as they're initially flipped face down
     }
 
     public void update() {
