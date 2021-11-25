@@ -11,6 +11,7 @@ public class GridCardSelectScreenPatch {
 
     private static Boolean initialWait = false;
     private static AbstractCard prevHoveredCard = null;
+    private static int waitCheck = 0;
 
     @SpirePatch(clz = GridCardSelectScreen.class, method = "openConfirmationGrid", paramtypez = { CardGroup.class,
             String.class })
@@ -19,6 +20,7 @@ public class GridCardSelectScreenPatch {
         public static void Postfix(GridCardSelectScreen __instance, CardGroup group, String tipMsg) {
             Output.text(tipMsg, false);
             initialWait = false;
+            waitCheck = 0;
             prevHoveredCard = null;
         }
     }
@@ -31,6 +33,7 @@ public class GridCardSelectScreenPatch {
                 boolean forUpgrade, boolean forTransform, boolean canCancel, boolean forPurge) {
             Output.text(tipMsg, false);
             initialWait = true;
+            waitCheck = 10;
             prevHoveredCard = null;
         }
     }
@@ -39,28 +42,36 @@ public class GridCardSelectScreenPatch {
     public static class UpdatePatch {
 
         public static AbstractCard getHoveredCard(GridCardSelectScreen screen) {
-            for (AbstractCard card : screen.targetGroup.group) {
-                if (card.hb.hovered)
-                    return card;
-            }
-            return null;
+            /*
+             * for (AbstractCard card : screen.targetGroup.group) { if (card.hb.hovered) return card; } return null;
+             */
+            AbstractCard current = (AbstractCard) ReflectionHacks.getPrivate(screen, GridCardSelectScreen.class,
+                    "controllerCard");
+            return current;
         }
 
         public static void Postfix(GridCardSelectScreen __instance) {
             AbstractCard currentCard = getHoveredCard(__instance);
-            if (currentCard != prevHoveredCard && currentCard != null) {
+            if (currentCard == null) {
+                prevHoveredCard = null;
+                return; // Avoid issues related to initialWait
+            }
+            if (currentCard != prevHoveredCard) {
                 CardElement newElement = new CardElement(currentCard, CardElement.CardLocation.GRID_SELECT);
                 if (initialWait) {
                     GridPosition position = (GridPosition) newElement.getPosition();
-                    if (position.x != 1 || position.y != 1)
-                        return; // internally this screen hovers a lot of cards over multiple frames but it will always
-                                // end up at position (1, 1) and the other cards aren't visually noticeable. As a
-                                // result, the goal is to only read the intended initially focused card.
+
+                    // internally this screen hovers a lot of cards over multiple frames but it will always
+                    // end up at position (1, 1) and the other cards aren't visually noticeable. As a
+                    // result, the goal is to only read the intended initially focused card.
+                    waitCheck--;
+                    if (waitCheck > 0 && (position.x != 1 || position.y != 1))
+                        return;
                 }
                 initialWait = false;
                 Output.setUI(newElement);
+                prevHoveredCard = currentCard;
             }
-            prevHoveredCard = currentCard;
         }
     }
 }
