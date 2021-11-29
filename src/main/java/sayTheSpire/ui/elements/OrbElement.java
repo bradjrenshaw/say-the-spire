@@ -34,7 +34,7 @@ public class OrbElement extends UIElement {
         int index = player.orbs.indexOf(this.orb);
         if (index < 0)
             return null;
-        index = player.orbs.size() - index;
+        index = player.orbs.size() - index - 1;
         return new ListPosition(index, player.orbs.size());
     }
 }
