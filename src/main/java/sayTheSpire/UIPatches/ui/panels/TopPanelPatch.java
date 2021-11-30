@@ -30,6 +30,7 @@ public class TopPanelPatch {
             String ascensionString = (String) ReflectionHacks.getPrivate(__instance, TopPanel.class, "ascensionString");
             Output.setUI(new ResourceElement(CharacterSelectScreen.TEXT[8], TextParser.parse(ascensionString),
                     String.valueOf(AbstractDungeon.ascensionLevel)));
+                    return true;
         }
         return false;
     }
