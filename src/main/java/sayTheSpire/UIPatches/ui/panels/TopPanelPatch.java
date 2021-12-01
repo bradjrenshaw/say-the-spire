@@ -12,6 +12,7 @@ import sayTheSpire.utils.OutputUtils;
 import sayTheSpire.Output;
 import sayTheSpire.TextParser;
 
+
 @SpirePatch(clz = TopPanel.class, method = "updatePotions")
 public class TopPanelPatch {
 
