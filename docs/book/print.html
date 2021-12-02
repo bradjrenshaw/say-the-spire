@@ -1,0 +1,776 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Say the Spire Documentation</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="intro.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="installation.html">Installation and Setup</a></li><li class="chapter-item expanded affix "><a href="important.html">Important Notes</a></li><li class="chapter-item expanded affix "><li class="part-title">Mod Usage</li><li class="chapter-item expanded "><a href="mod/general.html"><strong aria-hidden="true">1.</strong> General Overview</a></li><li class="chapter-item expanded "><a href="mod/ui.html"><strong aria-hidden="true">2.</strong> UI</a></li><li class="chapter-item expanded "><a href="mod/map.html"><strong aria-hidden="true">3.</strong> The Map</a></li><li class="chapter-item expanded affix "><li class="part-title">Input</li><li class="chapter-item expanded "><a href="input/virtual.html"><strong aria-hidden="true">4.</strong> Keyboard Support and Virtual Input</a></li><li class="chapter-item expanded "><a href="input/controls.html"><strong aria-hidden="true">5.</strong> Controls</a></li><li class="chapter-item expanded affix "><li class="part-title">Configuration</li><li class="chapter-item expanded "><a href="config.html"><strong aria-hidden="true">6.</strong> Config Files and Changing Mod Settings</a></li><li class="chapter-item expanded affix "><li class="part-title">For Developers</li><li class="chapter-item expanded "><a href="devs/compilation.html"><strong aria-hidden="true">7.</strong> Compiling the Mod from Source</a></li><li class="chapter-item expanded "><a href="devs/localization.html"><strong aria-hidden="true">8.</strong> Localizing the Mod</a></li><li class="chapter-item expanded affix "><li class="part-title">Additional Information</li><li class="chapter-item expanded "><a href="changes.html"><strong aria-hidden="true">9.</strong> Change Log</a></li><li class="chapter-item expanded "><a href="issues.html"><strong aria-hidden="true">10.</strong> Known Issues</a></li><li class="chapter-item expanded "><a href="credits.html"><strong aria-hidden="true">11.</strong> Credits</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Say the Spire Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<p>Welcome to Say the Spire, a mod that provides blind accessibility for the game
+Slay the Spire. Note that currently only the Steam version of the game on
+Windows is officially supported.</p>
+<h2 id="getting-started"><a class="header" href="#getting-started">Getting Started</a></h2>
+<p>Follow the instructions on the <a href="./installation.html">installation</a> page. After
+that it is highly recommended you read the <a href="./important.html">Important Notes</a>
+page. After that experiment with the game and refer to this documentation as
+needed.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="mod-installation-and-setup"><a class="header" href="#mod-installation-and-setup">Mod Installation and Setup</a></h1>
+<p>For recent changes, see the <a href="./changes.html">change log</a>.</p>
+<p>For compilation instructions for developers, go <a href="./devs.html">here</a>.</p>
+<h2 id="installation"><a class="header" href="#installation">Installation</a></h2>
+<h3 id="using-steam-workshop-recommended"><a class="header" href="#using-steam-workshop-recommended">Using Steam Workshop (Recommended)</a></h3>
+<p>If you own the game on Steam, Say the Spire can be subscribed to (installed) from the Steam Workshop. If you are doing this, it will require you to subscribe to ModTheSpire and BaseMod. Check the bottom of the page after clicking subscribe and it will link you to the required mods. Alternatively all requirements are linked to in the list below.</p>
+<ul>
+<li><a href="https://steamcommunity.com/workshop/filedetails/?id=1605060445">ModTheSpire Steam Workshop</a></li>
+<li><a href="https://steamcommunity.com/workshop/filedetails/?id=1605833019">BaseMod Steam Workshop</a></li>
+<li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2239220106">Say the Spire Steam Workshop</a></li>
+</ul>
+<p>When you are subscribed to Steam Workshop items they will be automatically downloaded. Updates to those items are also automatic. Say the Spire will announce the current version number when it is launched.</p>
+<h3 id="manual-installation"><a class="header" href="#manual-installation">Manual Installation</a></h3>
+<p>If you do not want to install from the steam workshop, you can copy all requirements manually. </p>
+<p>First, download all dependencies. You can either install them from the Steam Workshop links above or download them from their GitHub pages listed below.</p>
+<ul>
+<li><a href="https://github.com/kiooeht/ModTheSpire/releases/latest/">ModTheSpire GitHub Latest Release</a> Download and extract ModTheSpire.zip</li>
+<li><a href="https://github.com/daviscook477/BaseMod/releases/latest/">BaseMod GitHub Latest Release</a> Download BaseMod.jar</li>
+<li><a href="https://github.com/bradjrenshaw/say-the-spire/releases/latest/">Say the Spire GitHub Latest Release</a> download and extract the zip file</li>
+</ul>
+<p>Now create a folder called <code>mods</code> in your Slay the Spire game directory. This is most likely to be <code>C:\Program Files (x86)\Steam\steamapps\common\SlayTheSpire</code>. After that, paste ModTheSpire.jar, BaseMod.jar, and sayTheSpire.jar into that mods folder.</p>
+<p>Make sure that you do not have multiple instances of the same mod installed from different sources for Say the Spire or any mods it depends on. for example, do not have both the steam workshop and mods folder versions of BaseMod installed. Conflicting mods can cause the game to break and prevent mods from functioning properly.</p>
+<h2 id="setup"><a class="header" href="#setup">Setup</a></h2>
+<p>After you have installed the needed mods, you can launch the game using one of the following options. See the Mod the Spire section for how to handle some accessibility issues with the modding tool.</p>
+<ul>
+<li>Recommended: Download and run the <a href="https://raw.githubusercontent.com/bradjrenshaw/say-the-spire/master/scripts/mts_steam.cmd">mts_steam.cmd</a> file or use the same file from the GitHub release' zip folder. It shouldn't matter where this file is launched from. If your steam directory is not the default, open the mts_steam.cmd file in notepad or wordpad and change the path after the /d to the correct directory. Whenever you want to play the game using mods, launch that file.</li>
+<li>in steam, right click on the game, click play, OCR, left click on play with mods, then left click on play. This is not ideal but it works.</li>
+<li>Launch using a manual call to java (not recommended)</li>
+</ul>
+<h2 id="mod-the-spire"><a class="header" href="#mod-the-spire">Mod the Spire</a></h2>
+<p>Mod the Spire is the software that handles game mods. It allows you to activate and deactivate mods. When play is pressed, the mods are loadepd into the game and the game is run.</p>
+<p>Mod the Spire is not the most accessible piece of software, however it can be worked with. NVDA object navigation is required for more specific mod configuration, however you do not need it for enabling all mods to start with.</p>
+<p>If your NVDA doesn't recognize objects in the window (reading &quot;unknown&quot; or just reading nothing at all), run the following command using cmd prompt or batch. If your steam directory is not default, change the steam path accordingly.</p>
+<pre><code>&quot;C:\Program Files (x86)\Steam\steamapps\common\SlayTheSpire\jre\bin\jabswitch&quot; -enable
+</code></pre>
+<p>This command enables Java Access Bridge. If you run this command on the command prompt, it should output &quot;Java Access Bridge has been enabled&quot;.</p>
+<p>Note that if you are using jaws, Mod the Spire will not work with certain older versions of jaws due to them not supporting Java Access Bridge (no controls will be read). If you are using jaws, you can hit enter as soon as mod the spire opens to play. Note that doing this will play with the currently enabled mods, however by default no mods are enabled. If setting up mods though you will have to switch to NVDA or some other scree nreader that has Java Access Bridge support.</p>
+<h3 id="quick-mod-setup"><a class="header" href="#quick-mod-setup">Quick Mod Setup</a></h3>
+<p>If you want to quickly enable/disable all mods, do the following. This is most likely what you want if setting up the game for the first time or just running Say the Spire with no additional game mods.</p>
+<ul>
+<li>If this is the first time running Mod the Spire, click toggle all mods on/off, then click play. This will enable all mods as new mods start out disabled by default. </li>
+<li>If this is a subsequent run of Mod the Spire, you want to enable all mods (maybe after adding a new one), and you have already enabled mods, click the toggle all mods on/off button twice then click play. If you haven't changed your mods since the previous run you can just hit play; your mod state is saved.</li>
+</ul>
+<h3 id="specific-mod-configuration"><a class="header" href="#specific-mod-configuration">Specific Mod Configuration</a></h3>
+<p>If you are using NVDA, you can use object Nav to view the information for each mod and to enable/disable the mod. To do so, arrow over the list item for a mod and press the move to first contained object key. You can then use move to previous and next object to interact with this section. This collection of objects includes the mod checkbox (toggle with Activate current Navigator object) as well as the mod's name and other information.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="important-notes"><a class="header" href="#important-notes">Important Notes</a></h1>
+<h2 id="achievement-enabler-and-game-leaderboards"><a class="header" href="#achievement-enabler-and-game-leaderboards">Achievement Enabler and Game Leaderboards</a></h2>
+<p>When the game is launched in a modded state, achievements and daily run
+leaderboard submissions are disabled by default. There unfortunately is nothing
+I can do about this within the scope of this mod. Achievements can be reenabled
+however using the achievement enabler mod. Install this from the following
+locations:</p>
+<ul>
+<li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=1692554109">Achievement Enabler Steam
+Workshop</a></li>
+<li>there is currently no GitHub repository for this mod.</li>
+</ul>
+<h2 id="cloud-saves"><a class="header" href="#cloud-saves">Cloud Saves</a></h2>
+<p>When the game is launched via ModTheSpire using the mts_steam.cmd file, it does
+not run all of the usual Steam functions that would be run if the game was
+launched normally. As a result, your game data is not automatically backed up to
+the Steam Cloud. To fix this, run the game normally and select the option to
+upload your data. You will need OCR to do this unfortunately and there is no way
+to automatically back up the data periodically. You can copy the json files from
+the game directory to manually back up your saves as an alternative.</p>
+<h2 id="settings-not-saving"><a class="header" href="#settings-not-saving">Settings not Saving</a></h2>
+<p>There is a bug related to Game Settings not saving when using Mod the Spire.
+This seems to be an issue with Steam and the game itself.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="general-mod-usage"><a class="header" href="#general-mod-usage">General Mod Usage</a></h1>
+<p>The mod automatically sets up dll files needed for screen reader functionality
+and removes them after the game is closed. If the mod is working correctly, you
+will hear the current version of Say the Spire read out by either your screen
+reader or SAPI if your screen reader is not running when the game launches.</p>
+<p>It is highly recommended that you refer to the <a href="mod/../input/virtual.html">Keyboard Support/Virtual
+Input</a> and <a href="mod/./ui.html">UI</a> sections after reading this page.</p>
+<p>The mod narrates UI elements automatically. It will also announce many game
+events as they occur without any additional player input required. To access
+additional statistics and tooltips however you will need to use the buffer
+system.</p>
+<p>there is an extra set of controller and keyboard inputs to provide information.
+This is generally refered to as the buffer system and is mapped to the right
+stick or control plus the arrow keys on keyboard by default. As you move over
+various UI Elements, contextual buffers will appear. These are just lists of
+various pieces of information about the element you're focusing on. For example,
+if you hover over a card, the card buffer will be automatically focused and will
+contain information such as the card's name, energy cost, description, etc.</p>
+<p>Think of buffers as a way to refer to different areas of the screen quickly,
+similarly to how you could scan visually. For example, while hovered over a
+card, you can move to the player buffer to view player info without having to
+move there with the other controls. Buffers are also used to provide access to
+UI Tooltips (for example character information on the character selection
+screen, etc). </p>
+<p>The buffer system is also used for the map. Using the buffer controls lets you
+browse available paths and choices when available. For more information, see the
+<a href="mod/./map.html">map</a> section.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="game-ui"><a class="header" href="#game-ui">Game UI</a></h1>
+<h2 id="general-overview-of-ui-querks"><a class="header" href="#general-overview-of-ui-querks">General Overview of UI Querks</a></h2>
+<p>This game has some unusual qualities to the UI (due to the fact that controller
+support was added in later; the game was primarily mouse driven before that).
+for more detail on any of these, see the sections below this list. In general
+keep in mind:</p>
+<ul>
+<li>Certain prompts (confirmation, tutorial, hand card selection, etc) require you
+to hit proceed to get out of them. For confirmation prompts, you can also hit
+cancel to back out. Note that this is not always the case.
+<ul>
+<li>Note that if you have the disable confirm for single card selection option
+on, you do not have to hit proceed after selecting a card.</li>
+</ul>
+</li>
+<li>Nearly everything has contextual actions mapped to the various controls. For
+example, hitting top panel/x/square will allow you to delete a save slot and
+proceed/y/triangle will allow you to rename that slot.</li>
+<li>For the options screen, for some reason you have to move the right stick left
+and right to adjust the volume sliders (or ctrl left/right by default on
+keyboard).</li>
+<li>In many circumstances a grid or hand card select screen will appear. Note that
+this is not the normal turn play card from hand screen. For example an
+instance of this is playing warcry (where you have to select a card to put on
+top of your draw pile). You need to hit proceed to exit this screen after
+selecting cards. For the hand card select screens, they are laid out in two
+rows (top row is cards selected, bottom row is cards in hand).</li>
+</ul>
+<h2 id="confirmation-prompts"><a class="header" href="#confirmation-prompts">Confirmation Prompts</a></h2>
+<p>Prompts such as the abandon run prompt provide a yes/no option. To confirm one
+of these prompts, use the proceed input. to cancel one, use the cancel input.</p>
+<h2 id="hand-card-select"><a class="header" href="#hand-card-select">Hand Card Select</a></h2>
+<p>Hand card select prompts consist of two rows. The bottom row contains the cards
+you can select from; the top row contains cards that have been selected. You can
+hit confirm on a card in the top row to deselect it. Once done, you can hit
+proceed (y/triangle/e) to confirm your selections.</p>
+<h2 id="menus"><a class="header" href="#menus">Menus</a></h2>
+<p>The menus overall work as expected, however:</p>
+<ul>
+<li>In the main menu, you can get to your save slots by hitting the map input (back/select/m).
+<ul>
+<li>In the save slots menu, hitting top panel (x/square/t) will allow you to
+delete a save slot and hitting proceed (y/triangle/e) will allow you to
+rename one.</li>
+</ul>
+</li>
+<li>Character Select
+<ul>
+<li>hitting proceed (y/triangle/e) will toggle ascension mode, master deck and
+exhaust view inputs (the bumpers or d and f for keyboard) will change the
+ascension level.</li>
+</ul>
+</li>
+<li>Custom Run
+<ul>
+<li>Top panel (x/square/t) will toggle ascension mode, deck view and exhaust
+view (the bumpers or d and f for keyboard) will change ascension level</li>
+<li>Proceed (y/triangle/e) to start the run</li>
+</ul>
+</li>
+<li>Settings Screen
+<ul>
+<li>This menu is laid out in a very inconsistent grid of two columns. Moving
+between items is not always consistent, especially when switching columns.
+This is not an issue with the mod but appears to be related to how the
+controller support for the game is implemented.</li>
+<li>You can change tabs with the deck and exhaust inputs (bumpers or d or f on
+keyboard). Be very careful in the controls tab however as it is not
+supported by the mod yet.</li>
+<li>Buffer controls next/previous (right stick left/right or ctrl left/right
+arrow) change volume sliders</li>
+</ul>
+</li>
+<li>In-run pause menu/settings screen
+<ul>
+<li>To abandon a run, hit proceed (y/triangle/e)</li>
+<li>to return to the main menu without abandoning the run, hit discard
+(rt/r2/w)</li>
+</ul>
+</li>
+<li>Singing Bowl Relic requires exhaust view input (rb/r1/f)</li>
+</ul>
+<h2 id="game-ui-1"><a class="header" href="#game-ui-1">Game UI</a></h2>
+<p>The game, both in battle and outside of it, is laid out in a grid.</p>
+<h3 id="top-panel"><a class="header" href="#top-panel">Top Panel</a></h3>
+<p>The top panel takes up the top part of the screen and holds a number of your
+resources, such as your relics. You can get to it at any time by pressing top
+panel (x/square/t). You will have to do this to review other buffers if the map
+is currently showing. The top panel is always visible, regardless of whether the
+map, battle, or an event is currently displayed.</p>
+<ul>
+<li>The top row holds your player hp, your gold, your potions, and the ascension
+level (if applicable).</li>
+<li>The second row shows all of your relics</li>
+</ul>
+<h3 id="battle"><a class="header" href="#battle">Battle</a></h3>
+<p>The battle screen is laid out as follows, from bottom to top:</p>
+<ul>
+<li>Your hand</li>
+<li>the second row shows the player and monsters</li>
+<li>the third row shows any orbs and orb slots (if applicable; if not this row is
+not there)</li>
+<li>the top panel</li>
+</ul>
+<p>When you play a card that does not require a target, you must hit the confirm
+button again in order to play it. If a target is required however you can just
+select it without having to double the input.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="the-map"><a class="header" href="#the-map">The Map</a></h1>
+<p>While viewing the map, the buffer system is replaced with a map viewer. This
+allows you to quickly follow paths.</p>
+<p>When playing Slay the Spire, you can view the whole map for a given act at any
+time by pressing map, as well as it being automatically shown between rooms. The
+map consists of rooms with curved lines indicating where you can travel to. The
+location of the player is either below the map (beginning of an act) or the room
+they last completed. </p>
+<p>The map viewer is essentially a virtual cursor. If you move over a map node
+normally in the course of gameplay (that is, using the d-pad, arrow keys, or
+left stick), the virtual cursor will be set to that map node.</p>
+<p>Use right stick left and right or control left and right arrows to move between
+possible choices (rooms you can move to from this node, only in the forward
+direction). Use right stick up or control up arrow to follow the path forward;
+this will move continuously until you hit a choice or dead end (such as a boss).
+Use right stick down or control down arrow to retrace your steps.</p>
+<p>For example if given the following 3x4 map:</p>
+<table><thead><tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th></tr></thead><tbody>
+<tr><td>2</td><td>monster</td><td>elite</td><td>unknown</td><td>monster</td></tr>
+<tr><td>1</td><td>blank</td><td>merchant</td><td>unknown</td><td>blank</td></tr>
+<tr><td>0</td><td>monster</td><td>blank</td><td>blank</td><td>blank</td></tr>
+</tbody></table>
+<p>Say you are starting below the  bottom row. You have a single choice (monster,
+far bottom left) The only choice from there is merchant. There are however three
+choices (monster, elite, or unknown). From the bottom room your map focus will
+be on the first choice (monster). hitting forward will follow the path until it
+hits a branch point, so it will read something like this. monster, merchant,
+choice After that it will allow you to browse the choices as before. Note that
+it reads the choice again at the start of the path to avoid confusion, this
+isn't a bug. If moving backwards, the path is read in reverse as you would
+expect, unless you disable this setting in the config file.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="keyboard-support-and-virtual-input"><a class="header" href="#keyboard-support-and-virtual-input">Keyboard Support and Virtual Input</a></h1>
+<h2 id="keyboard-support"><a class="header" href="#keyboard-support">Keyboard Support</a></h2>
+<p>Say the Spire provides full keyboard support for the game. This is enabled by
+enabling the virtual_input setting in the config file (should be enabled by
+default). Virtual input also allows for additional mod behavior; see the section
+below.</p>
+<p>Keyboard support works by emulating gamepad controls. For example, pressing e
+(proceed) is equivalent to triggering the same action via a gamepad (y/triangle
+by default). The game has a number of UI querks; it is recommended that you read
+the <a href="input/../mod/ui.html">UI</a> section.</p>
+<p>Keyboard remappings can currently be modified by editing input.json. A better
+method for remapping is being worked on and it is not recommended you do this
+unless you are familiar with json. If you are modifying existing mappings, it
+should be safe to just modify the values within quotes.</p>
+<h1 id="what-actually-is-virtual-input"><a class="header" href="#what-actually-is-virtual-input">What Actually is Virtual Input?</a></h1>
+<p>Virtual input is a mod setting that adds a layer of hooks between the game's
+pre-existing input and the mod. This essentially means that the mod has
+additional control over how input is processed and adds the capacity for the mod
+to add new inputs. By default this setting is enabled, but can be disabled in
+the config file if you prefer to use the game's input handling. Note that doing
+this will disable keyboard support and revert to the game's keyboard handling,
+which lacks most of the features that the mod has. The buffer system for gamepad
+controls will still work when virtual input is disabled.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="gamepad-and-keyboard-controls"><a class="header" href="#gamepad-and-keyboard-controls">Gamepad and Keyboard Controls</a></h1>
+<p>These are the default gamepad and keyboard controls for Say the Spire. The gamepad controls by default match what the game uses. for information on Virtual Input and Keyboard Support, go <a href="input/./virtual.html">here</a>.</p>
+<table><thead><tr><th>Action</th><th>Controller (xbox/ps)</th><th>Keyboard</th></tr></thead><tbody>
+<tr><td>movement (menus, general UI)</td><td>d-pad or left stick</td><td>arrow keys</td></tr>
+<tr><td>confirm</td><td>a/x</td><td>enter</td></tr>
+<tr><td>top panel, delete save slot</td><td>x/square</td><td>t</td></tr>
+<tr><td>proceed, rename save slot, toggle ascension mode</td><td>y/triangle</td><td>e</td></tr>
+<tr><td>cancel</td><td>b/circle</td><td>escape</td></tr>
+<tr><td>master deck view, decrease ascension level</td><td>lb/l1</td><td>d</td></tr>
+<tr><td>Draw pile view/some other contextual options</td><td>lt/l2</td><td>q</td></tr>
+<tr><td>Exhaust pile, Singing Bowl hp increase, increase ascension level</td><td>rb/r1</td><td>f</td></tr>
+<tr><td>Discard pile/some contextual options</td><td>rt/r2</td><td>w</td></tr>
+<tr><td>buffers, map, and settings sliders</td><td>right stick</td><td>control arrows</td></tr>
+<tr><td>settings/pause</td><td>start</td><td>backspace</td></tr>
+<tr><td>Map, save slots (from main menu), general back option</td><td>select</td><td>m</td></tr>
+</tbody></table>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="config-files-and-changing-mod-settings"><a class="header" href="#config-files-and-changing-mod-settings">Config Files and Changing Mod Settings</a></h1>
+<p>After first launching the game, two config files are created that allow you to
+modify certain aspects of the mod. These files can be found at:</p>
+<ul>
+<li>Windows: <code>%LOCALAPPDATA%\ModTheSpire\sayTheSpire\</code></li>
+<li>Linux: <code>~/.config/ModTheSpire/sayTheSpire/</code></li>
+<li>Mac: <code>~/Library/Preferences/ModTheSpire/sayTheSpire/</code></li>
+</ul>
+<p>The settings.ini file allows you to change various settings related to the mod.
+The input.json stores keyboard mappings. It is not recommended to manually
+modify input.json unless you are familiar with json.</p>
+<h2 id="settingsini"><a class="header" href="#settingsini">Settings.ini</a></h2>
+<p>This is a list of all of the available options in settings.ini. To change one of
+these, change the value to the right of the <code>=</code>. For example you could disable
+reading block text by changing <code>block_text = true</code> to <code>block_text = false</code>.</p>
+<h3 id="advanced"><a class="header" href="#advanced">[advanced]</a></h3>
+<p>Advanced settings related to the internals of the mod.</p>
+<table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td>use_updated_card_description</td><td>true, false</td><td>false</td><td>whether or not to use a different internal property to get card descriptions. This should be enabled if you are trying to use mods that do not have properly rendered card descriptions. This may break depending on your current game language so use this with caution.</td></tr>
+</tbody></table>
+<h3 id="combat"><a class="header" href="#combat">[combat]</a></h3>
+<p>Settings related to combat messages.</p>
+<table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td>block_text</td><td>true, false</td><td>true</td><td>Whether or not to read when a creature gains block.</td></tr>
+<tr><td>buff_debuff text</td><td>true, false</td><td>true</td><td>Whether or not to read when a creature gains a buff or debuff.</td></tr>
+</tbody></table>
+<h3 id="input"><a class="header" href="#input">[input]</a></h3>
+<p>Settings related to virtual input.</p>
+<table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td>virtual_input</td><td>true or false</td><td>true</td><td>Whether or not virtual input is enabled.</td></tr>
+</tbody></table>
+<h3 id="map"><a class="header" href="#map">[map]</a></h3>
+<p>Settings related to map reading.</p>
+<table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td>read_reversed_paths</td><td>true, false</td><td>true</td><td>Whether or not to read the path in reverse when moving backward on the map, as if you were tracing it visually. Many people prefer to disable this to save time but it is enabled by default for clarity.</td></tr>
+</tbody></table>
+<h3 id="ui"><a class="header" href="#ui">[ui]</a></h3>
+<p>Contains settings related to the game's UI and how certain elements are read
+out.</p>
+<table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td>read_proceed_text</td><td>true, false</td><td>true</td><td>Whether or not to read the proceed text when the option is available (for example to skip a combat reward)</td></tr>
+<tr><td>read_banner_text</td><td>true, false</td><td>true</td><td>Whether or not banner text is read. Banner text appears at the top of the screen and generally acts as a screen title.</td></tr>
+<tr><td>read_positions</td><td>true, false</td><td>true</td><td>Whether or not to read the position of an element (for example 1 of 3 in a list)</td></tr>
+</tbody></table>
+<h3 id="resources"><a class="header" href="#resources">[resources]</a></h3>
+<p>Settings related to how resources are loaded and unloaded. If you are
+experiencing a crash when closing the game, set both of these to false.</p>
+<table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td>unload_native_libs</td><td>true, false</td><td>true</td><td>Whether or not to unload the screen reader libraries from memory when the game closes.</td></tr>
+<tr><td>dispose_resource_files</td><td>true, false</td><td>true</td><td>Whether or not to delete the screen reader dll files in the slay the Spire root directory after the game closes and they are unloaded from memory. Do not enable this unless unload_native_libs is enabled or it won't work.</td></tr>
+</tbody></table>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="for-developers"><a class="header" href="#for-developers">For Developers</a></h1>
+<p>If you are looking to work on adding additional functionality to the mod, this
+section details how to compile the mod. if you are looking to localize the mod,
+go <a href="devs/./localization.html">here</a>.</p>
+<h2 id="compilation"><a class="header" href="#compilation">Compilation</a></h2>
+<h3 id="mod-requirements"><a class="header" href="#mod-requirements">Mod Requirements</a></h3>
+<p>SayTheSpire requires both ModTheSpire and BaseMod in order to run. As a result
+it needs these jars to compile.</p>
+<ul>
+<li><a href="https://github.com/kiooeht/ModTheSpire">ModTheSpire</a></li>
+<li><a href="https://github.com/daviscook477/BaseMod">BaseMod</a></li>
+</ul>
+<p>Paste modTheSpire.jar and BaseMod.jar into the lib folder at the root of this
+repository. If one does not exist it is safe to create one.</p>
+<h3 id="setting-up-screen-reader-libs"><a class="header" href="#setting-up-screen-reader-libs">Setting up Screen Reader Libs</a></h3>
+<p>In order to use screen reader output, you need Output libraries for all
+supported operating systems.</p>
+<h4 id="windows"><a class="header" href="#windows">Windows</a></h4>
+<p>For screen reader output on windows, the Tolk library is required. You can find
+Tolk <a href="https://github.com/dkager/tolk">here</a>. Clone this repository and compile
+the .jar. </p>
+<p>You need to set up the Tolk.jar as a maven dependency. To do so, run this
+command from the repository's root, substituting in the correct path for your
+Tolk.jar and leaving the other parameters unchanged:</p>
+<pre><code class="language-bash">mvn install:install-file -Dfile=path/to/Tolk.jar -DgroupId=com.davykager.tolk -DartifactId=Tolk -Dversion=unknown -Dpackaging=jar
+</code></pre>
+<p>If you want screen reader dlls to automatically extract at runtime, download the
+release from the Tolk github page (Latest build from AppVeyor). Paste the x86
+and x64 directories in src/main/resources/tolk/, so you should have a directory
+structure resembling this.</p>
+<ul>
+<li>src/main/resources/
+<ul>
+<li>tolk/
+<ul>
+<li>x86/</li>
+<li>x64/</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Note that if you do not add these files to resources, you will have to manually
+place the correct dlls in your root SlayTheSpire game directory.</p>
+<h3 id="packaging-and-setup"><a class="header" href="#packaging-and-setup">Packaging and Setup</a></h3>
+<p>To compile the mod, run</p>
+<pre><code class="language-bash">mvn package
+</code></pre>
+<p>After that, copy mods/sayTheSpire.jar to your Slay the Spire mods directory.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="localization"><a class="header" href="#localization">Localization</a></h1>
+<p>Localization support has not yet been implemented, however it is planned for a
+future release.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="change-log"><a class="header" href="#change-log">Change Log</a></h1>
+<h2 id="beta-021"><a class="header" href="#beta-021">Beta 0.2.1</a></h2>
+<p>This patch fixes a number of issues related to UI.</p>
+<ul>
+<li>The compendium screens are now fully supported</li>
+<li>The various deck view screens (draw, discard, etc) now read your total number of cards on that screen and announce the screen you are on.</li>
+<li>Cards
+<ul>
+<li>Location now properly announced</li>
+<li>A new config setting has been added to improve mod compatibility as the localization fixes in the last beta broke certain card descriptions that were updated during gameplay by various mods. If you want to use certain mods that do this, set advanced.use_updated_card_description in your settings.ini file to true. Note that this will most likely break localization for certain languages (currently confirmed to break for Japanese).</li>
+<li>Fixed an issue where numbers followed by punctuation would read incorrectly, for example the Feed card. See the text parsing section.</li>
+</ul>
+</li>
+<li>Combat Rewards Screen
+<ul>
+<li>All rewards now have location information and properly update buffers</li>
+</ul>
+</li>
+<li>Events
+<ul>
+<li>Fixed potential bug with Gremlin Match game where it would read the names of all cards as the event started</li>
+</ul>
+</li>
+<li>General Gameplay Screen
+<ul>
+<li>All of the tooltips and associated resources are now viewable by browsing the main screen as intended (they are to the left of your potions)</li>
+<li>The ascension level tooltip is now accessible (to the right of your potions)</li>
+</ul>
+</li>
+<li>Monsters
+<ul>
+<li>Power tips (the descriptions of any applied powers in the buffer) will no longer incorrectly show formatting information if that information occurs at the start of the first word of the effect description (for example #y at the beginning of weak's description)</li>
+<li>Monsters now have location information</li>
+</ul>
+</li>
+<li>Potions
+<ul>
+<li>Potion location is now properly announced</li>
+<li>Fixed a bug where you could not read the tooltip for an empty potion slot</li>
+<li>Potion rarity has been added to the potion buffer</li>
+</ul>
+</li>
+<li>Relics
+<ul>
+<li>Location is now properly announced</li>
+<li>Relic rarity has been added to the relic buffer</li>
+</ul>
+</li>
+<li>Shops
+<ul>
+<li>All shop items now have location information approximately corresponding to their on screen position</li>
+<li>The button to sell a card is now actually announced as a button and has location information</li>
+</ul>
+</li>
+<li>Text Parsing
+<ul>
+<li>Fixed a bug where words containing numbers would break if the number was immediately followed by punctuation. this primarily effected cards such as feed, where the 3 hp increase was read as !m!.</li>
+</ul>
+</li>
+</ul>
+<h2 id="beta-020"><a class="header" href="#beta-020">Beta 0.2.0</a></h2>
+<ul>
+<li>The versioning scheme has been changed to semantic versioning. This should allow for more clear version numbering for frequent updates instead of large spread out beta releases as it has been so far.</li>
+<li>Added: Introduction of the virtual input system allowing for keyboard support and additional mod specific menus. See the Virtual Input section of the readme for more information.</li>
+<li>Fixed: Strategic (attack and debuff intent) damage now correctly shows multihitting attacks</li>
+<li>Fixed: If no screen reader is running, the mod now correctly defaults to using SAPI on Windows.</li>
+<li>Fixed: Potential issues with speech not stopping on button press or stopping at the wrong time</li>
+<li>Fixed: Resolution options in settings no longer have &quot;tab tab&quot; after them</li>
+<li>Fixed: You can no longer see a face down or locked card's energy cost.</li>
+<li>Fixed: A number of issues related to buffers have been fixed
+<ul>
+<li>Buffers should no longer eroniously report null items</li>
+<li>When the mod focuses a buffer (for example when moving over a card and the buffer for that card is selected), the buffer now correctly updates. this should prevent needing to refocus the buffer to read card information in some situations.</li>
+<li>Fixed a potential crash if no buffer was selected and you tried to read the next or previous item.</li>
+<li>Fixed a long standing bug where trying to review buffer items on the treasure chest screen would crash the game.</li>
+</ul>
+</li>
+<li>Fixed: A number of issues related to parsing text in certain languages
+<ul>
+<li>Variable numbers on cards should now be read for all languages such as damage or block (thanks to @yncat for the code contribution).</li>
+<li>Fixed issue in settings menu where the language dropdown would have formatting tags read for some languages</li>
+<li>Strings of single characters will no longer crash the game in certain situations. This may fix issues with certain non-English language strings crashing the game.</li>
+</ul>
+</li>
+<li>Added: Two new settings have been added to the config file: resources.dispose_resource_files and resources.unload_native_libs. These were added to deal with a rare issue with certain Steam setups that can cause the game to crash upon closing. These are both on by default but should be set to false if people are experiencing game crashes. The issue has most likely been fixed but these settings are left here just in case.</li>
+<li>Added: Messages sent to logs by Say the Spire have been standardized to fit the style of Slay the Spire's logs. This should make debug output a lot more clear.</li>
+<li>Added: The Say the Spire version is announced after the splash screen fully fades out.</li>
+<li>Fixed: The game should no longer crash on shutdown for some steam setups due to unloading the wrong native libraries too early. If a crash on shutdown occurs please report it (see the known issues section of this change log).</li>
+<li>Fixed: Dropdown menus that are not yet recognized by the mod will no longer cause the game to crash. As a result the run history screen will no longer crash the game. Note that the screen itself is still not yet read by the mod.</li>
+<li>Added: Card rarity is now included in the card buffer (thanks to @ohylli for the code contribution).</li>
+</ul>
+<h3 id="known-issues"><a class="header" href="#known-issues">Known Issues</a></h3>
+<ul>
+<li>There was a rare crash for certain Steam setups that occured when the game is closed. It is believed that this issue is fixed, however if this happens, open settings.ini and change dispose_resource_files and unload_native_libs to false under the resources section. Screen reader dlls and a few .lib files will be left in your Slay the Spire program directory but nothing else will be effected.</li>
+</ul>
+<h2 id="beta-4public-beta-1"><a class="header" href="#beta-4public-beta-1">Beta 4/Public Beta 1</a></h2>
+<ul>
+<li>
+<p>Fixed: An update to Slay the Spire broke the mod due to a game file being removed; this has been fixed. Please report any other issues that may have been introduced in the most recent Slay the Spire update.</p>
+</li>
+<li>
+<p>Added: Certain UI elements (such as cards and orbs) now read their relative positions</p>
+</li>
+<li>
+<p>Fixed: The death text quote now reads correctly if you lose multiple runs in the same game session</p>
+</li>
+<li>
+<p>Added: the proceed option is now read out</p>
+</li>
+<li>
+<p>Fixed: You can no longer view card information if the cards are visually face down or locked</p>
+</li>
+<li>
+<p>Added: Match and Keep (the gremlin card matching event) is now supported</p>
+</li>
+<li>
+<p>Added: A config file can now be found in either your local app data (windows) or home config directory (linux). Currently the only supported config options are UI position reading, banner text reading, proceed reading, in battle block gains, in battle buff/debuff text, and reversed path reading.</p>
+</li>
+<li>
+<p>Fixed: Removed some redundant checks for hovered cards, hopefully this should remove some of the UI issues like some cards being read multiple times (this does not effect the hand, which I cannot fix)</p>
+</li>
+<li>
+<p>Added: All controller inputs now interrupt speech (as per normal screen reader behavior when using a keyboard application). This should make the game feel less sluggish.</p>
+</li>
+<li>
+<p>Changed: There have been some behind the scenes UI changes. Please report any buttons labeled incorrectly.</p>
+</li>
+<li>
+<p>Fixed: Hopefully the last of the settings name issues has been fixed (upload data no longer has #B in the name)</p>
+</li>
+<li>
+<p>Fixed: Dropdown menus in settings now read the elements correctly when the dropdown scrolls vertically</p>
+</li>
+<li>
+<p>Added: When a new event occurs, the event buffer's position is changed to that event</p>
+</li>
+<li>
+<p>Fixed: The player name is now correct for when text above them is read during combat (this would break when changing save slots).</p>
+</li>
+<li>
+<p>Fixed: Sort button headers for card grids should now be reading properly</p>
+</li>
+<li>
+<p>Added: Initial support for the daily climb screen. Only the challenge info is read currently, the leaderboard will come in the next beta.</p>
+</li>
+<li>
+<p>Fixed: Power text in combat should now be reading properly again. This is currently experimental and may still be broken. There are some oddities in the way text is displayed; I'm outputting how the game displays the text (for example when a buf is initially applied, it only says the name and not the initial amount).</p>
+</li>
+<li>
+<p>Added: In combat block gains are announced.</p>
+</li>
+</ul>
+<h2 id="beta-3"><a class="header" href="#beta-3">Beta 3</a></h2>
+<ul>
+<li>Added: Initial support for sort header buttons, however I don't think this is working properly</li>
+<li>Fixed: It was possible to have incorrect speech libraries be loaded or have working speech libraries fail to load</li>
+<li>Fixed: Some tooltips in settings were not being parsed correctly</li>
+<li>Fixed: Certain Settings screen items had incorrect tooltips associated with them due to the UI buffer not updating</li>
+<li>Added: The custom mode screen is now supported</li>
+<li>Added: Death and victory screens are now supported</li>
+<li>Aded: You can view game over stats on the death and victory screens individually (move over them, check buffers for additional descriptions if any)</li>
+<li>Added: Hopefully boss chests are read properly.</li>
+<li>Added: The banner is now read (some text at the top of the screen used contextually in diferent parts of the game). This includes a short line of text on the death screen, screen titles for areas such as awards &quot;spoils!&quot; etc.</li>
+<li>Added: When the map does a long scroll animation, the act boss is read</li>
+</ul>
+<h2 id="beta-2"><a class="header" href="#beta-2">Beta 2</a></h2>
+<ul>
+<li>Fixed: Player name in player buffer is now correct when switching between save slots</li>
+<li>Treasure chests are now read? Hopefully?</li>
+<li>Fixed: Previously missing event text is now read properly (speech interrupt on card selection screens, etc was interrupting it)</li>
+<li>Changed: The monster short (text read when hovering over a monster) is now more convenient; the intent and block are read before the hp</li>
+<li>Added: keywords on cards are now in the card buffer.</li>
+<li>Fixed: Buffers would crash on certain screens, such as the death screen</li>
+<li>Fixed: Buffers should no longer read &quot;name: null&quot; when moving to them</li>
+<li>Fixed: Main menu buttons would sometimes repeat their label infinitely if you skipped past them too quickly (for example mashing select from the game over screen)</li>
+<li>Fixed: In combat events should no longer break in weird ways (such as wrong enemy names, wrong dialogue associated with each event, etc)</li>
+<li>Added: You can now see the relic and card previews for event choices (they show up in their respective buffers)</li>
+<li>Fixed issue where buffers updated at the wrong time (this could lead to buffers reading as empty when they were not, etc). also added more accurate buffer error messages.</li>
+</ul>
+<h3 id="changes-that-could-be-considered-spoilers"><a class="header" href="#changes-that-could-be-considered-spoilers">Changes That Could be Considered Spoilers</a></h3>
+<ul>
+<li>The location of the emerald key is now announced on the map (as burning icon)</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="known-issues-1"><a class="header" href="#known-issues-1">Known Issues</a></h1>
+<ul>
+<li>there is possibly a bug with some Steam setups where closing the game will crash due to native library files not being unloaded. It is believed this is fixed, but if this still occurs change resources.dispose_resource_files and resources.unload_native_libs to false in settings.ini.</li>
+<li>daily climb (leaderboard section doesn't read), input settings, and credits screens do not read. These are being worked on.</li>
+<li>Certain text (such as the character select text screen's title) don't automatically read. This is being worked on.</li>
+<li>Required controller inputs are not read/viewable. This is being worked on.</li>
+<li>The UI can jump between cards a few times (for example when retaining cards as the silent). this isn't an issue I can fix and does not break the game in any way.</li>
+<li>Currently certain text is only read in English (for example UI element types).</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="credits"><a class="header" href="#credits">Credits</a></h1>
+<h2 id="beta-testers"><a class="header" href="#beta-testers">Beta Testers</a></h2>
+<p>Thanks to the beta testers who tested the public and private betas, including but not limited to:</p>
+<ul>
+<li>Ahmad Abukhdair</li>
+<li>Austin Hicks</li>
+<li>Brandon Cole <a href="https://brandoncole.net/">Website</a></li>
+<li>Kelsey Hendrix</li>
+<li>Mike Breedlove</li>
+<li>SightlessKombat <a href="https://www.SightlessKombat.com/">Website</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </body>
+</html>

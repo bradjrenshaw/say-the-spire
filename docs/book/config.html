@@ -1,0 +1,246 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Config Files and Changing Mod Settings - Say the Spire Documentation</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="intro.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="installation.html">Installation and Setup</a></li><li class="chapter-item expanded affix "><a href="important.html">Important Notes</a></li><li class="chapter-item expanded affix "><li class="part-title">Mod Usage</li><li class="chapter-item expanded "><a href="mod/general.html"><strong aria-hidden="true">1.</strong> General Overview</a></li><li class="chapter-item expanded "><a href="mod/ui.html"><strong aria-hidden="true">2.</strong> UI</a></li><li class="chapter-item expanded "><a href="mod/map.html"><strong aria-hidden="true">3.</strong> The Map</a></li><li class="chapter-item expanded affix "><li class="part-title">Input</li><li class="chapter-item expanded "><a href="input/virtual.html"><strong aria-hidden="true">4.</strong> Keyboard Support and Virtual Input</a></li><li class="chapter-item expanded "><a href="input/controls.html"><strong aria-hidden="true">5.</strong> Controls</a></li><li class="chapter-item expanded affix "><li class="part-title">Configuration</li><li class="chapter-item expanded "><a href="config.html" class="active"><strong aria-hidden="true">6.</strong> Config Files and Changing Mod Settings</a></li><li class="chapter-item expanded affix "><li class="part-title">For Developers</li><li class="chapter-item expanded "><a href="devs/compilation.html"><strong aria-hidden="true">7.</strong> Compiling the Mod from Source</a></li><li class="chapter-item expanded "><a href="devs/localization.html"><strong aria-hidden="true">8.</strong> Localizing the Mod</a></li><li class="chapter-item expanded affix "><li class="part-title">Additional Information</li><li class="chapter-item expanded "><a href="changes.html"><strong aria-hidden="true">9.</strong> Change Log</a></li><li class="chapter-item expanded "><a href="issues.html"><strong aria-hidden="true">10.</strong> Known Issues</a></li><li class="chapter-item expanded "><a href="credits.html"><strong aria-hidden="true">11.</strong> Credits</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Say the Spire Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="config-files-and-changing-mod-settings"><a class="header" href="#config-files-and-changing-mod-settings">Config Files and Changing Mod Settings</a></h1>
+<p>After first launching the game, two config files are created that allow you to
+modify certain aspects of the mod. These files can be found at:</p>
+<ul>
+<li>Windows: <code>%LOCALAPPDATA%\ModTheSpire\sayTheSpire\</code></li>
+<li>Linux: <code>~/.config/ModTheSpire/sayTheSpire/</code></li>
+<li>Mac: <code>~/Library/Preferences/ModTheSpire/sayTheSpire/</code></li>
+</ul>
+<p>The settings.ini file allows you to change various settings related to the mod.
+The input.json stores keyboard mappings. It is not recommended to manually
+modify input.json unless you are familiar with json.</p>
+<h2 id="settingsini"><a class="header" href="#settingsini">Settings.ini</a></h2>
+<p>This is a list of all of the available options in settings.ini. To change one of
+these, change the value to the right of the <code>=</code>. For example you could disable
+reading block text by changing <code>block_text = true</code> to <code>block_text = false</code>.</p>
+<h3 id="advanced"><a class="header" href="#advanced">[advanced]</a></h3>
+<p>Advanced settings related to the internals of the mod.</p>
+<table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td>use_updated_card_description</td><td>true, false</td><td>false</td><td>whether or not to use a different internal property to get card descriptions. This should be enabled if you are trying to use mods that do not have properly rendered card descriptions. This may break depending on your current game language so use this with caution.</td></tr>
+</tbody></table>
+<h3 id="combat"><a class="header" href="#combat">[combat]</a></h3>
+<p>Settings related to combat messages.</p>
+<table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td>block_text</td><td>true, false</td><td>true</td><td>Whether or not to read when a creature gains block.</td></tr>
+<tr><td>buff_debuff text</td><td>true, false</td><td>true</td><td>Whether or not to read when a creature gains a buff or debuff.</td></tr>
+</tbody></table>
+<h3 id="input"><a class="header" href="#input">[input]</a></h3>
+<p>Settings related to virtual input.</p>
+<table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td>virtual_input</td><td>true or false</td><td>true</td><td>Whether or not virtual input is enabled.</td></tr>
+</tbody></table>
+<h3 id="map"><a class="header" href="#map">[map]</a></h3>
+<p>Settings related to map reading.</p>
+<table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td>read_reversed_paths</td><td>true, false</td><td>true</td><td>Whether or not to read the path in reverse when moving backward on the map, as if you were tracing it visually. Many people prefer to disable this to save time but it is enabled by default for clarity.</td></tr>
+</tbody></table>
+<h3 id="ui"><a class="header" href="#ui">[ui]</a></h3>
+<p>Contains settings related to the game's UI and how certain elements are read
+out.</p>
+<table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td>read_proceed_text</td><td>true, false</td><td>true</td><td>Whether or not to read the proceed text when the option is available (for example to skip a combat reward)</td></tr>
+<tr><td>read_banner_text</td><td>true, false</td><td>true</td><td>Whether or not banner text is read. Banner text appears at the top of the screen and generally acts as a screen title.</td></tr>
+<tr><td>read_positions</td><td>true, false</td><td>true</td><td>Whether or not to read the position of an element (for example 1 of 3 in a list)</td></tr>
+</tbody></table>
+<h3 id="resources"><a class="header" href="#resources">[resources]</a></h3>
+<p>Settings related to how resources are loaded and unloaded. If you are
+experiencing a crash when closing the game, set both of these to false.</p>
+<table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
+<tr><td>unload_native_libs</td><td>true, false</td><td>true</td><td>Whether or not to unload the screen reader libraries from memory when the game closes.</td></tr>
+<tr><td>dispose_resource_files</td><td>true, false</td><td>true</td><td>Whether or not to delete the screen reader dll files in the slay the Spire root directory after the game closes and they are unloaded from memory. Do not enable this unless unload_native_libs is enabled or it won't work.</td></tr>
+</tbody></table>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="input/controls.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="devs/compilation.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="input/controls.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="devs/compilation.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>
