@@ -4,6 +4,7 @@
 A number of gameplay fixes and additions.
 
 * Added: Blights are now accessible.
+* Fixed: The buffers now correctly update when switching between items as per the pre-0.2.0 behavior.
 
 ## 0.3.0-beta
 This patch fixes a number of issues related to UI.
