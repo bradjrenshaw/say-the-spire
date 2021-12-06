@@ -1,10 +1,5 @@
 # Change Log
 
-## 0.3.1-beta
-A number of gameplay fixes and additions.
-
-* Added: Blights are now accessible.
-
 ## 0.3.0-beta
 This patch fixes a number of issues related to UI.
 

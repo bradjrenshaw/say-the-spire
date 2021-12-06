@@ -1,6 +1,5 @@
 package sayTheSpire;
 
-import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -131,11 +130,6 @@ public class TextParser {
 
     public static String parse(String text, AbstractPotion potion) {
         return parse(text, "potion");
-    }
-
-    // These functions don't yet do anything, however they may be necessary for some text parsing later
-    public static String parse(String text, AbstractBlight blight) {
-        return parse(text, "blight");
     }
 
     public static String parse(String text, AbstractRelic relic) {
