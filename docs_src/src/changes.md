@@ -1,6 +1,6 @@
 # Change Log
 
-## Beta 0.2.1
+## 0.3.0-beta
 This patch fixes a number of issues related to UI.
 
 * The compendium screens are now fully supported
