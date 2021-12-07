@@ -45,7 +45,7 @@ public abstract class UIElement {
         String extras = this.getExtrasString();
         if (extras != null)
             sb.append(", " + extras);
-        if (Output.config.getBoolean("ui.read_types", false)) {
+        if (Output.config.getBoolean("ui.read_types", true)) {
             String type = this.getTypeString();
             if (type != null && !Output.config.getExcludedTypenames().contains(type)) {
                 sb.append(" " + type);
@@ -54,9 +54,11 @@ public abstract class UIElement {
         String status = this.getStatusString();
         if (status != null)
             sb.append(" " + status);
-        AbstractPosition position = this.getPosition();
-        if (position != null && Output.config.getBoolean("ui.read_positions")) {
-            sb.append(". " + position.getPositionString());
+        if (Output.config.getBoolean("ui.read_positions", true)) {
+            AbstractPosition position = this.getPosition();
+            if (position != null) {
+                sb.append(". " + position.getPositionString());
+            }
         }
         return sb.toString();
     }
