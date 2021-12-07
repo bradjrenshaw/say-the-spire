@@ -3,6 +3,7 @@ package sayTheSpire;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,12 +24,14 @@ public class STSConfig {
 
     private Toml settingsToml;
     private InputConfig inputConfig;
+    private HashSet<String> excludedTypenames;
 
     public STSConfig() {
         File dir = new File(getDirectoryPath());
         dir.mkdirs();
         this.loadInput();
         this.loadSettings();
+        this.excludedTypenames = null;
     }
 
     private void loadInput() {
@@ -101,6 +104,7 @@ public class STSConfig {
         uiDefaults.put("read_positions", true);
         uiDefaults.put("read_banner_text", true);
         uiDefaults.put("read_proceed_text", true);
+        uiDefaults.put("read_types", true);
         uiDefaults.put("exclude_read_typenames", new ArrayList<String>());
 
         HashMap<String, Object> mapDefaults = new HashMap();
@@ -123,6 +127,14 @@ public class STSConfig {
         defaults.put("input", inputDefaults);
         defaults.put("advanced", advancedDefaults);
         return defaults;
+    }
+
+    public HashSet<String> getExcludedTypenames() {
+        if (this.excludedTypenames == null) {
+            this.excludedTypenames = new HashSet<String>(
+                    this.getList("ui.exclude_read_typenames", new ArrayList<String>()));
+        }
+        return this.excludedTypenames;
     }
 
     public static String getDirectoryPath() {

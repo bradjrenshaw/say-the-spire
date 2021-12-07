@@ -4,7 +4,9 @@
 A number of gameplay fixes and additions.
 
 * Added: Blights are now accessible.
-* Fixed: The buffers now correctly update when switching between items as per the pre-0.2.0 behavior.
+* Fixed: The buffers now correctly update when switching between items as per the pre-0.2.0 behavior. You should no longer get inaccurate player hp values when moving between items in the player buffer for example.
+* Added: You can now prevent all element types (such as button) from being read or prevent specific element types from being read. See the configuration documentation for more information.
+* Fixed: Buttons in the main menu are now actually considered buttons by the mod so UI settings related to them now work properly.
 
 ## 0.3.0-beta
 This patch fixes a number of issues related to UI.

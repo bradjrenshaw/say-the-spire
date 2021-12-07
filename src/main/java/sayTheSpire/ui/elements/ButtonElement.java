@@ -8,22 +8,19 @@ public class ButtonElement extends UIElement {
 
     private String name;
 
-    private String label;
-
     private String description;
 
     public ButtonElement(String name) {
-        this(name, null, null);
+        this(name, null);
     }
 
-    public ButtonElement(String name, String label, String description) {
-        this(name, label, description, null);
+    public ButtonElement(String name, String description) {
+        this(name, description, null);
     }
 
-    public ButtonElement(String name, String label, String description, AbstractPosition position) {
+    public ButtonElement(String name, String description, AbstractPosition position) {
         super("button", position);
         this.name = name;
-        this.label = label;
         this.description = description;
     }
 

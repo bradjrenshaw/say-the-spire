@@ -45,9 +45,12 @@ public abstract class UIElement {
         String extras = this.getExtrasString();
         if (extras != null)
             sb.append(", " + extras);
-        String type = this.getTypeString();
-        if (type != null)
-            sb.append(" " + type);
+        if (Output.config.getBoolean("ui.read_types", false)) {
+            String type = this.getTypeString();
+            if (type != null && !Output.config.getExcludedTypenames().contains(type)) {
+                sb.append(" " + type);
+            }
+        }
         String status = this.getStatusString();
         if (status != null)
             sb.append(" " + status);
