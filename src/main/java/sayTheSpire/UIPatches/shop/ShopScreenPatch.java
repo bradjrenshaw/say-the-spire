@@ -143,7 +143,7 @@ public class ShopScreenPatch {
                 } else {
                     label = TEXT[0] + " ( " + TEXT[3] + ")";
                 }
-                ButtonElement button = new ButtonElement(label, TEXT[0], label, new GridPosition(6, 2));
+                ButtonElement button = new ButtonElement(label, TEXT[0], new GridPosition(6, 2));
                 isPurgeHovered = true;
                 return button;
             } else {

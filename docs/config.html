@@ -157,6 +157,10 @@ modify input.json unless you are familiar with json.</p>
 <p>This is a list of all of the available options in settings.ini. To change one of
 these, change the value to the right of the <code>=</code>. For example you could disable
 reading block text by changing <code>block_text = true</code> to <code>block_text = false</code>.</p>
+<p>Certain config options require an array, a list of values. An array always
+starts with <code>[</code> and ends with <code>]</code>. These values must be enclosed in quotes if
+they are strings of text. For example to exclude cards and relics, you would use
+<code>exclude_read_typenames = [&quot;card&quot;, &quot;relic&quot;]</code></p>
 <h3 id="advanced"><a class="header" href="#advanced">[advanced]</a></h3>
 <p>Advanced settings related to the internals of the mod.</p>
 <table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
@@ -185,6 +189,8 @@ out.</p>
 <tr><td>read_proceed_text</td><td>true, false</td><td>true</td><td>Whether or not to read the proceed text when the option is available (for example to skip a combat reward)</td></tr>
 <tr><td>read_banner_text</td><td>true, false</td><td>true</td><td>Whether or not banner text is read. Banner text appears at the top of the screen and generally acts as a screen title.</td></tr>
 <tr><td>read_positions</td><td>true, false</td><td>true</td><td>Whether or not to read the position of an element (for example 1 of 3 in a list)</td></tr>
+<tr><td>read_types</td><td>true, false</td><td>true</td><td>Whether or not element types, such as button, are read for each UI element.</td></tr>
+<tr><td>exclude_read_typenames</td><td>[array of strings]</td><td>[] empty</td><td>An array or list of types to not be read. For example if you do not want cards and relics to say card or relic after their name, you could set this to <code>[&quot;card&quot;, &quot;relic&quot;]</code>.</td></tr>
 </tbody></table>
 <h3 id="resources"><a class="header" href="#resources">[resources]</a></h3>
 <p>Settings related to how resources are loaded and unloaded. If you are

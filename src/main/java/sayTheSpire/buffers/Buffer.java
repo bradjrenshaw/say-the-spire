@@ -46,6 +46,7 @@ public class Buffer {
     }
 
     public Boolean movePosition(int newPosition) {
+        this.update();
         if (newPosition < 0 || newPosition >= this.contents.size())
             return false;
         this.position = newPosition;

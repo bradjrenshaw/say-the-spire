@@ -15,6 +15,11 @@ This is a list of all of the available options in settings.ini. To change one of
 these, change the value to the right of the `=`. For example you could disable
 reading block text by changing `block_text = true` to `block_text = false`.
 
+Certain config options require an array, a list of values. An array always
+starts with `[` and ends with `]`. These values must be enclosed in quotes if
+they are strings of text. For example to exclude cards and relics, you would use
+`exclude_read_typenames = ["card", "relic"]`
+
 ### [advanced]
 Advanced settings related to the internals of the mod.
 
@@ -53,6 +58,8 @@ out.
 | read_proceed_text | true, false | true | Whether or not to read the proceed text when the option is available (for example to skip a combat reward) |
 | read_banner_text | true, false | true | Whether or not banner text is read. Banner text appears at the top of the screen and generally acts as a screen title. |
 | read_positions | true, false | true | Whether or not to read the position of an element (for example 1 of 3 in a list) |
+| read_types | true, false | true | Whether or not element types, such as button, are read for each UI element. |
+| exclude_read_typenames | [array of strings] | [] empty | An array or list of types to not be read. For example if you do not want cards and relics to say card or relic after their name, you could set this to `["card", "relic"]`. |
 
 ### [resources]
 Settings related to how resources are loaded and unloaded. If you are

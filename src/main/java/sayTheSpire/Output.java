@@ -28,7 +28,7 @@ import sayTheSpire.buffers.*;
 
 public class Output {
 
-    public static String modVersion = "0.3.0-beta";
+    public static String modVersion = "0.3.1-beta";
 
     public enum Direction {
         NONE, UP, DOWN, LEFT, RIGHT
@@ -69,6 +69,7 @@ public class Output {
         buffers.add(new OrbBuffer("orb"));
         buffers.add(new MonsterBuffer("monster"));
         buffers.add(new PotionBuffer("potion"));
+        buffers.add(new BlightBuffer("blight"));
         buffers.add(new RelicBuffer("relic"));
 
         // Create MapNavigator

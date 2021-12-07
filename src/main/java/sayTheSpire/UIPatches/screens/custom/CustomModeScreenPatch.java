@@ -67,7 +67,7 @@ public class CustomModeScreenPatch {
             if (seedHb.justHovered) {
                 String currentSeed = (String) ReflectionHacks.getPrivate(__instance, CustomModeScreen.class,
                         "currentSeed");
-                ButtonElement button = new ButtonElement(TEXT[8] + " (" + currentSeed + ")", TEXT[8],
+                ButtonElement button = new ButtonElement(TEXT[8] + " (" + currentSeed + ")",
                         "Accessibility note: Current seed is " + currentSeed);
                 Output.setUI(button);
             }
