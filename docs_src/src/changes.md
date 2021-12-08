@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.3.2-beta
+
+* Added: Card manipulation events, such as cards being exhausted and added to your hand, draw, discard, and deck, are now read.
+
 ## 0.3.1-beta
 A number of gameplay fixes and additions.
 

@@ -5,7 +5,10 @@ import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.HashSet;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.vfx.cardManip.*;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import sayTheSpire.ui.effects.handlers.*;
+import sayTheSpire.Output;
 
 /**
  * This manages effects and mod related triggers for them.
@@ -21,6 +24,7 @@ public class EffectManager {
         this.registeredEffects = new HashMap();
         this.effects = new HashSet();
         this.topLevelEffects = new HashSet();
+        this.registerHandlers();
     }
 
     private void addEffect(HashSet<AbstractGameEffect> targetSet, AbstractGameEffect effect) {
@@ -59,6 +63,16 @@ public class EffectManager {
     public void registerEffectHandler(Class<? extends AbstractGameEffect> effectClass,
             Class<? extends EffectHandler> handlerClass) {
         this.registeredHandlers.put(effectClass, handlerClass);
+    }
+
+    private void registerHandlers() {
+        this.registerEffectHandler(ExhaustCardEffect.class, CardManipulationEffectHandler.class);
+        this.registerEffectHandler(PurgeCardEffect.class, CardManipulationEffectHandler.class);
+        this.registerEffectHandler(ShowCardAndAddToDiscardEffect.class, CardManipulationEffectHandler.class);
+        this.registerEffectHandler(ShowCardAndAddToDrawPileEffect.class, CardManipulationEffectHandler.class);
+        this.registerEffectHandler(ShowCardAndAddToHandEffect.class, CardManipulationEffectHandler.class);
+        this.registerEffectHandler(ShowCardAndObtainEffect.class, CardManipulationEffectHandler.class);
+        this.registerEffectHandler(ShowCardBrieflyEffect.class, CardManipulationEffectHandler.class);
     }
 
     private void removeEffect(HashSet<AbstractGameEffect> targetSet, AbstractGameEffect effect) {

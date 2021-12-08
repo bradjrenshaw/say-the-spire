@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 
 public class EffectHandler {
 
-    private AbstractGameEffect effect;
+    protected AbstractGameEffect effect;
 
     public EffectHandler(AbstractGameEffect effect) {
         this.effect = effect;
