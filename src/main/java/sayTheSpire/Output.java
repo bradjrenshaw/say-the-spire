@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import java.util.ArrayList;
+import sayTheSpire.ui.effects.EffectManager;
 import sayTheSpire.events.Event;
 import sayTheSpire.events.EventManager;
 import sayTheSpire.mapNavigator.MapNavigator;
@@ -40,6 +41,7 @@ public class Output {
     public static BufferManager buffers = new BufferManager();
     public static Boolean tolkSetup = false;
     public static Boolean shouldInterruptSpeech = false;
+    public static EffectManager effects = null;
     public static InputManager inputManager = null;
     public static UIManager uiManager = null;
     public static SpeechManager speechManager = null;
@@ -71,6 +73,9 @@ public class Output {
         buffers.add(new PotionBuffer("potion"));
         buffers.add(new BlightBuffer("blight"));
         buffers.add(new RelicBuffer("relic"));
+
+        // Effects manager
+        effects = new EffectManager();
 
         // Create MapNavigator
         MapControls.navigator = new MapNavigator();
