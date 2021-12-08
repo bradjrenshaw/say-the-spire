@@ -3,6 +3,7 @@ package sayTheSpire.ui.effects.handlers;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.vfx.cardManip.*;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+import com.megacrit.cardcrawl.vfx.FastCardObtainEffect;
 import basemod.ReflectionHacks;
 import sayTheSpire.ui.effects.EffectHandler;
 import sayTheSpire.events.TextEvent;
@@ -11,7 +12,8 @@ import sayTheSpire.Output;
 public class CardManipulationEffectHandler extends EffectHandler {
 
     private enum ManipulationType {
-        EXHAUST, PURGE, SHOW_ADD_DISCARD, SHOW_ADD_DRAW, SHOW_ADD_HAND, SHOW_CARD_OBTAIN, SHOW_CARD_BRIEFLY, INVALID
+        EXHAUST, PURGE, SHOW_ADD_DISCARD, SHOW_ADD_DRAW, SHOW_ADD_HAND, SHOW_CARD_OBTAIN, SHOW_CARD_BRIEFLY,
+        FAST_OBTAIN, INVALID
     };
 
     private ManipulationType manipulationType;
@@ -47,6 +49,9 @@ public class CardManipulationEffectHandler extends EffectHandler {
         } else if (this.effect instanceof ShowCardBrieflyEffect) {
             this.manipulationType = ManipulationType.SHOW_CARD_BRIEFLY;
             this.card = (AbstractCard) ReflectionHacks.getPrivate(this.effect, ShowCardBrieflyEffect.class, "card");
+        } else if (this.effect instanceof FastCardObtainEffect) {
+            this.manipulationType = ManipulationType.FAST_OBTAIN;
+            this.card = (AbstractCard) ReflectionHacks.getPrivate(this.effect, FastCardObtainEffect.class, "card");
         } else {
             this.manipulationType = ManipulationType.INVALID;
             this.card = null;
@@ -68,6 +73,7 @@ public class CardManipulationEffectHandler extends EffectHandler {
         case SHOW_CARD_BRIEFLY:
             return this.card.name + " shown briefly";
         case SHOW_CARD_OBTAIN:
+        case FAST_OBTAIN:
             return this.card.name + " added to deck";
         default:
             return "invalid card manipulation effect";
