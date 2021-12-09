@@ -2,7 +2,10 @@
 
 ## 0.3.2-beta
 
-* Added: Card manipulation events, such as cards being exhausted and added to your hand, draw, discard, and deck, are now read.
+* A large number of events are now correctly read out:
+    * Card manipulation events, such as cards being exhausted and added to your
+      hand, draw, discard, and deck
+    * Obtained potions
 
 ## 0.3.1-beta
 A number of gameplay fixes and additions.

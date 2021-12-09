@@ -69,6 +69,7 @@ public class EffectManager {
     private void registerHandlers() {
         CardManipulationEffectHandler.registerHandlers(this);
         ObtainKeyEffectHandler.registerHandlers(this);
+        ObtainPotionEffectHandler.registerHandlers(this);
     }
 
     private void removeEffect(HashSet<AbstractGameEffect> targetSet, AbstractGameEffect effect) {
