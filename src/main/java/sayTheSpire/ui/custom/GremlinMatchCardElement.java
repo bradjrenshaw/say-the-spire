@@ -1,6 +1,8 @@
 package sayTheSpire.ui.custom;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.events.shrines.GremlinMatchGame;
+import basemod.ReflectionHacks;
 import sayTheSpire.Output;
 import sayTheSpire.ui.positions.AbstractPosition;
 import sayTheSpire.ui.elements.CardElement;
@@ -15,7 +17,7 @@ public class GremlinMatchCardElement extends CardElement {
         this.isFlipped = true; // We don't want it reading the cards as they're initially flipped face down
     }
 
-    public void update() {
+    public void handleFlip() {
         if (card.isFlipped != this.isFlipped) {
             if (!card.isFlipped) {
                 Output.text("Flippd card is " + this.card.name, false);

@@ -38,6 +38,12 @@ public class GremlinMatchGamePatch {
         public static int prevAttemptCount = -1;
 
         public static void Postfix(GremlinMatchGame __instance) {
+            CardGroup cards = (CardGroup) ReflectionHacks.getPrivate(__instance, GremlinMatchGame.class, "cards");
+            for (AbstractCard card : cards.group) {
+                GremlinMatchCardElement element = (GremlinMatchCardElement) UIRegistry.getUI(card);
+                if (element != null)
+                    element.handleFlip();
+            }
             int attemptCount = (int) ReflectionHacks.getPrivate(__instance, GremlinMatchGame.class, "attemptCount");
             if (attemptCount != prevAttemptCount) {
                 Output.text(TextParser.parse(OPTIONS[3] + attemptCount), false);

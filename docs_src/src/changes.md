@@ -2,7 +2,12 @@
 
 ## 0.3.2-beta
 
-* Added: Card manipulation events, such as cards being exhausted and added to your hand, draw, discard, and deck, are now read.
+* Fixed: The Gremlin Match game card bug is now actually fixed and will no longer read all of the possible cards before the game starts
+* A large number of events are now correctly read out:
+    * Card manipulation events, such as cards being exhausted and added to your
+      hand, draw, discard, and deck
+    * Obtained potions
+    * Obtained relics
 
 ## 0.3.1-beta
 A number of gameplay fixes and additions.
