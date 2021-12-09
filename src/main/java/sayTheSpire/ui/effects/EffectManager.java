@@ -16,13 +16,15 @@ public class EffectManager {
 
     private HashMap<Class<? extends AbstractGameEffect>, Class<? extends EffectHandler>> registeredHandlers;
     private HashMap<AbstractGameEffect, EffectHandler> registeredEffects;
-    private HashSet<AbstractGameEffect> effects, topLevelEffects;
+    private HashSet<AbstractGameEffect> effects, topLevelEffects, topLevelEffectsQueue, effectsQueue;
 
     public EffectManager() {
         this.registeredHandlers = new HashMap();
         this.registeredEffects = new HashMap();
         this.effects = new HashSet();
         this.topLevelEffects = new HashSet();
+        this.topLevelEffectsQueue = new HashSet();
+        this.effectsQueue = new HashSet();
         this.registerHandlers();
     }
 
@@ -66,6 +68,7 @@ public class EffectManager {
 
     private void registerHandlers() {
         CardManipulationEffectHandler.registerHandlers(this);
+        ObtainKeyEffectHandler.registerHandlers(this);
     }
 
     private void removeEffect(HashSet<AbstractGameEffect> targetSet, AbstractGameEffect effect) {
@@ -95,6 +98,8 @@ public class EffectManager {
     public void update() {
         this.updateDiffs(this.effects, new HashSet<AbstractGameEffect>(AbstractDungeon.effectList));
         this.updateDiffs(this.topLevelEffects, new HashSet(AbstractDungeon.topLevelEffects));
+        this.updateDiffs(this.topLevelEffectsQueue, new HashSet(AbstractDungeon.topLevelEffectsQueue));
+        this.updateDiffs(this.effectsQueue, new HashSet(AbstractDungeon.effectsQueue));
         for (EffectHandler handler : this.registeredEffects.values()) {
             handler.update();
         }
