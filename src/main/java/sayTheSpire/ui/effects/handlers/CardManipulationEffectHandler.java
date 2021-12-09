@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.FastCardObtainEffect;
 import basemod.ReflectionHacks;
 import sayTheSpire.ui.effects.EffectHandler;
+import sayTheSpire.ui.effects.EffectManager;
 import sayTheSpire.events.TextEvent;
 import sayTheSpire.Output;
 
@@ -82,5 +83,16 @@ public class CardManipulationEffectHandler extends EffectHandler {
 
     public void onAdd() {
         Output.event(new TextEvent(this.getMessage()));
+    }
+
+    public static void registerHandlers(EffectManager manager) {
+        manager.registerEffectHandler(ExhaustCardEffect.class, CardManipulationEffectHandler.class);
+        manager.registerEffectHandler(PurgeCardEffect.class, CardManipulationEffectHandler.class);
+        manager.registerEffectHandler(ShowCardAndAddToDiscardEffect.class, CardManipulationEffectHandler.class);
+        manager.registerEffectHandler(ShowCardAndAddToDrawPileEffect.class, CardManipulationEffectHandler.class);
+        manager.registerEffectHandler(ShowCardAndAddToHandEffect.class, CardManipulationEffectHandler.class);
+        manager.registerEffectHandler(ShowCardAndObtainEffect.class, CardManipulationEffectHandler.class);
+        manager.registerEffectHandler(ShowCardBrieflyEffect.class, CardManipulationEffectHandler.class);
+        manager.registerEffectHandler(FastCardObtainEffect.class, CardManipulationEffectHandler.class);
     }
 }

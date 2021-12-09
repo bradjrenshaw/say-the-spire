@@ -5,9 +5,7 @@ import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.HashSet;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.vfx.cardManip.*;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import com.megacrit.cardcrawl.vfx.FastCardObtainEffect;
 import sayTheSpire.ui.effects.handlers.*;
 import sayTheSpire.Output;
 
@@ -67,14 +65,7 @@ public class EffectManager {
     }
 
     private void registerHandlers() {
-        this.registerEffectHandler(ExhaustCardEffect.class, CardManipulationEffectHandler.class);
-        this.registerEffectHandler(PurgeCardEffect.class, CardManipulationEffectHandler.class);
-        this.registerEffectHandler(ShowCardAndAddToDiscardEffect.class, CardManipulationEffectHandler.class);
-        this.registerEffectHandler(ShowCardAndAddToDrawPileEffect.class, CardManipulationEffectHandler.class);
-        this.registerEffectHandler(ShowCardAndAddToHandEffect.class, CardManipulationEffectHandler.class);
-        this.registerEffectHandler(ShowCardAndObtainEffect.class, CardManipulationEffectHandler.class);
-        this.registerEffectHandler(ShowCardBrieflyEffect.class, CardManipulationEffectHandler.class);
-        this.registerEffectHandler(FastCardObtainEffect.class, CardManipulationEffectHandler.class);
+        CardManipulationEffectHandler.registerHandlers(this);
     }
 
     private void removeEffect(HashSet<AbstractGameEffect> targetSet, AbstractGameEffect effect) {
