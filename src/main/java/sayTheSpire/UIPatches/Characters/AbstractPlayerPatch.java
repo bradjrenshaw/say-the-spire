@@ -11,10 +11,21 @@ import sayTheSpire.Output;
 
 public class AbstractPlayerPatch {
 
+    @SpirePatch(clz = AbstractPlayer.class, method = "gainGold", paramtypez = { int.class })
+    public static class GainGoldPatch {
+
+        public static void Prefix(AbstractPlayer __instance, int gold) {
+            Output.event(new TextEvent("+ " + gold + " gold"));
+        }
+    }
+
     @SpirePatch(clz = AbstractPlayer.class, method = "obtainPotion", paramtypez = { AbstractPotion.class })
     public static class ObtainPotionPatch {
 
         public static void Postfix(AbstractPlayer __instance, AbstractPotion potionToObtain) {
+            // Avoid triggering the message if the player can't actually pick up the potion
+            if (!potionToObtain.isObtained)
+                return;
             Output.event(new TextEvent(potionToObtain.name + " obtained"));
         }
     }
