@@ -31,6 +31,7 @@ public class StatsScreenPatch {
             Hitbox hitboxes[] = { screen.allCharsHb, screen.ironcladHb, screen.silentHb, screen.defectHb,
                     screen.watcherHb };
             ArrayList<CharStat> stats = CardCrawlGame.characterManager.getAllCharacterStats();
+            stats.add(0, StatsScreen.all);
             int statCount = stats.size();
             for (int h = 0; h < statCount; h++) {
                 if (hitboxes[h] == currentHitbox) {
@@ -38,11 +39,7 @@ public class StatsScreenPatch {
                     if (h > 0) {
                         name = CardCrawlGame.characterManager.getAllCharacters().get(h - 1).title;
                     }
-                    if (h < statCount) {
-                        return new StatElement(name, stats.get(h));
-                    } else {
-                        return new StatElement(name, null);
-                    }
+                    return new StatElement(name, stats.get(h));
                 }
             }
             return null;
