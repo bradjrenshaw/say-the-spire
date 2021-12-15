@@ -458,6 +458,7 @@ they are strings of text. For example to exclude cards and relics, you would use
 <table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
 <tr><td>block_text</td><td>true, false</td><td>true</td><td>Whether or not to read when a creature gains block.</td></tr>
 <tr><td>buff_debuff text</td><td>true, false</td><td>true</td><td>Whether or not to read when a creature gains a buff or debuff.</td></tr>
+<tr><td>card_events</td><td>true, false</td><td>true</td><td>Whether or not card events are read. These include cards being added to draw, discard, etc as well as cards being exhausted.</td></tr>
 </tbody></table>
 <h3 id="input"><a class="header" href="#input">[input]</a></h3>
 <p>Settings related to virtual input.</p>
@@ -477,6 +478,7 @@ out.</p>
 <tr><td>read_banner_text</td><td>true, false</td><td>true</td><td>Whether or not banner text is read. Banner text appears at the top of the screen and generally acts as a screen title.</td></tr>
 <tr><td>read_positions</td><td>true, false</td><td>true</td><td>Whether or not to read the position of an element (for example 1 of 3 in a list)</td></tr>
 <tr><td>read_types</td><td>true, false</td><td>true</td><td>Whether or not element types, such as button, are read for each UI element.</td></tr>
+<tr><td>read_obtain_events</td><td>true, false</td><td>true</td><td>Whether or not the mod notifies you when you obtain an object (such as a card, potion, relic, etc).</td></tr>
 <tr><td>exclude_read_typenames</td><td>[array of strings]</td><td>[] empty</td><td>An array or list of types to not be read. For example if you do not want cards and relics to say card or relic after their name, you could set this to <code>[&quot;card&quot;, &quot;relic&quot;]</code>.</td></tr>
 </tbody></table>
 <h3 id="resources"><a class="header" href="#resources">[resources]</a></h3>
@@ -541,15 +543,26 @@ future release.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="change-log"><a class="header" href="#change-log">Change Log</a></h1>
 <h2 id="032-beta"><a class="header" href="#032-beta">0.3.2-beta</a></h2>
 <ul>
-<li>Fixed: The Gremlin Match game card bug is now actually fixed and will no longer read all of the possible cards before the game starts</li>
+<li>Fixed: The Gremlin Match game card bug is now actually fixed and will no
+longer read all of the possible cards before the game starts</li>
+<li>Added: The character stats screen is now supported. This screen appears to be
+buggy however and will not let you scroll to the individual character stats
+(below the achievement grid) correctly some of the time. This seems to be a
+game issue and not a mod one.</li>
 <li>A large number of events are now correctly read out:
 <ul>
 <li>Card manipulation events, such as cards being exhausted and added to your
-hand, draw, discard, and deck</li>
-<li>Obtained potions</li>
-<li>Obtained relics</li>
+hand, draw, discard, and deck
+<ul>
+<li>Obtained gold</li>
+<li>Obtained key</li>
 </ul>
 </li>
+<li>Obtained potion</li>
+<li>Obtained  relic</li>
+</ul>
+</li>
+<li>Added: You can now disable obtained events (obtain potion, relic, etc) and in combat card events (card exhausted, etc). For information on this, see the config documentation.</li>
 </ul>
 <h2 id="031-beta"><a class="header" href="#031-beta">0.3.1-beta</a></h2>
 <p>A number of gameplay fixes and additions.</p>

@@ -4,13 +4,18 @@
 
 * Fixed: The Gremlin Match game card bug is now actually fixed and will no
   longer read all of the possible cards before the game starts
+* Added: The character stats screen is now supported. This screen appears to be
+  buggy however and will not let you scroll to the individual character stats
+  (below the achievement grid) correctly some of the time. This seems to be a
+  game issue and not a mod one.
 * A large number of events are now correctly read out:
     * Card manipulation events, such as cards being exhausted and added to your
       hand, draw, discard, and deck
       * Obtained gold
       * Obtained key
     * Obtained potion
-    * Obtained relic
+    * Obtained  relic
+* Added: You can now disable obtained events (obtain potion, relic, etc) and in combat card events (card exhausted, etc). For information on this, see the config documentation.
 
 ## 0.3.1-beta
 A number of gameplay fixes and additions.

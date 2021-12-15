@@ -34,6 +34,7 @@ Settings related to combat messages.
 |---|---|---|---|
 | block_text | true, false | true | Whether or not to read when a creature gains block. |
 | buff_debuff text | true, false | true | Whether or not to read when a creature gains a buff or debuff. |
+| card_events | true, false | true | Whether or not card events are read. These include cards being added to draw, discard, etc as well as cards being exhausted. |
 
 ### [input]
 Settings related to virtual input.
@@ -59,6 +60,7 @@ out.
 | read_banner_text | true, false | true | Whether or not banner text is read. Banner text appears at the top of the screen and generally acts as a screen title. |
 | read_positions | true, false | true | Whether or not to read the position of an element (for example 1 of 3 in a list) |
 | read_types | true, false | true | Whether or not element types, such as button, are read for each UI element. |
+| read_obtain_events | true, false | true | Whether or not the mod notifies you when you obtain an object (such as a card, potion, relic, etc). |
 | exclude_read_typenames | [array of strings] | [] empty | An array or list of types to not be read. For example if you do not want cards and relics to say card or relic after their name, you could set this to `["card", "relic"]`. |
 
 ### [resources]

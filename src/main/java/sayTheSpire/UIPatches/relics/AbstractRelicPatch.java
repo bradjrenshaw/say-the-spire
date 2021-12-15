@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.mainMenu.MainMenuScreen;
 import basemod.patches.com.megacrit.cardcrawl.relics.AbstractRelic.ObtainRelicGetHook;
-import sayTheSpire.events.TextEvent;
+import sayTheSpire.events.ObtainTextEvent;
 import sayTheSpire.ui.elements.RelicElement;
 import sayTheSpire.utils.OutputUtils;
 import sayTheSpire.Output;
@@ -13,7 +13,7 @@ import sayTheSpire.Output;
 public class AbstractRelicPatch {
 
     private static void obtainRelic(AbstractRelic relic) {
-        Output.event(new TextEvent(relic.name + " obtained"));
+        Output.event(new ObtainTextEvent(relic.name + " obtained"));
     }
 
     @SpirePatch(clz = AbstractRelic.class, method = "obtain")

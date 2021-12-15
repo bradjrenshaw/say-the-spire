@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.vfx.ObtainKeyEffect;
 import basemod.ReflectionHacks;
 import sayTheSpire.ui.effects.EffectHandler;
 import sayTheSpire.ui.effects.EffectManager;
-import sayTheSpire.events.TextEvent;
+import sayTheSpire.events.ObtainTextEvent;
 import sayTheSpire.Output;
 
 public class ObtainKeyEffectHandler extends EffectHandler {
@@ -30,7 +30,7 @@ public class ObtainKeyEffectHandler extends EffectHandler {
     }
 
     public void onAdd() {
-        Output.event(new TextEvent(this.color + " key obtained"));
+        Output.event(new ObtainTextEvent(this.color + " key obtained"));
     }
 
     public static void registerHandlers(EffectManager manager) {

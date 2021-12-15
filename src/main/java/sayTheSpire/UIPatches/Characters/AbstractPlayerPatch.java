@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
-import sayTheSpire.events.TextEvent;
+import sayTheSpire.events.ObtainTextEvent;
 import sayTheSpire.ui.elements.CardElement;
 import sayTheSpire.Output;
 
@@ -15,7 +15,7 @@ public class AbstractPlayerPatch {
     public static class GainGoldPatch {
 
         public static void Prefix(AbstractPlayer __instance, int gold) {
-            Output.event(new TextEvent("+ " + gold + " gold"));
+            Output.event(new ObtainTextEvent("+ " + gold + " gold"));
         }
     }
 
@@ -26,7 +26,7 @@ public class AbstractPlayerPatch {
             // Avoid triggering the message if the player can't actually pick up the potion
             if (!potionToObtain.isObtained)
                 return;
-            Output.event(new TextEvent(potionToObtain.name + " obtained"));
+            Output.event(new ObtainTextEvent(potionToObtain.name + " obtained"));
         }
     }
 

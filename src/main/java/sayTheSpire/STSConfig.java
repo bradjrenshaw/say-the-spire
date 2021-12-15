@@ -106,6 +106,7 @@ public class STSConfig {
         uiDefaults.put("read_proceed_text", true);
         uiDefaults.put("read_types", true);
         uiDefaults.put("exclude_read_typenames", new ArrayList<String>());
+        uiDefaults.put("read_obtain_events", true);
 
         HashMap<String, Object> mapDefaults = new HashMap();
         mapDefaults.put("read_reversed_paths", true);
@@ -113,6 +114,7 @@ public class STSConfig {
         HashMap<String, Object> combatDefaults = new HashMap();
         combatDefaults.put("block_text", true);
         combatDefaults.put("buff_debuff_text", true);
+        combatDefaults.put("card_events", true);
 
         HashMap<String, Object> inputDefaults = new HashMap();
         inputDefaults.put("virtual_input", true);

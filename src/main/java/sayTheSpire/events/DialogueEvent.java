@@ -2,8 +2,8 @@ package sayTheSpire.events;
 
 public class DialogueEvent extends TextEvent {
 
-    String source;
-    String type;
+    private String source;
+    private String type;
 
     public DialogueEvent(String type, String source, String message) {
         super(message);
