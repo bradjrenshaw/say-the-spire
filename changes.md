@@ -10,12 +10,14 @@
   game issue and not a mod one.
 * A large number of events are now correctly read out:
     * Card manipulation events, such as cards being exhausted and added to your
-      hand, draw, discard, and deck
-      * Obtained gold
-      * Obtained key
+      hand, draw, discard, and deck as well as the discard pile being shuffled into the draw pile
+    * Obtained gold
+    * Obtained key
     * Obtained potion
     * Obtained  relic
-* Added: You can now disable obtained events (obtain potion, relic, etc) and in combat card events (card exhausted, etc). For information on this, see the config documentation.
+* Added: You can now disable obtained events (obtain potion, relic, etc) and in
+  combat card events (card exhausted, etc). For information on this, see the
+  config documentation.
 
 ## 0.3.1-beta
 A number of gameplay fixes and additions.
