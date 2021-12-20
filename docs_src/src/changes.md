@@ -11,6 +11,7 @@
 * A large number of events are now correctly read out:
     * Card manipulation events, such as cards being exhausted and added to your
       hand, draw, discard, and deck as well as the discard pile being shuffled into the draw pile
+    * Cards are now read out when shown briefly (for example when two random cards are upgraded)
     * Obtained gold
     * Obtained key
     * Obtained potion
