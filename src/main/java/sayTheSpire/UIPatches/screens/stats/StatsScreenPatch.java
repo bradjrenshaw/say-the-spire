@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.screens.stats.CharStat;
 import com.megacrit.cardcrawl.screens.stats.StatsScreen;
 import org.apache.commons.lang3.ObjectUtils.Null;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import sayTheSpire.ui.positions.CategoryListPosition;
 import sayTheSpire.ui.elements.AchievementElement;
 import sayTheSpire.ui.elements.StatElement;
 import sayTheSpire.ui.elements.UIElement;
@@ -19,9 +20,12 @@ public class StatsScreenPatch {
         private static Hitbox currentHitbox = null;
 
         private static AchievementElement getHoveredAchievement(StatsScreen screen) {
-            for (AchievementItem achievement : screen.achievements.items) {
+            int achievementCount = screen.achievements.items.size();
+            for (int i = 0; i < achievementCount; i++) {
+                AchievementItem achievement = screen.achievements.items.get(i);
                 if (achievement.hb == currentHitbox) {
-                    return new AchievementElement(achievement);
+                    return new AchievementElement(achievement,
+                            new CategoryListPosition(i, achievementCount, "achievements"));
                 }
             }
             return null;

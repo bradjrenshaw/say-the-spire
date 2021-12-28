@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.3.3-beta
+This should be the last general bug fix patch before more features are added.
+
+* Added: Achievement items on the character stats screen now have location information.
+
 ## 0.3.2-beta
 
 * Fixed: The Gremlin Match game card bug is now actually fixed and will no
