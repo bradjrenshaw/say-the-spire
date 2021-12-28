@@ -4,6 +4,7 @@
 This should be the last general bug fix patch before more features are added.
 
 * Added: Achievement items on the character stats screen now have location information.
+* Fixed: Block is now correctly read out if block was already greater than 0 (it was previously triggering on the wrong event)
 
 ## 0.3.2-beta
 

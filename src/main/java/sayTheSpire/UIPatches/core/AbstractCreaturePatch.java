@@ -1,3 +1,4 @@
+import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.LineFinder;
 import com.evacipated.cardcrawl.modthespire.lib.Matcher;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInsertLocator;
@@ -24,7 +25,7 @@ public class AbstractCreaturePatch {
         private static class Locator extends SpireInsertLocator {
 
             public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
-                Matcher matcher = new Matcher.MethodCallMatcher(AbstractCreature.class, "gainBlockAnimation");
+                Matcher matcher = new Matcher.MethodCallMatcher(MathUtils.class, "floor");
                 return LineFinder.findAllInOrder(ctMethodToPatch, new ArrayList<Matcher>(), matcher);
             }
         }
