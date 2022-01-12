@@ -459,6 +459,7 @@ they are strings of text. For example to exclude cards and relics, you would use
 <tr><td>block_text</td><td>true, false</td><td>true</td><td>Whether or not to read when a creature gains block.</td></tr>
 <tr><td>buff_debuff text</td><td>true, false</td><td>true</td><td>Whether or not to read when a creature gains a buff or debuff.</td></tr>
 <tr><td>card_events</td><td>true, false</td><td>true</td><td>Whether or not card events are read. These include cards being added to draw, discard, etc as well as cards being exhausted.</td></tr>
+<tr><td>orb_events</td><td>true, false</td><td>true</td><td>Whether or not orb events are read. This includes when orbs are channeled and evoked.</td></tr>
 </tbody></table>
 <h3 id="input"><a class="header" href="#input">[input]</a></h3>
 <p>Settings related to virtual input.</p>
@@ -542,10 +543,11 @@ place the correct dlls in your root SlayTheSpire game directory.</p>
 future release.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="change-log"><a class="header" href="#change-log">Change Log</a></h1>
 <h2 id="033-beta"><a class="header" href="#033-beta">0.3.3-beta</a></h2>
-<p>This should be the last general bug fix patch before more features are added.</p>
+<p>This should be the last general bug fix and gameplay notification patch before more features are added.</p>
 <ul>
 <li>Added: Achievement items on the character stats screen now have location information.</li>
 <li>Fixed: Block is now correctly read out if block was already greater than 0 (it was previously triggering on the wrong event)</li>
+<li>Added: Combat orb events are now read out (such as when they are channeled and when they are evoked). This can be configured; see the config section of the documentation for more info.</li>
 </ul>
 <h2 id="032-beta"><a class="header" href="#032-beta">0.3.2-beta</a></h2>
 <ul>

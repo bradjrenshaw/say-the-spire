@@ -35,6 +35,7 @@ Settings related to combat messages.
 | block_text | true, false | true | Whether or not to read when a creature gains block. |
 | buff_debuff text | true, false | true | Whether or not to read when a creature gains a buff or debuff. |
 | card_events | true, false | true | Whether or not card events are read. These include cards being added to draw, discard, etc as well as cards being exhausted. |
+| orb_events | true, false | true | Whether or not orb events are read. This includes when orbs are channeled and evoked. |
 
 ### [input]
 Settings related to virtual input.

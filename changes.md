@@ -1,10 +1,11 @@
 # Change Log
 
 ## 0.3.3-beta
-This should be the last general bug fix patch before more features are added.
+This should be the last general bug fix and gameplay notification patch before more features are added.
 
 * Added: Achievement items on the character stats screen now have location information.
 * Fixed: Block is now correctly read out if block was already greater than 0 (it was previously triggering on the wrong event)
+* Added: Combat orb events are now read out (such as when they are channeled and when they are evoked). This can be configured; see the config section of the documentation for more info.
 
 ## 0.3.2-beta
 

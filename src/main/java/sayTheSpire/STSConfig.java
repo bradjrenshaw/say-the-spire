@@ -115,6 +115,7 @@ public class STSConfig {
         combatDefaults.put("block_text", true);
         combatDefaults.put("buff_debuff_text", true);
         combatDefaults.put("card_events", true);
+        combatDefaults.put("orb_events", true);
 
         HashMap<String, Object> inputDefaults = new HashMap();
         inputDefaults.put("virtual_input", true);
