@@ -4,7 +4,7 @@
 This should be the last general bug fix and gameplay notification patch before more features are added.
 
 * Added: Achievement items on the character stats screen now have location information.
-* Fixed: Block is now correctly read out if block was already greater than 0 (it was previously triggering on the wrong event)
+* Fixed: Block is now correctly read out if block was already greater than 0 (it was previously triggering on the wrong event and only reading when your block was 0 before the gain.)
 * Added: Combat orb events are now read out (such as when they are channeled and when they are evoked). This can be configured; see the config section of the documentation for more info.
 * Added: Monster deaths are now read out.
 
