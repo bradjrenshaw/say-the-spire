@@ -1,7 +1,10 @@
 package sayTheSpire.ui.mod;
 
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.controller.CInputAction;
 import sayTheSpire.Output;
+import sayTheSpire.utils.MapUtils;
+import sayTheSpire.utils.OutputUtils;
 import sayTheSpire.ui.input.InputAction;
 
 public class GameContext extends Context {
@@ -10,12 +13,44 @@ public class GameContext extends Context {
         this.shouldForceControllerMode = true;
     }
 
+    private void readPlayerAttribute(String name) {
+        AbstractPlayer player = OutputUtils.getPlayer();
+        if (player == null) {
+            Output.text("Not currently in a run.", false);
+            return;
+        }
+        switch (name) {
+        case "read act boss":
+            Output.text(MapUtils.getLocalizedBossName(), false);
+            return;
+        case "read player block":
+            if (OutputUtils.isInCombat()) {
+                Output.text(player.currentBlock + " block", false);
+            } else {
+                Output.text("Not currently in combat.", false);
+            }
+            return;
+        case "read player gold":
+            Output.text(player.gold + " gold", false);
+            return;
+        case "read player hp":
+            Output.text(player.currentHealth + "/" + player.maxHealth + " hp", false);
+            return;
+        }
+    }
+
     public void onClearJust() {
         // clear here
     }
 
     public Boolean onJustPress(InputAction action) {
         switch (action.getName()) {
+        case "read act boss":
+        case "read player block":
+        case "read player gold":
+        case "read player hp":
+            this.readPlayerAttribute(action.getName());
+            return true;
         case "inspect up":
             Output.infoControls(Output.Direction.UP);
             break;

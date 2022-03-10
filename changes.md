@@ -8,6 +8,11 @@ This should be the last general bug fix and gameplay notification patch before m
 * Added: Combat orb events are now read out (such as when they are channeled and when they are evoked). This can be configured; see the config section of the documentation for more info.
 * Added: Monster deaths are now read out.
 * Fixed: The input.json loading process is no longer horribly broken. This will allow for more actions to be mapped successfully without causing the game to crash.
+* Added additional keyboard hotkeys to quickly read important player information:
+    * The current act boss (ctrl n)
+    * Player Block (ctrl b)
+    * Player Gold (ctrl g)
+    * Player HP (ctrl h)
 
 ## 0.3.2-beta
 
