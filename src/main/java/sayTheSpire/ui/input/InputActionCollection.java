@@ -1,6 +1,7 @@
 package sayTheSpire.ui.input;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import org.json.simple.JSONArray;
@@ -13,25 +14,39 @@ import java.util.HashMap;
 import java.util.Map;
 
 /** Manages stored input mappings as well as assigning those and default mappings to actions */
-public class InputConfig {
+public class InputActionCollection {
 
-    public HashMap<String, ArrayList<InputMapping>> mappings;
     private static final Prefs controllerPrefs = SaveHelper.getPrefs("STSInputSettings_Controller");
+    private InputManager inputManager;
+    private HashMap<String, InputAction> actions;
+    private HashMap<String, ArrayList<InputMapping>> defaults;
 
-    public InputConfig() {
-        this.mappings = new HashMap();
+    public InputActionCollection(InputManager manager) {
+        this.inputManager = manager;
+        this.actions = new HashMap();
+        this.defaults = this.getDefaults();
+        this.setupActions(null);
     }
 
-    public InputConfig(JSONObject input) {
-        this();
-        for (Object key : input.keySet()) {
-            String name = (String) key;
-            JSONArray mappingsArray = (JSONArray) input.get(name);
-            ArrayList<InputMapping> currentMappings = new ArrayList();
-            this.mappings.put(name, currentMappings);
-            for (Object mappingObj : mappingsArray) {
-                currentMappings.add(new InputMapping((JSONObject) mappingObj));
+    public InputActionCollection(InputManager manager, JSONObject input) {
+        this(manager);
+        this.setupActions(input);
+    }
+
+    private void setupActions(JSONObject input) {
+        for (String name : InputManager.actionNames) {
+            JSONArray mappingsArray = null;
+            if (input != null)
+                mappingsArray = (JSONArray) input.getOrDefault(name, null);
+            InputAction action = null;
+            if (mappingsArray != null) {
+                action = new InputAction(name, this.inputManager, (JSONArray) mappingsArray);
+            } else {
+                action = new InputAction(name, this.inputManager);
+                System.out.println("name is " + name);
+                action.setMappings(this.defaults.get(name));
             }
+            this.actions.put(name, action);
         }
     }
 
@@ -44,7 +59,10 @@ public class InputConfig {
                 .mapping(Keys.DOWN).action("left").mapping(Keys.LEFT).action("right").mapping(Keys.RIGHT)
                 .action("inspect up").mapping(Keys.CONTROL_LEFT, Keys.UP).action("inspect down")
                 .mapping(Keys.CONTROL_LEFT, Keys.DOWN).action("inspect left").mapping(Keys.CONTROL_LEFT, Keys.LEFT)
-                .action("inspect right").mapping(Keys.CONTROL_LEFT, Keys.RIGHT);
+                .action("inspect right").mapping(Keys.CONTROL_LEFT, Keys.RIGHT).action("read player block")
+                .mapping(Keys.CONTROL_LEFT, Keys.B).action("read player gold").mapping(Keys.CONTROL_LEFT, Keys.G)
+                .action("read player hp").mapping(Keys.CONTROL_LEFT, Keys.H).action("read act boss")
+                .mapping(Keys.CONTROL_LEFT, Keys.N);
     }
 
     private void buildControllerDefaults(MappingBuilder builder) {
@@ -81,28 +99,16 @@ public class InputConfig {
         return builder.toHashMap();
     }
 
-    void populateActions(HashMap<String, InputAction> actions) {
-        HashMap<String, ArrayList<InputMapping>> defaultMappings = this.getDefaults();
-        for (Map.Entry<String, InputAction> entry : actions.entrySet()) {
-            String name = entry.getKey();
-            InputAction action = entry.getValue();
-            if (this.mappings.containsKey(name)) {
-                action.setMappings(this.mappings.get(name));
-            } else {
-                ArrayList<InputMapping> mappingsToSet = defaultMappings.get(name);
-                action.setMappings(mappingsToSet);
-                this.mappings.put(name, mappingsToSet);
-            }
-        }
+    public Collection<InputAction> getActions() {
+        return this.actions.values();
     }
 
     public JSONObject toJSONObject() {
         JSONObject obj = new JSONObject();
-        for (Map.Entry<String, ArrayList<InputMapping>> entry : this.mappings.entrySet()) {
-            ArrayList<InputMapping> mappingList = entry.getValue();
-            String actionName = entry.getKey();
+        for (InputAction action : this.actions.values()) {
+            String actionName = action.getName();
             JSONArray jsonArray = new JSONArray();
-            for (InputMapping mapping : mappingList) {
+            for (InputMapping mapping : action.getMappings()) {
                 jsonArray.add(mapping.toJSONObject());
             }
             obj.put(actionName, jsonArray);

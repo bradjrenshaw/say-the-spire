@@ -16,15 +16,16 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import sayTheSpire.ui.input.InputConfig;
+import sayTheSpire.ui.input.InputManager;
+import sayTheSpire.ui.input.InputActionCollection;
 
 public class STSConfig {
 
     private static final Logger logger = LogManager.getLogger(STSConfig.class.getName());
 
     private Toml settingsToml;
-    private InputConfig inputConfig;
     private HashSet<String> excludedTypenames;
+    private JSONObject inputObj;
 
     public STSConfig() {
         File dir = new File(getDirectoryPath());
@@ -37,13 +38,12 @@ public class STSConfig {
     private void loadInput() {
         try {
             JSONParser parser = new JSONParser();
-            JSONObject obj = (JSONObject) parser.parse(new FileReader(this.getInputFilePath()));
-            this.inputConfig = new InputConfig(obj);
+            this.inputObj = (JSONObject) parser.parse(new FileReader(this.getInputFilePath()));
             logger.info("Input settings file loaded successfully.");
         } catch (Exception e) {
             logger.info("Issue loading input mappings file.");
             e.printStackTrace();
-            this.inputConfig = new InputConfig();
+            this.inputObj = null;
         }
     }
 
@@ -84,7 +84,7 @@ public class STSConfig {
             e.printStackTrace();
         }
         try (FileWriter file = new FileWriter(getInputFilePath())) {
-            file.write(this.getInputConfig().toJSONObject().toJSONString());
+            file.write(Output.inputManager.getActionCollection().toJSONObject().toJSONString());
             file.flush();
             logger.info("Successfully wrote input mappings file.");
         } catch (Exception e) {
@@ -148,8 +148,8 @@ public class STSConfig {
         return getDirectoryPath() + "input.json";
     }
 
-    public InputConfig getInputConfig() {
-        return this.inputConfig;
+    public JSONObject getInputObj() {
+        return this.inputObj;
     }
 
     public static String getSettingsFilePath() {

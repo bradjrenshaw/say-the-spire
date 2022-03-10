@@ -88,8 +88,8 @@ public class Output {
             logger.error(e.getMessage());
             e.printStackTrace();
         }
-        uiManager = new UIManager(config);
-        inputManager = uiManager.getInputManager();
+        inputManager = new InputManager(config.getInputObj());
+        uiManager = new UIManager(inputManager);
     }
 
     public static void shutdown() {

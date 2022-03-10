@@ -11,11 +11,11 @@ public class InputMapping {
         CONTROL, SHIFT, ALT
     };
 
-    private String actionName;
-    private String inputType;
-    private HashSet<Modifiers> modifiers;
-    private int keycode;
-    private Boolean isDefault;
+    protected String actionName;
+    protected String inputType;
+    protected HashSet<Modifiers> modifiers;
+    protected int keycode;
+    protected Boolean isDefault;
 
     public InputMapping(String actionName, String inputType, Boolean isDefault, HashSet<Modifiers> modifiers,
             int keycode) {
@@ -62,6 +62,11 @@ public class InputMapping {
 
     public InputMapping(String actionName, String inputType, Boolean isDefault, int keycode) {
         this(actionName, inputType, isDefault, new HashSet<Modifiers>(), keycode);
+    }
+
+    public InputMapping(InputMapping mapping) {
+        this(mapping.actionName, mapping.inputType, mapping.isDefault, new HashSet<Modifiers>(mapping.modifiers),
+                mapping.keycode);
     }
 
     public InputMapping(JSONObject mappingObj) {

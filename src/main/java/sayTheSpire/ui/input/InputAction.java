@@ -1,11 +1,14 @@
 package sayTheSpire.ui.input;
 
+import java.util.ArrayList;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.helpers.controller.CInputAction;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
-import java.util.ArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import sayTheSpire.Output;
 
 public class InputAction {
 
@@ -23,6 +26,14 @@ public class InputAction {
         this.isJustPressed = false;
         this.isPressed = false;
         this.isJustReleased = false;
+    }
+
+    public InputAction(String name, InputManager manager, JSONArray mappings) {
+        this(name, manager);
+        for (Object mappingObj : mappings) {
+            InputMapping mapping = new InputMapping((JSONObject) mappingObj);
+            this.mappings.add(mapping);
+        }
     }
 
     public void clearStates() {
@@ -126,7 +137,9 @@ public class InputAction {
     }
 
     void setMappings(ArrayList<InputMapping> mappings) {
-        this.mappings = mappings;
+        for (InputMapping mapping : mappings) {
+            this.mappings.add(new InputMapping(mapping));
+        }
     }
 
     private void updateStates() {
@@ -157,11 +170,11 @@ public class InputAction {
     public void update() {
         this.updateStates();
         if (this.isJustPressed()) {
-            this.inputManager.uiManager.emitAction(this, "justPressed");
+            Output.uiManager.emitAction(this, "justPressed");
         } else if (this.isPressed()) {
-            this.inputManager.uiManager.emitAction(this, "pressed");
+            Output.uiManager.emitAction(this, "pressed");
         } else if (this.isJustReleased()) {
-            this.inputManager.uiManager.emitAction(this, "justReleased");
+            Output.uiManager.emitAction(this, "justReleased");
         }
     }
 }

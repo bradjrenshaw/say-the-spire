@@ -3,6 +3,7 @@ package sayTheSpire.ui.mod;
 import java.util.ArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import com.megacrit.cardcrawl.core.Settings;
 import sayTheSpire.STSConfig;
 import sayTheSpire.ui.input.InputAction;
 import sayTheSpire.ui.input.InputManager;
@@ -13,11 +14,9 @@ public class UIManager {
 
     private ArrayList<Context> contexts;
     private InputManager inputManager;
-    private STSConfig config;
 
-    public UIManager(STSConfig config) {
-        this.config = config;
-        this.inputManager = new InputManager(this, config.getInputConfig());
+    public UIManager(InputManager manager) {
+        this.inputManager = manager;
         this.contexts = new ArrayList();
         this.pushContext(new GameContext());
     }
@@ -80,12 +79,24 @@ public class UIManager {
     }
 
     public void updateFirst() {
-        if (this.getAllowVirtualInput())
+        Context current = this.getCurrentContext();
+        if (current != null) {
+            if (!current.getAllowVirtualInput())
+                return;
+            if (current.getShouldForceControllerMode())
+                Settings.isControllerMode = true;
             this.inputManager.updateFirst();
+        }
     }
 
     public void updateLast() {
-        if (this.getAllowVirtualInput())
+        Context current = this.getCurrentContext();
+        if (current != null) {
+            if (!current.getAllowVirtualInput())
+                return;
+            if (current.getShouldForceControllerMode())
+                Settings.isControllerMode = true;
             this.inputManager.updateLast();
+        }
     }
 }

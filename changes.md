@@ -7,6 +7,7 @@ This should be the last general bug fix and gameplay notification patch before m
 * Fixed: Block is now correctly read out if block was already greater than 0 (it was previously triggering on the wrong event and only reading when your block was 0 before the gain.)
 * Added: Combat orb events are now read out (such as when they are channeled and when they are evoked). This can be configured; see the config section of the documentation for more info.
 * Added: Monster deaths are now read out.
+* Fixed: The input.json loading process is no longer horribly broken. This will allow for more actions to be mapped successfully without causing the game to crash.
 
 ## 0.3.2-beta
 
