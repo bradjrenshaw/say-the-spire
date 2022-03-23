@@ -16,7 +16,7 @@ If you own the game on Steam, Say the Spire can be subscribed to (installed) fro
 When you are subscribed to Steam Workshop items they will be automatically downloaded. Updates to those items are also automatic. Say the Spire will announce the current version number when it is launched.
 
 ### Manual Installation
-If you do not want to install from the steam workshop, you can copy all requirements manually. 
+If you do not want to install from the steam workshop, you can copy all requirements manually. Note that the version of ModTheSpire on GitHub is out of date compared to the Steam Workshop version. It is highly recommended that you install all of the mods via the Steam Workshop for better compatibility and more frequent updates.
 
 First, download all dependencies. You can either install them from the Steam Workshop links above or download them from their GitHub pages listed below.
 
@@ -24,7 +24,7 @@ First, download all dependencies. You can either install them from the Steam Wor
 * [BaseMod GitHub Latest Release](https://github.com/daviscook477/BaseMod/releases/latest/) Download BaseMod.jar
 * [Say the Spire GitHub Latest Release](https://github.com/bradjrenshaw/say-the-spire/releases/latest/) download and extract the zip file
 
-Now create a folder called `mods` in your Slay the Spire game directory. This is most likely to be `C:\Program Files (x86)\Steam\steamapps\common\SlayTheSpire`. After that, paste ModTheSpire.jar, BaseMod.jar, and sayTheSpire.jar into that mods folder.
+Now create a folder called `mods` in your Slay the Spire game directory. This is most likely to be `C:\Program Files (x86)\Steam\steamapps\common\SlayTheSpire`. Copy all of the files in the ModTheSpire zip to the game's root directory (there should be `mts.cmd`, `mts.sh`, and `ModTheSpire.jar`). Copy Basemod.jar and SayTheSpire.jar to the mods directory.
 
 Make sure that you do not have multiple instances of the same mod installed from different sources for Say the Spire or any mods it depends on. for example, do not have both the steam workshop and mods folder versions of BaseMod installed. Conflicting mods can cause the game to break and prevent mods from functioning properly.
 
