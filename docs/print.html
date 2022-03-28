@@ -414,7 +414,10 @@ this will disable keyboard support and revert to the game's keyboard handling,
 which lacks most of the features that the mod has. The buffer system for gamepad
 controls will still work when virtual input is disabled.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="gamepad-and-keyboard-controls"><a class="header" href="#gamepad-and-keyboard-controls">Gamepad and Keyboard Controls</a></h1>
-<p>These are the default gamepad and keyboard controls for Say the Spire. The gamepad controls by default match what the game uses. for information on Virtual Input and Keyboard Support, go <a href="input/./virtual.html">here</a>.</p>
+<p>These are the default gamepad and keyboard controls for Say the Spire. The
+gamepad controls by default match what the game uses. for information on Virtual
+Input and Keyboard Support, go <a href="input/./virtual.html">here</a>.</p>
+<h2 id="game-and-mod-general-controls"><a class="header" href="#game-and-mod-general-controls">Game and Mod General Controls</a></h2>
 <table><thead><tr><th>Action</th><th>Controller (xbox/ps)</th><th>Keyboard</th></tr></thead><tbody>
 <tr><td>movement (menus, general UI)</td><td>d-pad or left stick</td><td>arrow keys</td></tr>
 <tr><td>confirm</td><td>a/x</td><td>enter</td></tr>
@@ -428,6 +431,17 @@ controls will still work when virtual input is disabled.</p>
 <tr><td>buffers, map, and settings sliders</td><td>right stick</td><td>control arrows</td></tr>
 <tr><td>settings/pause</td><td>start</td><td>backspace</td></tr>
 <tr><td>Map, save slots (from main menu), general back option</td><td>select</td><td>m</td></tr>
+</tbody></table>
+<h2 id="info-controls"><a class="header" href="#info-controls">Info Controls</a></h2>
+<p>You can press control in combination with another key to quickly read additional
+information about the player or general game state. These controls are only
+available for keyboard and more will be added in future updates. To see the
+health of the player for example, use ctrl+h.</p>
+<table><thead><tr><th>Action</th><th>Keyboard</th></tr></thead><tbody>
+<tr><td>Current Block</td><td>ctrl b</td></tr>
+<tr><td>Current Gold</td><td>ctrl g</td></tr>
+<tr><td>Health</td><td>ctrl h</td></tr>
+<tr><td>Current Act Boss</td><td>ctrl n</td></tr>
 </tbody></table>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="config-files-and-changing-mod-settings"><a class="header" href="#config-files-and-changing-mod-settings">Config Files and Changing Mod Settings</a></h1>
 <p>After first launching the game, two config files are created that allow you to
@@ -873,13 +887,23 @@ buffer error messages.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="known-issues-1"><a class="header" href="#known-issues-1">Known Issues</a></h1>
 <ul>
-<li>there is possibly a bug with some Steam setups where closing the game will crash due to native library files not being unloaded. It is believed this is fixed, but if this still occurs change resources.dispose_resource_files and resources.unload_native_libs to false in settings.ini.</li>
-<li>daily climb (leaderboard section doesn't read), input settings, and credits screens do not read. These are being worked on.</li>
-<li>Certain text (such as the character select text screen's title) don't automatically read. This is being worked on.</li>
+<li>there is possibly a bug with some Steam setups where closing the game will
+crash due to native library files not being unloaded. It is believed this is
+fixed, but if this still occurs change resources.dispose_resource_files and
+resources.unload_native_libs to false in settings.ini.</li>
+<li>daily climb (leaderboard section doesn't read), input settings, and credits
+screens do not read. These are being worked on.</li>
+<li>Certain text (such as the character select text screen's title) don't
+automatically read. This is being worked on.</li>
 <li>Required controller inputs are not read/viewable. This is being worked on.</li>
-<li>The UI can jump between cards a few times (for example when retaining cards as the silent). this isn't an issue I can fix and does not break the game in any way.</li>
+<li>The UI can jump between cards a few times (for example when retaining cards as
+the silent). this isn't an issue I can fix and does not break the game in any
+way.</li>
 <li>Currently certain text is only read in English (for example UI element types).</li>
-<li>There appears to be an issue where game input will not work at all if a ps5 controller is connected. I don't know what causes this but it doesn't seem to be anything related to the mod itself. If anyone has any information about this please let me know</li>
+<li>There appears to be an issue where game input will not work at all if a ps5
+controller is connected. I don't know what causes this but it doesn't seem to
+be anything related to the mod itself. If anyone has any information about
+this please let me know</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="credits"><a class="header" href="#credits">Credits</a></h1>
 <h2 id="beta-testers"><a class="header" href="#beta-testers">Beta Testers</a></h2>

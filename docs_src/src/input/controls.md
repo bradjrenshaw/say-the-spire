@@ -1,6 +1,10 @@
 # Gamepad and Keyboard Controls
 
-These are the default gamepad and keyboard controls for Say the Spire. The gamepad controls by default match what the game uses. for information on Virtual Input and Keyboard Support, go [here](./virtual.md).
+These are the default gamepad and keyboard controls for Say the Spire. The
+gamepad controls by default match what the game uses. for information on Virtual
+Input and Keyboard Support, go [here](./virtual.md).
+
+## Game and Mod General Controls
 
 | Action | Controller (xbox/ps) | Keyboard |
 | ------------------------------ | ----------- | ----------- |
@@ -16,3 +20,17 @@ These are the default gamepad and keyboard controls for Say the Spire. The gamep
 | buffers, map, and settings sliders | right stick | control arrows |
 | settings/pause | start | backspace |
 | Map, save slots (from main menu), general back option | select | m |
+
+## Info Controls
+
+You can press control in combination with another key to quickly read additional
+information about the player or general game state. These controls are only
+available for keyboard and more will be added in future updates. To see the
+health of the player for example, use ctrl+h.
+
+| Action | Keyboard |
+| ------------------------------ | ----------- |
+| Current Block | ctrl b |
+| Current Gold | ctrl g |
+| Health | ctrl h |
+| Current Act Boss | ctrl n |
