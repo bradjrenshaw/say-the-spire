@@ -52,6 +52,11 @@
     <artifactId>json-simple</artifactId>
     <version>1.1.1</version>
 </dependency>
+<dependency>
+    <groupId>org.bigtesting</groupId>
+    <artifactId>interpolatd</artifactId>
+    <version>1.0.0</version>
+</dependency>
     </dependencies>
 
     <properties>

@@ -1,5 +1,6 @@
 package sayTheSpire;
 
+import java.util.HashMap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -26,6 +27,7 @@ import sayTheSpire.ui.UIRegistry;
 import sayTheSpire.ui.input.InputManager;
 import sayTheSpire.ui.mod.UIManager;
 import sayTheSpire.buffers.*;
+import sayTheSpire.localization.LocalizationContext;
 
 public class Output {
 
@@ -50,7 +52,11 @@ public class Output {
     public static STSConfig config = null;
 
     public static void announceVersion() {
-        text("Using Say the Spire version " + modVersion, false);
+        LocalizationContext context = new LocalizationContext();
+        HashMap<String, Object> data = new HashMap();
+        data.put("version", modVersion);
+        context.updateData(data);
+        text(context.localize("Using Say the Spire version {version}."), true);
     }
 
     public static void setup() {
