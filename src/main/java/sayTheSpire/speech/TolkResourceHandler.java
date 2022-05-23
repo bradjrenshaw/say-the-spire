@@ -14,6 +14,11 @@ public class TolkResourceHandler extends TolkHandler {
 
     private static Logger logger = LogManager.getLogger(TolkResourceHandler.class.getName());
 
+    public TolkResourceHandler() {
+        super();
+        this.setName("tolk_resources");
+    }
+
     public void disposeResources() {
         String resources[] = getResources();
         try {

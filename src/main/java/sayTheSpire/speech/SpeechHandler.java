@@ -6,6 +6,20 @@ package sayTheSpire.speech;
  */
 public abstract class SpeechHandler {
 
+    private String name;
+
+    public SpeechHandler() {
+        this.setName(null);
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    protected void setName(String name) {
+        this.name = name;
+    }
+
     /**
      * Detect is called and determines whether or not this handler can even be used.
      *

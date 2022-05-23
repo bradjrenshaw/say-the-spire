@@ -16,10 +16,7 @@ import sayTheSpire.ui.effects.EffectManager;
 import sayTheSpire.events.Event;
 import sayTheSpire.events.EventManager;
 import sayTheSpire.mapNavigator.MapNavigator;
-import sayTheSpire.speech.ClipboardHandler;
 import sayTheSpire.speech.SpeechManager;
-import sayTheSpire.speech.TolkHandler;
-import sayTheSpire.speech.TolkResourceHandler;
 import sayTheSpire.ui.positions.AbstractPosition;
 import sayTheSpire.ui.elements.UIElement;
 import sayTheSpire.ui.UIRegistry;
@@ -54,12 +51,6 @@ public class Output {
     }
 
     public static void setup() {
-        speechManager = new SpeechManager();
-        speechManager.registerHandler(new TolkResourceHandler());
-        speechManager.registerHandler(new TolkHandler());
-        speechManager.registerHandler(new ClipboardHandler());
-        speechManager.setup();
-        tolkSetup = true;
 
         // create buffers
         BufferControls.buffers = buffers;
@@ -91,6 +82,9 @@ public class Output {
             inputManager = new InputManager();
         }
         uiManager = new UIManager(inputManager);
+        speechManager = new SpeechManager();
+        speechManager.setup();
+        tolkSetup = true;
     }
 
     public static void shutdown() {

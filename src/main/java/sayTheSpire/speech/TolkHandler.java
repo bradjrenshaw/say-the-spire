@@ -4,6 +4,11 @@ import com.davykager.tolk.Tolk;
 
 public class TolkHandler extends SpeechHandler {
 
+    public TolkHandler() {
+        super();
+        this.setName("tolk");
+    }
+
     public Boolean detect() {
         return System.getProperty("os.name").startsWith("Windows");
     }

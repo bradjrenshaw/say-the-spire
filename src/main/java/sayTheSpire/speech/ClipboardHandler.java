@@ -8,6 +8,11 @@ public class ClipboardHandler extends SpeechHandler {
 
     private Clipboard clipboard;
 
+    public ClipboardHandler() {
+        super();
+        this.setName("clipboard");
+    }
+
     public Boolean detect() {
         return true;
     }

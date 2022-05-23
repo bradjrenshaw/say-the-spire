@@ -11,6 +11,13 @@ public class SpeechManager {
     public SpeechManager() {
         this.handlers = new ArrayList();
         this.currentHandler = null;
+        this.addHandlers();
+    }
+
+    private void addHandlers() {
+        this.registerHandler(new TolkResourceHandler());
+        this.registerHandler(new TolkHandler());
+        this.registerHandler(new ClipboardHandler());
     }
 
     public void disposeResources() {
