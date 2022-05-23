@@ -105,7 +105,7 @@ public class InputActionCollection {
         return this.actions.values();
     }
 
-    public JsonElement toJSONElement() {
+    public JsonElement toJsonElement() {
         JsonObject obj = new JsonObject();
         for (InputAction action : this.actions.values()) {
             obj.add(action.getName(), action.toJsonElement());

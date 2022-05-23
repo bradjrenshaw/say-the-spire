@@ -87,11 +87,11 @@ public class STSConfig {
             e.printStackTrace();
         }
         try (FileWriter file = new FileWriter(getInputFilePath())) {
-            file.write(Output.inputManager.getActionCollection().toJSONElement().toString());
+            file.write(Output.inputManager.getActionCollection().toJsonElement().toString());
             file.flush();
             logger.info("Successfully wrote input mappings file.");
         } catch (Exception e) {
-            logger.error("Error writing to input mappings file.");
+            logger.error("Error writing to input mappings file: " + e.getMessage());
             e.printStackTrace();
         }
     }

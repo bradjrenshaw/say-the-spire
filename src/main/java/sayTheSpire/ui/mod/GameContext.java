@@ -1,5 +1,6 @@
 package sayTheSpire.ui.mod;
 
+import java.util.ArrayList;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.controller.CInputAction;
@@ -112,7 +113,7 @@ public class GameContext extends Context {
             return;
         }
         if (OutputUtils.playerHasRelic("Runic Dome")) {
-            Output.text("intents unknown", false);
+            Output.text("hidden intents", false);
             return;
         }
         int totalDmg = 0;
@@ -129,6 +130,32 @@ public class GameContext extends Context {
     }
 
     private void readDetailedIntents() {
-        return;
+        if (!OutputUtils.isInCombat()) {
+            Output.text("Not currently in combat.", false);
+            return;
+        }
+        if (OutputUtils.playerHasRelic("Runic Dome")) {
+            Output.text("hidden intents", false);
+            return;
+        }
+        StringBuilder sb = new StringBuilder();
+        ArrayList<AbstractMonster> aliveMonsters = new ArrayList();
+        for (AbstractMonster monster : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (!MonsterUtils.getMonsterIsInCombat(monster))
+                continue;
+            aliveMonsters.add(monster);
+        }
+        int monsterCount = aliveMonsters.size();
+        if (monsterCount == 0) {
+            Output.text("No monsters", false);
+            return;
+        }
+        for (int c = 0; c < monsterCount; c++) {
+            AbstractMonster monster = aliveMonsters.get(c);
+            sb.append(monster.name + " " + MonsterUtils.getMonsterIntentShort(monster));
+            if (c < monsterCount - 1)
+                sb.append(", ");
+        }
+        Output.text(sb.toString(), false);
     }
 }
