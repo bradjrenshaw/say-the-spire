@@ -21,7 +21,7 @@ public class InputManager {
     static final String actionNames[] = { "select", "cancel", "top panel", "proceed", "peek", "page left", "page right",
             "draw pile", "discard pile", "map", "settings", "up", "down", "left", "right", "alt up", "alt down",
             "alt left", "alt right", "inspect up", "inspect down", "inspect left", "inspect right", "read player block",
-            "read player gold", "read player hp", "read act boss" };
+            "read player energy", "read player gold", "read player hp", "read act boss" };
 
     public InputManager(JsonObject inputObj) {
         if (inputObj != null) {

@@ -2,6 +2,7 @@ package sayTheSpire.ui.mod;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.helpers.controller.CInputAction;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import sayTheSpire.Output;
 import sayTheSpire.utils.MapUtils;
 import sayTheSpire.utils.OutputUtils;
@@ -30,6 +31,13 @@ public class GameContext extends Context {
                 Output.text("Not currently in combat.", false);
             }
             return;
+        case "read player energy":
+            if (OutputUtils.isInCombat()) {
+                Output.text(EnergyPanel.totalCount + " energy", false);
+            } else {
+                Output.text("Not currently in combat.", false);
+            }
+            return;
         case "read player gold":
             Output.text(player.gold + " gold", false);
             return;
@@ -47,6 +55,7 @@ public class GameContext extends Context {
         switch (action.getName()) {
         case "read act boss":
         case "read player block":
+        case "read player energy":
         case "read player gold":
         case "read player hp":
             this.readPlayerAttribute(action.getName());
