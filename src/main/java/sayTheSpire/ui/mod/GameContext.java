@@ -141,9 +141,8 @@ public class GameContext extends Context {
         StringBuilder sb = new StringBuilder();
         ArrayList<AbstractMonster> aliveMonsters = new ArrayList();
         for (AbstractMonster monster : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (!MonsterUtils.getMonsterIsInCombat(monster))
-                continue;
-            aliveMonsters.add(monster);
+            if (MonsterUtils.getMonsterIsInCombat(monster))
+                aliveMonsters.add(monster);
         }
         int monsterCount = aliveMonsters.size();
         if (monsterCount == 0) {

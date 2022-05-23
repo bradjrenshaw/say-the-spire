@@ -87,7 +87,9 @@ public class STSConfig {
             e.printStackTrace();
         }
         try (FileWriter file = new FileWriter(getInputFilePath())) {
-            file.write(Output.inputManager.getActionCollection().toJsonElement().toString());
+            InputActionCollection actions = Output.inputManager.getActionCollection();
+            JsonElement json = actions.toJsonElement();
+            file.write(json.toString());
             file.flush();
             logger.info("Successfully wrote input mappings file.");
         } catch (Exception e) {

@@ -37,6 +37,10 @@ public class InputManager {
         this.determineKeysToCheck();
     }
 
+    public InputManager() {
+        this(null);
+    }
+
     public void clearActionStates() {
         if (this.controllerPressed != null)
             this.controllerPressed.clear();

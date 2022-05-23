@@ -83,12 +83,13 @@ public class Output {
         // initialize config
         try {
             config = new STSConfig();
+            inputManager = new InputManager(config.getInputObj());
             config.save();
         } catch (Exception e) {
             logger.error(e.getMessage());
             e.printStackTrace();
+            inputManager = new InputManager();
         }
-        inputManager = new InputManager(config.getInputObj());
         uiManager = new UIManager(inputManager);
     }
 
