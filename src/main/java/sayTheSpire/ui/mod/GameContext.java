@@ -1,10 +1,13 @@
 package sayTheSpire.ui.mod;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.controller.CInputAction;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import sayTheSpire.Output;
 import sayTheSpire.utils.MapUtils;
+import sayTheSpire.utils.MonsterUtils;
 import sayTheSpire.utils.OutputUtils;
 import sayTheSpire.ui.input.InputAction;
 
@@ -60,6 +63,12 @@ public class GameContext extends Context {
         case "read player hp":
             this.readPlayerAttribute(action.getName());
             return true;
+        case "read summarized intents":
+            this.readSummarizedIntents();
+            return true;
+        case "read detailed intents":
+            this.readDetailedIntents();
+            return true;
         case "inspect up":
             Output.infoControls(Output.Direction.UP);
             break;
@@ -95,5 +104,31 @@ public class GameContext extends Context {
             action.setGameControllerActionJustPressed(false);
         }
         return true;
+    }
+
+    private void readSummarizedIntents() {
+        if (!OutputUtils.isInCombat()) {
+            Output.text("Not currently in combat.", false);
+            return;
+        }
+        if (OutputUtils.playerHasRelic("Runic Dome")) {
+            Output.text("intents unknown", false);
+            return;
+        }
+        int totalDmg = 0;
+        for (AbstractMonster monster : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            if (!MonsterUtils.getMonsterIsInCombat(monster))
+                continue;
+            if (MonsterUtils.getMonsterIsMultiDmg(monster)) {
+                totalDmg += MonsterUtils.getMonsterIntentDmg(monster) * MonsterUtils.getMonsterIntentMultiAmt(monster);
+            } else {
+                totalDmg += MonsterUtils.getMonsterIntentDmg(monster);
+            }
+        }
+        Output.text(totalDmg + " incoming damage", false);
+    }
+
+    private void readDetailedIntents() {
+        return;
     }
 }
