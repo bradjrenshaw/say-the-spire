@@ -1,5 +1,12 @@
 # Change Log
 
+## 0.3.4-beta
+This is a quick fix to prevent a number of issues prior to adding localization support.
+
+* The mod will no longer cause the game to crash due to conflicting versions of com.google.gson. This was causing crashes with some mods that use gson such as Downfall.
+* com.google.gson is now used behind the scenes for json loading and saving. This should not change mod functionality in any way but this was needed to prepare for localization support.
+* The mod no longer bundles a number of redundant dependencies in the .jar file. This should noticeably reduce the startup time of the game.
+
 ## 0.3.3-beta
 This should be the last general bug fix and gameplay notification patch before more features are added.
 

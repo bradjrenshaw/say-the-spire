@@ -8,7 +8,7 @@
 
 
         <!-- Custom HTML head -->
-
+        
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -90,7 +90,7 @@
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                <div id="menu-bar-hover-placeholder"></div>
+                                <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky bordered">
                     <div class="left-buttons">
                         <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
@@ -556,6 +556,13 @@ place the correct dlls in your root SlayTheSpire game directory.</p>
 <p>Localization support has not yet been implemented, however it is planned for a
 future release.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="change-log"><a class="header" href="#change-log">Change Log</a></h1>
+<h2 id="034-beta"><a class="header" href="#034-beta">0.3.4-beta</a></h2>
+<p>This is a quick fix to prevent a number of issues prior to adding localization support.</p>
+<ul>
+<li>The mod will no longer cause the game to crash due to conflicting versions of com.google.gson. This was causing crashes with some mods that use gson such as Downfall.</li>
+<li>com.google.gson is now used behind the scenes for json loading and saving. This should not change mod functionality in any way but this was needed to prepare for localization support.</li>
+<li>The mod no longer bundles a number of redundant dependencies in the .jar file. This should noticeably reduce the startup time of the game.</li>
+</ul>
 <h2 id="033-beta"><a class="header" href="#033-beta">0.3.3-beta</a></h2>
 <p>This should be the last general bug fix and gameplay notification patch before more features are added.</p>
 <ul>
