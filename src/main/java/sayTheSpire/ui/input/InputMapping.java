@@ -1,7 +1,8 @@
 package sayTheSpire.ui.input;
 
-import org.json.simple.JSONObject;
-import org.json.simple.JSONArray;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.badlogic.gdx.Input.Keys;
 import java.util.HashSet;
 
@@ -69,16 +70,14 @@ public class InputMapping {
                 mapping.keycode);
     }
 
-    public InputMapping(JSONObject mappingObj) {
-        String actionName = (String) mappingObj.get("actionName");
-        String inputType = (String) mappingObj.get("inputType");
-        JSONArray modifiersArray = (JSONArray) mappingObj.get("modifiers");
-
-        // Yes this really is required
-        int keycode = ((Long) mappingObj.get("keycode")).intValue();
+    public InputMapping(JsonObject mappingObj) {
+        String actionName = mappingObj.get("actionName").getAsString();
+        String inputType = mappingObj.get("inputType").getAsString();
+        JsonArray modifiersArray = mappingObj.getAsJsonArray("modifiers");
+        int keycode = mappingObj.get("keycode").getAsInt();
         HashSet<Modifiers> modifiers = new HashSet();
-        for (Object obj : modifiersArray) {
-            switch ((String) obj) {
+        for (JsonElement element : modifiersArray) {
+            switch (element.getAsString()) {
             case "CONTROL":
                 modifiers.add(Modifiers.CONTROL);
                 break;
@@ -117,16 +116,16 @@ public class InputMapping {
         return this.modifiers;
     }
 
-    public JSONObject toJSONObject() {
-        JSONObject obj = new JSONObject();
-        obj.put("actionName", this.getActionName());
-        obj.put("inputType", this.getInputType());
-        JSONArray modifiersArray = new JSONArray();
+    public JsonElement toJsonElement() {
+        JsonObject obj = new JsonObject();
+        obj.addProperty("actionName", this.getActionName());
+        obj.addProperty("inputType", this.getInputType());
+        JsonArray modifiersArray = new JsonArray();
         for (Modifiers modifier : this.modifiers) {
             modifiersArray.add(modifier.toString());
         }
-        obj.put("modifiers", modifiersArray);
-        obj.put("keycode", this.getKeycode());
+        obj.add("modifiers", modifiersArray);
+        obj.addProperty("keycode", this.getKeycode());
         return obj;
     }
 }

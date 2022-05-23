@@ -7,8 +7,7 @@ import java.util.HashSet;
 import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.json.simple.JSONObject;
-
+import com.google.gson.JsonObject;
 import sayTheSpire.Output;
 import sayTheSpire.ui.mod.Context;
 
@@ -24,7 +23,7 @@ public class InputManager {
             "alt left", "alt right", "inspect up", "inspect down", "inspect left", "inspect right", "read player block",
             "read player gold", "read player hp", "read act boss" };
 
-    public InputManager(JSONObject inputObj) {
+    public InputManager(JsonObject inputObj) {
         if (inputObj != null) {
             this.actionCollection = new InputActionCollection(this, inputObj);
         } else {

@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.badlogic.gdx.Input.Keys;
 import com.megacrit.cardcrawl.helpers.Prefs;
 import com.megacrit.cardcrawl.helpers.SaveHelper;
@@ -28,22 +29,21 @@ public class InputActionCollection {
         this.setupActions(null);
     }
 
-    public InputActionCollection(InputManager manager, JSONObject input) {
+    public InputActionCollection(InputManager manager, JsonObject input) {
         this(manager);
         this.setupActions(input);
     }
 
-    private void setupActions(JSONObject input) {
+    private void setupActions(JsonObject input) {
         for (String name : InputManager.actionNames) {
-            JSONArray mappingsArray = null;
-            if (input != null)
-                mappingsArray = (JSONArray) input.getOrDefault(name, null);
+            JsonArray mappingsArray = null;
+            if (input != null && input.has(name))
+                mappingsArray = input.getAsJsonArray(name);
             InputAction action = null;
             if (mappingsArray != null) {
-                action = new InputAction(name, this.inputManager, (JSONArray) mappingsArray);
+                action = new InputAction(name, this.inputManager, mappingsArray);
             } else {
                 action = new InputAction(name, this.inputManager);
-                System.out.println("name is " + name);
                 action.setMappings(this.defaults.get(name));
             }
             this.actions.put(name, action);
@@ -103,15 +103,10 @@ public class InputActionCollection {
         return this.actions.values();
     }
 
-    public JSONObject toJSONObject() {
-        JSONObject obj = new JSONObject();
+    public JsonElement toJSONElement() {
+        JsonObject obj = new JsonObject();
         for (InputAction action : this.actions.values()) {
-            String actionName = action.getName();
-            JSONArray jsonArray = new JSONArray();
-            for (InputMapping mapping : action.getMappings()) {
-                jsonArray.add(mapping.toJSONObject());
-            }
-            obj.put(actionName, jsonArray);
+            obj.add(action.getName(), action.toJsonElement());
         }
         return obj;
     }

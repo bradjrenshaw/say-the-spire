@@ -1,8 +1,9 @@
 package sayTheSpire.ui.input;
 
 import java.util.ArrayList;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonArray;
 import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.helpers.controller.CInputAction;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
@@ -28,10 +29,10 @@ public class InputAction {
         this.isJustReleased = false;
     }
 
-    public InputAction(String name, InputManager manager, JSONArray mappings) {
+    public InputAction(String name, InputManager manager, JsonArray mappings) {
         this(name, manager);
-        for (Object mappingObj : mappings) {
-            InputMapping mapping = new InputMapping((JSONObject) mappingObj);
+        for (JsonElement mappingElement : mappings) {
+            InputMapping mapping = new InputMapping(mappingElement.getAsJsonObject());
             this.mappings.add(mapping);
         }
     }
@@ -176,5 +177,13 @@ public class InputAction {
         } else if (this.isJustReleased()) {
             Output.uiManager.emitAction(this, "justReleased");
         }
+    }
+
+    public JsonElement toJsonElement() {
+        JsonArray mappingsArray = new JsonArray();
+        for (InputMapping mapping : this.getMappings()) {
+            mappingsArray.add(mapping.toJsonElement());
+        }
+        return mappingsArray;
     }
 }

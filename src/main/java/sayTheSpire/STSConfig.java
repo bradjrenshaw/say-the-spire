@@ -7,8 +7,10 @@ import java.util.HashSet;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.evacipated.cardcrawl.modthespire.lib.ConfigUtils;
 import com.moandjiezana.toml.Toml;
 import com.moandjiezana.toml.TomlWriter;
@@ -25,7 +27,7 @@ public class STSConfig {
 
     private Toml settingsToml;
     private HashSet<String> excludedTypenames;
-    private JSONObject inputObj;
+    private JsonObject inputObj;
 
     public STSConfig() {
         File dir = new File(getDirectoryPath());
@@ -37,8 +39,9 @@ public class STSConfig {
 
     private void loadInput() {
         try {
-            JSONParser parser = new JSONParser();
-            this.inputObj = (JSONObject) parser.parse(new FileReader(this.getInputFilePath()));
+            JsonParser parser = new JsonParser();
+            JsonElement root = parser.parse(new FileReader(this.getInputFilePath()));
+            this.inputObj = root.getAsJsonObject();
             logger.info("Input settings file loaded successfully.");
         } catch (Exception e) {
             logger.info("Issue loading input mappings file.");
@@ -84,7 +87,7 @@ public class STSConfig {
             e.printStackTrace();
         }
         try (FileWriter file = new FileWriter(getInputFilePath())) {
-            file.write(Output.inputManager.getActionCollection().toJSONObject().toJSONString());
+            file.write(Output.inputManager.getActionCollection().toJSONElement().toString());
             file.flush();
             logger.info("Successfully wrote input mappings file.");
         } catch (Exception e) {
@@ -148,7 +151,7 @@ public class STSConfig {
         return getDirectoryPath() + "input.json";
     }
 
-    public JSONObject getInputObj() {
+    public JsonObject getInputObj() {
         return this.inputObj;
     }
 
