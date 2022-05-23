@@ -1,26 +1,45 @@
 # Change Log
 
-## 0.3.4-beta
-This is a quick fix to prevent a number of issues prior to adding localization support.
+## 0.3.4-beta (2022-05-23)
+This is a quick fix to prevent a number of issues prior to adding localization
+support.
 
-* The mod will no longer cause the game to crash due to conflicting versions of com.google.gson. This was causing crashes with some mods that use gson such as Downfall.
-* com.google.gson is now used behind the scenes for json loading and saving. This should not change mod functionality in any way but this was needed to prepare for localization support.
-* The mod no longer bundles a number of redundant dependencies in the .jar file. This should noticeably reduce the startup time of the game.
+* The mod will no longer cause the game to crash due to conflicting versions of
+  com.google.gson. This was causing crashes with some mods that use gson such as
+  Downfall.
+* com.google.gson is now used behind the scenes for json loading and saving.
+  This should not change mod functionality in any way but this was needed to
+  prepare for localization support.
+* The mod no longer bundles a number of redundant dependencies in the .jar file.
+  This should noticeably reduce the startup time of the game.
+* Fixed an error in change log (you remove cards, not sell them) and updated
+  documentation important notes with Steam accessibility changes and some
+  clarifications.
 
 ## 0.3.3-beta
-This should be the last general bug fix and gameplay notification patch before more features are added.
+This should be the last general bug fix and gameplay notification patch before
+more features are added.
 
-* Added: Achievement items on the character stats screen now have location information.
-* Fixed: Block gains are now correctly read out if block was already greater than 0 (it was previously triggering on the wrong event and only reading when your block was 0 before the gain.)
-* Added: Combat orb events are now read out (such as when they are channeled and when they are evoked). This can be configured; see the config section of the documentation for more info.
+* Added: Achievement items on the character stats screen now have location
+  information.
+* Fixed: Block gains are now correctly read out if block was already greater
+  than 0 (it was previously triggering on the wrong event and only reading when
+  your block was 0 before the gain.)
+* Added: Combat orb events are now read out (such as when they are channeled and
+  when they are evoked). This can be configured; see the config section of the
+  documentation for more info.
 * Added: Monster deaths are now read out.
-* Fixed: The input.json loading process is no longer horribly broken. This will allow for more actions to be mapped successfully without causing the game to crash.
-* Added additional keyboard hotkeys to quickly read important player information:
+* Fixed: The input.json loading process is no longer horribly broken. This will
+  allow for more actions to be mapped successfully without causing the game to
+  crash.
+* Added additional keyboard hotkeys to quickly read important player
+  information:
     * The current act boss (ctrl n)
     * Player Block (ctrl b)
     * Player Gold (ctrl g)
     * Player HP (ctrl h)
-* Fixed: The manual installation instructions in the documentation were incorrect; this has been fixed.
+* Fixed: The manual installation instructions in the documentation were
+  incorrect; this has been fixed.
 
 ## 0.3.2-beta
 
@@ -100,7 +119,7 @@ This patch fixes a number of issues related to UI.
 * Shops
     * All shop items now have location information approximately corresponding
       to their on screen position
-    * The button to sell a card is now actually announced as a button and has
+    * The button to remove a card is now actually announced as a button and has
       location information
 * Text Parsing
     * Fixed a bug where words containing numbers would break if the number was

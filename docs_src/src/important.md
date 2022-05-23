@@ -16,10 +16,11 @@ When the game is launched via ModTheSpire using the mts_steam.cmd file, it does
 not run all of the usual Steam functions that would be run if the game was
 launched normally. As a result, your game data is not automatically backed up to
 the Steam Cloud. To fix this, run the game normally and select the option to
-upload your data. You will need OCR to do this unfortunately and there is no way
-to automatically back up the data periodically. You can copy the json files from
-the game directory to manually back up your saves as an alternative.
+upload your data. This prompt should load as a standard html page, however it
+may not and OCR may be required. You can copy the json files from the game
+directory to manually back up your saves as an alternative. Unfortunately there
+seems to be no way to have data periodically back up with Steam itself.
 
 ## Settings not Saving
 There is a bug related to Game Settings not saving when using Mod the Spire.
-This seems to be an issue with Steam and the game itself.
+This seems to be an issue with ModTheSpire, Steam, and the game itself.

@@ -143,22 +143,40 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="change-log"><a class="header" href="#change-log">Change Log</a></h1>
-<h2 id="034-beta"><a class="header" href="#034-beta">0.3.4-beta</a></h2>
-<p>This is a quick fix to prevent a number of issues prior to adding localization support.</p>
+<h2 id="034-beta-2022-05-23"><a class="header" href="#034-beta-2022-05-23">0.3.4-beta (2022-05-23)</a></h2>
+<p>This is a quick fix to prevent a number of issues prior to adding localization
+support.</p>
 <ul>
-<li>The mod will no longer cause the game to crash due to conflicting versions of com.google.gson. This was causing crashes with some mods that use gson such as Downfall.</li>
-<li>com.google.gson is now used behind the scenes for json loading and saving. This should not change mod functionality in any way but this was needed to prepare for localization support.</li>
-<li>The mod no longer bundles a number of redundant dependencies in the .jar file. This should noticeably reduce the startup time of the game.</li>
+<li>The mod will no longer cause the game to crash due to conflicting versions of
+com.google.gson. This was causing crashes with some mods that use gson such as
+Downfall.</li>
+<li>com.google.gson is now used behind the scenes for json loading and saving.
+This should not change mod functionality in any way but this was needed to
+prepare for localization support.</li>
+<li>The mod no longer bundles a number of redundant dependencies in the .jar file.
+This should noticeably reduce the startup time of the game.</li>
+<li>Fixed an error in change log (you remove cards, not sell them) and updated
+documentation important notes with Steam accessibility changes and some
+clarifications.</li>
 </ul>
 <h2 id="033-beta"><a class="header" href="#033-beta">0.3.3-beta</a></h2>
-<p>This should be the last general bug fix and gameplay notification patch before more features are added.</p>
+<p>This should be the last general bug fix and gameplay notification patch before
+more features are added.</p>
 <ul>
-<li>Added: Achievement items on the character stats screen now have location information.</li>
-<li>Fixed: Block gains are now correctly read out if block was already greater than 0 (it was previously triggering on the wrong event and only reading when your block was 0 before the gain.)</li>
-<li>Added: Combat orb events are now read out (such as when they are channeled and when they are evoked). This can be configured; see the config section of the documentation for more info.</li>
+<li>Added: Achievement items on the character stats screen now have location
+information.</li>
+<li>Fixed: Block gains are now correctly read out if block was already greater
+than 0 (it was previously triggering on the wrong event and only reading when
+your block was 0 before the gain.)</li>
+<li>Added: Combat orb events are now read out (such as when they are channeled and
+when they are evoked). This can be configured; see the config section of the
+documentation for more info.</li>
 <li>Added: Monster deaths are now read out.</li>
-<li>Fixed: The input.json loading process is no longer horribly broken. This will allow for more actions to be mapped successfully without causing the game to crash.</li>
-<li>Added additional keyboard hotkeys to quickly read important player information:
+<li>Fixed: The input.json loading process is no longer horribly broken. This will
+allow for more actions to be mapped successfully without causing the game to
+crash.</li>
+<li>Added additional keyboard hotkeys to quickly read important player
+information:
 <ul>
 <li>The current act boss (ctrl n)</li>
 <li>Player Block (ctrl b)</li>
@@ -166,7 +184,8 @@
 <li>Player HP (ctrl h)</li>
 </ul>
 </li>
-<li>Fixed: The manual installation instructions in the documentation were incorrect; this has been fixed.</li>
+<li>Fixed: The manual installation instructions in the documentation were
+incorrect; this has been fixed.</li>
 </ul>
 <h2 id="032-beta"><a class="header" href="#032-beta">0.3.2-beta</a></h2>
 <ul>
@@ -271,7 +290,7 @@ at the beginning of weak's description)</li>
 <ul>
 <li>All shop items now have location information approximately corresponding
 to their on screen position</li>
-<li>The button to sell a card is now actually announced as a button and has
+<li>The button to remove a card is now actually announced as a button and has
 location information</li>
 </ul>
 </li>
