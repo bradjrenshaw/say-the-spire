@@ -16,7 +16,34 @@ public class MonsterUtils {
                 + monster.currentHealth + "/" + monster.maxHealth;
     }
 
+    public static Boolean getMonsterIsInCombat(AbstractMonster monster) {
+        return !monster.isDead && !monster.escaped;
+    }
+
     public static int getMonsterIntentDmg(AbstractMonster monster) {
+        if (OutputUtils.playerHasRelic("Runic Dome"))
+            return 0;
+        switch (monster.intent) {
+        case ATTACK:
+        case ATTACK_BUFF:
+        case ATTACK_DEBUFF:
+        case ATTACK_DEFEND:
+            break;
+        case BUFF:
+        case DEBUFF:
+        case STRONG_DEBUFF:
+        case DEBUG:
+        case DEFEND:
+        case DEFEND_DEBUFF:
+        case DEFEND_BUFF:
+        case ESCAPE:
+        case MAGIC:
+        case NONE:
+        case SLEEP:
+        case STUN:
+        default:
+            return 0;
+        }
         return monster.getIntentDmg();
     }
 
@@ -25,7 +52,37 @@ public class MonsterUtils {
     }
 
     public static int getMonsterIntentMultiAmt(AbstractMonster monster) {
+        if (OutputUtils.playerHasRelic("Runic Dome"))
+            return 0;
+        switch (monster.intent) {
+        case ATTACK:
+        case ATTACK_BUFF:
+        case ATTACK_DEBUFF:
+        case ATTACK_DEFEND:
+            break;
+        case BUFF:
+        case DEBUFF:
+        case STRONG_DEBUFF:
+        case DEBUG:
+        case DEFEND:
+        case DEFEND_DEBUFF:
+        case DEFEND_BUFF:
+        case ESCAPE:
+        case MAGIC:
+        case NONE:
+        case SLEEP:
+        case STUN:
+        default:
+            return 0;
+        }
         return (int) ReflectionHacks.getPrivate(monster, AbstractMonster.class, "intentMultiAmt");
+    }
+
+    private static String getMonsterIntentDmgString(AbstractMonster monster) {
+        if (getMonsterIsMultiDmg(monster)) {
+            return getMonsterIntentDmg(monster) + "x" + getMonsterIntentMultiAmt(monster);
+        }
+        return Integer.toString(getMonsterIntentDmg(monster));
     }
 
     public static String getMonsterIntentShort(AbstractMonster monster) {
@@ -33,29 +90,13 @@ public class MonsterUtils {
             return "hidden intent";
         switch (monster.intent) {
         case ATTACK:
-            if (getMonsterIsMultiDmg(monster)) {
-                return TEXT[0] + " " + getMonsterIntentDmg(monster) + "x" + getMonsterIntentMultiAmt(monster);
-            } else {
-                return TEXT[0] + " " + getMonsterIntentDmg(monster);
-            }
+            return TEXT[0] + " " + getMonsterIntentDmgString(monster);
         case ATTACK_BUFF:
-            if (getMonsterIsMultiDmg(monster)) {
-                return TEXT[6] + " " + getMonsterIntentDmg(monster) + "x" + getMonsterIntentMultiAmt(monster);
-            } else {
-                return TEXT[6] + " " + getMonsterIntentDmg(monster);
-            }
+            return TEXT[6] + " " + getMonsterIntentDmgString(monster);
         case ATTACK_DEBUFF:
-            if (getMonsterIsMultiDmg(monster)) {
-                return TEXT[10] + " " + getMonsterIntentDmg(monster) + "x" + getMonsterIntentMultiAmt(monster);
-            } else {
-                return TEXT[10] + " " + getMonsterIntentDmg(monster);
-            }
+            return TEXT[10] + " " + getMonsterIntentDmgString(monster);
         case ATTACK_DEFEND:
-            if (getMonsterIsMultiDmg(monster)) {
-                return TEXT[0] + " " + getMonsterIntentDmg(monster) + "x" + getMonsterIntentMultiAmt(monster);
-            } else {
-                return TEXT[0] + " " + getMonsterIntentDmg(monster);
-            }
+            return TEXT[0] + " " + getMonsterIntentDmgString(monster);
         case BUFF:
         case DEBUFF:
         case STRONG_DEBUFF:

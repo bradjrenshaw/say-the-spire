@@ -12,7 +12,7 @@ public class MonsterGroupPatch {
 
     public static AbstractMonster getHoveredMonster(MonsterGroup group) {
         for (AbstractMonster monster : group.monsters) {
-            if (!monster.isDead && !monster.escaped && monster.hb.hovered || monster.intentHb.hovered
+            if (MonsterUtils.getMonsterIsInCombat(monster) && monster.hb.hovered || monster.intentHb.hovered
                     || monster.healthHb.hovered) {
                 return monster;
             }
