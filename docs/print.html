@@ -442,6 +442,9 @@ health of the player for example, use ctrl+h.</p>
 <tr><td>Current Block</td><td>ctrl b</td></tr>
 <tr><td>Current Gold</td><td>ctrl g</td></tr>
 <tr><td>Health</td><td>ctrl h</td></tr>
+<tr><td>Energy</td><td>ctrl y</td></tr>
+<tr><td>Summarized intents (total incoming damage)</td><td>ctrl i</td></tr>
+<tr><td>detailed intents (read all monster intents)</td><td>alt i</td></tr>
 <tr><td>Current Act Boss</td><td>ctrl n</td></tr>
 </tbody></table>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="config-files-and-changing-mod-settings"><a class="header" href="#config-files-and-changing-mod-settings">Config Files and Changing Mod Settings</a></h1>
@@ -467,6 +470,27 @@ they are strings of text. For example to exclude cards and relics, you would use
 <p>Advanced settings related to the internals of the mod.</p>
 <table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
 <tr><td>use_updated_card_description</td><td>true, false</td><td>false</td><td>whether or not to use a different internal property to get card descriptions. This should be enabled if you are trying to use mods that do not have properly rendered card descriptions. This may break depending on your current game language so use this with caution.</td></tr>
+<tr><td>prefered_speech_handler_order</td><td>[ array of speech handler names ]</td><td>[]</td><td>Your prefered order of speech handlers. For more information, see the next section on speech handlers.</td></tr>
+<tr><td>speech_handler_force_system_speech</td><td>true, false</td><td>false</td><td>Whether or not system speech (for example SAPI) is used (if your speech handler supports it.)</td></tr>
+</tbody></table>
+<h4 id="speech-handler-priority"><a class="header" href="#speech-handler-priority">Speech Handler Priority</a></h4>
+<p>The mod has a number of speech handlers stored internally. Each speech handler
+allows output via a specific library or process and the best one for your system
+is loaded by default (for example Tolk for Windows). There is a default order
+for them. when the mod is first loaded, handlers are checked in order. If one
+meets the criteria to be used (for example correct operating system) it is set
+as the active speech handler and all text output from the mod will be output via
+that handler.</p>
+<p>If you would prefer a different order (such as forcing clipboard output for
+example), you can reorder the list via the
+advanced.prefered_speech_handler_order setting. The speech handler names you add
+to the list will be moved to the beginning of the list in the order you specify.
+For a list of speech handlers, see the table below. The table below lists the
+handlers in their default order.</p>
+<table><thead><tr><th>Handler</th><th>description</th><th>Criteria to Use</th><th>Supports System Speech</th></tr></thead><tbody>
+<tr><td>tolk_resources</td><td>Uses the Tolk (screen reader output) library for Windows and automatically extracts dlls needed at runtime. Dll files are removed when the game is closed.</td><td>Windows</td><td>Yes</td></tr>
+<tr><td>tolk</td><td>Uses the Tolk (screen reader output) library for Windows. You will need to copy required screenreader dll files to the game directory to use this handler.</td><td>Windows</td><td>Yes</td></tr>
+<tr><td>clipboard</td><td>Sends all text output to the clipboard. This is useful for translation or for some specific screen readers.</td><td>All</td><td>No</td></tr>
 </tbody></table>
 <h3 id="combat"><a class="header" href="#combat">[combat]</a></h3>
 <p>Settings related to combat messages.</p>

@@ -26,6 +26,7 @@ support.
       output first if you prefer)
     * System speech (such as SAPI) can now be forced for speech handlers that
       support it.
+      
 ## 0.3.3-beta
 This should be the last general bug fix and gameplay notification patch before
 more features are added.

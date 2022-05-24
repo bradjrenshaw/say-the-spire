@@ -26,6 +26,33 @@ Advanced settings related to the internals of the mod.
 | Setting | Accepted Values | Default Value | Description |
 |---|---|---|---|
 | use_updated_card_description | true, false | false | whether or not to use a different internal property to get card descriptions. This should be enabled if you are trying to use mods that do not have properly rendered card descriptions. This may break depending on your current game language so use this with caution. |
+| prefered_speech_handler_order | [ array of speech handler names ] | [] | Your prefered order of speech handlers. For more information, see the next section on speech handlers. |
+| speech_handler_force_system_speech | true, false | false | Whether or not system speech (for example SAPI) is used (if your speech handler supports it.) |
+
+#### Speech Handler Priority
+The mod has a number of speech handlers stored internally. Each speech handler
+allows output via a specific library or process and the best one for your system
+is loaded by default (for example Tolk for Windows). There is a default order
+for them. when the mod is first loaded, handlers are checked in order. If one
+meets the criteria to be used (for example correct operating system) it is set
+as the active speech handler and all text output from the mod will be output via
+that handler.
+
+If you would prefer a different order (such as forcing clipboard output for
+example), you can reorder the list via the
+advanced.prefered_speech_handler_order setting. The speech handler names you add
+to the list will be moved to the beginning of the list in the order you specify.
+For a list of speech handlers, see the table below. The table below lists the
+handlers in their default order.
+
+| Handler | description | Criteria to Use | Supports System Speech |
+| --- | ---------- | ----- | --- |
+| tolk_resources | Uses the Tolk (screen reader output) library for Windows and automatically extracts dlls needed at runtime. Dll files are removed when the game is closed. | Windows | Yes |
+| tolk | Uses the Tolk (screen reader output) library for Windows. You will need to copy required screenreader dll files to the game directory to use this handler. | Windows | Yes |
+| clipboard | Sends all text output to the clipboard. This is useful for translation or for some specific screen readers. | All | No |
+
+
+
 
 ### [combat]
 Settings related to combat messages.

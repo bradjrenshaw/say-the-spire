@@ -33,4 +33,7 @@ health of the player for example, use ctrl+h.
 | Current Block | ctrl b |
 | Current Gold | ctrl g |
 | Health | ctrl h |
+| Energy | ctrl y |
+| Summarized intents (total incoming damage) | ctrl i |
+| detailed intents (read all monster intents) | alt i |
 | Current Act Boss | ctrl n |
