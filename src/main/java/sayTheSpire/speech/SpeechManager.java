@@ -1,6 +1,9 @@
 package sayTheSpire.speech;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.ListIterator;
+import sayTheSpire.Output;
 
 /** The SpeechManager handles abstracting out screen reader access. */
 public class SpeechManager {
@@ -57,12 +60,35 @@ public class SpeechManager {
         return true;
     }
 
+    private void reorderHandlerList() {
+        ArrayList<String> preferedOrder = (ArrayList<String>) Output.config
+                .getList("advanced.prefered_speech_handler_order", null);
+        if (preferedOrder == null || preferedOrder.size() == 0)
+            return;
+        HashMap<String, SpeechHandler> reorderedHandlers = new HashMap();
+        ListIterator iter = this.handlers.listIterator();
+        while (iter.hasNext()) {
+            SpeechHandler handler = (SpeechHandler) iter.next();
+            if (preferedOrder.contains(handler.getName())) {
+                iter.remove();
+                reorderedHandlers.put(handler.getName(), handler);
+            }
+        }
+        iter = preferedOrder.listIterator(preferedOrder.size());
+        while (iter.hasPrevious()) {
+            String name = (String) iter.previous();
+            this.handlers.add(0, reorderedHandlers.get(name));
+        }
+    }
+
+
     /**
      * Determines which speech handler to use. Call this after all handlers are registered.
      *
      * @return True if a handler was successfully loaded, false otherwise.
      */
     public Boolean setup() {
+        this.reorderHandlerList();
         for (SpeechHandler handler : this.handlers) {
             if (!handler.detect())
                 continue;
