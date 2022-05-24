@@ -81,7 +81,6 @@ public class SpeechManager {
         }
     }
 
-
     /**
      * Determines which speech handler to use. Call this after all handlers are registered.
      *

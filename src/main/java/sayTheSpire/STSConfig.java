@@ -128,6 +128,7 @@ public class STSConfig {
         HashMap<String, Object> advancedDefaults = new HashMap();
         advancedDefaults.put("use_updated_card_description", false);
         advancedDefaults.put("prefered_speech_handler_order", new ArrayList<String>());
+        advancedDefaults.put("speech_handler_force_system_speech", false);
 
         defaults.put("resources", resourceDefaults);
         defaults.put("ui", uiDefaults);

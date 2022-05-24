@@ -1,6 +1,7 @@
 package sayTheSpire.speech;
 
 import com.davykager.tolk.Tolk;
+import sayTheSpire.Output;
 
 public class TolkHandler extends SpeechHandler {
 
@@ -23,6 +24,7 @@ public class TolkHandler extends SpeechHandler {
 
     public Boolean load() {
         Tolk.load();
+        Tolk.preferSAPI(Output.config.getBoolean("advanced.speech_handler_force_system_speech", false));
         return true;
     }
 
@@ -38,6 +40,7 @@ public class TolkHandler extends SpeechHandler {
     }
 
     public Boolean speak(String text, Boolean interrupt) {
+        Tolk.trySAPI(true);
         Tolk.speak(text, interrupt);
         return true;
     }
