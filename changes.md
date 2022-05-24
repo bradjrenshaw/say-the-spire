@@ -15,7 +15,18 @@ support.
 * Fixed an error in change log (you remove cards, not sell them) and updated
   documentation important notes with Steam accessibility changes and some
   clarifications.
-
+* input.json now is actually loaded and no longer throws a null pointer
+  exception.
+* Added some keyboard shortcuts:
+    * ctrl+y: Read player energy
+    * ctrl+i: Read incoming damage (summarized monster intents)
+    * alt+i: Read the intents of all monsters in sequence
+* Speech output:
+    * Speech handlers can be reordered (for example you could set clipboard
+      output first if you prefer)
+    * System speech (such as SAPI) can now be forced for speech handlers that
+      support it.
+      
 ## 0.3.3-beta
 This should be the last general bug fix and gameplay notification patch before
 more features are added.

@@ -158,6 +158,23 @@ This should noticeably reduce the startup time of the game.</li>
 <li>Fixed an error in change log (you remove cards, not sell them) and updated
 documentation important notes with Steam accessibility changes and some
 clarifications.</li>
+<li>input.json now is actually loaded and no longer throws a null pointer
+exception.</li>
+<li>Added some keyboard shortcuts:
+<ul>
+<li>ctrl+y: Read player energy</li>
+<li>ctrl+i: Read incoming damage (summarized monster intents)</li>
+<li>alt+i: Read the intents of all monsters in sequence</li>
+</ul>
+</li>
+<li>Speech output:
+<ul>
+<li>Speech handlers can be reordered (for example you could set clipboard
+output first if you prefer)</li>
+<li>System speech (such as SAPI) can now be forced for speech handlers that
+support it.</li>
+</ul>
+</li>
 </ul>
 <h2 id="033-beta"><a class="header" href="#033-beta">0.3.3-beta</a></h2>
 <p>This should be the last general bug fix and gameplay notification patch before
