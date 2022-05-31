@@ -2,6 +2,8 @@ package sayTheSpire.buffers;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import sayTheSpire.localization.LocalizationContext;
+import sayTheSpire.Output;
 
 /**
  * A buffer represents a list of data about a given UI Element or in game display. Buffers are often associated with a
@@ -13,6 +15,7 @@ public class Buffer {
     protected int position;
     private Boolean enabled;
     private ArrayList<String> contents;
+protected LocalizationContext context;
 
     public Buffer() {
         this("");
@@ -23,6 +26,11 @@ public class Buffer {
         this.name = name;
         this.position = 0;
         this.enabled = false;
+if (name == null || name.equals("")) {
+    this.context = Output.localization.getContext("");
+} else {
+    this.context = Output.localization.getContext("buffers." + name);
+}
     }
 
     public void add(String toAdd) {
@@ -30,6 +38,10 @@ public class Buffer {
             return;
         this.contents.add(toAdd);
     }
+
+public void addLocalized(String key) {
+    this.add(this.context.localize(key));
+}
 
     public void addMany(Collection<String> collection) {
         for (String text : collection) {
