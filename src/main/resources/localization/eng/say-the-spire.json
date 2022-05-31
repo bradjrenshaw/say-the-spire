@@ -1,4 +1,10 @@
 {
+  "buffers": {
+    "blight": {
+      "localName": "blight",
+      "noObj": "No blight available; report to mod developer."
+    }
+  },
   "misc": {
     "versionString": "Using Say the Spire version {version}."
   },

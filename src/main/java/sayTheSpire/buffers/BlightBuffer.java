@@ -26,12 +26,13 @@ public class BlightBuffer extends Buffer {
     public void update() {
         this.clear();
         if (this.blight == null) {
-            this.add("No relic available.");
+            this.addLocalized("noObj");
             return;
         }
         this.add(this.blight.name);
+        this.context.put("counter", this.blight.counter);
         if (this.blight.counter >= 0) {
-            this.add(this.blight.counter + " counter");
+            this.addLocalized("counter");
         }
         this.add(BlightUtils.getBlightDescription(this.blight));
         ListIterator iter = this.blight.tips.listIterator(1);
