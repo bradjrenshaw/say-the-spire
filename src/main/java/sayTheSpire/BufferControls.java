@@ -38,15 +38,15 @@ public class BufferControls {
             return;
         }
         if (current.isEmpty()) {
-            Output.text(current.getName() + " is empty.", true);
+            Output.text(current.getLocalizedName() + " is empty.", true);
             return;
         }
         String currentItem = current.getCurrentItem();
         if (currentItem == null) {
-            Output.text("Buffer " + current.getName() + " current item is null, report to mod dev.", true);
+            Output.text("Buffer " + current.getLocalizedName() + " current item is null, report to mod dev.", true);
             return;
         }
-        Output.text(current.getName() + ": " + currentItem, true);
+        Output.text(current.getLocalizedName() + ": " + currentItem, true);
     }
 
     public static void reportCurrentItem(Buffer buffer) {
@@ -60,7 +60,7 @@ public class BufferControls {
         }
         String currentItem = buffer.getCurrentItem();
         if (currentItem == null) {
-            Output.text("Buffer " + buffer.getName() + " current item is null, report to mod dev.", false);
+            Output.text("Buffer " + buffer.getLocalizedName() + " current item is null, report to mod dev.", false);
             return;
         }
         Output.text(currentItem, true);

@@ -22,6 +22,17 @@ public class CardBuffer extends Buffer {
         this.noFurtherUpgrade = false;
     }
 
+    public String getLocalizedName() {
+        switch (this.getName()) {
+        case "current card":
+            return this.context.localize("localizedName");
+        case "upgrade preview":
+            return this.context.localize("localizedNameUpgraded");
+        default:
+            return super.getLocalizedName();
+        }
+    }
+
     public Object getObject() {
         return this.card;
     }

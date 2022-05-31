@@ -1,13 +1,13 @@
 {
   "buffers": {
     "blight": {
-      "localName": "blight",
+      "localizedName": "blight",
       "noObj": "No blight available; report to mod developer."
     },
     "card": {
       "faceDown": "face down card",
-      "localName": "current card",
-      "localNameUpgraded": "upgrade preview",
+      "localizedName": "current card",
+      "localizedNameUpgraded": "upgrade preview",
       "noFurtherUpgrade": "This card cannot be upgraded any further.",
       "noObj": "No card available; report to mod developer.",
       "content": {

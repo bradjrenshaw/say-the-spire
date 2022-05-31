@@ -104,6 +104,15 @@ public class Buffer {
         return this.name;
     }
 
+    public String getLocalizedName() {
+        if (this.type == "unknown")
+            return this.getName();
+        String name = this.context.localize("localizedName");
+        if (name == null)
+            return this.getName();
+        return name;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
