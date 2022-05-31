@@ -3,6 +3,18 @@
     "blight": {
       "localName": "blight",
       "noObj": "No blight available; report to mod developer."
+    },
+    "card": {
+      "faceDown": "face down card",
+      "localName": "current card",
+      "localNameUpgraded": "upgrade preview",
+      "noFurtherUpgrade": "This card cannot be upgraded any further.",
+      "noObj": "No card available; report to mod developer.",
+      "content": {
+        "cost": "{cost} energy",
+        "typeAndRarity": "{type} type, {rarity} rarity",
+        "unknownKeyword": "Unknown keyword {unknownKeyword} found; report to mod developer."
+      }
     }
   },
   "misc": {

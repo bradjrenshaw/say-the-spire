@@ -50,28 +50,27 @@ public class CardBuffer extends Buffer {
     public void update() {
         this.clear();
         if (this.card == null) {
-            this.add("No card selected.");
+            this.addLocalized("noObj");
             return;
         } else if (this.card.isLocked) {
             this.add(this.card.LOCKED_STRING);
             return;
         } else if (this.card.isFlipped) {
-            this.add("face down card");
+            this.addLocalized("faceDown");
             return;
         } else if (this.isUpgradePreview && this.noFurtherUpgrade) {
-            this.add("This card cannot be upgraded any further.");
+            this.addLocalized("noFurtherUpgrade");
             return;
         }
+        this.context.put("cost", CardUtils.getCardCostString(card));
+        this.context.put("type", CardUtils.getCardTypeString(this.card));
+        this.context.put("rarity", CardUtils.getCardRarityString(this.card));
+
         this.add(card.name);
-        this.add(CardUtils.getCardCostString(card) + " energy");
+        this.addLocalized("content.cost");
+
         // add card type and rarity as one buffer item.
-        String typeAndRarity = CardUtils.getCardTypeString(card) + " type";
-        String rarity = CardUtils.getCardRarityString(card);
-        // not sure if rarity info can be missing so better check for it
-        if (rarity != null) {
-            typeAndRarity += ", " + rarity + " rarity";
-        }
-        this.add(typeAndRarity);
+        this.addLocalized("content.typeAndRarity");
         this.add(CardUtils.getCardDescriptionString(card));
         for (String keyword : card.keywords) {
             String name = TextParser.parse(keyword);
@@ -81,7 +80,8 @@ public class CardBuffer extends Buffer {
             }
             String body = GameDictionary.keywords.get(keyword);
             if (body == null) {
-                this.add(name + "\nUnknown keyword found, report to mod developer.");
+                this.context.put("unknownKeyword", name);
+                this.addLocalized("content.unknownKeyword");
             } else {
                 body = TextParser.parse(body);
                 this.add(name + "\n" + body);
