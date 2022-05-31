@@ -1,5 +1,28 @@
 {
   "misc": {
-        "versionString": "Using Say the Spire version {version}."
+    "versionString": "Using Say the Spire version {version}."
+  },
+  "ui": {
+    "status": {
+      "off": "off",
+      "on": "on",
+      "selected": "selected",
+      "unselected": "unselected"
+    },
+    "types": {
+      "achievement": "achievement",
+      "blight": "blight",
+      "button": "button",
+      "card": "card",
+      "character stats": "character stats",
+      "dropdown": "dropdown",
+      "monster": "monster",
+      "orb": "orb",
+      "potion": "potion",
+      "relic": "relic",
+      "slider": "slider",
+      "toggle button": "toggle button",
+      "unknown": "unknown"
     }
+  }
 }

@@ -49,7 +49,7 @@ public class Output {
     public static STSConfig config = null;
 
     public static void announceVersion() {
-        Output.text(localization.localizeMany("misc.versionString", "version", modVersion), false);
+        Output.text(localization.localize("misc.versionString", "version", modVersion), false);
     }
 
     public static void setup() {

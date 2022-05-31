@@ -48,7 +48,7 @@ public abstract class UIElement {
         if (Output.config.getBoolean("ui.read_types", true)) {
             String type = this.getTypeString();
             if (type != null && !Output.config.getExcludedTypenames().contains(type)) {
-                sb.append(" " + type);
+                sb.append(" " + Output.localization.localize("ui.types." + type));
             }
         }
         String status = this.getStatusString();

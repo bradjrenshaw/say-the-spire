@@ -51,7 +51,7 @@ public class ToggleButtonElement extends UIElement {
     }
 
     public String getStatusString() {
-        return this.getEnabled() ? this.enabledText : this.disabledText;
+        return Output.localization.localize("ui.status." + (this.getEnabled() ? this.enabledText : this.disabledText));
     }
 
     public void setStatusTexts(String enabled, String disabled) {

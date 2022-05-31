@@ -69,7 +69,7 @@ public class LocalizationManager {
         logger.info("Localization manager successfully loaded.");
     }
 
-    public String localizeMany(String path, Object... args) {
+    public String localize(String path, Object... args) {
         LocalizationContext context = this.getContext("");
         if (args.length % 2 == 0) {
             for (int i = 0; i < args.length; i += 2) {

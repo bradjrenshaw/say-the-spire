@@ -1,10 +1,14 @@
 package sayTheSpire.localization;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.util.HashMap;
 import org.bigtesting.interpolatd.Interpolator;
 import org.bigtesting.interpolatd.Substitutor;
 
 public class LocalizationContext {
+
+    private static Logger logger = LogManager.getLogger(LocalizationContext.class.getName());
 
     private LocalizationManager manager;
     private HashMap<String, Object> data;
@@ -32,8 +36,10 @@ public class LocalizationContext {
             result = this.manager.getStringAtPath(path);
         else
             result = this.manager.getStringAtPath(this.root + "." + path);
-        if (result == null)
+        if (result == null) {
+            logger.warn("Could not find localization string at path " + path + ".");
             return null;
+        }
         return this.interpolator.interpolate(result, this.data);
     }
 
