@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.4.0-beta
+
+* Fixed issue where null text values could be output, causing most speech handlers to crash.
+
 ## 0.3.4-beta (2022-05-23)
 This is a quick fix to prevent a number of issues prior to adding localization
 support.

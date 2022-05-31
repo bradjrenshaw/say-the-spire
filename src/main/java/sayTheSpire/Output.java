@@ -17,6 +17,7 @@ import sayTheSpire.events.Event;
 import sayTheSpire.events.EventManager;
 import sayTheSpire.mapNavigator.MapNavigator;
 import sayTheSpire.speech.SpeechManager;
+import sayTheSpire.localization.LocalizationManager;
 import sayTheSpire.ui.positions.AbstractPosition;
 import sayTheSpire.ui.elements.UIElement;
 import sayTheSpire.ui.UIRegistry;
@@ -26,7 +27,7 @@ import sayTheSpire.buffers.*;
 
 public class Output {
 
-    public static String modVersion = "0.3.4-beta";
+    public static String modVersion = "0.4.0-beta";
 
     public enum Direction {
         NONE, UP, DOWN, LEFT, RIGHT
@@ -42,12 +43,13 @@ public class Output {
     public static InputManager inputManager = null;
     public static UIManager uiManager = null;
     public static SpeechManager speechManager = null;
+    public static LocalizationManager localization;
     public static String eventText = null;
     public static UIElement currentUI = null;
     public static STSConfig config = null;
 
     public static void announceVersion() {
-        text("Using Say the Spire version " + modVersion, false);
+        Output.text(localization.localizeMany("misc.versionString", "version", modVersion), false);
     }
 
     public static void setup() {
@@ -85,6 +87,8 @@ public class Output {
         speechManager = new SpeechManager();
         speechManager.setup();
         tolkSetup = true;
+
+        localization = new LocalizationManager();
     }
 
     public static void shutdown() {
@@ -114,6 +118,10 @@ public class Output {
     public static void text(String text, Boolean interrupt) {
         if (!tolkSetup) {
             setup();
+        }
+        if (text == null) {
+            speechManager.output("Warning: output null text, report to mod dev", shouldInterruptSpeech && interrupt);
+            return;
         }
         speechManager.output(text, shouldInterruptSpeech && interrupt);
         shouldInterruptSpeech = interrupt;

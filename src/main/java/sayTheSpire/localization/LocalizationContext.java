@@ -6,24 +6,35 @@ import org.bigtesting.interpolatd.Substitutor;
 
 public class LocalizationContext {
 
+    private LocalizationManager manager;
     private HashMap<String, Object> data;
     private Interpolator<HashMap<String, Object>> interpolator;
+    private String root;
 
-    public LocalizationContext() {
+    public LocalizationContext(LocalizationManager manager, String root) {
+        this.manager = manager;
+        this.root = root;
         this.data = new HashMap();
         this.interpolator = new Interpolator();
         this.interpolator.when().enclosedBy("{").and("}").handleWith(new Substitutor<HashMap<String, Object>>() {
             public String substitute(String captured, HashMap<String, Object> arg) {
                 Object result = arg.getOrDefault(captured, null);
                 if (result == null)
-                    return null;
+                    return captured;
                 return result.toString();
             }
         });
     }
 
-    public String localize(String text) {
-        return this.interpolator.interpolate(text, this.data);
+    public String localize(String path) {
+        String result;
+        if (this.root == null || this.root.equals(""))
+            result = this.manager.getStringAtPath(path);
+        else
+            result = this.manager.getStringAtPath(this.root + "." + path);
+        if (result == null)
+            return null;
+        return this.interpolator.interpolate(result, this.data);
     }
 
     public void put(String key, Object value) {
