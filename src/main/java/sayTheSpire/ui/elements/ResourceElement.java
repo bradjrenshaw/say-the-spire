@@ -1,7 +1,7 @@
 package sayTheSpire.ui.elements;
 
 import sayTheSpire.buffers.BufferManager;
-import sayTheSpire.ui.positions.AbstractPosition;
+import sayTheSpire.ui.positions.Position;
 import sayTheSpire.Output;
 
 public class ResourceElement extends UIElement {
@@ -12,7 +12,7 @@ public class ResourceElement extends UIElement {
         this(name, description, value, null);
     }
 
-    public ResourceElement(String name, String description, String value, AbstractPosition position) {
+    public ResourceElement(String name, String description, String value, Position position) {
         super(name, position);
         this.description = description;
         this.value = value;

@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.screens.CombatRewardScreen;
 import sayTheSpire.buffers.BufferManager;
-import sayTheSpire.ui.positions.AbstractPosition;
+import sayTheSpire.ui.positions.Position;
 import sayTheSpire.ui.positions.GridPosition;
 import sayTheSpire.ui.positions.ListPosition;
 import sayTheSpire.utils.RelicUtils;
@@ -26,7 +26,7 @@ public class RelicElement extends GameObjectElement {
         this(relic, location, null);
     }
 
-    public RelicElement(AbstractRelic relic, RelicLocation location, AbstractPosition position) {
+    public RelicElement(AbstractRelic relic, RelicLocation location, Position position) {
         super("relic", position);
         this.relic = relic;
         this.location = location;
@@ -49,7 +49,7 @@ public class RelicElement extends GameObjectElement {
         return RelicUtils.getRelicShort(this.relic);
     }
 
-    public AbstractPosition getPosition() {
+    public Position getPosition() {
         switch (this.location) {
         case MAIN_SCREEN:
             return this.getInventoryPosition();
@@ -69,7 +69,7 @@ public class RelicElement extends GameObjectElement {
      * }
      */
 
-    public AbstractPosition getInventoryPosition() {
+    public Position getInventoryPosition() {
         AbstractPlayer player = OutputUtils.getPlayer();
         if (player == null)
             return null;

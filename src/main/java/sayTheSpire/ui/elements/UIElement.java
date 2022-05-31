@@ -1,7 +1,7 @@
 package sayTheSpire.ui.elements;
 
 import sayTheSpire.buffers.BufferManager;
-import sayTheSpire.ui.positions.AbstractPosition;
+import sayTheSpire.ui.positions.Position;
 import sayTheSpire.Output;
 
 /**
@@ -12,13 +12,13 @@ import sayTheSpire.Output;
 public abstract class UIElement {
 
     protected String elementType = null;
-    protected AbstractPosition position;
+    protected Position position;
 
     public UIElement(String type) {
         this(type, null);
     }
 
-    public UIElement(String elementType, AbstractPosition position) {
+    public UIElement(String elementType, Position position) {
         this.elementType = elementType;
         this.position = position;
     }
@@ -55,7 +55,7 @@ public abstract class UIElement {
         if (status != null)
             sb.append(" " + status);
         if (Output.config.getBoolean("ui.read_positions", true)) {
-            AbstractPosition position = this.getPosition();
+            Position position = this.getPosition();
             if (position != null) {
                 sb.append(". " + position.getPositionString());
             }
@@ -66,7 +66,7 @@ public abstract class UIElement {
     /**
      * Returns an AbstractPosition corresponding to a contextual position of the element.
      */
-    public AbstractPosition getPosition() {
+    public Position getPosition() {
         return this.position;
     }
 

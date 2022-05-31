@@ -34,7 +34,7 @@ public class CardElement extends GameObjectElement {
         this(card, location, null);
     }
 
-    public CardElement(AbstractCard card, CardLocation location, AbstractPosition position) {
+    public CardElement(AbstractCard card, CardLocation location, Position position) {
         super("card", position);
         this.card = card;
         this.location = location;
@@ -75,7 +75,7 @@ public class CardElement extends GameObjectElement {
         return new ListPosition(index, list.size());
     }
 
-    public AbstractPosition getPosition() {
+    public Position getPosition() {
         int cardsPerLine = 5; // default
         switch (this.location) {
         case HAND:
@@ -91,7 +91,7 @@ public class CardElement extends GameObjectElement {
                     "hand");
             ArrayList<AbstractCard> unselected = unselectedGroup.group;
             ArrayList<AbstractCard> selected = screen.selectedCards.group;
-            AbstractPosition result = this.getListPosition(selected);
+            Position result = this.getListPosition(selected);
             if (result == null)
                 result = this.getListPosition(unselected);
             return result;

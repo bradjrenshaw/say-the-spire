@@ -1,13 +1,13 @@
 package sayTheSpire.ui.elements;
 
-import sayTheSpire.ui.positions.AbstractPosition;
+import sayTheSpire.ui.positions.Position;
 
 public abstract class GameObjectElement extends UIElement {
 
     private int price;
     private Boolean onSale;
 
-    public GameObjectElement(String elementType, AbstractPosition position) {
+    public GameObjectElement(String elementType, Position position) {
         super(elementType, position);
         this.price = -1;
         this.onSale = false;

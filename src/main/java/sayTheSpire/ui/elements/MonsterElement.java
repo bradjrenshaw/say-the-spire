@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import sayTheSpire.buffers.BufferManager;
-import sayTheSpire.ui.positions.AbstractPosition;
+import sayTheSpire.ui.positions.Position;
 import sayTheSpire.ui.positions.ListPosition;
 import sayTheSpire.utils.MonsterUtils;
 
@@ -16,7 +16,7 @@ public class MonsterElement extends UIElement {
         this(monster, null);
     }
 
-    public MonsterElement(AbstractMonster monster, AbstractPosition position) {
+    public MonsterElement(AbstractMonster monster, Position position) {
         super("monster", position);
         this.monster = monster;
     }
@@ -31,7 +31,7 @@ public class MonsterElement extends UIElement {
         return MonsterUtils.getMonsterShort(this.monster);
     }
 
-    public AbstractPosition getPosition() {
+    public Position getPosition() {
         MonsterGroup group = AbstractDungeon.getCurrRoom().monsters;
         if (group == null)
             return null;

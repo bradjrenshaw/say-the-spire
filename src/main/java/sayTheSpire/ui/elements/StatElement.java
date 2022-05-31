@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import com.megacrit.cardcrawl.screens.stats.CharStat;
 import basemod.ReflectionHacks;
 import sayTheSpire.buffers.BufferManager;
-import sayTheSpire.ui.positions.AbstractPosition;
+import sayTheSpire.ui.positions.Position;
 import sayTheSpire.Output;
 import sayTheSpire.TextParser;
 
@@ -17,7 +17,7 @@ public class StatElement extends UIElement {
         this(charName, charStat, null);
     }
 
-    public StatElement(String charName, CharStat charStat, AbstractPosition position) {
+    public StatElement(String charName, CharStat charStat, Position position) {
         super("character stats", position);
         this.charName = charName;
         this.charStat = charStat;

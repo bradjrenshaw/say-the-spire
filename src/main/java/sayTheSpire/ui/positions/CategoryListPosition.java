@@ -7,9 +7,7 @@ public class CategoryListPosition extends ListPosition {
     public CategoryListPosition(int index, int totalCount, String category) {
         super(index, totalCount);
         this.category = category;
+        this.context.put("category", category);
     }
 
-    public String getPositionString() {
-        return super.getPositionString() + " " + this.category;
-    }
 }

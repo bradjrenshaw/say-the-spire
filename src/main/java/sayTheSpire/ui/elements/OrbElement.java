@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import sayTheSpire.buffers.BufferManager;
 import sayTheSpire.Output;
-import sayTheSpire.ui.positions.AbstractPosition;
+import sayTheSpire.ui.positions.Position;
 import sayTheSpire.ui.positions.ListPosition;
 import sayTheSpire.utils.OutputUtils;
 
@@ -27,7 +27,7 @@ public class OrbElement extends UIElement {
         return this.orb.name;
     }
 
-    public AbstractPosition getPosition() {
+    public Position getPosition() {
         AbstractPlayer player = OutputUtils.getPlayer();
         if (player == null || player.orbs == null)
             return null;

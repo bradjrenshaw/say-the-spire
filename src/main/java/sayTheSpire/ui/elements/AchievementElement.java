@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.screens.stats.AchievementItem;
 import basemod.ReflectionHacks;
 import sayTheSpire.Output;
 import sayTheSpire.buffers.BufferManager;
-import sayTheSpire.ui.positions.AbstractPosition;
+import sayTheSpire.ui.positions.Position;
 
 public class AchievementElement extends UIElement {
 
@@ -14,7 +14,7 @@ public class AchievementElement extends UIElement {
         this(achievement, null);
     }
 
-    public AchievementElement(AchievementItem achievement, AbstractPosition position) {
+    public AchievementElement(AchievementItem achievement, Position position) {
         super("achievement", position);
         this.achievement = achievement;
     }

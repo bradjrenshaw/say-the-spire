@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.screens.CombatRewardScreen;
 import sayTheSpire.buffers.BufferManager;
-import sayTheSpire.ui.positions.AbstractPosition;
+import sayTheSpire.ui.positions.Position;
 import sayTheSpire.ui.positions.ListPosition;
 
 public class RewardItemElement extends UIElement {
@@ -39,7 +39,7 @@ public class RewardItemElement extends UIElement {
         return this.rewardUIElement.getLabel();
     }
 
-    public AbstractPosition getPosition() {
+    public Position getPosition() {
         if (AbstractDungeon.combatRewardScreen == null || AbstractDungeon.combatRewardScreen.rewards == null)
             return null;
         int rewardCount = AbstractDungeon.combatRewardScreen.rewards.size();

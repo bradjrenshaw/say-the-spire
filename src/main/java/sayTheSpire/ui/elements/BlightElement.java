@@ -3,7 +3,7 @@ package sayTheSpire.ui.elements;
 import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import sayTheSpire.buffers.BufferManager;
-import sayTheSpire.ui.positions.AbstractPosition;
+import sayTheSpire.ui.positions.Position;
 import sayTheSpire.ui.positions.ListPosition;
 import sayTheSpire.utils.BlightUtils;
 import sayTheSpire.utils.OutputUtils;
@@ -21,7 +21,7 @@ public class BlightElement extends GameObjectElement {
         this(blight, location, null);
     }
 
-    public BlightElement(AbstractBlight blight, BlightLocation location, AbstractPosition position) {
+    public BlightElement(AbstractBlight blight, BlightLocation location, Position position) {
         super("blight", position);
         this.blight = blight;
         this.location = location;
@@ -37,7 +37,7 @@ public class BlightElement extends GameObjectElement {
         return BlightUtils.getBlightShort(this.blight);
     }
 
-    public AbstractPosition getPosition() {
+    public Position getPosition() {
         switch (this.location) {
         case MAIN_SCREEN:
             return this.getInventoryPosition();
@@ -46,7 +46,7 @@ public class BlightElement extends GameObjectElement {
         }
     }
 
-    public AbstractPosition getInventoryPosition() {
+    public Position getInventoryPosition() {
         AbstractPlayer player = OutputUtils.getPlayer();
         if (player == null)
             return null;

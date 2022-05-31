@@ -1,15 +1,15 @@
 package sayTheSpire.ui.positions;
 
-public class GridPosition extends AbstractPosition {
+public class GridPosition extends Position {
 
     public int x, y;
 
     public GridPosition(int x, int y) {
+        super("grid");
         this.x = x;
         this.y = y;
+        this.context.put("x", x);
+        this.context.put("y", y);
     }
 
-    public String getPositionString() {
-        return this.x + ", " + this.y;
-    }
 }

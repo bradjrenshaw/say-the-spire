@@ -4,7 +4,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.rewards.RewardItem;
-import sayTheSpire.ui.positions.AbstractPosition;
+import sayTheSpire.ui.positions.Position;
 import sayTheSpire.ui.positions.GridPosition;
 import sayTheSpire.ui.positions.ListPosition;
 import sayTheSpire.utils.OutputUtils;
@@ -24,7 +24,7 @@ public class PotionElement extends GameObjectElement {
         this(potion, location, null);
     }
 
-    public PotionElement(AbstractPotion potion, PotionLocation location, AbstractPosition position) {
+    public PotionElement(AbstractPotion potion, PotionLocation location, Position position) {
         super("potion", position);
         this.potion = potion;
         this.location = location;
@@ -41,7 +41,7 @@ public class PotionElement extends GameObjectElement {
         return this.potion.name;
     }
 
-    public AbstractPosition getPosition() {
+    public Position getPosition() {
         switch (this.location) {
         case MAIN_SCREEN:
             return this.getInventoryPosition();
@@ -50,7 +50,7 @@ public class PotionElement extends GameObjectElement {
         }
     }
 
-    public AbstractPosition getInventoryPosition() {
+    public Position getInventoryPosition() {
         AbstractPlayer player = OutputUtils.getPlayer();
         if (player == null)
             return null;

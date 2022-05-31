@@ -3,6 +3,11 @@
     "versionString": "Using Say the Spire version {version}."
   },
   "ui": {
+    "positions": {
+      "categoryList": "{position} of {total} {category}",
+      "grid": "{x}, {y}",
+      "list": "{position} of {total}"
+    },
     "status": {
       "off": "off",
       "on": "on",

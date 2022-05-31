@@ -18,7 +18,7 @@ import sayTheSpire.events.EventManager;
 import sayTheSpire.mapNavigator.MapNavigator;
 import sayTheSpire.speech.SpeechManager;
 import sayTheSpire.localization.LocalizationManager;
-import sayTheSpire.ui.positions.AbstractPosition;
+import sayTheSpire.ui.positions.Position;
 import sayTheSpire.ui.elements.UIElement;
 import sayTheSpire.ui.UIRegistry;
 import sayTheSpire.ui.input.InputManager;
