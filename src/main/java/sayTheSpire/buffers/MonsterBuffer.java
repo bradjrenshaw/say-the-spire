@@ -13,7 +13,7 @@ public class MonsterBuffer extends Buffer {
     private AbstractMonster monster;
 
     public MonsterBuffer(String name) {
-        super(name);
+        super("monster", name);
         this.monster = null;
     }
 

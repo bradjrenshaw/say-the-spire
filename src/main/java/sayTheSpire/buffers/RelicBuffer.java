@@ -11,7 +11,7 @@ public class RelicBuffer extends Buffer {
     AbstractRelic relic;
 
     public RelicBuffer(String name) {
-        super(name);
+        super("relic", name);
         this.relic = null;
     }
 

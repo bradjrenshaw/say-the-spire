@@ -8,7 +8,7 @@ public class OrbBuffer extends Buffer {
     private AbstractOrb orb;
 
     public OrbBuffer(String name) {
-        super(name);
+        super("orb", name);
         this.orb = null;
     }
 

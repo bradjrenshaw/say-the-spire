@@ -16,7 +16,7 @@ public class CardBuffer extends Buffer {
     }
 
     public CardBuffer(String name, Boolean isUpgradePreview) {
-        super(name);
+        super("card", name);
         this.card = null;
         this.isUpgradePreview = isUpgradePreview;
         this.noFurtherUpgrade = false;

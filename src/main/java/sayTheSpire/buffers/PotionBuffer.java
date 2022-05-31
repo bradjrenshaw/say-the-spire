@@ -12,7 +12,7 @@ public class PotionBuffer extends Buffer {
     private AbstractPotion potion;
 
     public PotionBuffer(String name) {
-        super(name);
+        super("potion", name);
         this.potion = null;
     }
 

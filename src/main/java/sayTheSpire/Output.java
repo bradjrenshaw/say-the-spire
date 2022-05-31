@@ -54,19 +54,6 @@ public class Output {
 
     public static void setup() {
 
-        // create buffers
-        BufferControls.buffers = buffers;
-        buffers.add(new Buffer("UI"));
-        buffers.add(new CardBuffer("current card"));
-        buffers.add(new CardBuffer("upgrade preview", true));
-        buffers.add(new EventBuffer("events"));
-        buffers.add(new PlayerBuffer());
-        buffers.add(new OrbBuffer("orb"));
-        buffers.add(new MonsterBuffer("monster"));
-        buffers.add(new PotionBuffer("potion"));
-        buffers.add(new BlightBuffer("blight"));
-        buffers.add(new RelicBuffer("relic"));
-
         // Effects manager
         effects = new EffectManager();
 
@@ -89,6 +76,22 @@ public class Output {
         tolkSetup = true;
 
         localization = new LocalizationManager();
+        setupBuffers();
+    }
+
+    private static void setupBuffers() {
+        // create buffers
+        BufferControls.buffers = buffers;
+        buffers.add(new Buffer("unknown", "UI"));
+        buffers.add(new CardBuffer("current card"));
+        buffers.add(new CardBuffer("upgrade preview", true));
+        buffers.add(new EventBuffer("events"));
+        buffers.add(new PlayerBuffer());
+        buffers.add(new OrbBuffer("orb"));
+        buffers.add(new MonsterBuffer("monster"));
+        buffers.add(new PotionBuffer("potion"));
+        buffers.add(new BlightBuffer("blight"));
+        buffers.add(new RelicBuffer("relic"));
     }
 
     public static void shutdown() {

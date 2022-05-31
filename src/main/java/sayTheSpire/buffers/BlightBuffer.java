@@ -11,7 +11,7 @@ public class BlightBuffer extends Buffer {
     private AbstractBlight blight;
 
     public BlightBuffer(String name) {
-        super(name);
+        super("blight", name);
         this.blight = null;
     }
 

@@ -11,26 +11,28 @@ import sayTheSpire.Output;
  */
 public class Buffer {
 
+    protected String type;
     private String name;
     protected int position;
     private Boolean enabled;
     private ArrayList<String> contents;
-protected LocalizationContext context;
+    protected LocalizationContext context;
 
     public Buffer() {
-        this("");
+        this("unknown", "");
     }
 
-    public Buffer(String name) {
+    public Buffer(String type, String name) {
         this.contents = new ArrayList<String>();
+        this.type = type;
         this.name = name;
         this.position = 0;
         this.enabled = false;
-if (name == null || name.equals("")) {
-    this.context = Output.localization.getContext("");
-} else {
-    this.context = Output.localization.getContext("buffers." + name);
-}
+        if (type == null || type.equals("")) {
+            this.context = Output.localization.getContext("");
+        } else {
+            this.context = Output.localization.getContext("buffers." + type);
+        }
     }
 
     public void add(String toAdd) {
@@ -39,9 +41,9 @@ if (name == null || name.equals("")) {
         this.contents.add(toAdd);
     }
 
-public void addLocalized(String key) {
-    this.add(this.context.localize(key));
-}
+    public void addLocalized(String key) {
+        this.add(this.context.localize(key));
+    }
 
     public void addMany(Collection<String> collection) {
         for (String text : collection) {

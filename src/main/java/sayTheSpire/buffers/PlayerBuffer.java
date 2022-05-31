@@ -12,7 +12,7 @@ import sayTheSpire.TextParser;
 public class PlayerBuffer extends Buffer {
 
     public PlayerBuffer(String name) {
-        super(name);
+        super("player", name);
     }
 
     public PlayerBuffer() {

@@ -3,7 +3,7 @@ package sayTheSpire.buffers;
 public class EventBuffer extends Buffer {
 
     public EventBuffer(String name) {
-        super(name);
+        super("event", name);
     }
 
     public void add(String toAdd) {
