@@ -15,6 +15,13 @@
         "typeAndRarity": "{type} type, {rarity} rarity",
         "unknownKeyword": "Unknown keyword {unknownKeyword} found; report to mod developer."
       }
+    },
+    "event": {
+      "localizedName": "event"
+    },
+    "monster": {
+     "localizedName": "monster",
+     "noObj": "No monster available; report to mod developer."
     }
   },
   "misc": {

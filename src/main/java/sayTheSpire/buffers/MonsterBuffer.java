@@ -28,7 +28,7 @@ public class MonsterBuffer extends Buffer {
     public void update() {
         this.clear();
         if (this.monster == null) {
-            this.add("No monster available.");
+            this.addLocalized("noObj");
             return;
         }
         AbstractMonster monster = this.monster;
