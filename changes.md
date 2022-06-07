@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.3.5-beta (2022-06-06)
+
+This is a quick patch to fix a bug where the virtual input setting was not being checked consistently. This lead to the virtual input keyboard support being always active as well as controller behavior being odd on certain screens.
+
 ## 0.3.4-beta (2022-05-23)
 This is a quick fix to prevent a number of issues prior to adding localization
 support.

@@ -26,7 +26,7 @@ import sayTheSpire.buffers.*;
 
 public class Output {
 
-    public static String modVersion = "0.3.4-beta";
+    public static String modVersion = "0.3.5-beta";
 
     public enum Direction {
         NONE, UP, DOWN, LEFT, RIGHT
