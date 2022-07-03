@@ -53,11 +53,14 @@
     "versionString": "Using Say the Spire version {version}."
   },
   "text": {
-"cardType": {
-  "attack": "attack",
-  "skill": "skill",
-  "power": "power"
-},
+    "cardRarity": {
+"basic": "basic",
+"common": "common",
+"uncommon": "uncommon",
+"rare": "rare",
+"special": "special",
+"curse": "curse"
+    },
 "potionRarity": {
   "common": "common",
   "uncommon": "uncommon",

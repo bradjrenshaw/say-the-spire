@@ -105,7 +105,7 @@ public class CardUtils {
         if (rarity == null) {
             return null;
         }
-        return rarity.name().toLowerCase();
+        return Output.localization.localize("text.cardRarity." + rarity.name().toLowerCase());
     }
 
     public static String getCardShort(AbstractCard card) {
