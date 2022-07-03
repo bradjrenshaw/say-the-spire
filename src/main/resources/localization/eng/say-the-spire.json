@@ -30,6 +30,16 @@
     "orb": {
       "localizedName": "orb",
       "noObj": "No orb available; report to mod developer."
+    },
+    "player": {
+      "localizedName": "player",
+      "noObj": "No player available; report to mod developer.",
+      "content": {
+"hp": "{hp}/{hpMax} hp",
+"energy": "{energy} energy",
+"block": "{block} block",
+"gold": "{gold} gold"
+      }
     }
   },
   "misc": {

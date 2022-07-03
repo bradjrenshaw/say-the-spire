@@ -28,21 +28,26 @@ public class PlayerBuffer extends Buffer {
     }
 
     public Object getObject() {
-        if (!OutputUtils.canGetPlayer())
-            return null;
-        return AbstractDungeon.player;
+        return OutputUtils.getPlayer();
     }
 
     public void update() {
         this.clear();
-        if (!OutputUtils.canGetPlayer())
+        if (!OutputUtils.canGetPlayer()) {
+            this.addLocalized("noObj");
             return;
+        }
         AbstractPlayer player = AbstractDungeon.player;
+        this.context.put("hp", player.currentHealth);
+        this.context.put("hpMax", player.maxHealth);
+        this.context.put("gold", player.gold);
         this.add(CardCrawlGame.playerName);
-        this.add(player.currentHealth + "/" + player.maxHealth + " hp");
+        this.addLocalized("content.hp");
         if (OutputUtils.isInCombat()) {
-            this.add(EnergyPanel.totalCount + " energy");
-            this.add(player.currentBlock + " block");
+            this.context.put("energy", EnergyPanel.totalCount);
+            this.context.put("block", player.currentBlock);
+            this.addLocalized("content.energy");
+            this.addLocalized("content.block");
             this.add(OutputUtils.getCreaturePowersString(player));
             if (!(player.stance instanceof NeutralStance)) {
                 this.add(player.stance.name + "\n" + TextParser.parse(player.stance.description, "stance"));
@@ -51,6 +56,6 @@ public class PlayerBuffer extends Buffer {
                 this.add(p.name + "\n" + TextParser.parse(p.description, "power"));
             }
         }
-        this.add(player.gold + " gold");
+        this.addLocalized("content.gold");
     }
 }
