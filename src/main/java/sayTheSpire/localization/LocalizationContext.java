@@ -31,9 +31,13 @@ public class LocalizationContext {
     }
 
     public String localize(String path) {
+        String finalPath = path;
+        if (path.startsWith(".")) {
+            finalPath = path.substring(1);
+        }
         String result;
-        if (this.root == null || this.root.equals(""))
-            result = this.manager.getStringAtPath(path);
+        if (this.root == null || this.root.equals("") || path.startsWith("."))
+            result = this.manager.getStringAtPath(finalPath);
         else
             result = this.manager.getStringAtPath(this.root + "." + path);
         if (result == null) {
