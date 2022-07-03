@@ -32,9 +32,12 @@ public class MonsterBuffer extends Buffer {
             return;
         }
         AbstractMonster monster = this.monster;
+        this.context.put("hp", monster.currentHealth);
+        this.context.put("hpMax", monster.maxHealth);
+        this.context.put("block", monster.currentBlock);
         this.add(monster.name);
-        this.add(monster.currentHealth + "/" + monster.maxHealth + " hp");
-        this.add(monster.currentBlock + " block");
+        this.addLocalized("content.hp");
+        this.addLocalized("content.block");
         this.add(OutputUtils.getCreaturePowersString(monster));
         for (PowerTip tip : (ArrayList<PowerTip>) ReflectionHacks.getPrivate(monster, AbstractCreature.class, "tips")) {
             this.add(TextParser.parse(tip.header + " NL " + tip.body));

@@ -21,7 +21,11 @@
     },
     "monster": {
      "localizedName": "monster",
-     "noObj": "No monster available; report to mod developer."
+     "noObj": "No monster available; report to mod developer.",
+     "content": {
+      "hp": "{hp}/{hpMax} hp",
+      "block": "{block} block"
+     }
     }
   },
   "misc": {
