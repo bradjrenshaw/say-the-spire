@@ -26,6 +26,10 @@
       "hp": "{hp}/{hpMax} hp",
       "block": "{block} block"
      }
+    },
+    "orb": {
+      "localizedName": "orb",
+      "noObj": "No orb available; report to mod developer."
     }
   },
   "misc": {
