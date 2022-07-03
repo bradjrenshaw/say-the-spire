@@ -52,6 +52,6 @@ public class PotionBuffer extends Buffer {
         if (rarity == null) {
             return null;
         }
-        return rarity.name().toLowerCase();
+        return this.context.localize(".text.potionRarity." + rarity.name().toLowerCase());
     }
 }
