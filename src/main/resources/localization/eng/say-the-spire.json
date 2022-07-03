@@ -40,7 +40,14 @@
 "block": "{block} block",
 "gold": "{gold} gold"
       }
+    },
+   "potion": {
+    "localizedName": "potion",
+    "noObj": "No potion available; report to mod developer.",
+    "content": {
+      "nameAndRarity": "{name}, {rarity} rarity"
     }
+   }
   },
   "misc": {
     "versionString": "Using Say the Spire version {version}."

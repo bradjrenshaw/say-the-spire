@@ -4,7 +4,6 @@ import java.util.ListIterator;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.potions.PotionSlot;
-import sayTheSpire.utils.PotionUtils;
 import sayTheSpire.TextParser;
 
 public class PotionBuffer extends Buffer {
@@ -28,20 +27,31 @@ public class PotionBuffer extends Buffer {
         this.clear();
         AbstractPotion potion = this.potion;
         if (potion == null) {
-            this.add("No potion available.");
+            this.addLocalized("noObj");
             return;
         }
-        String potionShort = this.potion.name;
-        String potionRarity = PotionUtils.getPotionRarityString(this.potion);
-        if (potionRarity != null) {
-            potionShort += " " + potionRarity + " rarity";
+        this.context.put("name", this.potion.name);
+        String rarityString = this.getPotionRarityString();
+        this.context.put("rarity", rarityString);
+        if (rarityString != null) {
+            this.addLocalized("content.nameAndRarity");
+        } else {
+            this.add(this.potion.name);
         }
-        this.add(potionShort);
         this.add(TextParser.parse(potion.description, potion));
         ListIterator iter = potion.tips.listIterator(1);
         while (iter.hasNext()) {
             PowerTip tip = (PowerTip) iter.next();
             this.add(tip.header + "\n" + TextParser.parse(tip.body, potion));
         }
+    }
+
+    public String getPotionRarityString() {
+        AbstractPotion.PotionRarity rarity = this.potion.rarity;
+        // not sure if this can be null so better check it.
+        if (rarity == null) {
+            return null;
+        }
+        return rarity.name().toLowerCase();
     }
 }

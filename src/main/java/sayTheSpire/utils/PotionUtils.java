@@ -5,15 +5,6 @@ import com.megacrit.cardcrawl.shop.StorePotion;
 
 public class PotionUtils {
 
-    public static String getPotionRarityString(AbstractPotion potion) {
-        AbstractPotion.PotionRarity rarity = potion.rarity;
-        // not sure if this can be null so better check it.
-        if (rarity == null) {
-            return null;
-        }
-        return rarity.name().toLowerCase();
-    }
-
     public static String getPotionShort(AbstractPotion potion) {
         return potion.name;
     }

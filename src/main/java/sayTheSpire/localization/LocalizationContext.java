@@ -24,7 +24,7 @@ public class LocalizationContext {
             public String substitute(String captured, HashMap<String, Object> arg) {
                 Object result = arg.getOrDefault(captured, null);
                 if (result == null)
-                    return captured;
+                    return "{" + captured + "}";
                 return result.toString();
             }
         });
