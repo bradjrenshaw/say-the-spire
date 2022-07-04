@@ -2,6 +2,7 @@ package sayTheSpire;
 
 import sayTheSpire.buffers.BufferManager;
 import sayTheSpire.buffers.Buffer;
+import sayTheSpire.localization.LocalizationContext;
 
 public class BufferControls {
 
@@ -33,34 +34,40 @@ public class BufferControls {
 
     public static void reportCurrentBuffer() {
         Buffer current = buffers.getCurrentBuffer();
+        LocalizationContext context = Output.localization.getContext("text.buffers");
+        context.put("buffer", current.getLocalizedName());
+        String currentItem = current.getCurrentItem();
+        context.put("item", currentItem);
         if (current == null) {
-            Output.text("No buffers available.", true);
+            Output.textLocalized("noBuffersAvailable", true, context);
             return;
         }
         if (current.isEmpty()) {
-            Output.text(current.getLocalizedName() + " is empty.", true);
+            Output.textLocalized("bufferIsEmpty", true, context);
             return;
         }
-        String currentItem = current.getCurrentItem();
         if (currentItem == null) {
-            Output.text("Buffer " + current.getLocalizedName() + " current item is null, report to mod dev.", true);
+            Output.textLocalized("currentItemIsNull", true, context);
             return;
         }
-        Output.text(current.getLocalizedName() + ": " + currentItem, true);
+        Output.textLocalized("currentItem", true, context);
     }
 
     public static void reportCurrentItem(Buffer buffer) {
+        LocalizationContext context = Output.localization.getContext("text.buffers");
         if (buffer == null) {
-            Output.text("No buffer selected.", false);
+            Output.textLocalized("noBufferSelected", false, context);
             return;
         }
-        if (buffer.isEmpty()) {
-            Output.text("empty", true);
-            return;
-        }
+        context.put("buffer", buffer.getLocalizedName());
         String currentItem = buffer.getCurrentItem();
+        context.put("item", currentItem);
+        if (buffer.isEmpty()) {
+            Output.textLocalized("bufferIsEmpty", true, context);
+            return;
+        }
         if (currentItem == null) {
-            Output.text("Buffer " + buffer.getLocalizedName() + " current item is null, report to mod dev.", false);
+            Output.textLocalized("currentItemIsNull", false, context);
             return;
         }
         Output.text(currentItem, true);

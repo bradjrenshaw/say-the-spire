@@ -17,6 +17,7 @@ import sayTheSpire.events.Event;
 import sayTheSpire.events.EventManager;
 import sayTheSpire.mapNavigator.MapNavigator;
 import sayTheSpire.speech.SpeechManager;
+import sayTheSpire.localization.LocalizationContext;
 import sayTheSpire.localization.LocalizationManager;
 import sayTheSpire.ui.positions.Position;
 import sayTheSpire.ui.elements.UIElement;
@@ -128,6 +129,23 @@ public class Output {
         }
         speechManager.output(text, shouldInterruptSpeech && interrupt);
         shouldInterruptSpeech = interrupt;
+    }
+
+    public static void textLocalized(String path, Boolean interrupt, LocalizationContext context) {
+        text(context.localize(path), interrupt);
+    }
+
+    public static void textLocalized(String path, Boolean interrupt, Object... variables) {
+        LocalizationContext context = localization.getContext("");
+        int length = variables.length;
+        if (length % 2 == 0) {
+            for (int i = 0; i < length; i += 2) {
+                String name = (String) variables[i];
+                Object value = variables[i + 1];
+                context.put(name, value);
+            }
+        }
+        text(context.localize(path), interrupt);
     }
 
     public static Boolean getAllowVirtualInput() {

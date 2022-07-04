@@ -61,6 +61,13 @@
     "versionString": "Using Say the Spire version {version}."
   },
   "text": {
+    "buffers": {
+      "bufferIsEmpty": "{buffer} is empty",
+      "currentItem": "{buffer}: {item}",
+      "currentItemIsNull": "Buffer {buffer} current item is null, report to mod developer",
+"noBuffersAvailable": "No buffers available.",
+"noBufferSelected": "No buffer selected."
+    },
     "cardRarity": {
 "basic": "basic",
 "common": "common",
