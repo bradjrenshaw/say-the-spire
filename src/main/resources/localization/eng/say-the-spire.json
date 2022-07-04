@@ -47,6 +47,14 @@
     "content": {
       "nameAndRarity": "{name}, {rarity} rarity"
     }
+   },
+   "relic": {
+    "localizedName": "relic",
+    "noObj": "No relic available; report to mod developer.",
+    "content": {
+      "nameAndRarity": "{name}, {rarity} rarity",
+      "counter": "{counter} counter"
+    }
    }
   },
   "misc": {
@@ -62,9 +70,20 @@
 "curse": "curse"
     },
 "potionRarity": {
+  "placeholder": "placeholder",
   "common": "common",
   "uncommon": "uncommon",
   "rare": "rare"
+},
+"relicRarity": {
+  "deprecated": "deprecated",
+  "starter": "starter",
+  "common": "common",
+  "uncommon": "uncommon",
+  "rare": "rare",
+  "special": "special",
+  "boss": "boss",
+  "shop": "shop"
 }
   },
   "ui": {

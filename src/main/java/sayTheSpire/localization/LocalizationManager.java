@@ -76,7 +76,6 @@ public class LocalizationManager {
                 String key = (String) args[i];
                 Object value = args[i + 1];
                 if (key == null || value == null) {
-                    Output.text("key or value is null", false);
                     continue;
                 }
                 context.put(key, value);

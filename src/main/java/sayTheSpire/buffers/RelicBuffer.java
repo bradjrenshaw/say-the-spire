@@ -27,17 +27,20 @@ public class RelicBuffer extends Buffer {
         AbstractRelic relic = this.relic;
         this.clear();
         if (relic == null) {
-            this.add("No relic available.");
+            this.addLocalized("noObj");
             return;
         }
-        String nameString = relic.name;
+        this.context.put("name", this.relic.name);
         String rarity = RelicUtils.getRelicRarityString(relic);
         if (rarity != null) {
-            nameString += " " + rarity + " rarity";
+            this.context.put("rarity", rarity);
+            this.addLocalized("content.nameAndRarity");
+        } else {
+            this.add(this.relic.name);
         }
-        this.add(nameString);
         if (relic.counter >= 0) {
-            this.add(relic.counter + " counter");
+            this.context.put("counter", this.relic.counter);
+            this.addLocalized("counter");
         }
         this.add(RelicUtils.getRelicDescription(relic));
         this.add(RelicUtils.getRelicFlavorText(relic));

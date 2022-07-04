@@ -2,6 +2,8 @@ package sayTheSpire.utils;
 
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.shop.StoreRelic;
+
+import sayTheSpire.Output;
 import sayTheSpire.TextParser;
 
 public class RelicUtils {
@@ -9,7 +11,7 @@ public class RelicUtils {
     public static String getRelicRarityString(AbstractRelic relic) {
         if (relic.tier == null)
             return null;
-        return relic.tier.name().toLowerCase();
+        return Output.localization.localize("text.relicRarity." + relic.tier.name().toLowerCase());
     }
 
     public static String getRelicShort(AbstractRelic relic) {
