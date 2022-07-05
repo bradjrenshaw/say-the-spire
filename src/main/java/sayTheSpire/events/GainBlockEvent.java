@@ -10,12 +10,15 @@ public class GainBlockEvent extends Event {
     private int amount;
 
     public GainBlockEvent(AbstractCreature creature, int amount) {
+        super("gainBlock");
         this.creature = creature;
         this.amount = amount;
+        this.context.put("target", this.creature.name);
+        this.context.put("amount", this.amount);
     }
 
     public String getText() {
-        return OutputUtils.getCreatureName(this.creature) + " +" + this.amount + " block";
+        return this.context.localize("text");
     }
 
     public Boolean shouldAbandon() {

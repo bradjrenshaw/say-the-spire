@@ -9,7 +9,7 @@ public class TextAboveCreatureEvent extends Event {
     protected String text;
 
     public TextAboveCreatureEvent(AbstractCreature creature, String text) {
-        super();
+        super("text");
         this.creature = creature;
         this.text = text;
     }

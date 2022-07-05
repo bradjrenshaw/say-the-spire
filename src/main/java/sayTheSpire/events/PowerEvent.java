@@ -15,6 +15,7 @@ public class PowerEvent extends Event {
     private String text;
 
     public PowerEvent(AbstractCreature source, AbstractCreature target, AbstractGameEffect effect) {
+        super("power");
         this.source = source;
         this.target = target;
         if (effect instanceof PowerBuffEffect) {

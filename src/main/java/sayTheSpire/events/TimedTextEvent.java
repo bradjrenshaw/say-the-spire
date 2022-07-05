@@ -8,6 +8,7 @@ public class TimedTextEvent extends Event {
     private double timer;
 
     public TimedTextEvent(String text, double timer) {
+        super("text");
         this.text = text;
         this.timer = timer;
     }

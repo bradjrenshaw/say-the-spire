@@ -7,7 +7,7 @@ public class EventTextEvent extends Event {
     String text;
 
     public EventTextEvent(String text) {
-        super();
+        super("text");
         this.text = text;
     }
 

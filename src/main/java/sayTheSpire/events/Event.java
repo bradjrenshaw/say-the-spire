@@ -1,7 +1,22 @@
 package sayTheSpire.events;
 
+import sayTheSpire.localization.LocalizationContext;
+import sayTheSpire.Output;
+
 /** Events are an abstraction for handling messages sent to the user in a number of instances. */
 public class Event {
+
+    private String eventType;
+    protected LocalizationContext context;
+
+    public Event(String eventType) {
+        this.eventType = eventType;
+        this.context = Output.localization.getContext(this.getLocalizationPath());
+    }
+
+    protected String getLocalizationPath() {
+        return "events." + eventType;
+    }
 
     /** Called every frame */
     public void update() {

@@ -9,7 +9,7 @@ import sayTheSpire.ui.effects.EffectHandler;
 import sayTheSpire.ui.effects.EffectManager;
 import sayTheSpire.events.CombatCardTextEvent;
 import sayTheSpire.events.Event;
-import sayTheSpire.events.ObtainTextEvent;
+import sayTheSpire.events.ObtainEvent;
 import sayTheSpire.events.TextEvent;
 import sayTheSpire.utils.OutputUtils;
 import sayTheSpire.Output;
@@ -45,13 +45,13 @@ public class CardManipulationEffectHandler extends EffectHandler {
             this.event = new CombatCardTextEvent(this.card.name + " added to hand");
         } else if (this.effect instanceof ShowCardAndObtainEffect) {
             this.card = (AbstractCard) ReflectionHacks.getPrivate(this.effect, ShowCardAndObtainEffect.class, "card");
-            this.event = new ObtainTextEvent(this.card.name + " added to deck");
+            this.event = new ObtainEvent(this.card);
         } else if (this.effect instanceof ShowCardBrieflyEffect) {
             this.card = (AbstractCard) ReflectionHacks.getPrivate(this.effect, ShowCardBrieflyEffect.class, "card");
             this.event = new TextEvent(this.card.name + " shown briefly");
         } else if (this.effect instanceof FastCardObtainEffect) {
             this.card = (AbstractCard) ReflectionHacks.getPrivate(this.effect, FastCardObtainEffect.class, "card");
-            this.event = new ObtainTextEvent(this.card.name + " added to deck");
+            this.event = new ObtainEvent(this.card);
         } else {
             this.card = null;
             this.event = new TextEvent("Invalid card manipulation type; report to mod dev.");

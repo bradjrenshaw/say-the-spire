@@ -57,6 +57,16 @@
     }
    }
   },
+  "events": {
+"gainBlock": {
+"text": "{target} +{amount} block"
+},
+"obtain": {
+  "cardAddedToDeck": "{target} added to deck",
+  "gold": "+{amount} gold",
+  "object": "{target} obtained"
+}
+  },
   "misc": {
     "versionString": "Using Say the Spire version {version}."
   },

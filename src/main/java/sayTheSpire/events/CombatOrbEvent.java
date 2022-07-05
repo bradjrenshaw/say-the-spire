@@ -15,7 +15,7 @@ public class CombatOrbEvent extends Event {
     private int slot;
 
     public CombatOrbEvent(AbstractOrb orb, int slot, ACTION action) {
-        super();
+        super("combatOrb");
         this.orb = orb;
         this.slot = slot;
         this.action = action;
