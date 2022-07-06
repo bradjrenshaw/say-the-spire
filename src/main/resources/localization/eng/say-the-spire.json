@@ -65,6 +65,9 @@
   "cardAddedToDeck": "{target} added to deck",
   "gold": "+{amount} gold",
   "object": "{target} obtained"
+},
+"power": {
+  "text": "{target} {message}"
 }
   },
   "misc": {

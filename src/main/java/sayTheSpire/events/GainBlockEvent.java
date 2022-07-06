@@ -17,10 +17,6 @@ public class GainBlockEvent extends Event {
         this.context.put("amount", this.amount);
     }
 
-    public String getText() {
-        return this.context.localize("text");
-    }
-
     public Boolean shouldAbandon() {
         return !Output.config.getBoolean("combat.block_text");
     }

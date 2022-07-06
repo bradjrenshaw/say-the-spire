@@ -23,10 +23,12 @@ public class Event {
     }
 
     /**
-     * Returns the text that should be read when the event is complete (ready to be moved onto the completed queue).
+     * Returns the text that should be read when the event is complete (ready to be moved onto the completed queue). By
+     * default this will return the localization string (with substitutions) in the text attribute of the corresponding
+     * event json object.
      */
     public String getText() {
-        return "";
+        return this.context.localize("text");
     }
 
     /**

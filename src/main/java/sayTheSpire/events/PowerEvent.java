@@ -25,10 +25,8 @@ public class PowerEvent extends Event {
         } else {
             this.text = null;
         }
-    }
-
-    public String getText() {
-        return OutputUtils.getCreatureName(this.target) + " " + this.text;
+        this.context.put("message", this.text);
+        this.context.put("target", OutputUtils.getCreatureName(target));
     }
 
     public Boolean shouldAbandon() {
