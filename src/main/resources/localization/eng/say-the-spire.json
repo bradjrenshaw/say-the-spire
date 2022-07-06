@@ -58,6 +58,9 @@
    }
   },
   "events": {
+    "dialogue": {
+      "text": "{source} {dialogueType}: {message}"
+    },
 "gainBlock": {
 "text": "{target} +{amount} block"
 },
@@ -88,6 +91,13 @@
 "rare": "rare",
 "special": "special",
 "curse": "curse"
+    },
+    "dialogueTypes": {
+"says": "says",
+"shouts": "shouts"
+    },
+    "npcNames": {
+      "merchant": "Merchant"
     },
 "potionRarity": {
   "placeholder": "placeholder",

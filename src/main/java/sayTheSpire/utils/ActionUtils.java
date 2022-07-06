@@ -18,6 +18,6 @@ public class ActionUtils {
 
     public static DialogueEvent getTalkEvent(TalkAction action) {
         String msg = (String) ReflectionHacks.getPrivate(action, TalkAction.class, "msg");
-        return new DialogueEvent("says", action.source.name, TextParser.parse(msg, "talk"));
+        return new DialogueEvent("says", action.source, TextParser.parse(msg, "talk"));
     }
 }

@@ -11,7 +11,7 @@ public class ShoutActionPatch {
     public static void Prefix(ShoutAction __instance) {
         if (!(Boolean) ReflectionHacks.getPrivate(__instance, ShoutAction.class, "used")) {
             String msg = (String) ReflectionHacks.getPrivate(__instance, ShoutAction.class, "msg");
-            Output.event(new DialogueEvent("shouts", __instance.source.name, TextParser.parse(msg)));
+            Output.event(new DialogueEvent("shouts", __instance.source, TextParser.parse(msg)));
         }
     }
 }

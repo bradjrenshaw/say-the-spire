@@ -33,7 +33,7 @@ public class ShopScreenPatch {
     public static class CreateSpeechPatch {
 
         public static void Prefix(ShopScreen __instance, String msg) {
-            Output.event(new DialogueEvent("says", "Merchant", TextParser.parse(msg, "talk")));
+            Output.event(new DialogueEvent("says", "merchant", TextParser.parse(msg, "talk")));
         }
     }
 
