@@ -13,7 +13,7 @@ public class EmptyDeckShuffleActionPatch {
             boolean shuffled = (boolean) ReflectionHacks.getPrivate(__instance, EmptyDeckShuffleAction.class,
                     "shuffled");
             if (!shuffled) {
-                Output.event(new CombatCardTextEvent("Discard shuffled into draw"));
+                Output.event(new CombatCardTextEvent(CombatCardTextEvent.EffectType.DISCARD_SHUFFLED_INTO_DRAW));
             }
         }
     }

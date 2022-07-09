@@ -58,11 +58,22 @@
    }
   },
   "events": {
+    "combatCardText": {
+"addedToDiscard": "{target} added to discard",
+"addedToDraw": "{target} added to draw",
+"addedToHand": "{target} added to hand",
+"discardShuffledIntoDraw": "discard shuffled into draw",
+"exhausted": "{target} exhausted"
+    },
     "dialogue": {
       "text": "{source} {dialogueType}: {message}"
     },
 "gainBlock": {
 "text": "{target} +{amount} block"
+},
+"misc": {
+"cardRemovedFromDeck": "{target} removed from deck",
+"cardShownBriefly": "{target} shown briefly"
 },
 "obtain": {
   "cardAddedToDeck": "{target} added to deck",

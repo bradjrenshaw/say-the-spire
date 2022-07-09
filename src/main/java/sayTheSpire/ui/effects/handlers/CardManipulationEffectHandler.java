@@ -9,6 +9,7 @@ import sayTheSpire.ui.effects.EffectHandler;
 import sayTheSpire.ui.effects.EffectManager;
 import sayTheSpire.events.CombatCardTextEvent;
 import sayTheSpire.events.Event;
+import sayTheSpire.events.MiscCardEvent;
 import sayTheSpire.events.ObtainEvent;
 import sayTheSpire.events.TextEvent;
 import sayTheSpire.utils.OutputUtils;
@@ -27,28 +28,28 @@ public class CardManipulationEffectHandler extends EffectHandler {
     private void setup() {
         if (this.effect instanceof ExhaustCardEffect) {
             this.card = (AbstractCard) ReflectionHacks.getPrivate(this.effect, ExhaustCardEffect.class, "c");
-            this.event = new CombatCardTextEvent(this.card.name + " exhausted");
+            this.event = new CombatCardTextEvent(CombatCardTextEvent.EffectType.EXHAUSTED, this.card);
         } else if (this.effect instanceof PurgeCardEffect) {
             this.card = (AbstractCard) ReflectionHacks.getPrivate(this.effect, PurgeCardEffect.class, "card");
-            this.event = new TextEvent(this.card.name + " removed from your deck");
+            this.event = new MiscCardEvent("cardRemovedFromDeck", this.card);
         } else if (this.effect instanceof ShowCardAndAddToDiscardEffect) {
             this.card = (AbstractCard) ReflectionHacks.getPrivate(this.effect, ShowCardAndAddToDiscardEffect.class,
                     "card");
-            this.event = new CombatCardTextEvent(this.card.name + " added to discard");
+            this.event = new CombatCardTextEvent(CombatCardTextEvent.EffectType.ADDED_TO_DISCARD, this.card);
         } else if (this.effect instanceof ShowCardAndAddToDrawPileEffect) {
             this.card = (AbstractCard) ReflectionHacks.getPrivate(this.effect, ShowCardAndAddToDrawPileEffect.class,
                     "card");
-            this.event = new CombatCardTextEvent(this.card.name + " added to draw");
+            this.event = new CombatCardTextEvent(CombatCardTextEvent.EffectType.ADDED_TO_DRAW, this.card);
         } else if (this.effect instanceof ShowCardAndAddToHandEffect) {
             this.card = (AbstractCard) ReflectionHacks.getPrivate(this.effect, ShowCardAndAddToHandEffect.class,
                     "card");
-            this.event = new CombatCardTextEvent(this.card.name + " added to hand");
+            this.event = new CombatCardTextEvent(CombatCardTextEvent.EffectType.ADDED_TO_HAND, this.card);
         } else if (this.effect instanceof ShowCardAndObtainEffect) {
             this.card = (AbstractCard) ReflectionHacks.getPrivate(this.effect, ShowCardAndObtainEffect.class, "card");
             this.event = new ObtainEvent(this.card);
         } else if (this.effect instanceof ShowCardBrieflyEffect) {
             this.card = (AbstractCard) ReflectionHacks.getPrivate(this.effect, ShowCardBrieflyEffect.class, "card");
-            this.event = new TextEvent(this.card.name + " shown briefly");
+            this.event = new MiscCardEvent("cardShownBriefly", this.card);
         } else if (this.effect instanceof FastCardObtainEffect) {
             this.card = (AbstractCard) ReflectionHacks.getPrivate(this.effect, FastCardObtainEffect.class, "card");
             this.event = new ObtainEvent(this.card);
