@@ -9,13 +9,11 @@ public class TextAboveCreatureEvent extends Event {
     protected String text;
 
     public TextAboveCreatureEvent(AbstractCreature creature, String text) {
-        super("text");
+        super("textAboveCreature");
         this.creature = creature;
         this.text = text;
-    }
-
-    public String getText() {
-        return OutputUtils.getCreatureName(this.creature) + ": " + this.text;
+        this.context.put("target", this.creature.name);
+        this.context.put("message", this.text);
     }
 
     public Boolean isComplete() {

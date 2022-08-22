@@ -87,6 +87,9 @@
 },
 "power": {
   "text": "{target} {message}"
+},
+"textAboveCreature": {
+  "text": "{target}: {message}"
 }
   },
   "misc": {
