@@ -65,6 +65,11 @@
 "discardShuffledIntoDraw": "discard shuffled into draw",
 "exhausted": "{target} exhausted"
     },
+    "combatOrb": {
+      "channel": "{target} channeled into slot {slot}",
+      "evoke": "{target} in slot {slot} evoked",
+      "unknown": "Unknown orb action for {target}"
+    },
     "dialogue": {
       "text": "{source} {dialogueType}: {message}"
     },

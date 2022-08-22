@@ -19,16 +19,18 @@ public class CombatOrbEvent extends Event {
         this.orb = orb;
         this.slot = slot;
         this.action = action;
+        this.context.put("target", this.orb.name);
+        this.context.put("slot", this.slot);
     }
 
     public String getText() {
         switch (this.action) {
         case CHANNEL:
-            return this.orb.name + " channeled into slot " + this.slot;
+            return this.context.localize("channel");
         case EVOKE:
-            return this.orb.name + " in slot " + this.slot + " evoked";
+            return this.context.localize("evoke");
         default:
-            return "Unknown action for " + this.orb.name;
+            return this.context.localize("unknown");
         }
     }
 
