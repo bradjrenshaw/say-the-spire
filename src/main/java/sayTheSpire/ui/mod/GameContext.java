@@ -11,6 +11,7 @@ import sayTheSpire.utils.MapUtils;
 import sayTheSpire.utils.MonsterUtils;
 import sayTheSpire.utils.OutputUtils;
 import sayTheSpire.ui.input.InputAction;
+import sayTheSpire.InfoControls;
 
 public class GameContext extends Context {
 
@@ -71,16 +72,16 @@ public class GameContext extends Context {
             this.readDetailedIntents();
             return true;
         case "inspect up":
-            Output.infoControls(Output.Direction.UP);
+            InfoControls.infoControls(InfoControls.Direction.UP);
             break;
         case "inspect down":
-            Output.infoControls(Output.Direction.DOWN);
+            InfoControls.infoControls(InfoControls.Direction.DOWN);
             break;
         case "inspect left":
-            Output.infoControls(Output.Direction.LEFT);
+            InfoControls.infoControls(InfoControls.Direction.LEFT);
             break;
         case "inspect right":
-            Output.infoControls(Output.Direction.RIGHT);
+            InfoControls.infoControls(InfoControls.Direction.RIGHT);
             break;
         }
         CInputAction gameAction = action.getGameControllerAction();

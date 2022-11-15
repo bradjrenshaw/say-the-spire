@@ -14,6 +14,7 @@ import sayTheSpire.Output;
 import sayTheSpire.TextParser;
 import sayTheSpire.ui.UIRegistry;
 import sayTheSpire.ui.elements.DropdownElement;
+import sayTheSpire.InfoControls;
 
 public class OptionsPanelPatch {
 
@@ -72,9 +73,9 @@ public class OptionsPanelPatch {
             Slider bgmSlider = (Slider) ReflectionHacks.getPrivate(panel, OptionsPanel.class, "bgmSlider");
             Slider sfxSlider = (Slider) ReflectionHacks.getPrivate(panel, OptionsPanel.class, "sfxSlider");
             if (masterSlider.bgHb.hovered || bgmSlider.bgHb.hovered || sfxSlider.bgHb.hovered) {
-                Output.bufferContext = "";
+                InfoControls.bufferContext = "";
             } else {
-                Output.bufferContext = "options";
+                InfoControls.bufferContext = "options";
             }
         }
 

@@ -1,6 +1,7 @@
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+import sayTheSpire.InfoControls;
 import sayTheSpire.Output;
 
 public class InputHelperPatch {
@@ -13,7 +14,7 @@ public class InputHelperPatch {
                 Output.uiManager.updateLast();
                 return SpireReturn.Return(null);
             }
-            Output.updateInfoControls();
+            InfoControls.update();
             return SpireReturn.Continue();
         }
     }

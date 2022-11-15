@@ -12,6 +12,6 @@ public class DungeonMapScreenPatch {
             Output.text("The map scrolls from top to bottom, briefly revealing the sketched outline of "
                     + MapUtils.getLocalizedBossName() + ".", false);
         }
-        Output.setupBuffers(MapUtils.getCurrentNode(), true);
+        Output.setupBuffers(MapUtils.getCurrentNode(), false, true);
     }
 }

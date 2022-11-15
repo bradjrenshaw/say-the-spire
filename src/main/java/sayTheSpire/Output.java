@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import sayTheSpire.ui.effects.EffectManager;
 import sayTheSpire.events.Event;
 import sayTheSpire.events.EventManager;
-import sayTheSpire.mapNavigator.MapNavigator;
+import sayTheSpire.map.BaseRoomNode;
 import sayTheSpire.speech.SpeechManager;
 import sayTheSpire.localization.LocalizationContext;
 import sayTheSpire.localization.LocalizationManager;
@@ -23,25 +23,23 @@ import sayTheSpire.ui.positions.Position;
 import sayTheSpire.ui.elements.UIElement;
 import sayTheSpire.ui.UIRegistry;
 import sayTheSpire.ui.input.InputManager;
+import sayTheSpire.ui.mod.MapManager;
 import sayTheSpire.ui.mod.UIManager;
+import sayTheSpire.ui.navigators.TreeNavigator;
 import sayTheSpire.buffers.*;
 
 public class Output {
 
     public static String modVersion = "0.4.0-beta";
 
-    public enum Direction {
-        NONE, UP, DOWN, LEFT, RIGHT
-    };
-
     private static Logger logger = LogManager.getLogger(Output.class.getName());
 
-    public static String bufferContext = "";
     public static BufferManager buffers = new BufferManager();
     public static Boolean tolkSetup = false;
     public static Boolean shouldInterruptSpeech = false;
     public static EffectManager effects = null;
     public static InputManager inputManager = null;
+    public static MapManager mapManager = null;
     public static UIManager uiManager = null;
     public static SpeechManager speechManager = null;
     public static LocalizationManager localization;
@@ -58,9 +56,6 @@ public class Output {
         // Effects manager
         effects = new EffectManager();
 
-        // Create MapNavigator
-        MapControls.navigator = new MapNavigator();
-
         // initialize config
         try {
             config = new STSConfig();
@@ -71,7 +66,8 @@ public class Output {
             e.printStackTrace();
             inputManager = new InputManager();
         }
-        uiManager = new UIManager(inputManager);
+        mapManager = new MapManager();
+        uiManager = new UIManager(inputManager, mapManager);
         speechManager = new SpeechManager();
         speechManager.setup();
         tolkSetup = true;
@@ -154,78 +150,14 @@ public class Output {
         return uiManager.getAllowVirtualInput() && config.getBoolean("input.virtual_input", false);
     }
 
-    public static void infoControls(Direction direction) {
-        if (bufferContext.equals(""))
-            return;
-        if (AbstractDungeon.screen == AbstractDungeon.CurrentScreen.MAP && bufferContext.equals("map")) {
-            mapInfoControls(direction);
-        } else {
-            bufferInfoControls(direction);
-        }
-    }
-
-    public static void bufferInfoControls(Direction direction) {
-        switch (direction) {
-        case UP:
-            BufferControls.nextItem();
-            break;
-        case DOWN:
-            BufferControls.previousItem();
-            break;
-        case LEFT:
-            BufferControls.previousBuffer();
-            break;
-        case RIGHT:
-            BufferControls.nextBuffer();
-            break;
-        }
-    }
-
-    public static void mapInfoControls(Direction direction) {
-        switch (direction) {
-        case UP:
-            MapControls.followPath(true);
-            break;
-        case DOWN:
-            MapControls.followPath(false);
-            break;
-        case LEFT:
-            MapControls.changePathChoice(-1);
-            break;
-        case RIGHT:
-            MapControls.changePathChoice(1);
-            break;
-        case NONE:
-            return;
-        default:
-            text("it's a map", true);
-        }
-    }
-
-    public static Direction getInfoDirection() {
-        if (CInputActionSet.inspectUp.isJustPressed())
-            return Direction.UP;
-        else if (CInputActionSet.inspectDown.isJustPressed())
-            return Direction.DOWN;
-        else if (CInputActionSet.inspectLeft.isJustPressed())
-            return Direction.LEFT;
-        else if (CInputActionSet.inspectRight.isJustPressed())
-            return Direction.RIGHT;
-        else
-            return Direction.NONE;
-    }
-
-    public static void setupBuffers(MapRoomNode node, Boolean viewing) {
-        bufferContext = "map";
-        if (viewing) {
-            MapControls.navigator.handleViewingNode(node, true);
-        } else {
-            MapControls.navigator.handleFocusedNode(node);
-        }
+    public static void setupBuffers(MapRoomNode node, Boolean isHovered, Boolean shouldAnnounce) {
+        // This needs to be changed later
+        InfoControls.bufferContext = "map";
+        mapManager.handleNode(node, isHovered, shouldAnnounce);
     }
 
     public static void setUI(UIElement element) {
-        bufferContext = "buffers";
+        InfoControls.bufferContext = "buffers";
         buffers.setAllEnabled(false);
         String current = element.handleBuffers(buffers);
         currentUI = element;
@@ -237,7 +169,7 @@ public class Output {
     }
 
     public static void setupUIBuffer(ArrayList<String> contents) {
-        bufferContext = "buffers";
+        InfoControls.bufferContext = "buffers";
         Buffer buffer = buffers.getBuffer("UI");
         buffer.clear();
         buffer.addMany(contents);
@@ -246,7 +178,7 @@ public class Output {
     }
 
     public static void setupUIBufferMany(String... contents) {
-        bufferContext = "buffers";
+        InfoControls.bufferContext = "buffers";
         Buffer buffer = buffers.getBuffer("UI");
         buffer.clear();
         for (String s : contents) {
@@ -254,18 +186,6 @@ public class Output {
         }
         buffers.enableBuffer("UI", true);
         BufferControls.setCurrentBuffer("UI");
-    }
-
-    public static void updateInfoControls() {
-        if (CInputActionSet.inspectUp.isJustPressed()) {
-            infoControls(Direction.UP);
-        } else if (CInputActionSet.inspectRight.isJustPressed()) {
-            infoControls(Direction.RIGHT);
-        } else if (CInputActionSet.inspectDown.isJustPressed()) {
-            infoControls(Direction.DOWN);
-        } else if (CInputActionSet.inspectLeft.isJustPressed()) {
-            infoControls(Direction.LEFT);
-        }
     }
 
     public static void update() {

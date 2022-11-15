@@ -23,8 +23,7 @@ public class OutputUtils {
     }
 
     public static boolean isInDungeon() {
-        return CardCrawlGame.mode == CardCrawlGame.GameMode.GAMEPLAY && AbstractDungeon.isPlayerInDungeon()
-                && AbstractDungeon.currMapNode != null;
+        return CardCrawlGame.mode == CardCrawlGame.GameMode.GAMEPLAY && AbstractDungeon.isPlayerInDungeon();
     }
 
     public static Boolean isInCombat() {

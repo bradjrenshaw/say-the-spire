@@ -14,9 +14,11 @@ public class UIManager {
 
     private ArrayList<Context> contexts;
     private InputManager inputManager;
+    private MapManager mapManager;
 
-    public UIManager(InputManager manager) {
-        this.inputManager = manager;
+    public UIManager(InputManager inputManager, MapManager mapManager) {
+        this.inputManager = inputManager;
+        this.mapManager = mapManager;
         this.contexts = new ArrayList();
         this.pushContext(new GameContext());
     }
@@ -85,6 +87,7 @@ public class UIManager {
                 return;
             if (current.getShouldForceControllerMode())
                 Settings.isControllerMode = true;
+            this.mapManager.updateFirst();
             this.inputManager.updateFirst();
         }
     }
