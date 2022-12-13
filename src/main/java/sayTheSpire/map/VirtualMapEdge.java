@@ -18,7 +18,7 @@ public abstract class VirtualMapEdge {
         if (node == null)
             return "Error on map edge, report to mod developer";
         StringBuilder sb = new StringBuilder();
-        sb.append(node.getName());
+        sb.append(node.getLabel());
 
         if (includeCoordinates) {
             sb.append(", " + node.getX() + ", " + node.getY());

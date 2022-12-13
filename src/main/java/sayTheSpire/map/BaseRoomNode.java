@@ -7,8 +7,10 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapRoomNode;
+import sayTheSpire.localization.LocalizationContext;
 import sayTheSpire.utils.MapUtils;
 import sayTheSpire.utils.OutputUtils;
+import sayTheSpire.Output;
 
 /**
  * Represents a room node from the base game.
@@ -16,15 +18,18 @@ import sayTheSpire.utils.OutputUtils;
 public class BaseRoomNode extends VirtualMapNode {
 
     private MapRoomNode node;
+    private LocalizationContext localization;
 
     public BaseRoomNode(MapRoomNode node) {
-        super(-1, -1);
+        this(-1, -1);
         this.node = node;
     }
 
     public BaseRoomNode(int x, int y) {
         super(x, y);
         this.node = null;
+        this.localization = Output.localization.getContext("map");
+        localization.put("player", OutputUtils.getPlayerName());
     }
 
     public List<VirtualMapEdge> getEdges() {
@@ -58,7 +63,7 @@ public class BaseRoomNode extends VirtualMapNode {
             }
             BaseMapEdge edge = new BaseMapEdge(this, target);
             if (flightConnected)
-                edge.addTag("flight required");
+                edge.addTag(this.localization.localize("tags.requires flight"));
             edges.add(edge);
         }
         return edges;
@@ -86,7 +91,7 @@ public class BaseRoomNode extends VirtualMapNode {
         if (node.room instanceof com.megacrit.cardcrawl.rooms.MonsterRoomElite) {
             return "elite monster";
         } else if (node.room instanceof com.megacrit.cardcrawl.rooms.MonsterRoom) {
-            return "Monster";
+            return "monster";
         } else if (node.room instanceof com.megacrit.cardcrawl.rooms.ShopRoom) {
             return "merchant";
         } else if (node.room instanceof com.megacrit.cardcrawl.rooms.RestRoom) {
@@ -98,16 +103,20 @@ public class BaseRoomNode extends VirtualMapNode {
         }
     }
 
+    public String getLabel() {
+        return this.localization.localize("names." + this.getName());
+    }
+
     public HashSet<String> getTags() {
         HashSet<String> tags = new HashSet();
         MapRoomNode node = this.getGameNode();
         if (node == null)
             return tags;
         if (node == MapUtils.getCurrentNode()) {
-            tags.add(OutputUtils.getCreatureName(OutputUtils.getPlayer()) + " location");
+            tags.add(this.localization.localize("tags.player location"));
         }
         if (node.hasEmeraldKey)
-            tags.add("burning icon");
+            tags.add(this.localization.localize("tags.burning icon"));
         return tags;
     }
 

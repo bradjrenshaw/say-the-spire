@@ -32,8 +32,12 @@ public class OutputUtils {
 
     public static String getCreatureName(AbstractCreature creature) {
         if (creature == getPlayer())
-            return CardCrawlGame.playerName;
+            return getPlayerName();
         return creature.name;
+    }
+
+    public static String getPlayerName() {
+        return CardCrawlGame.playerName;
     }
 
     public static String getCreaturePowersString(AbstractCreature creature) {

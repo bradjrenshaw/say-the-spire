@@ -28,6 +28,10 @@ public abstract class VirtualMapNode {
 
     public abstract String getName();
 
+    public String getLabel() {
+        return this.getName();
+    }
+
     public HashSet<String> getTags() {
         return new HashSet<String>();
     }
@@ -36,7 +40,7 @@ public abstract class VirtualMapNode {
         // This needs to be localized but I want to get the refactor working first
         HashSet<String> tags = this.getTags();
         StringBuilder sb = new StringBuilder();
-        sb.append(this.getName());
+        sb.append(this.getLabel());
         sb.append(", " + this.getX() + ", " + this.getY());
         if (!tags.isEmpty()) {
             sb.append(" (" + String.join(", ", tags) + ")");
