@@ -95,6 +95,23 @@
   "misc": {
     "versionString": "Using Say the Spire version {version}."
   },
+  "map": {
+    "names": {
+      "boss": "boss",
+      "elite monster": "elite monster",
+      "merchant": "merchant",
+      "monster": "monster",
+      "rest": "rest",
+      "starting location": "starting location",
+      "treasure": "treasure",
+      "unknown": "unknown"
+    },
+    "tags": {
+      "burning icon": "burning icon",
+      "player location": "{player} location",
+      "requires flight": "requires flight"
+    }
+  },
   "text": {
     "buffers": {
       "bufferIsEmpty": "{buffer} is empty",

@@ -8,7 +8,6 @@
 
         <!-- Custom HTML head -->
         
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
@@ -34,13 +33,13 @@
     </head>
     <body>
         <!-- Provide site root to javascript -->
-        <script type="text/javascript">
+        <script>
             var path_to_root = "";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
-        <script type="text/javascript">
+        <script>
             try {
                 var theme = localStorage.getItem('mdbook-theme');
                 var sidebar = localStorage.getItem('mdbook-sidebar');
@@ -56,7 +55,7 @@
         </script>
 
         <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
+        <script>
             var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
@@ -68,7 +67,7 @@
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
+        <script>
             var html = document.querySelector('html');
             var sidebar = 'hidden';
             if (document.body.clientWidth >= 1080) {
@@ -99,7 +98,7 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
@@ -132,7 +131,7 @@
                 </div>
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-                <script type="text/javascript">
+                <script>
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
                     document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
@@ -163,11 +162,12 @@ they are strings of text. For example to exclude cards and relics, you would use
 <code>exclude_read_typenames = [&quot;card&quot;, &quot;relic&quot;]</code></p>
 <h3 id="advanced"><a class="header" href="#advanced">[advanced]</a></h3>
 <p>Advanced settings related to the internals of the mod.</p>
-<table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
 <tr><td>use_updated_card_description</td><td>true, false</td><td>false</td><td>whether or not to use a different internal property to get card descriptions. This should be enabled if you are trying to use mods that do not have properly rendered card descriptions. This may break depending on your current game language so use this with caution.</td></tr>
 <tr><td>prefered_speech_handler_order</td><td>[ array of speech handler names ]</td><td>[]</td><td>Your prefered order of speech handlers. For more information, see the next section on speech handlers.</td></tr>
 <tr><td>speech_handler_force_system_speech</td><td>true, false</td><td>false</td><td>Whether or not system speech (for example SAPI) is used (if your speech handler supports it.)</td></tr>
 </tbody></table>
+</div>
 <h4 id="speech-handler-priority"><a class="header" href="#speech-handler-priority">Speech Handler Priority</a></h4>
 <p>The mod has a number of speech handlers stored internally. Each speech handler
 allows output via a specific library or process and the best one for your system
@@ -182,33 +182,37 @@ advanced.prefered_speech_handler_order setting. The speech handler names you add
 to the list will be moved to the beginning of the list in the order you specify.
 For a list of speech handlers, see the table below. The table below lists the
 handlers in their default order.</p>
-<table><thead><tr><th>Handler</th><th>description</th><th>Criteria to Use</th><th>Supports System Speech</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Handler</th><th>description</th><th>Criteria to Use</th><th>Supports System Speech</th></tr></thead><tbody>
 <tr><td>tolk_resources</td><td>Uses the Tolk (screen reader output) library for Windows and automatically extracts dlls needed at runtime. Dll files are removed when the game is closed.</td><td>Windows</td><td>Yes</td></tr>
 <tr><td>tolk</td><td>Uses the Tolk (screen reader output) library for Windows. You will need to copy required screenreader dll files to the game directory to use this handler.</td><td>Windows</td><td>Yes</td></tr>
 <tr><td>clipboard</td><td>Sends all text output to the clipboard. This is useful for translation or for some specific screen readers.</td><td>All</td><td>No</td></tr>
 </tbody></table>
+</div>
 <h3 id="combat"><a class="header" href="#combat">[combat]</a></h3>
 <p>Settings related to combat messages.</p>
-<table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
 <tr><td>block_text</td><td>true, false</td><td>true</td><td>Whether or not to read when a creature gains block.</td></tr>
 <tr><td>buff_debuff text</td><td>true, false</td><td>true</td><td>Whether or not to read when a creature gains a buff or debuff.</td></tr>
 <tr><td>card_events</td><td>true, false</td><td>true</td><td>Whether or not card events are read. These include cards being added to draw, discard, etc as well as cards being exhausted.</td></tr>
 <tr><td>orb_events</td><td>true, false</td><td>true</td><td>Whether or not orb events are read. This includes when orbs are channeled and evoked.</td></tr>
 </tbody></table>
+</div>
 <h3 id="input"><a class="header" href="#input">[input]</a></h3>
 <p>Settings related to virtual input.</p>
-<table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
 <tr><td>virtual_input</td><td>true or false</td><td>true</td><td>Whether or not virtual input is enabled.</td></tr>
 </tbody></table>
+</div>
 <h3 id="map"><a class="header" href="#map">[map]</a></h3>
 <p>Settings related to map reading.</p>
-<table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
 <tr><td>read_reversed_paths</td><td>true, false</td><td>true</td><td>Whether or not to read the path in reverse when moving backward on the map, as if you were tracing it visually. Many people prefer to disable this to save time but it is enabled by default for clarity.</td></tr>
 </tbody></table>
+</div>
 <h3 id="ui"><a class="header" href="#ui">[ui]</a></h3>
 <p>Contains settings related to the game's UI and how certain elements are read
 out.</p>
-<table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
 <tr><td>read_proceed_text</td><td>true, false</td><td>true</td><td>Whether or not to read the proceed text when the option is available (for example to skip a combat reward)</td></tr>
 <tr><td>read_banner_text</td><td>true, false</td><td>true</td><td>Whether or not banner text is read. Banner text appears at the top of the screen and generally acts as a screen title.</td></tr>
 <tr><td>read_positions</td><td>true, false</td><td>true</td><td>Whether or not to read the position of an element (for example 1 of 3 in a list)</td></tr>
@@ -216,14 +220,15 @@ out.</p>
 <tr><td>read_obtain_events</td><td>true, false</td><td>true</td><td>Whether or not the mod notifies you when you obtain an object (such as a card, potion, relic, etc).</td></tr>
 <tr><td>exclude_read_typenames</td><td>[array of strings]</td><td>[] empty</td><td>An array or list of types to not be read. For example if you do not want cards and relics to say card or relic after their name, you could set this to <code>[&quot;card&quot;, &quot;relic&quot;]</code>.</td></tr>
 </tbody></table>
+</div>
 <h3 id="resources"><a class="header" href="#resources">[resources]</a></h3>
 <p>Settings related to how resources are loaded and unloaded. If you are
 experiencing a crash when closing the game, set both of these to false.</p>
-<table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
 <tr><td>unload_native_libs</td><td>true, false</td><td>true</td><td>Whether or not to unload the screen reader libraries from memory when the game closes.</td></tr>
 <tr><td>dispose_resource_files</td><td>true, false</td><td>true</td><td>Whether or not to delete the screen reader dll files in the slay the Spire root directory after the game closes and they are unloaded from memory. Do not enable this unless unload_native_libs is enabled or it won't work.</td></tr>
 </tbody></table>
-
+</div>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
@@ -256,18 +261,18 @@ experiencing a crash when closing the game, set both of these to false.</p>
 
 
 
-        <script type="text/javascript">
+        <script>
             window.playground_copyable = true;
         </script>
 
 
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
 
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
 
         <!-- Custom JS scripts -->
 

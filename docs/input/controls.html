@@ -8,7 +8,6 @@
 
         <!-- Custom HTML head -->
         
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
@@ -34,13 +33,13 @@
     </head>
     <body>
         <!-- Provide site root to javascript -->
-        <script type="text/javascript">
+        <script>
             var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
-        <script type="text/javascript">
+        <script>
             try {
                 var theme = localStorage.getItem('mdbook-theme');
                 var sidebar = localStorage.getItem('mdbook-sidebar');
@@ -56,7 +55,7 @@
         </script>
 
         <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
+        <script>
             var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
@@ -68,7 +67,7 @@
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
+        <script>
             var html = document.querySelector('html');
             var sidebar = 'hidden';
             if (document.body.clientWidth >= 1080) {
@@ -99,7 +98,7 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
@@ -132,7 +131,7 @@
                 </div>
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-                <script type="text/javascript">
+                <script>
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
                     document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
@@ -147,7 +146,7 @@
 gamepad controls by default match what the game uses. for information on Virtual
 Input and Keyboard Support, go <a href="./virtual.html">here</a>.</p>
 <h2 id="game-and-mod-general-controls"><a class="header" href="#game-and-mod-general-controls">Game and Mod General Controls</a></h2>
-<table><thead><tr><th>Action</th><th>Controller (xbox/ps)</th><th>Keyboard</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Action</th><th>Controller (xbox/ps)</th><th>Keyboard</th></tr></thead><tbody>
 <tr><td>movement (menus, general UI)</td><td>d-pad or left stick</td><td>arrow keys</td></tr>
 <tr><td>confirm</td><td>a/x</td><td>enter</td></tr>
 <tr><td>top panel, delete save slot</td><td>x/square</td><td>t</td></tr>
@@ -161,12 +160,13 @@ Input and Keyboard Support, go <a href="./virtual.html">here</a>.</p>
 <tr><td>settings/pause</td><td>start</td><td>backspace</td></tr>
 <tr><td>Map, save slots (from main menu), general back option</td><td>select</td><td>m</td></tr>
 </tbody></table>
+</div>
 <h2 id="info-controls"><a class="header" href="#info-controls">Info Controls</a></h2>
 <p>You can press control in combination with another key to quickly read additional
 information about the player or general game state. These controls are only
 available for keyboard and more will be added in future updates. To see the
 health of the player for example, use ctrl+h.</p>
-<table><thead><tr><th>Action</th><th>Keyboard</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Action</th><th>Keyboard</th></tr></thead><tbody>
 <tr><td>Current Block</td><td>ctrl b</td></tr>
 <tr><td>Current Gold</td><td>ctrl g</td></tr>
 <tr><td>Health</td><td>ctrl h</td></tr>
@@ -175,7 +175,7 @@ health of the player for example, use ctrl+h.</p>
 <tr><td>detailed intents (read all monster intents)</td><td>alt i</td></tr>
 <tr><td>Current Act Boss</td><td>ctrl n</td></tr>
 </tbody></table>
-
+</div>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
@@ -208,18 +208,18 @@ health of the player for example, use ctrl+h.</p>
 
 
 
-        <script type="text/javascript">
+        <script>
             window.playground_copyable = true;
         </script>
 
 
-        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
 
-        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
 
         <!-- Custom JS scripts -->
 

@@ -2,7 +2,13 @@
 
 ## 0.4.0-beta
 
+* The map:
+    * This update significantly refactors the code for map navigation behind the scenes. The new code allows for easier localization as well as potential support for other types of maps and methods for viewing the maps in the future. No immediate changes should be noticeable, however this was a significant update so some things may be broken that I missed. Please report anything that seems to not be working as intended.
+    * Nodes you can travel to via flight only (for example using the Wing Boots relic) are now marked with "requires flight"
 * Fixed issue where null text values could be output, causing most speech handlers to crash.
+
+## 0.3.5-beta (2022-06-06)
+This is a quick patch to fix a bug where the virtual input setting was not being checked consistently. This lead to the virtual input keyboard support being always active as well as controller behavior being odd on certain screens.
 
 ## 0.3.4-beta (2022-05-23)
 This is a quick fix to prevent a number of issues prior to adding localization

@@ -9,7 +9,6 @@
 
         <!-- Custom HTML head -->
         
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
@@ -35,13 +34,13 @@
     </head>
     <body>
         <!-- Provide site root to javascript -->
-        <script type="text/javascript">
+        <script>
             var path_to_root = "";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
-        <script type="text/javascript">
+        <script>
             try {
                 var theme = localStorage.getItem('mdbook-theme');
                 var sidebar = localStorage.getItem('mdbook-sidebar');
@@ -57,7 +56,7 @@
         </script>
 
         <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
+        <script>
             var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
@@ -69,7 +68,7 @@
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
+        <script>
             var html = document.querySelector('html');
             var sidebar = 'hidden';
             if (document.body.clientWidth >= 1080) {
@@ -100,7 +99,7 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
@@ -133,7 +132,7 @@
                 </div>
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-                <script type="text/javascript">
+                <script>
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
                     document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
                     Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
@@ -377,11 +376,12 @@ direction). Use right stick up or control up arrow to follow the path forward;
 this will move continuously until you hit a choice or dead end (such as a boss).
 Use right stick down or control down arrow to retrace your steps.</p>
 <p>For example if given the following 3x4 map:</p>
-<table><thead><tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th></tr></thead><tbody>
 <tr><td>2</td><td>monster</td><td>elite</td><td>unknown</td><td>monster</td></tr>
 <tr><td>1</td><td>blank</td><td>merchant</td><td>unknown</td><td>blank</td></tr>
 <tr><td>0</td><td>monster</td><td>blank</td><td>blank</td><td>blank</td></tr>
 </tbody></table>
+</div>
 <p>Say you are starting below the  bottom row. You have a single choice (monster,
 far bottom left) The only choice from there is merchant. There are however three
 choices (monster, elite, or unknown). From the bottom room your map focus will
@@ -419,7 +419,7 @@ controls will still work when virtual input is disabled.</p>
 gamepad controls by default match what the game uses. for information on Virtual
 Input and Keyboard Support, go <a href="input/./virtual.html">here</a>.</p>
 <h2 id="game-and-mod-general-controls"><a class="header" href="#game-and-mod-general-controls">Game and Mod General Controls</a></h2>
-<table><thead><tr><th>Action</th><th>Controller (xbox/ps)</th><th>Keyboard</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Action</th><th>Controller (xbox/ps)</th><th>Keyboard</th></tr></thead><tbody>
 <tr><td>movement (menus, general UI)</td><td>d-pad or left stick</td><td>arrow keys</td></tr>
 <tr><td>confirm</td><td>a/x</td><td>enter</td></tr>
 <tr><td>top panel, delete save slot</td><td>x/square</td><td>t</td></tr>
@@ -433,12 +433,13 @@ Input and Keyboard Support, go <a href="input/./virtual.html">here</a>.</p>
 <tr><td>settings/pause</td><td>start</td><td>backspace</td></tr>
 <tr><td>Map, save slots (from main menu), general back option</td><td>select</td><td>m</td></tr>
 </tbody></table>
+</div>
 <h2 id="info-controls"><a class="header" href="#info-controls">Info Controls</a></h2>
 <p>You can press control in combination with another key to quickly read additional
 information about the player or general game state. These controls are only
 available for keyboard and more will be added in future updates. To see the
 health of the player for example, use ctrl+h.</p>
-<table><thead><tr><th>Action</th><th>Keyboard</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Action</th><th>Keyboard</th></tr></thead><tbody>
 <tr><td>Current Block</td><td>ctrl b</td></tr>
 <tr><td>Current Gold</td><td>ctrl g</td></tr>
 <tr><td>Health</td><td>ctrl h</td></tr>
@@ -447,7 +448,7 @@ health of the player for example, use ctrl+h.</p>
 <tr><td>detailed intents (read all monster intents)</td><td>alt i</td></tr>
 <tr><td>Current Act Boss</td><td>ctrl n</td></tr>
 </tbody></table>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="config-files-and-changing-mod-settings"><a class="header" href="#config-files-and-changing-mod-settings">Config Files and Changing Mod Settings</a></h1>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="config-files-and-changing-mod-settings"><a class="header" href="#config-files-and-changing-mod-settings">Config Files and Changing Mod Settings</a></h1>
 <p>After first launching the game, two config files are created that allow you to
 modify certain aspects of the mod. These files can be found at:</p>
 <ul>
@@ -468,11 +469,12 @@ they are strings of text. For example to exclude cards and relics, you would use
 <code>exclude_read_typenames = [&quot;card&quot;, &quot;relic&quot;]</code></p>
 <h3 id="advanced"><a class="header" href="#advanced">[advanced]</a></h3>
 <p>Advanced settings related to the internals of the mod.</p>
-<table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
 <tr><td>use_updated_card_description</td><td>true, false</td><td>false</td><td>whether or not to use a different internal property to get card descriptions. This should be enabled if you are trying to use mods that do not have properly rendered card descriptions. This may break depending on your current game language so use this with caution.</td></tr>
 <tr><td>prefered_speech_handler_order</td><td>[ array of speech handler names ]</td><td>[]</td><td>Your prefered order of speech handlers. For more information, see the next section on speech handlers.</td></tr>
 <tr><td>speech_handler_force_system_speech</td><td>true, false</td><td>false</td><td>Whether or not system speech (for example SAPI) is used (if your speech handler supports it.)</td></tr>
 </tbody></table>
+</div>
 <h4 id="speech-handler-priority"><a class="header" href="#speech-handler-priority">Speech Handler Priority</a></h4>
 <p>The mod has a number of speech handlers stored internally. Each speech handler
 allows output via a specific library or process and the best one for your system
@@ -487,33 +489,37 @@ advanced.prefered_speech_handler_order setting. The speech handler names you add
 to the list will be moved to the beginning of the list in the order you specify.
 For a list of speech handlers, see the table below. The table below lists the
 handlers in their default order.</p>
-<table><thead><tr><th>Handler</th><th>description</th><th>Criteria to Use</th><th>Supports System Speech</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Handler</th><th>description</th><th>Criteria to Use</th><th>Supports System Speech</th></tr></thead><tbody>
 <tr><td>tolk_resources</td><td>Uses the Tolk (screen reader output) library for Windows and automatically extracts dlls needed at runtime. Dll files are removed when the game is closed.</td><td>Windows</td><td>Yes</td></tr>
 <tr><td>tolk</td><td>Uses the Tolk (screen reader output) library for Windows. You will need to copy required screenreader dll files to the game directory to use this handler.</td><td>Windows</td><td>Yes</td></tr>
 <tr><td>clipboard</td><td>Sends all text output to the clipboard. This is useful for translation or for some specific screen readers.</td><td>All</td><td>No</td></tr>
 </tbody></table>
+</div>
 <h3 id="combat"><a class="header" href="#combat">[combat]</a></h3>
 <p>Settings related to combat messages.</p>
-<table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
 <tr><td>block_text</td><td>true, false</td><td>true</td><td>Whether or not to read when a creature gains block.</td></tr>
 <tr><td>buff_debuff text</td><td>true, false</td><td>true</td><td>Whether or not to read when a creature gains a buff or debuff.</td></tr>
 <tr><td>card_events</td><td>true, false</td><td>true</td><td>Whether or not card events are read. These include cards being added to draw, discard, etc as well as cards being exhausted.</td></tr>
 <tr><td>orb_events</td><td>true, false</td><td>true</td><td>Whether or not orb events are read. This includes when orbs are channeled and evoked.</td></tr>
 </tbody></table>
+</div>
 <h3 id="input"><a class="header" href="#input">[input]</a></h3>
 <p>Settings related to virtual input.</p>
-<table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
 <tr><td>virtual_input</td><td>true or false</td><td>true</td><td>Whether or not virtual input is enabled.</td></tr>
 </tbody></table>
+</div>
 <h3 id="map"><a class="header" href="#map">[map]</a></h3>
 <p>Settings related to map reading.</p>
-<table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
 <tr><td>read_reversed_paths</td><td>true, false</td><td>true</td><td>Whether or not to read the path in reverse when moving backward on the map, as if you were tracing it visually. Many people prefer to disable this to save time but it is enabled by default for clarity.</td></tr>
 </tbody></table>
+</div>
 <h3 id="ui"><a class="header" href="#ui">[ui]</a></h3>
 <p>Contains settings related to the game's UI and how certain elements are read
 out.</p>
-<table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
 <tr><td>read_proceed_text</td><td>true, false</td><td>true</td><td>Whether or not to read the proceed text when the option is available (for example to skip a combat reward)</td></tr>
 <tr><td>read_banner_text</td><td>true, false</td><td>true</td><td>Whether or not banner text is read. Banner text appears at the top of the screen and generally acts as a screen title.</td></tr>
 <tr><td>read_positions</td><td>true, false</td><td>true</td><td>Whether or not to read the position of an element (for example 1 of 3 in a list)</td></tr>
@@ -521,14 +527,15 @@ out.</p>
 <tr><td>read_obtain_events</td><td>true, false</td><td>true</td><td>Whether or not the mod notifies you when you obtain an object (such as a card, potion, relic, etc).</td></tr>
 <tr><td>exclude_read_typenames</td><td>[array of strings]</td><td>[] empty</td><td>An array or list of types to not be read. For example if you do not want cards and relics to say card or relic after their name, you could set this to <code>[&quot;card&quot;, &quot;relic&quot;]</code>.</td></tr>
 </tbody></table>
+</div>
 <h3 id="resources"><a class="header" href="#resources">[resources]</a></h3>
 <p>Settings related to how resources are loaded and unloaded. If you are
 experiencing a crash when closing the game, set both of these to false.</p>
-<table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Setting</th><th>Accepted Values</th><th>Default Value</th><th>Description</th></tr></thead><tbody>
 <tr><td>unload_native_libs</td><td>true, false</td><td>true</td><td>Whether or not to unload the screen reader libraries from memory when the game closes.</td></tr>
 <tr><td>dispose_resource_files</td><td>true, false</td><td>true</td><td>Whether or not to delete the screen reader dll files in the slay the Spire root directory after the game closes and they are unloaded from memory. Do not enable this unless unload_native_libs is enabled or it won't work.</td></tr>
 </tbody></table>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="for-developers"><a class="header" href="#for-developers">For Developers</a></h1>
+</div><div style="break-before: page; page-break-before: always;"></div><h1 id="for-developers"><a class="header" href="#for-developers">For Developers</a></h1>
 <p>If you are looking to work on adding additional functionality to the mod, this
 section details how to compile the mod. if you are looking to localize the mod,
 go <a href="devs/./localization.html">here</a>.</p>
@@ -583,8 +590,16 @@ future release.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="change-log"><a class="header" href="#change-log">Change Log</a></h1>
 <h2 id="040-beta"><a class="header" href="#040-beta">0.4.0-beta</a></h2>
 <ul>
+<li>The map:
+<ul>
+<li>This update significantly refactors the code for map navigation behind the scenes. The new code allows for easier localization as well as potential support for other types of maps and methods for viewing the maps in the future. No immediate changes should be noticeable, however this was a significant update so some things may be broken that I missed. Please report anything that seems to not be working as intended.</li>
+<li>Nodes you can travel to via flight only (for example using the Wing Boots relic) are now marked with &quot;requires flight&quot;</li>
+</ul>
+</li>
 <li>Fixed issue where null text values could be output, causing most speech handlers to crash.</li>
 </ul>
+<h2 id="035-beta-2022-06-06"><a class="header" href="#035-beta-2022-06-06">0.3.5-beta (2022-06-06)</a></h2>
+<p>This is a quick patch to fix a bug where the virtual input setting was not being checked consistently. This lead to the virtual input keyboard support being always active as well as controller behavior being odd on certain screens.</p>
 <h2 id="034-beta-2022-05-23"><a class="header" href="#034-beta-2022-05-23">0.3.4-beta (2022-05-23)</a></h2>
 <p>This is a quick fix to prevent a number of issues prior to adding localization
 support.</p>
@@ -1009,22 +1024,22 @@ this please let me know</li>
 
 
 
-        <script type="text/javascript">
+        <script>
             window.playground_copyable = true;
         </script>
 
 
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
 
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
 
         <!-- Custom JS scripts -->
 
-        <script type="text/javascript">
+        <script>
         window.addEventListener('load', function() {
             window.setTimeout(window.print, 100);
         });
