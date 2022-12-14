@@ -33,10 +33,14 @@ public abstract class UIElement {
      */
     public abstract String handleBuffers(BufferManager buffers);
 
-    /** Updates any needed values and performs any triggers on UI elements. */
+    /**
+     * Updates any needed values and performs any triggers on UI elements. Note that this won't do anything unless the
+     * element is in the UIRegistry.
+     */
     public void update() {
     }
 
+    // Fix this later
     public String getFocusString() {
         StringBuilder sb = new StringBuilder();
         String label = this.getLabel();
@@ -70,14 +74,17 @@ public abstract class UIElement {
         return this.position;
     }
 
-    /** Returns the label of the element (usually the name) */
+    /**
+     * Returns the label of the element (usually the name). Note that any getLabel() should be assumed to be localized;
+     * any getName() should not.
+     */
     public String getLabel() {
         return null;
     }
 
     /**
      * Returns the status of the element as a string (checked for checkboxes, on/off for toggle buttons, etc). Null
-     * means no status string is available.
+     * means no status string is available. This method is assumed to return localized output.
      */
     public String getStatusString() {
         return null;
@@ -85,13 +92,13 @@ public abstract class UIElement {
 
     /**
      * Returns extras for an element as a string (extras can be things such as price in the shop). Null means there are
-     * none.
+     * none. This method is assumed to return localized output.
      */
     public String getExtrasString() {
         return null;
     }
 
-    /** Returns the type of the element */
+    /** Returns the type of the element (such as "button"). The output of this method is assumed to be localized. */
     public String getTypeString() {
         return elementType;
     }

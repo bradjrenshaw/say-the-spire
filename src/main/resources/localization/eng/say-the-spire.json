@@ -160,6 +160,12 @@
 }
   },
   "ui": {
+    "elements": {
+      "GremlinMatchCard": {
+        "flipped face down": "{target} is flipped face down.",
+        "revealed card": "Flipped card is {target}."
+      }
+    },
     "positions": {
       "categoryList": "{position} of {total} {category}",
       "grid": "{x}, {y}",
