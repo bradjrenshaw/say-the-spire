@@ -102,9 +102,16 @@
       "merchant": "merchant",
       "monster": "monster",
       "rest": "rest",
-      "starting location": "starting location",
+      "start location": "start location",
       "treasure": "treasure",
       "unknown": "unknown"
+    },
+    "navigators": {
+      "tree": {
+        "choice": "choice",
+        "error focus null": "Focus node is null; report to mod developer",
+                "no path": "no path"
+      }
     },
     "tags": {
       "burning icon": "burning icon",

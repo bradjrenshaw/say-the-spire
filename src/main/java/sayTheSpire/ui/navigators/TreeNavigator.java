@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import net.arikia.dev.drpc.callbacks.JoinRequestCallback;
+import sayTheSpire.localization.LocalizationContext;
 import sayTheSpire.Output;
 import sayTheSpire.map.BaseMap;
 import sayTheSpire.map.BaseMapEdge;
@@ -25,12 +26,14 @@ public class TreeNavigator extends MapNavigator {
     private ArrayList<VirtualMapEdge> pathChoices;
     private Stack<VirtualMapEdge> viewingPath;
     private int pathChoice;
+    private LocalizationContext localization;
 
     public TreeNavigator(VirtualMap map) {
         super(map);
         this.pathChoices = new ArrayList();
         this.viewingPath = new Stack();
         this.pathChoice = -1;
+        this.localization = Output.localization.getContext("map.navigators.tree");
     }
 
     public Boolean changePathChoice(int direction) {
@@ -46,9 +49,6 @@ public class TreeNavigator extends MapNavigator {
 
     public void setViewingNode(VirtualMapNode node) {
         super.setViewingNode(node);
-        if (node == null) {
-            Output.text("Warning, viewing node set to null.", false);
-        }
         this.pathChoices = (ArrayList<VirtualMapEdge>) node.getEdges();
         if (!this.pathChoices.isEmpty()) {
             this.pathChoice = 0;
@@ -105,13 +105,13 @@ public class TreeNavigator extends MapNavigator {
             return;
         }
         if (path.empty()) {
-            Output.text("No path", false);
+            Output.text(this.localization.localize("no path"), false);
             return;
         }
         StringBuilder pathText = new StringBuilder();
         pathText.append(path.stream().map(e -> e.getShort(false)).collect(Collectors.joining(", ")));
         if (this.pathChoices.size() > 1) {
-            pathText.append("\nchoice\n");
+            pathText.append("\n" + this.localization.localize("choice") + "\n");
             pathText.append(this.pathChoices.get(0).getShort(true));
         }
         Output.text(pathText.toString(), false);
@@ -119,7 +119,7 @@ public class TreeNavigator extends MapNavigator {
 
     public void handleFocus(VirtualMapNode node, Boolean isHovered, Boolean shouldAnnounce) {
         if (node == null) {
-            Output.text("Focus node is null; report to mod developer.", false);
+            Output.text(this.localization.localize("error focus null"), false);
             return;
         }
         VirtualMapNode targetNode = node;
