@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.ShowMoveNameAction;
 import sayTheSpire.TextParser;
 import sayTheSpire.events.DialogueEvent;
+import sayTheSpire.Output;
 
 public class ActionUtils {
 
@@ -13,7 +14,7 @@ public class ActionUtils {
         if (msg == null) {
             return action.source.name;
         }
-        return action.source.name + ". " + msg;
+        return Output.localization.localize("text.actions.ShowMoveName", "source", action.source.name, "text", msg);
     }
 
     public static DialogueEvent getTalkEvent(TalkAction action) {

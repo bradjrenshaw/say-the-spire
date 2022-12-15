@@ -120,6 +120,9 @@
     }
   },
   "text": {
+    "actions": {
+      "ShowMoveName": "{source}. {text}"
+    },
     "buffers": {
       "bufferIsEmpty": "{buffer} is empty",
       "currentItem": "{buffer}: {item}",
