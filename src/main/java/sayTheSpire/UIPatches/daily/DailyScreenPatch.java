@@ -22,12 +22,14 @@ public class DailyScreenPatch {
     }
 
     public static String getCharacterString(DailyScreen screen) {
-        return screen.todaysChar != null ? TEXT[5] + " " + screen.todaysChar.getLocalizedCharacterName() : null;
+        return screen.todaysChar != null ? Output.localization.localize("ui.screens.dailyScreen.characterString",
+                "label", TEXT[5], "name", screen.todaysChar.getLocalizedCharacterName()) : null;
     }
 
     public static String getDateString() {
         if (TimeHelper.isOfflineMode()) {
-            return TimeHelper.getTodayDate() + " " + TEXT[16];
+            return Output.localization.localize("ui.screens.dailyScreen.offlineDateString", "date",
+                    TimeHelper.getTodayDate(), "label", TEXT[16]);
         }
         if (TimeHelper.isTimeSet) {
             return TimeHelper.getTodayDate();
@@ -61,7 +63,8 @@ public class DailyScreenPatch {
     }
 
     public static String getTimeRemainingString() {
-        return TimeHelper.isTimeSet ? TEXT[7] + " " + TimeHelper.getTimeLeft() : null;
+        return TimeHelper.isTimeSet ? Output.localization.localize("ui.screens.dailyScreen.timeRemainingString",
+                "label", TEXT[7], "time", TimeHelper.getTimeLeft()) : null;
     }
 
     public static ArrayList<String> getUIBuffer(DailyScreen screen) {
@@ -74,7 +77,8 @@ public class DailyScreenPatch {
         modInfo.add(getTimeRemainingString());
         modInfo.add(getCharacterString(screen));
         for (AbstractDailyMod mod : ModHelper.enabledMods) {
-            modInfo.add(mod.name + ": " + TextParser.parse(mod.description));
+            modInfo.add(Output.localization.localize("ui.screens.dailyScreen.modString", "name", mod.name,
+                    "description", TextParser.parse(mod.description)));
         }
         modInfo.add(getAchievementsString());
         return modInfo;
@@ -83,7 +87,8 @@ public class DailyScreenPatch {
     public static String getModsString() {
         StringBuilder sb = new StringBuilder();
         for (AbstractDailyMod mod : ModHelper.enabledMods) {
-            sb.append(mod.name + ": " + TextParser.parse(mod.description) + "\n");
+            sb.append(Output.localization.localize("ui.screens.dailyScreen.modString", "name", mod.name, "description",
+                    TextParser.parse(mod.description)) + "\n");
         }
         return sb.toString();
     }
