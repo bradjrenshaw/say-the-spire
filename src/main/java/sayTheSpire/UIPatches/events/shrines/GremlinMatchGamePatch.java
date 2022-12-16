@@ -55,7 +55,7 @@ public class GremlinMatchGamePatch {
                 return;
             GremlinMatchCardElement element = (GremlinMatchCardElement) UIRegistry.getUI(hoveredCard);
             if (element == null) {
-                Output.text("Error: Unknown gremlin match game card, report to mod dev.", false);
+                Output.text(Output.localization.localize("errors.unknownGremlinMatchCard"), false);
                 return;
             }
             if (hoveredCard.hb.justHovered) {

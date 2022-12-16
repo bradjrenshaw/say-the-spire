@@ -57,6 +57,9 @@
     }
    }
   },
+  "errors": {
+    "unknownGremlinMatchCard": "Error: Unknown gremlin match game card, report to mod dev."
+  },
   "events": {
     "combatCardText": {
 "addedToDiscard": "{target} added to discard",
