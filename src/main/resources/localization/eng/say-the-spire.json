@@ -68,6 +68,9 @@
 "discardShuffledIntoDraw": "discard shuffled into draw",
 "exhausted": "{target} exhausted"
     },
+    "combatMonster": {
+      "defeated": "{target} defeated"
+    },
     "combatOrb": {
       "channel": "{target} channeled into slot {slot}",
       "evoke": "{target} in slot {slot} evoked",

@@ -1,6 +1,6 @@
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import sayTheSpire.events.TextEvent;
+import sayTheSpire.events.CombatMonsterEvent;
 import sayTheSpire.Output;
 
 public class AbstractMonsterPatch {
@@ -9,7 +9,7 @@ public class AbstractMonsterPatch {
     public static class DiePatch {
 
         public static void Prefix(AbstractMonster __instance, boolean triggerRelics) {
-            Output.event(new TextEvent(__instance.name + " defeated"));
+            Output.event(new CombatMonsterEvent(__instance, CombatMonsterEvent.EffectType.DEFEATED));
         }
     }
 }
