@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.rewards.chests.LargeChest;
 import com.megacrit.cardcrawl.rewards.chests.MediumChest;
 import com.megacrit.cardcrawl.rewards.chests.SmallChest;
 import sayTheSpire.ui.elements.RelicElement;
+import sayTheSpire.ui.elements.TreasureChestElement;
 import sayTheSpire.ui.positions.ListPosition;
 import sayTheSpire.Output;
 
@@ -32,17 +33,8 @@ public class AbstractChestPatch {
         public static void Postfix(AbstractChest __instance) {
             Hitbox hb = (Hitbox) ReflectionHacks.getPrivate(__instance, AbstractChest.class, "hb");
             if (hb.justHovered) {
-                String text = "";
-                if (__instance instanceof SmallChest)
-                    text = "small";
-                else if (__instance instanceof MediumChest)
-                    text = "medium";
-                else if (__instance instanceof LargeChest)
-                    text = "large";
-                else if (__instance instanceof BossChest)
-                    text = "boss";
-                text += " treasure chest";
-                Output.text(text, true);
+                TreasureChestElement chestElement = new TreasureChestElement(__instance);
+                Output.setUI(chestElement);
                 if (__instance instanceof BossChest)
                     patchBossChest((BossChest) __instance);
             }

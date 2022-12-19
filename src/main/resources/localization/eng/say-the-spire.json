@@ -173,6 +173,15 @@
       "GremlinMatchCard": {
         "flipped face down": "{target} is flipped face down.",
         "revealed card": "Flipped card is {target}."
+      },
+      "TreasureChest": {
+        "types": {
+          "small": "small",
+          "medium": "medium",
+          "large": "large",
+          "boss": "boss",
+          "unknown": "unknown"
+        }
       }
     },
     "positions": {
@@ -207,6 +216,7 @@
       "relic": "relic",
       "slider": "slider",
       "toggle button": "toggle button",
+      "treasure chest": "treasure chest",
       "unknown": "unknown"
     }
   }
