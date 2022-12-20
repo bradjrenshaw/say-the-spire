@@ -3,6 +3,7 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.screens.compendium.PotionViewScreen;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import basemod.ReflectionHacks;
+import sayTheSpire.localization.LocalizationContext;
 import sayTheSpire.ui.elements.PotionElement;
 import sayTheSpire.ui.positions.CategoryListPosition;
 import sayTheSpire.Output;
@@ -18,21 +19,28 @@ public class PotionViewScreenPatch {
         for (int p = 0; p < listCount; p++) {
             AbstractPotion potion = list.get(p);
             if (potion.hb.justHovered) {
-                String category;
+                String key;
                 switch (listName) {
                 case "commonPotions":
-                    category = "common potions";
+                    key = "common";
                     break;
                 case "uncommonPotions":
-                    category = "uncommon potions";
+                    key = "uncommon";
                     break;
                 case "rarePotions":
-                    category = "rare potions";
+                    key = "rare";
                     break;
                 default:
-                    category = "unknown";
+                    key = "unknown";
                 }
-                CategoryListPosition position = new CategoryListPosition(p, listCount, category);
+                CategoryListPosition position = null;
+                LocalizationContext localization = Output.localization.getContext("ui.screens.PotionViewScreen");
+                String localizedType = localization.localize("types." + key);
+                if (localizedType == null)
+                    localizedType = key;
+                localization.put("category", localizedType);
+                String category = localization.localize("categoryLabel");
+                position = new CategoryListPosition(p, listCount, category);
                 return new PotionElement(potion, PotionElement.PotionLocation.COMPENDIUM, position);
             }
         }

@@ -192,7 +192,7 @@
     "screens": {
       "CardLibraryScreen": {
         "categoryLabel": "{category} cards",
-        "colors": {
+        "types": {
           "red": "red",
           "blue": "blue",
           "green": "green",
@@ -207,6 +207,15 @@
     "modString": "{name}: {description}",
     "offlineDateString": "{date} {label}",
     "timeRemainingString": "{label} {time}"
+  },
+  "PotionViewScreen": {
+    "categoryLabel": "{category} potions",
+    "types": {
+      "common": "common",
+      "uncommon": "uncommon",
+      "rare": "rare",
+      "unknown": "unknown"
+    }
   }
     },
     "status": {
