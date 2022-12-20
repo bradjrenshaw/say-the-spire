@@ -190,6 +190,18 @@
       "list": "{position} of {total}"
     },
     "screens": {
+      "CardLibraryScreen": {
+        "categoryLabel": "{category} cards",
+        "colors": {
+          "red": "red",
+          "blue": "blue",
+          "green": "green",
+          "purple": "purple",
+          "curse": "curse",
+          "status": "status",
+          "unknown": "unknown"
+        }
+      },
   "dailyScreen": {
     "characterString": "{label} {name}",
     "modString": "{name}: {description}",

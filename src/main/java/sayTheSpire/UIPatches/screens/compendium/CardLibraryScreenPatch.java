@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen;
 import com.megacrit.cardcrawl.screens.mainMenu.ColorTabBar;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import basemod.ReflectionHacks;
+import sayTheSpire.localization.LocalizationContext;
 import sayTheSpire.ui.positions.CategoryListPosition;
 import sayTheSpire.ui.elements.CardElement;
 import sayTheSpire.Output;
@@ -35,11 +36,18 @@ public class CardLibraryScreenPatch {
             int index = visibleCards.group.indexOf(hoveredCard);
             ColorTabBar colorBar = (ColorTabBar) ReflectionHacks.getPrivate(__instance, CardLibraryScreen.class,
                     "colorBar");
-            String category = "unknown cards";
+            CategoryListPosition position = null;
+            LocalizationContext localization = Output.localization.getContext("ui.screens.CardLibraryScreen");
             if (colorBar != null) {
-                category = colorBar.curTab.name().toLowerCase() + " cards";
+                String key = colorBar.curTab.name().toLowerCase();
+                String localizedType = localization.localize("types." + key);
+                if (localizedType == null)
+                    localizedType = key; // Fallback for localization purposes
+                localization.put("category", localizedType);
+                String category = localization.localize("categoryLabel");
+                if (category != null)
+                    position = new CategoryListPosition(index, visibleCardCount, category);
             }
-            CategoryListPosition position = new CategoryListPosition(index, visibleCardCount, category);
             CardElement element = new CardElement(hoveredCard, CardElement.CardLocation.COMPENDIUM, position);
             Output.setUI(element);
         }
