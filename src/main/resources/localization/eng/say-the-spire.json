@@ -216,6 +216,18 @@
       "rare": "rare",
       "unknown": "unknown"
     }
+  },
+  "RelicViewScreen": {
+    "categoryLabel": "{category} relics",
+    "types": {
+      "starter": "starter",
+      "common": "common",
+      "uncommon": "uncommon",
+      "rare": "rare",
+      "boss": "boss",
+      "special": "special",
+      "shop": "shop"
+    }
   }
     },
     "status": {
