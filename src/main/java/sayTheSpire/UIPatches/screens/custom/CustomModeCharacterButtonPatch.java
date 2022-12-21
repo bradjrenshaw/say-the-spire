@@ -11,7 +11,8 @@ public class CustomModeCharacterButtonPatch {
         public static void Postfix(CustomModeCharacterButton __instance) {
             if (__instance.hb.justHovered) {
                 ToggleButtonElement currentButton = new ToggleButtonElement(__instance.c.title, __instance.selected);
-                currentButton.setStatusTexts("selected", "unselected");
+                currentButton.setStatusTexts(Output.localization.localize("ui.status.selected"),
+                        Output.localization.localize("ui.status.unselected"));
                 Output.setUI(currentButton);
             }
         }

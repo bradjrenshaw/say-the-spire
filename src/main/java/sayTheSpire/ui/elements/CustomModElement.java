@@ -3,6 +3,7 @@ package sayTheSpire.ui.elements;
 import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.screens.custom.CustomMod;
 import java.util.HashSet;
+import sayTheSpire.localization.LocalizationContext;
 import sayTheSpire.buffers.BufferManager;
 import sayTheSpire.Output;
 import sayTheSpire.TextParser;
@@ -12,6 +13,7 @@ public class CustomModElement extends UIElement {
     private String label;
     private CustomMod mod;
     private HashSet<CustomMod> mutuallyExclusive;
+    private LocalizationContext localization;
 
     public CustomModElement(CustomMod mod) {
         super("toggle button");
@@ -19,6 +21,7 @@ public class CustomModElement extends UIElement {
         this.label = (String) ReflectionHacks.getPrivate(mod, CustomMod.class, "label");
         this.mutuallyExclusive = (HashSet<CustomMod>) ReflectionHacks.getPrivate(mod, CustomMod.class,
                 "mutuallyExclusive");
+        this.localization = Output.localization.getContext("ui.elements.CustomMod");
     }
 
     public String handleBuffers(BufferManager buffers) {
@@ -41,7 +44,8 @@ public class CustomModElement extends UIElement {
         if (this.mod.selected && this.mutuallyExclusive != null && !this.mutuallyExclusive.isEmpty()) {
             sb.append("\n");
             for (CustomMod other : this.mutuallyExclusive) {
-                sb.append("Disabling " + other.name + "\n");
+                this.localization.put("target", other.name);
+                sb.append(this.localization.localize("disabledOther"));
             }
         }
         Output.text(sb.toString(), true);
@@ -52,6 +56,7 @@ public class CustomModElement extends UIElement {
     }
 
     public String getStatusString() {
-        return this.mod.selected ? "selected" : "unselected";
+        return this.mod.selected ? this.localization.localize(".ui.status.selected")
+                : this.localization.localize(".ui.status.unselected");
     }
 }

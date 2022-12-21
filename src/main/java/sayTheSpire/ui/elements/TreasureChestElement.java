@@ -4,17 +4,14 @@ import com.megacrit.cardcrawl.rewards.chests.*;
 
 import sayTheSpire.Output;
 import sayTheSpire.buffers.BufferManager;
-import sayTheSpire.localization.LocalizationContext;
 
 public class TreasureChestElement extends UIElement {
 
     private AbstractChest chest;
-    private LocalizationContext localization;
 
     public TreasureChestElement(AbstractChest chest) {
         super("treasure chest");
         this.chest = chest;
-        this.localization = Output.localization.getContext("ui.elements.TreasureChest");
     }
 
     public AbstractChest getChest() {

@@ -170,6 +170,9 @@
   },
   "ui": {
     "elements": {
+      "CustomMod": {
+        "disabledOther": "{target} disabled."
+      },
       "GremlinMatchCard": {
         "flipped face down": "{target} is flipped face down.",
         "revealed card": "Flipped card is {target}."
@@ -201,6 +204,10 @@
           "status": "status",
           "unknown": "unknown"
         }
+      },
+      "CustomModeScreen": {
+        "AN_seed": "Accessibility note: Current seed is {seed}.",
+          "seedString": "{label} ({seed})"
       },
   "dailyScreen": {
     "characterString": "{label} {name}",

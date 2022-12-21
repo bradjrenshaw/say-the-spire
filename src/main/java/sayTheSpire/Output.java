@@ -51,7 +51,11 @@ public class Output {
         Output.text(localization.localize("misc.versionString", "version", modVersion), false);
     }
 
-    public static void setup() {
+    public static void preSetup() {
+        localization = new LocalizationManager();
+    }
+
+    public static void postSetup() {
 
         // Effects manager
         effects = new EffectManager();
@@ -72,7 +76,7 @@ public class Output {
         speechManager.setup();
         tolkSetup = true;
 
-        localization = new LocalizationManager();
+        // localization = new LocalizationManager();
         setupBuffers();
     }
 
@@ -116,9 +120,6 @@ public class Output {
     }
 
     public static void text(String text, Boolean interrupt) {
-        if (!tolkSetup) {
-            setup();
-        }
         if (text == null) {
             speechManager.output("Warning: output null text, report to mod dev", shouldInterruptSpeech && interrupt);
             return;

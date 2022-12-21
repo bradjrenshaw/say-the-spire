@@ -1,6 +1,7 @@
 package sayTheSpire.ui.elements;
 
 import sayTheSpire.buffers.BufferManager;
+import sayTheSpire.localization.LocalizationContext;
 import sayTheSpire.ui.positions.Position;
 import sayTheSpire.Output;
 
@@ -13,6 +14,7 @@ public abstract class UIElement {
 
     protected String elementType = null;
     protected Position position;
+    protected final LocalizationContext localization;
 
     public UIElement(String type) {
         this(type, null);
@@ -21,6 +23,7 @@ public abstract class UIElement {
     public UIElement(String elementType, Position position) {
         this.elementType = elementType;
         this.position = position;
+        this.localization = Output.localization.getContext("ui.elements." + elementType);
     }
 
     /**

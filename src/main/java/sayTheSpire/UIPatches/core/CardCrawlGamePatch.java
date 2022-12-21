@@ -18,8 +18,8 @@ public class CardCrawlGamePatch {
     @SpirePatch(clz = CardCrawlGame.class, method = "create")
     public static class CardCrawlGameCreatePatch {
 
-        public static void Postfix() {
-            Output.setup();
+        public static void Prefix() {
+            Output.preSetup();
         }
     }
 

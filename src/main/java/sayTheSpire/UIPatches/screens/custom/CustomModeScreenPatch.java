@@ -5,6 +5,7 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import com.megacrit.cardcrawl.screens.custom.CustomModeScreen;
+import sayTheSpire.localization.LocalizationContext;
 import sayTheSpire.Output;
 import sayTheSpire.ui.elements.ButtonElement;
 import sayTheSpire.ui.elements.ToggleButtonElement;
@@ -38,6 +39,7 @@ public class CustomModeScreenPatch {
     public static class updateAscensionPatch {
 
         public static void Postfix(CustomModeScreen __instance) {
+            LocalizationContext localization = Output.localization.getContext("ui.screens.CustomModeScreen");
             Hitbox ascensionModeHb = (Hitbox) ReflectionHacks.getPrivate(__instance, CustomModeScreen.class,
                     "ascensionModeHb");
             int currentAscensionLevel = __instance.ascensionLevel;
@@ -49,7 +51,7 @@ public class CustomModeScreenPatch {
                 if (currentIsAscensionMode) {
                     Output.text(TEXT[5] + " " + getAscensionLevelString(currentAscensionLevel), true);
                 } else {
-                    Output.text(TEXT[5] + " off", true);
+                    Output.text(TEXT[5] + " " + localization.localize(".ui.status.off"), true);
                 }
             } else if (currentAscensionLevel != lastAscensionLevel) {
                 Output.text(getAscensionLevelString(currentAscensionLevel), true);
@@ -63,12 +65,15 @@ public class CustomModeScreenPatch {
     public static class UpdateSeedPatch {
 
         public static void Postfix(CustomModeScreen __instance) {
+            LocalizationContext localization = Output.localization.getContext("ui.screens.CustomModeScreen");
             Hitbox seedHb = (Hitbox) ReflectionHacks.getPrivate(__instance, CustomModeScreen.class, "seedHb");
             if (seedHb.justHovered) {
                 String currentSeed = (String) ReflectionHacks.getPrivate(__instance, CustomModeScreen.class,
                         "currentSeed");
-                ButtonElement button = new ButtonElement(TEXT[8] + " (" + currentSeed + ")",
-                        "Accessibility note: Current seed is " + currentSeed);
+                localization.put("label", TEXT[8]);
+                localization.put("seed", currentSeed);
+                ButtonElement button = new ButtonElement(localization.localize("seedString"),
+                        localization.localize("AN_seed"));
                 Output.setUI(button);
             }
         }

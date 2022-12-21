@@ -1,15 +1,20 @@
 package sayTheSpire;
 
 import basemod.BaseMod;
+import basemod.interfaces.PostInitializeSubscriber;
 import basemod.interfaces.PostDrawSubscriber;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 @SpireInitializer
-public class ModInitializer implements PostDrawSubscriber {
+public class ModInitializer implements PostDrawSubscriber, PostInitializeSubscriber {
 
     public void receivePostDraw(AbstractCard card) {
         Output.text("drew " + card.name, false);
+    }
+
+    public void receivePostInitialize() {
+        Output.postSetup();
     }
 
     public ModInitializer() {
