@@ -60,7 +60,7 @@ public class CardElement extends GameObjectElement {
 
     public String getLabel() {
         if (this.card.isFlipped)
-            return "face down card";
+            return this.localization.localize("face down");
         else if (this.card.isLocked)
             return this.card.LOCKED_STRING;
         return this.card.name;

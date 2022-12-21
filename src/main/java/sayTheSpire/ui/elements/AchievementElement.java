@@ -34,9 +34,9 @@ public class AchievementElement extends UIElement {
 
     public String getStatusString() {
         if (this.achievement.isUnlocked) {
-            return "unlocked";
+            return this.localization.localize(".ui.status.unlocked");
         }
-        return "locked";
+        return this.localization.localize(".ui.status.locked");
     }
 
     public String getLabel() {

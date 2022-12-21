@@ -27,7 +27,6 @@ public class CardCrawlGamePatch {
     public static class DisposePatch {
 
         @SpireInsertPatch(locator = Locator.class)
-
         public static void Insert(CardCrawlGame __instance) {
             Output.shutdown();
         }

@@ -170,14 +170,17 @@
   },
   "ui": {
     "elements": {
+      "Card": {
+"face down": "face down"
+      },
       "CustomMod": {
         "disabledOther": "{target} disabled."
       },
-      "GremlinMatchCard": {
+      "gremlin match card": {
         "flipped face down": "{target} is flipped face down.",
         "revealed card": "Flipped card is {target}."
       },
-      "TreasureChest": {
+      "treasure chest": {
         "types": {
           "small": "small",
           "medium": "medium",
@@ -238,9 +241,11 @@
   }
     },
     "status": {
+      "locked": "locked",
       "off": "off",
       "on": "on",
       "selected": "selected",
+      "unlocked": "unlocked",
       "unselected": "unselected"
     },
     "types": {

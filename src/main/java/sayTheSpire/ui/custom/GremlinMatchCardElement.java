@@ -21,9 +21,9 @@ public class GremlinMatchCardElement extends CardElement {
     public void handleFlip() {
         if (card.isFlipped != this.isFlipped) {
             if (!card.isFlipped) {
-                Output.text(this.localization.localize("revealed card"), false);
+                Output.text(this.localization.localize(".ui.elements.gremlin match card.revealed card"), false);
             } else {
-                Output.text(this.localization.localize("flipped face down"), false);
+                Output.text(this.localization.localize(".ui.elements.gremlin match card.flipped face down"), false);
             }
             this.isFlipped = this.card.isFlipped;
         }
