@@ -14,10 +14,10 @@ public abstract class GameObjectElement extends UIElement {
     }
 
     public String getPriceString() {
-        String priceString = this.getPrice() + "";
-        if (this.onSale)
-            priceString += " (on sale)";
-        return priceString;
+        if (this.onSale) {
+            return this.localization.localize(".ui.elements.shop item.priceSaleString");
+        }
+        return this.localization.localize(".ui.elements.shop item.priceString");
     }
 
     public int getPrice() {
@@ -27,5 +27,6 @@ public abstract class GameObjectElement extends UIElement {
     public void setPrice(int price, Boolean onSale) {
         this.price = price;
         this.onSale = onSale;
+        this.localization.put("price", price);
     }
 }

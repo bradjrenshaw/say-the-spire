@@ -189,6 +189,10 @@
         "hidden intent": "hidden intent",
         "shortString": "{monster}, {intent}, block {block}, {currentHealth}/{maxHealth}"
       },
+      "shop item": {
+        "priceString": "({price} gold)",
+        "priceSaleString": "({price} gold, sale)"
+      },
       "treasure chest": {
         "types": {
           "small": "small",

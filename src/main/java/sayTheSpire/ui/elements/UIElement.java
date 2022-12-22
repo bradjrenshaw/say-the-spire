@@ -43,6 +43,10 @@ public abstract class UIElement {
     public void update() {
     }
 
+    public String getElementType() {
+        return this.elementType;
+    }
+
     // Fix this later
     public String getFocusString() {
         StringBuilder sb = new StringBuilder();
