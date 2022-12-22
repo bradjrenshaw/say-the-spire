@@ -132,6 +132,8 @@ public class InputManager {
     }
 
     public void updateFirst() {
+        if (!Output.config.getBoolean("input.virtual_input"))
+            return;
         this.updateKeyboardState();
         for (InputAction action : this.actionCollection.getActions()) {
             action.update();
