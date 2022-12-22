@@ -196,6 +196,10 @@
         "priceString": "({price} gold)",
         "priceSaleString": "({price} gold, sale)"
       },
+      "slider": {
+        "statusString": "{value}%",
+        "unknownType": "Unknown slider type; report to mod developer."
+      },
       "toggle button": {
         "unknownType": "Unknown toggle button type; report to mod developer."
       },

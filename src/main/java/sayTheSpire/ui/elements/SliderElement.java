@@ -59,12 +59,13 @@ public class SliderElement extends UIElement {
         case SFX:
             return volumes[2];
         default:
-            return "Unknown slider type, report to mod dev.";
+            return this.localization.localize("unknownType");
         }
     }
 
     public String getStatusString() {
-        return df.format(this.getVolume() * 100.0f) + "%";
+        this.localization.put("value", df.format(this.getVolume() * 100.0f));
+        return this.localization.localize("statusString");
     }
 
     public float getVolume() {
