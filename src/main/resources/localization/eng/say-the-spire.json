@@ -189,6 +189,9 @@
         "hidden intent": "hidden intent",
         "shortString": "{monster}, {intent}, block {block}, {currentHealth}/{maxHealth}"
       },
+      "relic": {
+        "counterString": "{counter} counter"
+      },
       "shop item": {
         "priceString": "({price} gold)",
         "priceSaleString": "({price} gold, sale)"

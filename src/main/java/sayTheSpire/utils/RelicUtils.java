@@ -14,17 +14,6 @@ public class RelicUtils {
         return Output.localization.localize("text.relicRarity." + relic.tier.name().toLowerCase());
     }
 
-    public static String getRelicShort(AbstractRelic relic) {
-        if (relic.counter >= 0) {
-            return relic.name + " (" + relic.counter + ")";
-        }
-        return relic.name;
-    }
-
-    public static String getRelicShort(StoreRelic relic) {
-        return getRelicShort(relic.relic) + ", price: " + relic.price;
-    }
-
     public static String getRelicDescription(AbstractRelic relic) {
         return TextParser.parse(relic.description, relic);
     }

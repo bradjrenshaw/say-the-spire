@@ -39,14 +39,22 @@ public class RelicElement extends GameObjectElement {
     }
 
     public String getExtrasString() {
-        if (this.location == RelicLocation.SHOP) {
-            return this.getPriceString();
+        String extras = "";
+        if (this.relic.counter >= 0) {
+            this.localization.put("counter", this.relic.counter);
+            extras = this.localization.localize("counterString");
         }
-        return null;
+        if (this.location == RelicLocation.SHOP) {
+            extras += " " + this.getPriceString();
+            return extras;
+        }
+        if (extras.isEmpty())
+            return null;
+        return extras;
     }
 
     public String getLabel() {
-        return RelicUtils.getRelicShort(this.relic);
+        return this.relic.name;
     }
 
     public Position getPosition() {
