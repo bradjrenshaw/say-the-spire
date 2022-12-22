@@ -23,8 +23,8 @@ public class TopPanelPatch {
             Output.setUI(new ResourceElement(TopPanel.LABEL[4], TopPanel.MSG[4], String.valueOf(player.gold)));
             return true;
         } else if (__instance.hpHb.justHovered) {
-            Output.setUI(new ResourceElement(TopPanel.LABEL[3], TopPanel.MSG[3],
-                    player.currentHealth + "/" + player.maxHealth));
+            Output.setUI(new ResourceElement(TopPanel.LABEL[3], TopPanel.MSG[3], Output.localization
+                    .localize("buffers.player.content.hp", "hp", player.currentHealth, "hpMax", player.maxHealth)));
             return true;
         } else if (__instance.ascensionHb.justHovered) {
             String ascensionString = (String) ReflectionHacks.getPrivate(__instance, TopPanel.class, "ascensionString");

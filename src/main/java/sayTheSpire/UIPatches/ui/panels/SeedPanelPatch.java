@@ -25,8 +25,8 @@ public class SeedPanelPatch {
 
         public static void Prefix(SeedPanel __instance) {
             Output.uiManager.pushContext(new KeyboardContext());
-            Output.text(TEXT[1] + "\nAccessibility note: Use keyboard to enter seed.", false);
-            Output.setupUIBufferMany(TEXT[1], "Accessibility note: Use keyboard to enter seed.",
+            Output.text(TEXT[1] + "\n" + Output.localization.localize("text.accessibility notes.keyboard"), false);
+            Output.setupUIBufferMany(TEXT[1], Output.localization.localize("text.accessibility notes.keyboard"),
                     TextParser.parse(TEXT[4]), TextParser.parse(TEXT[5]));
         }
     }

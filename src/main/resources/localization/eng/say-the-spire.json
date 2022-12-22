@@ -126,6 +126,9 @@
     }
   },
   "text": {
+    "accessibility notes": {
+      "keyboard": "Accessibility note: Enter text with keyboard"
+    },
     "actions": {
       "ShowMoveName": "{source}. {text}"
     },

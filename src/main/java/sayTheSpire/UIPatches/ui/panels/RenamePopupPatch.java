@@ -17,8 +17,8 @@ public class RenamePopupPatch {
 
         public static void Postfix(RenamePopup __instance) {
             Output.uiManager.pushContext(new KeyboardContext());
-            Output.text(TEXT[1] + "\nAccessibility note: Use keyboard to enter name.", true);
-            Output.setupUIBufferMany(TEXT[1], "Accessibility note: Use keyboard to enter name.");
+            Output.text(TEXT[1] + "\n" + Output.localization.localize("text.accessibility notes.keyboard"), true);
+            Output.setupUIBufferMany(TEXT[1], Output.localization.localize("text.accessibility notes.keyboard"));
         }
     }
 
