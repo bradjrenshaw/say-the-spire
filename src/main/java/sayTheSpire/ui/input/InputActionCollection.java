@@ -64,7 +64,7 @@ public class InputActionCollection {
                 .action("read player gold").mapping(Keys.CONTROL_LEFT, Keys.G).action("read player hp")
                 .mapping(Keys.CONTROL_LEFT, Keys.H).action("read summarized intents").mapping(Keys.CONTROL_LEFT, Keys.I)
                 .action("read detailed intents").mapping(Keys.ALT_LEFT, Keys.I).action("read act boss")
-                .mapping(Keys.CONTROL_LEFT, Keys.N);
+                .mapping(Keys.CONTROL_LEFT, Keys.N).action("read player powers").mapping(Keys.CONTROL_LEFT, Keys.P);
     }
 
     private void buildControllerDefaults(MappingBuilder builder) {

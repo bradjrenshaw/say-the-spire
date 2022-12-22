@@ -58,6 +58,8 @@
    }
   },
   "errors": {
+    "not in combat": "Not currently in combat.",
+    "not in run":"Not currently in a run.",
     "unknownGremlinMatchCard": "Error: Unknown gremlin match game card, report to mod dev."
   },
   "events": {

@@ -1,11 +1,13 @@
 # Change Log
 
-## 0.4.0-beta
+## 0.4.0-beta (2022-12-22)
 
+* This was a large update; most of the code behind the scenes was refactored in order to support localization. Localization is not quite ready yet; this update is to make sure that the initial changes to the framework are working. There haven't been many obvious changes to the gameplay itself.
 * The map:
-    * This update significantly refactors the code for map navigation behind the scenes. The new code allows for easier localization as well as potential support for other types of maps and methods for viewing the maps in the future. No immediate changes should be noticeable, however this was a significant update so some things may be broken that I missed. Please report anything that seems to not be working as intended.
+    * This update significantly refactors the code for map navigation behind the scenes. The new code allows for easier localization as well as potential support for other types of maps and methods for viewing the maps in the future. No immediate changes should be noticeable (besides some text updates), however this was a significant update so some things may be broken that I missed. Please report anything that seems to not be working as intended.
     * Nodes you can travel to via flight only (for example using the Wing Boots relic) are now marked with "requires flight"
-* Fixed issue where null text values could be output, causing most speech handlers to crash.
+* Fixed: Issue where null text values could be output, causing most speech handlers to crash.
+* Added: You can use ctrl p to check your powers.
 
 ## 0.3.5-beta (2022-06-06)
 This is a quick patch to fix a bug where the virtual input setting was not being checked consistently. This lead to the virtual input keyboard support being always active as well as controller behavior being odd on certain screens.

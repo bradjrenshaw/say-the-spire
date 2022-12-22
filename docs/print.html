@@ -588,15 +588,17 @@ place the correct dlls in your root SlayTheSpire game directory.</p>
 <p>Localization support has not yet been implemented, however it is planned for a
 future release.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="change-log"><a class="header" href="#change-log">Change Log</a></h1>
-<h2 id="040-beta"><a class="header" href="#040-beta">0.4.0-beta</a></h2>
+<h2 id="040-beta-2022-12-22"><a class="header" href="#040-beta-2022-12-22">0.4.0-beta (2022-12-22)</a></h2>
 <ul>
+<li>This was a large update; most of the code behind the scenes was refactored in order to support localization. Localization is not quite ready yet; this update is to make sure that the initial changes to the framework are working. There haven't been many obvious changes to the gameplay itself.</li>
 <li>The map:
 <ul>
-<li>This update significantly refactors the code for map navigation behind the scenes. The new code allows for easier localization as well as potential support for other types of maps and methods for viewing the maps in the future. No immediate changes should be noticeable, however this was a significant update so some things may be broken that I missed. Please report anything that seems to not be working as intended.</li>
+<li>This update significantly refactors the code for map navigation behind the scenes. The new code allows for easier localization as well as potential support for other types of maps and methods for viewing the maps in the future. No immediate changes should be noticeable (besides some text updates), however this was a significant update so some things may be broken that I missed. Please report anything that seems to not be working as intended.</li>
 <li>Nodes you can travel to via flight only (for example using the Wing Boots relic) are now marked with &quot;requires flight&quot;</li>
 </ul>
 </li>
-<li>Fixed issue where null text values could be output, causing most speech handlers to crash.</li>
+<li>Fixed: Issue where null text values could be output, causing most speech handlers to crash.</li>
+<li>Added: You can use ctrl p to check your powers.</li>
 </ul>
 <h2 id="035-beta-2022-06-06"><a class="header" href="#035-beta-2022-06-06">0.3.5-beta (2022-06-06)</a></h2>
 <p>This is a quick patch to fix a bug where the virtual input setting was not being checked consistently. This lead to the virtual input keyboard support being always active as well as controller behavior being odd on certain screens.</p>

@@ -23,7 +23,7 @@ public class GameContext extends Context {
     private void readPlayerAttribute(String name) {
         AbstractPlayer player = OutputUtils.getPlayer();
         if (player == null) {
-            Output.text("Not currently in a run.", false);
+            Output.textLocalized("errors.not in run", false);
             return;
         }
         switch (name) {
@@ -34,14 +34,14 @@ public class GameContext extends Context {
             if (OutputUtils.isInCombat()) {
                 Output.text(player.currentBlock + " block", false);
             } else {
-                Output.text("Not currently in combat.", false);
+                Output.textLocalized("errors.not in combat", false);
             }
             return;
         case "read player energy":
             if (OutputUtils.isInCombat()) {
                 Output.text(EnergyPanel.totalCount + " energy", false);
             } else {
-                Output.text("Not currently in combat.", false);
+                Output.textLocalized("errors.not in combat", false);
             }
             return;
         case "read player gold":
@@ -50,6 +50,13 @@ public class GameContext extends Context {
         case "read player hp":
             Output.text(player.currentHealth + "/" + player.maxHealth + " hp", false);
             return;
+        case "read player powers":
+            if (OutputUtils.isInCombat()) {
+                String powers = OutputUtils.getCreaturePowersString(OutputUtils.getPlayer());
+                Output.text(powers, false);
+            } else {
+                Output.textLocalized("errors.not in combat", false);
+            }
         }
     }
 
@@ -64,6 +71,7 @@ public class GameContext extends Context {
         case "read player energy":
         case "read player gold":
         case "read player hp":
+        case "read player powers":
             this.readPlayerAttribute(action.getName());
             return true;
         case "read summarized intents":
