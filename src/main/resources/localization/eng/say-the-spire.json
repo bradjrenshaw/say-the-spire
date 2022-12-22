@@ -178,6 +178,13 @@
       "Card": {
 "face down": "face down"
       },
+      "character button": {
+        "buffer gold": "{gold} gold",
+        "buffer health": "{health} health",
+        "buffer max ascension": "{maxAscension} max ascension",
+        "buffer unlocks remaining": "{unlocksRemaining} unlocks remaining",
+"unknown unlock": "Unknown unlock text; report to mod developer."
+      },
       "CustomMod": {
         "disabledOther": "{target} disabled."
       },
@@ -297,6 +304,7 @@
       "blight": "blight",
       "button": "button",
       "card": "card",
+      "character button": "character button",
       "character stats": "character stats",
       "dropdown": "dropdown",
       "monster": "monster",

@@ -138,6 +138,7 @@ public class ShopScreenPatch {
                 return (ButtonElement) hoveredItem;
             if (!isPurgeHovered && gameIsPurgeHovered) {
                 String label;
+                // this needs to be refactored into ShopItemElement later
                 if (screen.purgeAvailable) {
                     label = TEXT[0] + " (" + ShopScreen.actualPurgeCost + " gold)";
                 } else {
