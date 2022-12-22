@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.localization.TutorialStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.ui.panels.PotionPopUp;
+import sayTheSpire.ui.elements.ButtonElement;
 import sayTheSpire.Output;
 import sayTheSpire.TextParser;
 
@@ -34,10 +35,11 @@ public class PotionPopUpPatch {
             } else {
                 Output.setupUIBufferMany(LABEL[1], TextParser.parse(MSG[1]));
             }
-            Output.text(label + " button", true);
+            ButtonElement button = new ButtonElement(label);
+            Output.setUI(button);
         } else if (bottom.justHovered) {
-            String label = TEXT[2];
-            Output.text(label + " button", true);
+            ButtonElement button = new ButtonElement(TEXT[2]);
+            Output.setUI(button);
             Output.setupUIBufferMany(LABEL[2], TextParser.parse(MSG[2], "potion"));
         }
     }
