@@ -27,7 +27,7 @@ public class ExhaustPileViewScreenPatch {
         public static void Postfix(ExhaustPileViewScreen __instance) {
             ArrayList<AbstractCard> cards = getExhaustPile(__instance);
             if (cards != null) {
-                Output.text("Exhaust pile view, " + cards.size() + " cards", false);
+                Output.textLocalized("ui.screens.ExhaustPileViewScreen.title", false, "cards", cards.size());
             }
         }
     }

@@ -241,6 +241,18 @@
     "offlineDateString": "{date} {label}",
     "timeRemainingString": "{label} {time}"
   },
+  "DiscardPileViewScreen": {
+    "title": "Discard pile view, {cards} cards"
+  },
+  "DrawPileViewScreen": {
+    "title": "Draw pile view, {cards} cards"
+  },
+  "ExhaustPileViewScreen": {
+    "title": "Exhaust pile view, {cards} cards"
+  },
+  "MasterDeckViewScreen": {
+    "title": "Master deck view, {cards} cards"
+  },
   "PotionViewScreen": {
     "categoryLabel": "{category} potions",
     "types": {

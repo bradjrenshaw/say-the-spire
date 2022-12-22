@@ -47,7 +47,6 @@ public abstract class UIElement {
         return this.elementType;
     }
 
-    // Fix this later
     public String getFocusString() {
         StringBuilder sb = new StringBuilder();
         String label = this.getLabel();
@@ -55,7 +54,7 @@ public abstract class UIElement {
             sb.append(label);
         String extras = this.getExtrasString();
         if (extras != null)
-            sb.append(", " + extras);
+            sb.append(" " + extras);
         if (Output.config.getBoolean("ui.read_types", true)) {
             String type = this.getTypeString();
             if (type != null && !Output.config.getExcludedTypenames().contains(type)) {

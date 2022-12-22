@@ -21,7 +21,7 @@ public class DiscardPileViewScreenPatch {
                 ArrayList<AbstractCard> cards = player.discardPile.group;
                 if (cards == null)
                     return;
-                Output.text("Discard pile view, " + cards.size() + " cards", false);
+                Output.textLocalized("ui.screens.DiscardPileViewScreen.title", false, "cards", cards.size());
             }
         }
     }

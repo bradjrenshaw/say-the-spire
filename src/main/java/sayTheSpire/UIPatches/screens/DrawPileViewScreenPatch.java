@@ -26,7 +26,7 @@ public class DrawPileViewScreenPatch {
         public static void Postfix(DrawPileViewScreen __instance) {
             ArrayList<AbstractCard> cards = getDrawPile(__instance);
             if (cards != null) {
-                Output.text("Draw pile view, " + cards.size() + " cards", false);
+                Output.textLocalized("ui.screens.DrawPileViewScreen.title", false, "cards", cards.size());
             }
         }
     }

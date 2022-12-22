@@ -14,7 +14,7 @@ public class SaveSlotPatch {
     public static final String[] TEXT = uiStrings.TEXT;
 
     @SpirePatch(clz = SaveSlot.class, method = "update")
-    public static class UupdatePatch {
+    public static class UpdatePatch {
 
         public static void Postfix(SaveSlot __instance) {
             if (__instance.slotHb.justHovered) {

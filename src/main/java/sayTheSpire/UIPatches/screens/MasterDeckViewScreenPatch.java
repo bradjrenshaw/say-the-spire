@@ -30,7 +30,7 @@ public class MasterDeckViewScreenPatch {
         public static void Postfix(MasterDeckViewScreen __instance) {
             ArrayList<AbstractCard> deck = getSortedDeck(__instance);
             if (deck != null) {
-                Output.text("master deck view, " + deck.size() + " cards", false);
+                Output.textLocalized("ui.screens.MasterDeckViewScreen.title", false, "cards", deck.size());
             }
         }
     }
