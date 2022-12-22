@@ -48,8 +48,11 @@ public class SortHeaderButtonElement extends UIElement {
     }
 
     public String getStatusString() {
+        String status;
         if (!this.isActive)
-            return "disabled";
-        return this.isAscending ? "ascending" : "descending";
+            status = this.localization.localize(".ui.status.disabled");
+        else
+            status = this.isAscending ? "ascending" : "descending";
+        return this.localization.localize(".ui.status." + status);
     }
 }

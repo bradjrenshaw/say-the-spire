@@ -264,6 +264,9 @@
   }
     },
     "status": {
+      "ascending": "ascending",
+      "descending": "descending",
+      "disabled": "disabled",
       "locked": "locked",
       "off": "off",
       "on": "on",
