@@ -8,6 +8,8 @@ import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import java.util.HashMap;
+import java.util.stream.Collectors;
+import sayTheSpire.Output;
 
 public class OutputUtils {
 
@@ -42,13 +44,10 @@ public class OutputUtils {
 
     public static String getCreaturePowersString(AbstractCreature creature) {
         if (creature.powers.isEmpty())
-            return "No current powers";
-        StringBuilder sb = new StringBuilder();
-        for (AbstractPower power : creature.powers) {
-            sb.append(power.name + ", " + power.amount + " ");
-        }
-        sb.append("powers");
-        return sb.toString();
+            return Output.localization.localize("text.powers.no powers");
+        String powerList = creature.powers.stream().map(power -> Output.localization.localize("text.powers.powerLabel",
+                "power", power.name, "amount", power.amount)).collect(Collectors.joining(", "));
+        return Output.localization.localize("text.powers.powerListString", "powers", powerList);
     }
 
     public static HashMap<String, String> getValidEnergyTypes() {

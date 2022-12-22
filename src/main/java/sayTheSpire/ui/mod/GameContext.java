@@ -6,10 +6,11 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.controller.CInputAction;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+import sayTheSpire.ui.elements.MonsterElement;
 import sayTheSpire.Output;
 import sayTheSpire.utils.MapUtils;
-import sayTheSpire.utils.MonsterUtils;
 import sayTheSpire.utils.OutputUtils;
+import sayTheSpire.ui.elements.MonsterElement;
 import sayTheSpire.ui.input.InputAction;
 import sayTheSpire.InfoControls;
 
@@ -118,13 +119,14 @@ public class GameContext extends Context {
             return;
         }
         int totalDmg = 0;
-        for (AbstractMonster monster : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (!MonsterUtils.getMonsterIsInCombat(monster))
+        for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            MonsterElement monster = new MonsterElement(m);
+            if (!monster.isInCombat())
                 continue;
-            if (MonsterUtils.getMonsterIsMultiDmg(monster)) {
-                totalDmg += MonsterUtils.getMonsterIntentDmg(monster) * MonsterUtils.getMonsterIntentMultiAmt(monster);
+            if (monster.isMultiDmg()) {
+                totalDmg += monster.getIntentDmg() * monster.getIntentMultiAmt();
             } else {
-                totalDmg += MonsterUtils.getMonsterIntentDmg(monster);
+                totalDmg += monster.getIntentDmg();
             }
         }
         Output.text(totalDmg + " incoming damage", false);
@@ -140,9 +142,10 @@ public class GameContext extends Context {
             return;
         }
         StringBuilder sb = new StringBuilder();
-        ArrayList<AbstractMonster> aliveMonsters = new ArrayList();
-        for (AbstractMonster monster : AbstractDungeon.getCurrRoom().monsters.monsters) {
-            if (MonsterUtils.getMonsterIsInCombat(monster))
+        ArrayList<MonsterElement> aliveMonsters = new ArrayList();
+        for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters) {
+            MonsterElement monster = new MonsterElement(m);
+            if (monster.isInCombat())
                 aliveMonsters.add(monster);
         }
         int monsterCount = aliveMonsters.size();
@@ -151,8 +154,8 @@ public class GameContext extends Context {
             return;
         }
         for (int c = 0; c < monsterCount; c++) {
-            AbstractMonster monster = aliveMonsters.get(c);
-            sb.append(monster.name + " " + MonsterUtils.getMonsterIntentShort(monster));
+            MonsterElement monster = aliveMonsters.get(c);
+            sb.append(monster.getName() + " " + monster.getIntentShort());
             if (c < monsterCount - 1)
                 sb.append(", ");
         }

@@ -2,18 +2,21 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import sayTheSpire.ui.elements.MonsterElement;
-import sayTheSpire.utils.MonsterUtils;
 import sayTheSpire.Output;
 
 @SpirePatch(clz = MonsterGroup.class, method = "update")
 public class MonsterGroupPatch {
 
-    public static AbstractMonster prevHoveredMonster = null;
+    public static MonsterElement prevHoveredMonster = null;
 
-    public static AbstractMonster getHoveredMonster(MonsterGroup group) {
-        for (AbstractMonster monster : group.monsters) {
-            if (MonsterUtils.getMonsterIsInCombat(monster) && monster.hb.hovered || monster.intentHb.hovered
-                    || monster.healthHb.hovered) {
+    public static MonsterElement getHoveredMonster(MonsterGroup group) {
+        for (AbstractMonster m : group.monsters) {
+            MonsterElement monster;
+            if (prevHoveredMonster != null && prevHoveredMonster.getMonster() == m)
+                monster = prevHoveredMonster;
+            else
+                monster = new MonsterElement(m);
+            if (monster.isInCombat() && m.hb.hovered || m.intentHb.hovered || m.healthHb.hovered) {
                 return monster;
             }
         }
@@ -21,11 +24,13 @@ public class MonsterGroupPatch {
     }
 
     public static void Prefix(MonsterGroup __instance) {
-        AbstractMonster current = getHoveredMonster(__instance);
-        if (current != prevHoveredMonster) {
-            if (current != null) {
-                Output.setUI(new MonsterElement(current));
-            }
+        MonsterElement current = getHoveredMonster(__instance);
+        if (current == null) {
+            prevHoveredMonster = null;
+            return;
+        }
+        if (prevHoveredMonster == null || !current.equals(prevHoveredMonster)) {
+            Output.setUI(current);
             prevHoveredMonster = current;
         }
     }

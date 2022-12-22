@@ -157,6 +157,11 @@
   "uncommon": "uncommon",
   "rare": "rare"
 },
+  "powers": {
+    "no powers": "No current powers.",
+    "powerLabel": "{power} {amount}",
+    "powerListString": "{powers} powers"
+  },
 "relicRarity": {
   "deprecated": "deprecated",
   "starter": "starter",
@@ -179,6 +184,10 @@
       "gremlin match card": {
         "flipped face down": "{target} is flipped face down.",
         "revealed card": "Flipped card is {target}."
+      },
+      "monster": {
+        "hidden intent": "hidden intent",
+        "shortString": "{monster}, {intent}, block {block}, {currentHealth}/{maxHealth}"
       },
       "treasure chest": {
         "types": {

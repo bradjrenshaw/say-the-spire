@@ -7,10 +7,11 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import java.util.ArrayList;
 import sayTheSpire.utils.OutputUtils;
 import sayTheSpire.TextParser;
+import sayTheSpire.ui.elements.MonsterElement;
 
 public class MonsterBuffer extends Buffer {
 
-    private AbstractMonster monster;
+    private MonsterElement monster;
 
     public MonsterBuffer(String name) {
         super("monster", name);
@@ -22,7 +23,7 @@ public class MonsterBuffer extends Buffer {
     }
 
     public void setObject(Object object) {
-        this.monster = (AbstractMonster) object;
+        this.monster = (MonsterElement) object;
     }
 
     public void update() {
@@ -31,15 +32,14 @@ public class MonsterBuffer extends Buffer {
             this.addLocalized("noObj");
             return;
         }
-        AbstractMonster monster = this.monster;
-        this.context.put("hp", monster.currentHealth);
-        this.context.put("hpMax", monster.maxHealth);
-        this.context.put("block", monster.currentBlock);
-        this.add(monster.name);
+        this.context.put("hp", this.monster.getCurrentHealth());
+        this.context.put("hpMax", this.monster.getMaxHealth());
+        this.context.put("block", this.monster.getCurrentBlock());
+        this.add(this.monster.getName());
         this.addLocalized("content.hp");
         this.addLocalized("content.block");
-        this.add(OutputUtils.getCreaturePowersString(monster));
-        for (PowerTip tip : (ArrayList<PowerTip>) ReflectionHacks.getPrivate(monster, AbstractCreature.class, "tips")) {
+        this.add(this.monster.getPowersString());
+        for (PowerTip tip : monster.getTips()) {
             this.add(TextParser.parse(tip.header + " NL " + tip.body));
         }
     }
