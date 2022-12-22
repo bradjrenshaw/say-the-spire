@@ -241,6 +241,9 @@
           "unknown": "unknown"
         }
       },
+      "CharacterSelectScreen": {
+        "ascension off": "{label} off"
+      },
       "CustomModeScreen": {
         "AN_seed": "Accessibility note: Current seed is {seed}.",
           "seedString": "{label} ({seed})"
