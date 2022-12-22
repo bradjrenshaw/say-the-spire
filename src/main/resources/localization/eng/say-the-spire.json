@@ -196,6 +196,9 @@
         "priceString": "({price} gold)",
         "priceSaleString": "({price} gold, sale)"
       },
+      "toggle button": {
+        "unknownType": "Unknown toggle button type; report to mod developer."
+      },
       "treasure chest": {
         "types": {
           "small": "small",

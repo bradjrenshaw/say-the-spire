@@ -28,7 +28,7 @@ public class SettingsToggleButtonElement extends ToggleButtonElement {
         super();
         this.button = button;
         this.type = (ToggleButton.ToggleBtnType) ReflectionHacks.getPrivate(button, ToggleButton.class, "type");
-        this.setStatusTexts("on", "off");
+        this.setStatusTexts(this.localization.localize(".ui.status.on"), this.localization.localize(".ui.status.off"));
     }
 
     public String handleBuffers(BufferManager buffers) {
@@ -84,7 +84,7 @@ public class SettingsToggleButtonElement extends ToggleButtonElement {
         case BIG_TEXT:
             return new Descriptor(TEXT[26]);
         default:
-            return new Descriptor("Unknown toggle button type, report to mod dev.");
+            return new Descriptor(this.localization.localize("unknownType"));
         }
     }
 
