@@ -9,8 +9,8 @@ public class DungeonMapScreenPatch {
     public static void Postfix(DungeonMapScreen __instance, boolean doScrollingAnimation) {
         Output.text("map", true);
         if (doScrollingAnimation) {
-            Output.text("The map scrolls from top to bottom, briefly revealing the sketched outline of "
-                    + MapUtils.getLocalizedBossName() + ".", false);
+            Output.textLocalized("ui.screens.DungeonMapScreen.boss scroll", false, "boss",
+                    MapUtils.getLocalizedBossName());
         }
         Output.setupBuffers(MapUtils.getCurrentNode(), false, true);
     }

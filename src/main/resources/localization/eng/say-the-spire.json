@@ -247,6 +247,9 @@
   "DrawPileViewScreen": {
     "title": "Draw pile view, {cards} cards"
   },
+  "DungeonMapScreen": {
+    "boss scroll": "The map scrolls from top to bottom, briefly revealing the sketched outline of {boss}."
+  },
   "ExhaustPileViewScreen": {
     "title": "Exhaust pile view, {cards} cards"
   },
