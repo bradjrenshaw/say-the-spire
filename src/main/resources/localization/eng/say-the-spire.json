@@ -185,6 +185,9 @@
         "flipped face down": "{target} is flipped face down.",
         "revealed card": "Flipped card is {target}."
       },
+      "game stat": {
+        "label": "{name}: {value}"
+      },
       "monster": {
         "hidden intent": "hidden intent",
         "shortString": "{monster}, {intent}, block {block}, {currentHealth}/{maxHealth}"

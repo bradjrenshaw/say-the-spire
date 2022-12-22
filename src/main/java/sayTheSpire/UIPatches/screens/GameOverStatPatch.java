@@ -28,9 +28,11 @@ public class GameOverStatPatch {
         public static void Postfix(GameOverStat __instance) {
             if (hiddenStats.contains(__instance) && !__instance.hidden) {
                 hiddenStats.remove(__instance);
-                Output.text(__instance.label + ": " + __instance.value, false);
+                Output.textLocalized("ui.elements.game stat.label", false, "name", __instance.label, "value",
+                        __instance.value);
             } else if (__instance.hb.justHovered) {
-                Output.text(__instance.label + ": " + __instance.value, true);
+                Output.textLocalized("ui.elements.game stat.label", true, "name", __instance.label, "value",
+                        __instance.value);
                 if (__instance.description != null)
                     Output.setupUIBufferMany(__instance.label, __instance.description, __instance.value);
                 else
