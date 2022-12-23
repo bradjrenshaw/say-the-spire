@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.4.1-beta
+
+* Fixed: The game will no longer crash when disabling ascension mode due to an incorrect string path.
+
 ## 0.4.0-beta (2022-12-22)
 
 * This was a large update; most of the code behind the scenes was refactored in order to support localization. Localization is not quite ready yet; this update is to make sure that the initial changes to the framework are working. There haven't been many obvious changes to the gameplay itself.

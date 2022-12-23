@@ -27,7 +27,7 @@ public class CharacterSelectScreenPatch {
                     Output.text(TEXT[8] + ", " + __instance.ascLevelInfoString, true);
                     Output.setupUIBufferMany(TEXT[8], TEXT[9]);
                 } else {
-                    Output.textLocalized("ui.screens.CharacterSelectScreen", false, "label", TEXT[8]);
+                    Output.textLocalized("ui.screens.CharacterSelectScreen.ascension off", false, "label", TEXT[8]);
                 }
             } else if (ascLeftHb.clicked || CInputActionSet.pageLeftViewDeck.isJustPressed() || ascRightHb.clicked
                     || CInputActionSet.pageRightViewExhaust.isJustPressed()) {
