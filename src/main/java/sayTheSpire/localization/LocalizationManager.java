@@ -8,6 +8,8 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.megacrit.cardcrawl.core.Settings;
+
 import sayTheSpire.Output;
 
 public class LocalizationManager {
@@ -22,7 +24,6 @@ public class LocalizationManager {
         this.english = null;
         this.lang = null;
         this.temp = null;
-        this.load();
     }
 
     public String getStringAtPath(String path) {
@@ -57,7 +58,7 @@ public class LocalizationManager {
         return element;
     }
 
-    private void load() {
+    public void postSetupLoad() {
         JsonParser parser = new JsonParser();
         try {
             String defaultJson = loadJson("localization/eng/say-the-spire.json");
@@ -65,6 +66,24 @@ public class LocalizationManager {
         } catch (Exception e) {
             logger.error("Fatal error: Unable to load default language json.", e);
             return;
+        }
+        String language = Settings.language.toString().toLowerCase();
+        logger.info("Language is " + language + ".");
+        try {
+            if (!language.equals("eng")) {
+                String json = loadJson("localization/" + language + "/say-the-spire.json");
+                this.lang = parser.parse(json);
+                logger.info("Language file for " + language + " loaded.");
+            }
+        } catch (Exception e) {
+            logger.error("Language file could not be loaded for language " + language + ".\n" + e.getMessage());
+        }
+
+        try {
+            String json = loadJson(Output.config.getDirectoryPath() + "languageTemp.json");
+            this.temp = parser.parse(json);
+        } catch (Exception e) {
+            logger.info("Temp language file not loaded.\n" + e.getLocalizedMessage());
         }
         logger.info("Localization manager successfully loaded.");
     }

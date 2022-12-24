@@ -57,6 +57,8 @@ public class Output {
 
     public static void postSetup() {
 
+        localization.postSetupLoad();
+
         // Effects manager
         effects = new EffectManager();
 

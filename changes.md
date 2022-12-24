@@ -3,6 +3,7 @@
 ## 0.4.1-beta
 
 * Fixed: The game will no longer crash when disabling ascension mode due to an incorrect string path.
+* Added: The game can now be localized. If there is a file for your language, messages from Say the Spire should automatically use that language. Note that there are no other language files yet besides English. For more information on localization or how to contribute localized strings, see the documentation.
 
 ## 0.4.0-beta (2022-12-22)
 
