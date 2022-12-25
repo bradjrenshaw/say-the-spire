@@ -39,6 +39,12 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
+            <groupId>speechd</groupId>
+            <artifactId>speechd</artifactId>
+            <version>unknown</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
             <groupId>com.moandjiezana.toml</groupId>
             <artifactId>toml4j</artifactId>
             <version>0.7.2</version>
@@ -74,6 +80,7 @@
                             <artifactSet>
                                 <includes>
                                     <include>com.davykager.tolk</include>
+                                    <include>speechd</include>
                                     <include>com.moandjiezana.toml</include>
 <include>org.bigtesting:interpolatd</include>
                                 </includes>
