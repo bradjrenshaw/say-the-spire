@@ -1,0 +1,17 @@
+name: Setup Docs Site
+run-name: ${{ github.actor }} is generating docs for github pages.
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: peaceiris/actions-mdbook@v1
+      -run: |
+        cd docs_src
+        mdbook build
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Generated Docs
+          path: ./book
