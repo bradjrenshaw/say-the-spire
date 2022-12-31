@@ -20,6 +20,7 @@ public class SpeechManager {
     private void addHandlers() {
         this.registerHandler(new TolkResourceHandler());
         this.registerHandler(new TolkHandler());
+        this.registerHandler(new SpeechdHandler());
         this.registerHandler(new ClipboardHandler());
     }
 
