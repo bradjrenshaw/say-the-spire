@@ -17,7 +17,7 @@ repository. If one does not exist it is safe to create one.
 
 ### Setting up Screen Reader Libs
 In order to use screen reader output, you need Output libraries for all
-supported operating systems.
+supported operating systems. These are required for the mod to compile.
 
 #### Windows
 For screen reader output on windows, the Tolk library is required. You can find
@@ -45,6 +45,15 @@ structure resembling this.
 Note that if you do not add these files to resources, you will have to manually
 place the correct dlls in your root SlayTheSpire game directory.
 
+#### Linux
+For screen reader output on Linux, speech dispatcher via the speechd library is used. Clone the [speechd github repository](https://github.com/brailcom/speechd-java) and use ant to compile it.
+
+You will then need to set up the package as a Maven dependency. To do this, use this command, substituting in the correct path to speechd.jar while leaving the other parameters unchanged:
+
+```bash
+mvn install:install-file -Dfile=path/to/speechd.jar -DgroupId=speechd -DartifactId=speechd -Dversion=unknown -Dpackaging=jar
+```
+
 ### Packaging and Setup
 To compile the mod, run
 
@@ -52,4 +61,4 @@ To compile the mod, run
 mvn package
 ```
 
-After that, copy mods/sayTheSpire.jar to your Slay the Spire mods directory.
+This should compile the mod and bundle all needed screenreader library files and other dependencies into the main .jar file. After that, copy mods/sayTheSpire.jar to your Slay the Spire mods directory.

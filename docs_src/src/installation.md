@@ -38,26 +38,37 @@ After you have installed the needed mods, you can launch the game using one of t
 * in steam, right click on the game, click play, OCR, left click on play with mods, then left click on play. This is not ideal but it works.
 * Launch using a manual call to java (not recommended)
 
+### Speech
+On Windows, speech output will be automatic and no extra steps are needed. On linux an additional step is required.
+
+The screen reader implementation for Linux uses the speechd library, which is old and uses tcp sockets to send text to Speech Dispatcher. Speech-dispatcher needs to be initialized with a tcp socket before Say the Spire can be used. An example command is given below, though you may need to modify it depending on your system setup if it doesn't work:
+
+```bash
+speech-dispatcher -c inet_socket -t 0 -P "$HOME/.local/share/speechd.pid"
+```
+
 ## Mod the Spire
 Mod the Spire is the software that handles game mods. It allows you to activate and deactivate mods. When play is pressed, the mods are loaded into the game and the game is run.
 
-Mod the Spire is not the most accessible piece of software, however it can be worked with. NVDA object navigation is required for more specific mod configuration, however you do not need it for enabling all mods to start with.
+Mod the Spire is not the most accessible piece of software, however it can be worked with.
 
-If your NVDA doesn't recognize objects in the window (reading "unknown" or just reading nothing at all), run the following command using cmd prompt or batch. If your steam directory is not default, change the steam path accordingly.
+### Windows Accessibility Tips
+
+If you are on Windows, NVDA object navigation is required for more specific mod configuration, however you do not need it for enabling all mods to start with. If NVDA doesn't recognize objects in the window (reading "unknown" or just reading nothing at all), run the following command using cmd prompt or batch. If your steam directory is not default, change the steam path accordingly.
 
 ```bash
 "C:\Program Files (x86)\Steam\steamapps\common\SlayTheSpire\jre\bin\jabswitch" -enable
 ```
 
-This command enables Java Access Bridge. If you run this command on the command prompt, it should output "Java Access Bridge has been enabled".
+This command enables Java Access Bridge. If you run this command from the command prompt, it should output "Java Access Bridge has been enabled".
 
 Note that if you are using jaws, Mod the Spire will not work with certain older versions of jaws due to them not supporting Java Access Bridge (no controls will be read). If you are using jaws, you can hit enter as soon as mod the spire opens to play. Note that doing this will play with the currently enabled mods, however by default no mods are enabled. If setting up mods though you will have to switch to NVDA or some other scree nreader that has Java Access Bridge support.
+
+#### Windows Specific Mod Configuration
+If you are using NVDA, you can use object Nav to view the information for each mod and to enable/disable the mod. To do so, arrow over the list item for a mod and press the move to first contained object key. You can then use move to previous and next object to interact with this section. This collection of objects includes the mod checkbox (toggle with Activate current Navigator object) as well as the mod's name and other information.
 
 ### Quick Mod Setup
 If you want to quickly enable/disable all mods, do the following. This is most likely what you want if setting up the game for the first time or just running Say the Spire with no additional game mods.
 
 * If this is the first time running Mod the Spire, click toggle all mods on/off, then click play. This will enable all mods as new mods start out disabled by default. 
 * If this is a subsequent run of Mod the Spire, you want to enable all mods (maybe after adding a new one), and you have already enabled mods, click the toggle all mods on/off button twice then click play. If you haven't changed your mods since the previous run you can just hit play; your mod state is saved.
-
-### Specific Mod Configuration
-If you are using NVDA, you can use object Nav to view the information for each mod and to enable/disable the mod. To do so, arrow over the list item for a mod and press the move to first contained object key. You can then use move to previous and next object to interact with this section. This collection of objects includes the mod checkbox (toggle with Activate current Navigator object) as well as the mod's name and other information.
