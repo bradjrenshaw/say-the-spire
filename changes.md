@@ -8,6 +8,7 @@
 * The Map:
     * Fixed edge tags not reading when using the arrow keys to move the cursor over a map node
     * Edges that require flight are now correctly labeled and the mod does not consider every edge to require flight once you obtain the Winged Boots
+    * The map viewer no longer focuses an incorrect node at the start of act 3 when cursoring over a node on the map.
     
 ## 0.4.0-beta (2022-12-22)
 

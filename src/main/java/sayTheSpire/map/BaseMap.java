@@ -73,7 +73,7 @@ public class BaseMap extends VirtualMap {
 
     public VirtualMapNode getPlayerNode() {
         MapRoomNode node = MapUtils.getCurrentNode();
-        if (node == null) {
+        if (node == null || node.x < 0 || node.x > 6) {
             return new BaseStartNode();
         }
         return this.getNodeAt(node.x, node.y);
