@@ -56,7 +56,8 @@ public class BaseRoomNode extends VirtualMapNode {
                 continue;
 
             Boolean flightConnected = false;
-            if (this.getGameNode().wingedIsConnectedTo(targetNode) && targetY > 0) {
+            if (this.getGameNode().wingedIsConnectedTo(targetNode) && !this.getGameNode().isConnectedTo(targetNode)
+                    && targetY > 0) {
                 flightConnected = true;
             } else if (!this.getGameNode().isConnectedTo(targetNode) && targetY != 0) {
                 continue;

@@ -129,15 +129,18 @@ public class TreeNavigator extends MapNavigator {
             this.setViewingNode(playerNode);
             BaseMapEdge edge = new BaseMapEdge(playerNode, node);
             this.pathChoice = this.pathChoices.indexOf(edge);
+            if (shouldAnnounce) {
+                Output.text(this.pathChoices.get(this.pathChoice).getShort(true), false);
+            }
         } else {
             this.setViewingNode(node);
             this.pathChoice = -1;
             if (!this.pathChoices.isEmpty()) {
                 this.pathChoice = 0;
             }
-        }
-        if (shouldAnnounce) {
-            Output.text(node.getShort(), false);
+            if (shouldAnnounce) {
+                Output.text(node.getShort(), false);
+            }
         }
     }
 

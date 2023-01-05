@@ -5,7 +5,10 @@
 * Fixed: The game will no longer crash when disabling ascension mode due to an incorrect string path.
 * Added: The game can now be localized. If there is a file for your language, messages from Say the Spire should automatically use that language. Note that there are no other language files yet besides English. For more information on localization or how to contribute localized strings, see the documentation.
 * Added: Screen reader output via Speech Dispatcher on Linux (thanks Lilmike).
-
+* The Map:
+    * Fixed edge tags not reading when using the arrow keys to move the cursor over a map node
+    * Edges that require flight are now correctly labeled and the mod does not consider every edge to require flight once you obtain the Winged Boots
+    
 ## 0.4.0-beta (2022-12-22)
 
 * This was a large update; most of the code behind the scenes was refactored in order to support localization. Localization is not quite ready yet; this update is to make sure that the initial changes to the framework are working. There haven't been many obvious changes to the gameplay itself.
