@@ -139,7 +139,13 @@ public class TreeNavigator extends MapNavigator {
                 this.pathChoice = 0;
             }
             if (shouldAnnounce) {
-                Output.text(node.getShort(), false);
+                StringBuilder sb = new StringBuilder();
+                sb.append(node.getShort());
+                if (this.pathChoice >= 0) {
+                    sb.append("\n" + this.localization.localize("choice") + "\n");
+                    sb.append(this.pathChoices.get(this.pathChoice).getShort(true));
+                }
+                Output.text(sb.toString(), false);
             }
         }
     }

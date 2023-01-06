@@ -1,14 +1,16 @@
 # Change Log
 
-## 0.4.1-beta
+## 0.4.1-beta (2023-01-05)
 
 * Fixed: The game will no longer crash when disabling ascension mode due to an incorrect string path.
 * Added: The game can now be localized. If there is a file for your language, messages from Say the Spire should automatically use that language. Note that there are no other language files yet besides English. For more information on localization or how to contribute localized strings, see the documentation.
 * Added: Screen reader output via Speech Dispatcher on Linux (thanks Lilmike).
 * The Map:
-    * Fixed edge tags not reading when using the arrow keys to move the cursor over a map node
+    * Fixed edge tags not reading when cursoring over a map node
     * Edges that require flight are now correctly labeled and the mod does not consider every edge to require flight once you obtain the Winged Boots
     * The map viewer no longer focuses an incorrect node at the start of act 3 when cursoring over a node on the map.
+    * The map viewer will no longer crash if looking for a backward path in Act 4
+    * The currently focused map choice is now read out again when you view the map screen
     
 ## 0.4.0-beta (2022-12-22)
 
