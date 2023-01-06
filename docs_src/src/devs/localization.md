@@ -1,11 +1,13 @@
 # Localization
 The mod can be localized into any language the game supports. Currently there are no language files besides English implemented. This page provides information on how the system works and how to submit language files. Keep in mind that this feature is still in early beta and that more strings will be added as the mod develops, though the currently existing strings shouldn't change.
 
+You will need to be comfortable with the json file format and to be familiar with how java projects and Slay the Spire mods are compiled. For more info on this I recommend looking at the available documentation for ModTheSpire. I also recommend looking at the notes for translators file compiled with the game's .jar file (/localization/TRANSLATOR_README.txt).
+
 ## How it Works
 Language files are written in the json format. When Say the Spire outputs localized text, it checks 3 locations in order, falling back to the next one if no localization string matching the text to be localized is found in that file:
 
 * your mod config directory/sayTheSpire/languageTemp.json (note this is the folder where settings for Say the Spire are stored on your hard drive, not in the mod .jar file)
-* /localization/language/say-the-spire.json (this is bundled in the mod .jar file)
+* /localization/langcode/say-the-spire.json (this is bundled in the mod .jar file)
 * /localization/eng/say-the-spire.json (this is bundled in the mod .jar file)
 
 An example of a set of localization strings would look like this (from the localization strings for the card buffer):
