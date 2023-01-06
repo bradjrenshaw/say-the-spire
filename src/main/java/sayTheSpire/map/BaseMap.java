@@ -37,7 +37,7 @@ public class BaseMap extends VirtualMap {
     public VirtualMapEdge getParentEdge(VirtualMapNode node) {
         if (node == null)
             return null;
-        for (int y = node.getY(); y >= -1; y--) {
+        for (int y = node.getY(); y > -1; y--) {
             for (int x = 0; x <= 6; x++) {
                 VirtualMapNode source = this.getNodeAt(x, y);
                 if (source == null)

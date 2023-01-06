@@ -124,8 +124,6 @@ public class TreeNavigator extends MapNavigator {
         }
         VirtualMapNode targetNode = node;
         VirtualMapNode playerNode = this.getMap().getPlayerNode();
-        if (playerNode == null)
-            Output.text("player node is null", false);
         if (playerNode != null && isHovered) {
             this.viewingPath.clear();
             this.setViewingNode(playerNode);
