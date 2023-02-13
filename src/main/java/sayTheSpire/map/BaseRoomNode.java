@@ -118,6 +118,11 @@ public class BaseRoomNode extends VirtualMapNode {
         }
         if (node.hasEmeraldKey)
             tags.add(this.localization.localize("tags.burning icon"));
+        if (Output.mapManager != null) {
+            HashSet<String> nodeTags = Output.mapManager.getNodeTags(node);
+            if (nodeTags != null)
+                tags.addAll(nodeTags);
+        }
         return tags;
     }
 

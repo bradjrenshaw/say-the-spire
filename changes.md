@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.4.2-BETA
+
+* Added an official API for other mods to interact with Say the Spire. for more information, please see the relevant section of the documentation.
+
 ## 0.4.1-beta (2023-01-05)
 
 * Fixed: The game will no longer crash when disabling ascension mode due to an incorrect string path.

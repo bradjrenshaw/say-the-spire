@@ -1,5 +1,7 @@
 package sayTheSpire.ui.mod;
 
+import java.util.HashMap;
+import java.util.HashSet;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import sayTheSpire.ui.navigators.*;
 import sayTheSpire.map.VirtualMap;
@@ -12,10 +14,12 @@ public class MapManager {
 
     private VirtualMap map;
     private MapNavigator navigator;
+    private HashMap<MapRoomNode, HashSet<String>> nodeTags;
 
     public MapManager() {
         this.navigator = null;
         this.map = null;
+        this.nodeTags = new HashMap();
     }
 
     public void control(InfoControls.Direction direction) {
@@ -24,7 +28,7 @@ public class MapManager {
         }
     }
 
-    // Fix both of these later
+    // Fix both of these later. This will allow for custom maps
     private VirtualMap getMap() {
         if (!OutputUtils.isInDungeon())
             return null;
@@ -48,6 +52,40 @@ public class MapManager {
         if (this.map == null || !newMap.getId().equals(this.map.getId())) {
             this.map = newMap;
             this.navigator = new TreeNavigator(newMap);
+            this.nodeTags.clear();
         }
+    }
+
+    public Boolean addNodeTag(MapRoomNode node, String tag) {
+        if (this.nodeTags.containsKey(node)) {
+            this.nodeTags.get(node).add(tag);
+            return true;
+        }
+        HashSet<String> tags = new HashSet();
+        tags.add(tag);
+        this.nodeTags.put(node, tags);
+        return true;
+    }
+
+    public HashSet<String> getNodeTags(MapRoomNode node) {
+        return this.nodeTags.getOrDefault(node, null);
+    }
+
+    public Boolean moveNodeTag(MapRoomNode source, String tag, MapRoomNode destination, Boolean addIfNotInSource) {
+        if (!this.removeNodeTag(source, tag) && !addIfNotInSource)
+            return false;
+        return this.addNodeTag(destination, tag);
+    }
+
+    public Boolean removeNodeTag(MapRoomNode node, String tag) {
+        if (!this.nodeTags.containsKey(node))
+            return false;
+        HashSet<String> tags = this.nodeTags.get(node);
+        if (!tags.contains(tag))
+            return false;
+        tags.remove(tag);
+        if (tags.isEmpty())
+            this.nodeTags.remove(node);
+        return true;
     }
 }
