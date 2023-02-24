@@ -7,6 +7,7 @@
 * Fixed: Speech will now actually interrupt for all inputs (not just controllers)
 * Fixed: The info from shortcut keys (for example ctrl b to see block in combat) can now be correctly localized.
 * Added a comma between your list of powers and the word powers to make it less ambiguous
+* Added: Added additional logging info to more reliably detect issues when loading speech handlers.
 
 ## 0.4.1-beta (2023-01-05)
 

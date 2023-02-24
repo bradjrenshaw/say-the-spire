@@ -3,10 +3,13 @@ package sayTheSpire.speech;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ListIterator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import sayTheSpire.Output;
 
 /** The SpeechManager handles abstracting out screen reader access. */
 public class SpeechManager {
+    private static Logger logger = LogManager.getLogger(Output.class.getName());
 
     private ArrayList<SpeechHandler> handlers;
     private SpeechHandler currentHandler;
@@ -58,6 +61,7 @@ public class SpeechManager {
         if (this.handlers.contains(handler))
             return false;
         this.handlers.add(handler);
+        logger.info("Registered speech handler " + handler.getName());
         return true;
     }
 
@@ -88,15 +92,23 @@ public class SpeechManager {
      * @return True if a handler was successfully loaded, false otherwise.
      */
     public Boolean setup() {
+        logger.info("Setting up speech handlers.");
         this.reorderHandlerList();
         for (SpeechHandler handler : this.handlers) {
-            if (!handler.detect())
+            if (!handler.detect()) {
+                logger.info("Speech handler " + handler.getName() + " detect returned false.");
                 continue;
-            if (!handler.loadResources())
+            }
+            if (!handler.loadResources()) {
+                logger.info("Speech handler " + handler.getName() + " failed to load resources");
                 continue;
-            if (!handler.load())
+            }
+            if (!handler.load()) {
+                logger.info("Speech handler " + handler.getName() + " failed to load.");
                 continue;
+            }
             this.currentHandler = handler;
+            logger.info("Speech handler " + handler.getName() + " successfully loaded.");
             return true;
         }
         return false;
