@@ -118,7 +118,7 @@
       "tree": {
         "choice": "choice",
         "error focus null": "Focus node is null; report to mod developer",
-                "no path": "no path"
+        "no path": "no path"
       }
     },
     "tags": {
@@ -227,6 +227,15 @@
           "unknown": "unknown"
         }
       }
+    },
+    "misc info": {
+      "hiddenIntents": "hidden intents",
+      "incomingDamage": "{damage} incoming damage",
+      "noMonsters": "no monsters",
+      "playerBlock": "{block} block",
+      "playerEnergy": "{energy} energy",
+      "playerGold": "{gold} gold",
+      "playerHealth": "{hp}/{hpMax} hp"
     },
     "positions": {
       "categoryList": "{position} of {total} {category}",

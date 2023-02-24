@@ -32,23 +32,24 @@ public class GameContext extends Context {
             return;
         case "read player block":
             if (OutputUtils.isInCombat()) {
-                Output.text(player.currentBlock + " block", false);
+                Output.textLocalized("ui.misc info.playerBlock", false, "block", player.currentBlock);
             } else {
                 Output.textLocalized("errors.not in combat", false);
             }
             return;
         case "read player energy":
             if (OutputUtils.isInCombat()) {
-                Output.text(EnergyPanel.totalCount + " energy", false);
+                Output.textLocalized("ui.misc info.playerEnergy", false, "energy", EnergyPanel.totalCount);
             } else {
                 Output.textLocalized("errors.not in combat", false);
             }
             return;
         case "read player gold":
-            Output.text(player.gold + " gold", false);
+            Output.textLocalized("ui.misc info.playerGold", false, "gold", player.gold);
             return;
         case "read player hp":
-            Output.text(player.currentHealth + "/" + player.maxHealth + " hp", false);
+            Output.textLocalized("ui.misc info.playerHealth", false, "hp", player.currentHealth, "hpMax",
+                    player.maxHealth);
             return;
         case "read player powers":
             if (OutputUtils.isInCombat()) {
@@ -120,11 +121,11 @@ public class GameContext extends Context {
 
     private void readSummarizedIntents() {
         if (!OutputUtils.isInCombat()) {
-            Output.text("Not currently in combat.", false);
+            Output.textLocalized("errors.not in combat", false);
             return;
         }
         if (OutputUtils.playerHasRelic("Runic Dome")) {
-            Output.text("hidden intents", false);
+            Output.textLocalized("ui.misc info.hiddenIntents", false);
             return;
         }
         int totalDmg = 0;
@@ -138,16 +139,16 @@ public class GameContext extends Context {
                 totalDmg += monster.getIntentDmg();
             }
         }
-        Output.text(totalDmg + " incoming damage", false);
+        Output.textLocalized("ui.misc info.incomingDamage", false, "damage", totalDmg);
     }
 
     private void readDetailedIntents() {
         if (!OutputUtils.isInCombat()) {
-            Output.text("Not currently in combat.", false);
+            Output.textLocalized("errors.not in combat", false);
             return;
         }
         if (OutputUtils.playerHasRelic("Runic Dome")) {
-            Output.text("hidden intents", false);
+            Output.textLocalized("ui.misc info.hiddenIntents", false);
             return;
         }
         StringBuilder sb = new StringBuilder();
@@ -159,7 +160,7 @@ public class GameContext extends Context {
         }
         int monsterCount = aliveMonsters.size();
         if (monsterCount == 0) {
-            Output.text("No monsters", false);
+            Output.textLocalized("ui.misc info.noMonsters", false);
             return;
         }
         for (int c = 0; c < monsterCount; c++) {
