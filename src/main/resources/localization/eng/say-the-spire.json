@@ -165,7 +165,7 @@
   "powers": {
     "no powers": "No current powers.",
     "powerLabel": "{power} {amount}",
-    "powerListString": "{powers} powers"
+    "powerListString": "{powers}, powers"
   },
 "relicRarity": {
   "deprecated": "deprecated",
