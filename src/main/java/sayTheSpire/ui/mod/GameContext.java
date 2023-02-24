@@ -65,6 +65,7 @@ public class GameContext extends Context {
     }
 
     public Boolean onJustPress(InputAction action) {
+        Output.silenceSpeech();
         switch (action.getName()) {
         case "read act boss":
         case "read player block":
