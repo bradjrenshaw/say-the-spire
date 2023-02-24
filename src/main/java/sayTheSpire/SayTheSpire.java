@@ -33,10 +33,15 @@ public class SayTheSpire {
     }
 
     /**
-     * Adds a tag to a MapRoomNode instance (only works if you aren't using a custom map). These are for extra information spoken for each node, for example player location or some other special feature visible on the map.
+     * Adds a tag to a MapRoomNode instance (only works if you aren't using a custom map). These are for extra
+     * information spoken for each node, for example player location or some other special feature visible on the map.
      * 
-     * @param node The MapRoomNode instance to attach a tag to
-     * @param tag The tag to be added. Will not be automatically localized by Say the Spire; you will need to localize this yourself.
+     * @param node
+     *            The MapRoomNode instance to attach a tag to
+     * @param tag
+     *            The tag to be added. Will not be automatically localized by Say the Spire; you will need to localize
+     *            this yourself.
+     * 
      * @return True if added, false otherwise
      */
     public Boolean addNodeTag(MapRoomNode node, String tag) {
@@ -48,10 +53,15 @@ public class SayTheSpire {
     /**
      * Moves a tag from one node to another.
      * 
-     * @param source The source node
-     * @param tag The tag to move
-     * @param destination The node to move the tag to
-     * @param addIfNotPresent If true, the tag will be added to the destination node even if it was not present in source
+     * @param source
+     *            The source node
+     * @param tag
+     *            The tag to move
+     * @param destination
+     *            The node to move the tag to
+     * @param addIfNotPresent
+     *            If true, the tag will be added to the destination node even if it was not present in source
+     * 
      * @return True if successfully moved, false otherwise
      */
     public Boolean moveNodeTag(MapRoomNode source, String tag, MapRoomNode destination, Boolean addIfNotPresent) {
@@ -63,8 +73,11 @@ public class SayTheSpire {
     /**
      * Removes a tag from a given node.
      * 
-     * @param node The node to remove the tag from
-     * @param tag The tag to be removed
+     * @param node
+     *            The node to remove the tag from
+     * @param tag
+     *            The tag to be removed
+     * 
      * @return True if successfully removed, false otherwise
      */
     public Boolean removeNodeTag(MapRoomNode node, String tag) {

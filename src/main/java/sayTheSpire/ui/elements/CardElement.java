@@ -48,6 +48,10 @@ public class CardElement extends GameObjectElement {
         return "current card";
     }
 
+    public AbstractCard getCard() {
+        return this.card;
+    }
+
     public String getExtrasString() {
         if (this.card.isFlipped || this.card.isLocked)
             return null;
