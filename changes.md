@@ -2,12 +2,13 @@
 
 ## 0.4.2-BETA
 
-* Added an official API for other mods to interact with Say the Spire. for more information, please see the relevant section of the documentation.
+* Added: Added an official API for other mods to interact with Say the Spire. for more information, please see the relevant section of the documentation.
 * Fixed: The shop has been reworked; cards that are added after the shop opens (for example from the courier artifact) will now be correctly read out
 * Fixed: Speech will now actually interrupt for all inputs (not just controllers)
 * Fixed: The info from shortcut keys (for example ctrl b to see block in combat) can now be correctly localized.
-* Added a comma between your list of powers and the word powers to make it less ambiguous
+* Added: Added a comma between your list of powers and the word powers to make it less ambiguous
 * Added: Added additional logging info to more reliably detect issues when loading speech handlers.
+* Added: Added monster name substitutions as certain monsters have multiple variants, yet they have the same name for all versions of the monster. The blue and red slavers should now be correctly read out. If there are any more monsters like this that I missed please let me know.
 
 ## 0.4.1-beta (2023-01-05)
 

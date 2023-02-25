@@ -1,6 +1,7 @@
 package sayTheSpire.events;
 
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import sayTheSpire.utils.MonsterUtils;
 
 public class CombatMonsterEvent extends Event {
 
@@ -15,7 +16,7 @@ public class CombatMonsterEvent extends Event {
         super("combatMonster");
         this.monster = monster;
         this.effectType = effectType;
-        this.context.put("target", this.monster.name);
+        this.context.put("target", MonsterUtils.getName(this.monster));
     }
 
     public String getText() {

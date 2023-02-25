@@ -12,6 +12,7 @@ import basemod.ReflectionHacks;
 import sayTheSpire.buffers.BufferManager;
 import sayTheSpire.ui.positions.Position;
 import sayTheSpire.ui.positions.ListPosition;
+import sayTheSpire.utils.MonsterUtils;
 import sayTheSpire.utils.OutputUtils;
 import sayTheSpire.TextParser;
 
@@ -153,7 +154,7 @@ public class MonsterElement extends UIElement {
     }
 
     public String getLabel() {
-        this.localization.put("monster", this.monster.name);
+        this.localization.put("monster", this.getName());
         this.localization.put("intent", this.getIntentShort());
         this.localization.put("block", this.monster.currentBlock);
         this.localization.put("currentHealth", this.monster.currentHealth);
@@ -166,7 +167,7 @@ public class MonsterElement extends UIElement {
     }
 
     public String getName() {
-        return this.monster.name;
+        return MonsterUtils.getName(this.monster);
     }
 
     public Position getPosition() {

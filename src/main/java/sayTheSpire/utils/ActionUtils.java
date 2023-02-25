@@ -6,15 +6,17 @@ import com.megacrit.cardcrawl.actions.common.ShowMoveNameAction;
 import sayTheSpire.TextParser;
 import sayTheSpire.events.DialogueEvent;
 import sayTheSpire.Output;
+import sayTheSpire.utils.OutputUtils;
 
 public class ActionUtils {
 
     public static String getShowMoveNameText(ShowMoveNameAction action) {
         String msg = (String) ReflectionHacks.getPrivate(action, ShowMoveNameAction.class, "msg");
         if (msg == null) {
-            return action.source.name;
+            return OutputUtils.getCreatureName(action.source);
         }
-        return Output.localization.localize("text.actions.ShowMoveName", "source", action.source.name, "text", msg);
+        return Output.localization.localize("text.actions.ShowMoveName", "source",
+                OutputUtils.getCreatureName(action.source), "text", msg);
     }
 
     public static DialogueEvent getTalkEvent(TalkAction action) {

@@ -1,6 +1,8 @@
 package sayTheSpire.events;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import sayTheSpire.utils.OutputUtils;
 
 public class DialogueEvent extends Event {
 
@@ -11,7 +13,7 @@ public class DialogueEvent extends Event {
     public DialogueEvent(String type, com.megacrit.cardcrawl.core.AbstractCreature source, String message) {
         super("dialogue");
         this.message = message;
-        this.source = source.name;
+        this.source = OutputUtils.getCreatureName(source);
         this.type = type;
         this.context.put("message", message);
         this.context.put("source", this.source);

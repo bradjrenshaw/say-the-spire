@@ -12,7 +12,7 @@ public class TextAboveCreatureEvent extends Event {
         super("textAboveCreature");
         this.creature = creature;
         this.text = text;
-        this.context.put("target", this.creature.name);
+        this.context.put("target", OutputUtils.getCreatureName(creature));
         this.context.put("message", this.text);
     }
 

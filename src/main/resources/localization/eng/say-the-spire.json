@@ -127,6 +127,12 @@
       "requires flight": "requires flight"
     }
   },
+  "substitutions": {
+    "monster names": {
+      "SlaverBlue": "Blue Slaver",
+      "SlaverRed": "Red Slaver"
+    }
+  },
   "text": {
     "accessibility notes": {
       "keyboard": "Accessibility note: Enter text with keyboard"

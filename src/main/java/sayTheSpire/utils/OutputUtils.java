@@ -2,6 +2,7 @@ package sayTheSpire.utils;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ModHelper;
@@ -35,6 +36,8 @@ public class OutputUtils {
     public static String getCreatureName(AbstractCreature creature) {
         if (creature == getPlayer())
             return getPlayerName();
+        else if (creature instanceof AbstractMonster)
+            return MonsterUtils.getName((AbstractMonster) creature);
         return creature.name;
     }
 
