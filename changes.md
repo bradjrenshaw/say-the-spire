@@ -1,6 +1,6 @@
 # Change Log
 
-## 0.4.2-BETA
+## 0.4.2-BETA (2023-02-26)
 
 * Added: Added an official API for other mods to interact with Say the Spire. for more information, please see the relevant section of the documentation.
 * Fixed: The shop has been reworked; cards that are added after the shop opens (for example from the courier artifact) will now be correctly read out
