@@ -23,6 +23,7 @@
 
 - [Compiling the Mod from Source](./devs/compilation.md)
 - [Localizing the Mod](./devs/localization.md)
+- [Mod API](./devs/api.md)
 
 # Additional Information
 
