@@ -3,7 +3,6 @@ package sayTheSpire.ui.elements;
 import java.lang.reflect.Field;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import basemod.ReflectionHacks;
-
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -75,8 +74,9 @@ public class DropdownElement extends UIElement {
     }
 
     public void update() {
-        if (!this.getDropdownMenu().isOpen)
+        if (!this.getDropdownMenu().isOpen) {
             return;
+        }
         int index = this.getIndex();
         int visibleStart = dropdown.topVisibleRowIndex;
         if (visibleStart != this.prevVisibleStart) {
