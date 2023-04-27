@@ -113,7 +113,8 @@ public class BaseRoomNode extends VirtualMapNode {
         MapRoomNode node = this.getGameNode();
         if (node == null)
             return tags;
-        if (node == MapUtils.getCurrentNode()) {
+        MapRoomNode utilNode = MapUtils.getCurrentNode();
+        if (utilNode != null && node == utilNode) {
             tags.add(this.localization.localize("tags.player location"));
         }
         if (node.hasEmeraldKey)

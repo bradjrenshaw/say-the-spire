@@ -32,23 +32,17 @@ public class OptionsPanelPatch {
 
     public static void initializeFPSDropdown(OptionsPanel panel, DropdownMenu dropdown) {
         String name = TextParser.parse(graphicsOptions[1]);
-        String options[] = (String[]) ReflectionHacks.getPrivate(panel, OptionsPanel.class, "FRAMERATE_LABELS");
-        UIRegistry.register(dropdown, new DropdownElement(dropdown, name, options));
+        UIRegistry.register(dropdown, new DropdownElement(dropdown, name));
     }
 
     public static void initializeLanguageDropdown(OptionsPanel panel, DropdownMenu dropdown) {
         String name = TextParser.parse(TEXT[13]);
-        String options[] = panel.languageLabels();
-        UIRegistry.register(dropdown, new DropdownElement(dropdown, name, options));
+        UIRegistry.register(dropdown, new DropdownElement(dropdown, name));
     }
 
     public static void initializeResoDropdown(OptionsPanel panel, DropdownMenu dropdown) {
         String name = TextParser.parse(graphicsOptions[0]);
-        String options[] = new String[Settings.displayOptions.size()];
-        for (int i = 0; i < Settings.displayOptions.size(); i++) {
-            options[i] = TextParser.parse(Settings.displayOptions.get(i).uiString());
-        }
-        UIRegistry.register(dropdown, new DropdownElement(dropdown, name, options));
+        UIRegistry.register(dropdown, new DropdownElement(dropdown, name));
     }
 
     @SpirePatch(clz = OptionsPanel.class, method = SpirePatch.CONSTRUCTOR)

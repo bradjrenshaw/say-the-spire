@@ -129,7 +129,7 @@ public class TreeNavigator extends MapNavigator {
             this.setViewingNode(playerNode);
             BaseMapEdge edge = new BaseMapEdge(playerNode, node);
             this.pathChoice = this.pathChoices.indexOf(edge);
-            if (shouldAnnounce) {
+            if (this.pathChoice >= 0 && shouldAnnounce) {
                 Output.text(this.pathChoices.get(this.pathChoice).getShort(true), false);
             }
         } else {
