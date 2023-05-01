@@ -21,14 +21,24 @@ public class DropdownElement extends UIElement {
     private int prevIndex;
     private int prevVisibleStart;
     private int delayFrames;
+    private Boolean autoAnnounceHover;
 
     public DropdownElement(DropdownMenu dropdown, String name) {
+        this(dropdown, name, true);
+    }
+
+    public DropdownElement(DropdownMenu dropdown, String name, Boolean autoAnnounceHover) {
         super("dropdown");
         this.dropdown = dropdown;
         this.name = name;
+        this.autoAnnounceHover = false;
         this.prevIndex = -1;
         this.prevVisibleStart = -1;
         this.delayFrames = 0;
+    }
+
+    public Boolean getAutoAnnounceHover() {
+        return this.autoAnnounceHover;
     }
 
     public DropdownMenu getDropdownMenu() {

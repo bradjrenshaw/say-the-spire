@@ -14,7 +14,7 @@ public class DropdownMenuPatch {
             DropdownElement currentDropdown = (DropdownElement) UIRegistry.getUI(__instance);
             if (currentDropdown == null)
                 return;
-            if (__instance.getHitbox().justHovered) {
+            if (currentDropdown.getAutoAnnounceHover() && __instance.getHitbox().justHovered) {
                 Output.setUI(currentDropdown);
             }
             currentDropdown.update();
