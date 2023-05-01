@@ -1,11 +1,16 @@
+import java.util.ArrayList;
 import com.megacrit.cardcrawl.actions.utility.HideHealthBarAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.screens.options.DropdownMenu;
 import com.megacrit.cardcrawl.screens.runHistory.RunHistoryScreen;
+import com.megacrit.cardcrawl.screens.runHistory.TinyCard;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import basemod.ReflectionHacks;
+import sayTheSpire.ui.elements.CardElement;
 import sayTheSpire.ui.elements.DropdownElement;
 import sayTheSpire.ui.elements.UIElement;
+import sayTheSpire.ui.elements.CardElement.CardLocation;
 import sayTheSpire.ui.UIRegistry;
 import sayTheSpire.Output;
 
@@ -39,6 +44,13 @@ public class RunHistoryScreenPatches {
         DropdownMenu runTypeFilter = getDropdown(screen, "runTypeFilter");
         if (dropdownHovered(runTypeFilter))
             return runTypeFilter;
+        ArrayList<TinyCard> cards = (ArrayList<TinyCard>) ReflectionHacks.getPrivate(screen, RunHistoryScreen.class,
+                "cards");
+        for (TinyCard card : cards) {
+            if (card.hb.hovered) {
+                return card;
+            }
+        }
         return null;
     }
 
@@ -46,6 +58,7 @@ public class RunHistoryScreenPatches {
     public static class ChangedSelectionToPatch {
 
         public static void Postfix(RunHistoryScreen __instance) {
+            // This resets the dropdown object entirely so it needs to be reregistered
             DropdownMenu runsDropdown = getDropdown(__instance, "runsDropdown");
             UIRegistry.register(runsDropdown, new DropdownElement(runsDropdown, "runs"));
         }
@@ -75,6 +88,10 @@ public class RunHistoryScreenPatches {
                 UIElement element = UIRegistry.getUI(hovered);
                 if (element != null)
                     Output.setUI(element);
+                else if (hovered instanceof TinyCard) {
+                    TinyCard card = (TinyCard) hovered;
+                    Output.setUI(new CardElement(card.card, CardLocation.OTHER));
+                }
             }
             prevHovered = hovered;
         }
