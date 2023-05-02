@@ -32,7 +32,8 @@ public class AbstractRelicPatch {
             if (__instance.hb.justHovered) {
                 AbstractPlayer player = OutputUtils.getPlayer();
                 RelicElement.RelicLocation location = RelicElement.RelicLocation.OTHER;
-                if (CardCrawlGame.mainMenuScreen.screen == MainMenuScreen.CurScreen.RELIC_VIEW)
+                if (CardCrawlGame.mainMenuScreen.screen == MainMenuScreen.CurScreen.RELIC_VIEW
+                        || CardCrawlGame.mainMenuScreen.screen == MainMenuScreen.CurScreen.RUN_HISTORY)
                     return;
                 if (player != null && player.relics.indexOf(__instance) >= 0) {
                     location = RelicElement.RelicLocation.MAIN_SCREEN;

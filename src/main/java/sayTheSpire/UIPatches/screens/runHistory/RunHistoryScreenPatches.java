@@ -2,15 +2,21 @@ import java.util.ArrayList;
 import com.megacrit.cardcrawl.actions.utility.HideHealthBarAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.Hitbox;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.options.DropdownMenu;
+import com.megacrit.cardcrawl.screens.runHistory.RunHistoryPath;
 import com.megacrit.cardcrawl.screens.runHistory.RunHistoryScreen;
+import com.megacrit.cardcrawl.screens.runHistory.RunPathElement;
 import com.megacrit.cardcrawl.screens.runHistory.TinyCard;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import basemod.ReflectionHacks;
 import sayTheSpire.ui.elements.CardElement;
 import sayTheSpire.ui.elements.DropdownElement;
+import sayTheSpire.ui.elements.RelicElement;
+import sayTheSpire.ui.elements.RunPathViewElement;
 import sayTheSpire.ui.elements.UIElement;
 import sayTheSpire.ui.elements.CardElement.CardLocation;
+import sayTheSpire.ui.positions.GridPosition;
 import sayTheSpire.ui.UIRegistry;
 import sayTheSpire.Output;
 
@@ -49,6 +55,21 @@ public class RunHistoryScreenPatches {
         for (TinyCard card : cards) {
             if (card.hb.hovered) {
                 return card;
+            }
+        }
+        RunHistoryPath path = (RunHistoryPath) ReflectionHacks.getPrivate(screen, RunHistoryScreen.class, "runPath");
+        if (path != null) {
+            for (RunPathElement e : path.pathElements) {
+                if (e.hb.hovered)
+                    return e;
+            }
+        }
+        ArrayList<AbstractRelic> relics = (ArrayList<AbstractRelic>) ReflectionHacks.getPrivate(screen,
+                RunHistoryScreen.class, "relics");
+        if (relics != null) {
+            for (AbstractRelic relic : relics) {
+                if (relic.hb.hovered)
+                    return relic;
             }
         }
         return null;
@@ -90,7 +111,23 @@ public class RunHistoryScreenPatches {
                     Output.setUI(element);
                 else if (hovered instanceof TinyCard) {
                     TinyCard card = (TinyCard) hovered;
-                    Output.setUI(new CardElement(card.card, CardLocation.OTHER));
+                    Output.setUI(new CardElement(card.card, CardLocation.OTHER,
+                            new GridPosition(card.col + 1, card.row + 1)));
+                } else if (hovered instanceof RunPathElement) {
+                    RunPathElement path = (RunPathElement) hovered;
+                    Output.setUI(new RunPathViewElement(path, new GridPosition(path.col + 1, path.row + 1)));
+                } else if (hovered instanceof AbstractRelic) {
+                    AbstractRelic relic = (AbstractRelic) hovered;
+                    ArrayList<AbstractRelic> relics = (ArrayList<AbstractRelic>) ReflectionHacks.getPrivate(__instance,
+                            RunHistoryScreen.class, "relics");
+                    GridPosition position = null;
+                    if (relics != null) {
+                        int index = relics.indexOf(relic);
+                        if (index >= 0) {
+                            position = new GridPosition(index % 15 + 1, index / 15 + 1);
+                        }
+                    }
+                    Output.setUI(new RelicElement(relic, RelicElement.RelicLocation.OTHER, position));
                 }
             }
             prevHovered = hovered;
