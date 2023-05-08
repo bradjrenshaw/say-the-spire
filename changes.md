@@ -3,6 +3,7 @@
 ## 0.5.0-Beta
 
 * Added: The run history screen is now fully supported.
+* Fixed: element types (such as button) will now actually be localized
 
 ## 0.4.2-BETA (2023-02-26)
 

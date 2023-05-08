@@ -59,8 +59,8 @@ public abstract class UIElement {
             String type = this.getTypeString();
             if (type != null && !Output.config.getExcludedTypenames().contains(type)) {
                 String localizedType = Output.localization.localize("ui.types." + type);
-                if (localizedType == null)
-                    localizedType = type;
+                if (localizedType != null)
+                    type = localizedType;
                 sb.append(" " + type);
             }
         }
