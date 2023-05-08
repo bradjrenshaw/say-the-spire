@@ -1,15 +1,23 @@
+import java.lang.reflect.Method;
 import java.util.ArrayList;
-import com.megacrit.cardcrawl.actions.utility.HideHealthBarAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.daily.mods.AbstractDailyMod;
 import com.megacrit.cardcrawl.helpers.Hitbox;
+import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.options.DropdownMenu;
+import com.megacrit.cardcrawl.screens.runHistory.CopyableTextElement;
+import com.megacrit.cardcrawl.screens.runHistory.ModIcons;
 import com.megacrit.cardcrawl.screens.runHistory.RunHistoryPath;
 import com.megacrit.cardcrawl.screens.runHistory.RunHistoryScreen;
 import com.megacrit.cardcrawl.screens.runHistory.RunPathElement;
 import com.megacrit.cardcrawl.screens.runHistory.TinyCard;
+import com.megacrit.cardcrawl.screens.stats.RunData;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import basemod.ReflectionHacks;
+import sayTheSpire.buffers.Buffer;
 import sayTheSpire.ui.elements.CardElement;
 import sayTheSpire.ui.elements.DropdownElement;
 import sayTheSpire.ui.elements.RelicElement;
@@ -18,9 +26,14 @@ import sayTheSpire.ui.elements.UIElement;
 import sayTheSpire.ui.elements.CardElement.CardLocation;
 import sayTheSpire.ui.positions.GridPosition;
 import sayTheSpire.ui.UIRegistry;
+import sayTheSpire.TextParser;
 import sayTheSpire.Output;
 
 public class RunHistoryScreenPatches {
+
+    private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("RunHistoryScreen");
+
+    public static final String[] TEXT = uiStrings.TEXT;
 
     private static Object prevHovered = null;
 
@@ -73,6 +86,64 @@ public class RunHistoryScreenPatches {
             }
         }
         return null;
+    }
+
+    static void setupExtraBuffer(RunHistoryScreen screen) {
+        Buffer buffer = Output.buffers.getBuffer("UI extra");
+        if (buffer == null)
+            return;
+        buffer.clear();
+        buffer.setEnabled(true);
+        RunData data = (RunData) ReflectionHacks.getPrivate(screen, RunHistoryScreen.class, "viewedRun");
+        if (data == null) {
+            buffer.add(TextParser.parse(TEXT[4]));
+        } else {
+            try {
+                Method characterText = RunHistoryScreen.class.getDeclaredMethod("characterText", String.class);
+                characterText.setAccessible(true);
+                String name = (String) characterText.invoke(screen, data.character_chosen);
+                buffer.add(name);
+                CopyableTextElement seed = (CopyableTextElement) ReflectionHacks.getPrivate(screen,
+                        RunHistoryScreen.class, "seedElement");
+                String seedText = seed.getText();
+                if (seedText != null && !seedText.isEmpty()) {
+                    buffer.add(seedText);
+                }
+                CopyableTextElement customSeed = (CopyableTextElement) ReflectionHacks.getPrivate(screen,
+                        RunHistoryScreen.class, "secondSeedElement");
+                String customSeedText = customSeed.getText();
+                if (customSeedText != null && !customSeedText.isEmpty()) {
+                    buffer.add(customSeedText);
+                }
+                String specialMode = "";
+                if (data.is_daily) {
+                    specialMode = TEXT[27];
+                } else if (data.is_ascension_mode) {
+                    specialMode = TEXT[5] + data.ascension_level;
+                }
+                String result = "";
+                if (data.victory) {
+                    result = TEXT[8] + specialMode;
+                } else {
+                    if (data.killed_by == null) {
+                        result = String.format(TEXT[7], Integer.valueOf(data.floor_reached)) + specialMode;
+                    } else {
+                        result = String.format(TEXT[6], Integer.valueOf(data.floor_reached),
+                                MonsterHelper.getEncounterName(data.killed_by)) + specialMode;
+                    }
+                }
+                buffer.add(result);
+                buffer.add(String.format(TEXT[22], Integer.valueOf(data.score)));
+                ModIcons icons = (ModIcons) ReflectionHacks.getPrivate(screen, RunHistoryScreen.class, "modIcons");
+                ArrayList<AbstractDailyMod> mods = (ArrayList<AbstractDailyMod>) ReflectionHacks.getPrivate(icons,
+                        ModIcons.class, "dailyModList");
+                for (AbstractDailyMod m : mods) {
+                    buffer.add(m.name + "\n" + m.description);
+                }
+            } catch (Exception e) {
+                return;
+            }
+        }
     }
 
     @SpirePatch(clz = RunHistoryScreen.class, method = "changedSelectionTo")
@@ -129,6 +200,7 @@ public class RunHistoryScreenPatches {
                     }
                     Output.setUI(new RelicElement(relic, RelicElement.RelicLocation.OTHER, position));
                 }
+                setupExtraBuffer(__instance);
             }
             prevHovered = hovered;
         }
