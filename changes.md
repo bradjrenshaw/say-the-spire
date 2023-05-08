@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.5.0-Beta
+
+* Added: The run history screen is now fully supported.
+
 ## 0.4.2-BETA (2023-02-26)
 
 * Added: Added an official API for other mods to interact with Say the Spire. for more information, please see the relevant section of the documentation.
