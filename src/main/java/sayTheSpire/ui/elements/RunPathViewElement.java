@@ -38,4 +38,8 @@ public class RunPathViewElement extends UIElement {
             return "tooltip text broke";
         }
     }
+
+    public String getTypeString() {
+        return null;
+    }
 }

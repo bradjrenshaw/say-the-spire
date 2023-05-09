@@ -89,6 +89,9 @@ public class DropdownElement extends UIElement {
         }
         int index = this.getIndex();
         int visibleStart = dropdown.topVisibleRowIndex;
+
+        // need to delay when scrolling, otherwise the cursor will read unfocused rows during the transition
+        // 3 frames seems to be enough
         if (visibleStart != this.prevVisibleStart) {
             this.prevVisibleStart = visibleStart;
             this.delayFrames = 3;
