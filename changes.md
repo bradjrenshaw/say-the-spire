@@ -4,6 +4,8 @@
 
 * Added: The run history screen is now fully supported.
 * Fixed: element types (such as button) will now actually be localized
+* Fixed: the dropdown menus have been refactored behind the scenes. This shouldn't have any noticeable effects but please report it if there are any.
+* Added: Russian localization (thanks @darrthscorrp)
 
 ## 0.4.2-BETA (2023-02-26)
 
