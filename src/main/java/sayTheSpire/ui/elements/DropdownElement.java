@@ -110,4 +110,13 @@ public class DropdownElement extends UIElement {
         }
     }
 
+    public String getStatusString() {
+        int index = this.getDropdownMenu().getSelectedIndex();
+        if (index < 0)
+            return null;
+        DropdownRowElement row = this.getRowElement(index);
+        if (row == null)
+            return null;
+        return row.getLabel();
+    }
 }
