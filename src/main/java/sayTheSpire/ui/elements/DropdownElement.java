@@ -31,7 +31,7 @@ public class DropdownElement extends UIElement {
         super("dropdown");
         this.dropdown = dropdown;
         this.name = name;
-        this.autoAnnounceHover = false;
+        this.autoAnnounceHover = autoAnnounceHover;
         this.prevIndex = -1;
         this.prevVisibleStart = -1;
         this.delayFrames = 0;
@@ -109,4 +109,5 @@ public class DropdownElement extends UIElement {
             this.prevIndex = index;
         }
     }
+
 }

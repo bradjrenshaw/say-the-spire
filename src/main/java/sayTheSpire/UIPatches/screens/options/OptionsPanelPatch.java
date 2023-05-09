@@ -32,17 +32,17 @@ public class OptionsPanelPatch {
 
     public static void initializeFPSDropdown(OptionsPanel panel, DropdownMenu dropdown) {
         String name = TextParser.parse(graphicsOptions[1]);
-        UIRegistry.register(dropdown, new DropdownElement(dropdown, name));
+        UIRegistry.register(dropdown, new DropdownElement(dropdown, name, true));
     }
 
     public static void initializeLanguageDropdown(OptionsPanel panel, DropdownMenu dropdown) {
         String name = TextParser.parse(TEXT[13]);
-        UIRegistry.register(dropdown, new DropdownElement(dropdown, name));
+        UIRegistry.register(dropdown, new DropdownElement(dropdown, name, true));
     }
 
     public static void initializeResoDropdown(OptionsPanel panel, DropdownMenu dropdown) {
         String name = TextParser.parse(graphicsOptions[0]);
-        UIRegistry.register(dropdown, new DropdownElement(dropdown, name));
+        UIRegistry.register(dropdown, new DropdownElement(dropdown, name, true));
     }
 
     @SpirePatch(clz = OptionsPanel.class, method = SpirePatch.CONSTRUCTOR)
