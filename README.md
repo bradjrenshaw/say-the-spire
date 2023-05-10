@@ -2,7 +2,7 @@
 
 A mod for the game Slay the Spire that provides blind accessibility.
 
-* This only works on Windows for now
+* This only works on Windows and Linux for now
 * Only the Steam version of the game is officially supported, however modding may work with other versions.
 
 ## Installation and Usage
@@ -24,7 +24,7 @@ Documentation for the mod can be found [here](https://bradjrenshaw.github.io/say
 * Certain text (such as the character select text screen's title) don't automatically read. This is being worked on.
 * Required controller inputs are not read/viewable. This is being worked on.
 * The UI can jump between cards a few times (for example when retaining cards as the silent). this isn't an issue I can fix and does not break the game in any way.
-* Currently certain text is only read in English (for example UI element types).
+* The resolution dropdown in the settings screen appears buggy with the latest beta. This is actually an issue with the game; the dropdown can't be interacted with when full screen is disabled and with certain screen resolutions. The mod was previously reading selections when it shouldn't have been.
 
 ## Beta Testers
 Thanks to the beta testers who tested the public and private betas, including but not limited to:
