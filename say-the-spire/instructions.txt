@@ -1,1 +1,0 @@
-For setup instructions and documentation, please open index.html in the docs folder.
