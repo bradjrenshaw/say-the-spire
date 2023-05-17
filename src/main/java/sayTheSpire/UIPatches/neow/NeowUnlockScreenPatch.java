@@ -9,6 +9,7 @@ import sayTheSpire.Output;
 public class NeowUnlockScreenPatch {
 
     public static void handleOpen(ArrayList<AbstractUnlock> bundle) {
+        Output.text("The open is being called.", false);
         if (bundle.size() <= 0)
             return;
         switch (bundle.get(0).type) {
@@ -31,7 +32,7 @@ public class NeowUnlockScreenPatch {
     @SpirePatch(clz = NeowUnlockScreen.class, method = "open", paramtypez = { ArrayList.class, boolean.class })
     public static class OpenPatch {
 
-        public static void postfix(NeowUnlockScreen __instance, ArrayList<AbstractUnlock> bundle, Boolean isVictory) {
+        public static void Postfix(NeowUnlockScreen __instance, ArrayList<AbstractUnlock> bundle, boolean isVictory) {
             handleOpen(bundle);
         }
     }
@@ -39,7 +40,7 @@ public class NeowUnlockScreenPatch {
     @SpirePatch(clz = NeowUnlockScreen.class, method = "reOpen")
     public static class ReOpenPatch {
 
-        public static void postfix(NeowUnlockScreen __instance) {
+        public static void Postfix(NeowUnlockScreen __instance) {
             handleOpen(__instance.unlockBundle);
         }
     }

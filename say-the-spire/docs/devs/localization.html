@@ -1,0 +1,231 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Localizing the Mod - Say the Spire Documentation</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../intro.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="../installation.html">Installation and Setup</a></li><li class="chapter-item expanded affix "><a href="../important.html">Important Notes</a></li><li class="chapter-item expanded affix "><li class="part-title">Mod Usage</li><li class="chapter-item expanded "><a href="../mod/general.html"><strong aria-hidden="true">1.</strong> General Overview</a></li><li class="chapter-item expanded "><a href="../mod/ui.html"><strong aria-hidden="true">2.</strong> UI</a></li><li class="chapter-item expanded "><a href="../mod/map.html"><strong aria-hidden="true">3.</strong> The Map</a></li><li class="chapter-item expanded affix "><li class="part-title">Input</li><li class="chapter-item expanded "><a href="../input/virtual.html"><strong aria-hidden="true">4.</strong> Keyboard Support and Virtual Input</a></li><li class="chapter-item expanded "><a href="../input/controls.html"><strong aria-hidden="true">5.</strong> Controls</a></li><li class="chapter-item expanded affix "><li class="part-title">Configuration</li><li class="chapter-item expanded "><a href="../config.html"><strong aria-hidden="true">6.</strong> Config Files and Changing Mod Settings</a></li><li class="chapter-item expanded affix "><li class="part-title">For Developers</li><li class="chapter-item expanded "><a href="../devs/compilation.html"><strong aria-hidden="true">7.</strong> Compiling the Mod from Source</a></li><li class="chapter-item expanded "><a href="../devs/localization.html" class="active"><strong aria-hidden="true">8.</strong> Localizing the Mod</a></li><li class="chapter-item expanded "><a href="../devs/api.html"><strong aria-hidden="true">9.</strong> Mod API</a></li><li class="chapter-item expanded affix "><li class="part-title">Additional Information</li><li class="chapter-item expanded "><a href="../changes.html"><strong aria-hidden="true">10.</strong> Change Log</a></li><li class="chapter-item expanded "><a href="../issues.html"><strong aria-hidden="true">11.</strong> Known Issues</a></li><li class="chapter-item expanded "><a href="../credits.html"><strong aria-hidden="true">12.</strong> Credits</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Say the Spire Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="localization"><a class="header" href="#localization">Localization</a></h1>
+<p>The mod can be localized into any language the game supports. Currently there are no language files besides English implemented. This page provides information on how the system works and how to submit language files. Keep in mind that this feature is still in early beta and that more strings will be added as the mod develops, though the currently existing strings shouldn't change.</p>
+<p>You will need to be comfortable with the json file format and to be familiar with how java projects and Slay the Spire mods are compiled. For more info on this I recommend looking at the available documentation for ModTheSpire. I also recommend looking at the notes for translators file compiled with the game's .jar file (/localization/TRANSLATOR_README.txt).</p>
+<h2 id="how-it-works"><a class="header" href="#how-it-works">How it Works</a></h2>
+<p>Language files are written in the json format. When Say the Spire outputs localized text, it checks 3 locations in order, falling back to the next one if no localization string matching the text to be localized is found in that file:</p>
+<ul>
+<li>your mod config directory/sayTheSpire/languageTemp.json (note this is the folder where settings for Say the Spire are stored on your hard drive, not in the mod .jar file)</li>
+<li>/localization/langcode/say-the-spire.json (this is bundled in the mod .jar file)</li>
+<li>/localization/eng/say-the-spire.json (this is bundled in the mod .jar file)</li>
+</ul>
+<p>An example of a set of localization strings would look like this (from the localization strings for the card buffer):</p>
+<pre><code class="language-json">    &quot;card&quot;: {
+      &quot;faceDown&quot;: &quot;face down card&quot;,
+      &quot;localizedName&quot;: &quot;current card&quot;,
+      &quot;localizedNameUpgraded&quot;: &quot;upgrade preview&quot;,
+      &quot;noFurtherUpgrade&quot;: &quot;This card cannot be upgraded any further.&quot;,
+      &quot;noObj&quot;: &quot;No card available; report to mod developer.&quot;,
+      &quot;content&quot;: {
+        &quot;cost&quot;: &quot;{cost} energy&quot;,
+        &quot;typeAndRarity&quot;: &quot;{type} type, {rarity} rarity&quot;,
+        &quot;unknownKeyword&quot;: &quot;Unknown keyword {unknownKeyword} found; report to mod developer.&quot;
+      }
+    },
+</code></pre>
+<p>The keys are just references that Say the Spire uses for the localization strings themselves; the strings are the values of each object (the text in quotes after the ':'). Any text surrounded by {}, for example &quot;{cost} energy&quot;, is a substitution. When the string is localized, it will substitute the {energy} for the amount of energy required to play the card. As an example, for bash this string would render as &quot;2 energy&quot; in English. Note that substitutions themselves are assumed to be localized (for example, if a substitution {rarity} held a card rarity, the text passed to that substitution would be localized already.)</p>
+<h2 id="how-to-localize"><a class="header" href="#how-to-localize">How to Localize</a></h2>
+<p>To localize the mod for a given language:</p>
+<ul>
+<li>If there is no file for a language, start with the english json file and use that as a base. If you are working on a preexisting language file, copy it from the corresponding src/main/resources/localization directory and use it as a base. You can save this in your mod config directory as languageTemp.json; this file will have priority over any other language file. This means that you won't have to recompile the entire mod every time you make a change.</li>
+<li>Change the strings for all values in each object (do not change any keys). Make sure to preserve all substitutions (for example {maxHealth}). Note that the language file will not automatically reload when it is updated; you must currently restart the game for your changes to take effect.</li>
+<li>When you have finished working on your file, there are a few ways you can submit changes:
+<ul>
+<li>Fork the repository, copy your file to the correct src/main/resources/localization folder and submit a pull request. This is the recommended approach.</li>
+<li>Open an issue on the github repository and attach your .json file to it.</li>
+</ul>
+</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../devs/compilation.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../devs/api.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../devs/compilation.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../devs/api.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>
