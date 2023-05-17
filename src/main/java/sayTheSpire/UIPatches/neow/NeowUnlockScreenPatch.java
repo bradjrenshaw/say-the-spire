@@ -9,7 +9,6 @@ import sayTheSpire.Output;
 public class NeowUnlockScreenPatch {
 
     public static void handleOpen(ArrayList<AbstractUnlock> bundle) {
-        Output.text("The open is being called.", false);
         if (bundle.size() <= 0)
             return;
         switch (bundle.get(0).type) {
