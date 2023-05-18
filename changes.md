@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.5.0-beta
+
+* Added: Support for the leaderboard screens (currently only filter buttons)
+
 ## 0.4.3-Beta
 
 * Added: The run history screen is now fully supported.
