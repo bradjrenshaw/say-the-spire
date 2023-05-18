@@ -87,6 +87,7 @@ public class Output {
         BufferControls.buffers = buffers;
         buffers.add(new Buffer("unknown", "UI"));
         buffers.add(new Buffer("unknown", "UI extra"));
+        buffers.add(new LeaderboardBuffer());
         buffers.add(new CardBuffer("current card"));
         buffers.add(new CardBuffer("upgrade preview", true));
         buffers.add(new EventBuffer("events"));

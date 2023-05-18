@@ -19,6 +19,9 @@
     "event": {
       "localizedName": "event"
     },
+    "leaderboard": {
+      "localizedName": "leaderboard"
+    },
     "monster": {
      "localizedName": "monster",
      "noObj": "No monster available; report to mod developer.",

@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.helpers.ModHelper;
 import java.util.ArrayList;
 import sayTheSpire.Output;
 import sayTheSpire.TextParser;
+import sayTheSpire.buffers.Buffer;
 
 public class DailyScreenPatch {
 
@@ -93,11 +94,23 @@ public class DailyScreenPatch {
         return sb.toString();
     }
 
+    @SpirePatch(clz = DailyScreen.class, method = "hide")
+    public static class HidePatch {
+
+        public static void Postfix(DailyScreen __instance) {
+            Buffer buffer = Output.buffers.getBuffer("leaderboard");
+            buffer.setEnabled(false);
+        }
+    }
+
     @SpirePatch(clz = DailyScreen.class, method = "determineLoadout")
     public static class OpenPatch {
 
         public static void Postfix(DailyScreen __instance) {
             Output.text(getStatusString(__instance), false);
+            Output.setupUIBuffer(getUIBuffer(__instance));
+            Buffer buffer = Output.buffers.getBuffer("leaderboard");
+            buffer.setEnabled(true);
         }
     }
 
@@ -105,7 +118,6 @@ public class DailyScreenPatch {
     public static class UpdatePatch {
 
         public static void Postfix(DailyScreen __instance) {
-            Output.setupUIBuffer(getUIBuffer(__instance));
         }
     }
 }
