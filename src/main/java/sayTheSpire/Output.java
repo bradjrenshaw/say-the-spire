@@ -30,7 +30,7 @@ import sayTheSpire.buffers.*;
 
 public class Output {
 
-    public static String modVersion = "0.4.3-beta";
+    public static String modVersion = "0.5.0-beta";
 
     private static Logger logger = LogManager.getLogger(Output.class.getName());
 

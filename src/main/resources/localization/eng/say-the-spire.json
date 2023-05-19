@@ -20,7 +20,11 @@
       "localizedName": "event"
     },
     "leaderboard": {
-      "localizedName": "leaderboard"
+      "localizedName": "leaderboard",
+      "content": {
+        "scoreEntry": "{rank}: {name}, score {score}",
+        "timeEntry": "{rank}: {name}, time {time}"
+      }
     },
     "monster": {
      "localizedName": "monster",
@@ -275,6 +279,8 @@
     "characterString": "{label} {name}",
     "modString": "{name}: {description}",
     "offlineDateString": "{date} {label}",
+    "scoreDateString": "Viewing scores from {date}",
+    "scoreIndicesString": "Displaying ranks {start} to {end}",
     "timeRemainingString": "{label} {time}"
   },
   "DiscardPileViewScreen": {

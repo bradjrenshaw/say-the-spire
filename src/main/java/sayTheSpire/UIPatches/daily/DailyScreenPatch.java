@@ -6,14 +6,26 @@ import com.megacrit.cardcrawl.daily.DailyScreen;
 import com.megacrit.cardcrawl.daily.TimeHelper;
 import com.megacrit.cardcrawl.daily.mods.AbstractDailyMod;
 import com.megacrit.cardcrawl.helpers.ModHelper;
+import com.megacrit.cardcrawl.screens.leaderboards.LeaderboardEntry;
+
 import java.util.ArrayList;
 import sayTheSpire.Output;
 import sayTheSpire.TextParser;
 import sayTheSpire.buffers.Buffer;
+import sayTheSpire.buffers.LeaderboardBuffer;
 
 public class DailyScreenPatch {
 
+    public static int prevStartIndex = -1;
+    public static long prevDay = 0;
+
     public static final String[] TEXT = (CardCrawlGame.languagePack.getUIString("DailyScreen")).TEXT;
+
+    static void setupLeaderboardBuffer(DailyScreen screen, LeaderboardBuffer buffer) {
+        for (LeaderboardEntry entry : screen.entries) {
+            buffer.add(entry);
+        }
+    }
 
     public static String getAchievementsString() {
         if (!Settings.usesTrophies) {
@@ -118,6 +130,23 @@ public class DailyScreenPatch {
     public static class UpdatePatch {
 
         public static void Postfix(DailyScreen __instance) {
+            long currentDay = (long) ReflectionHacks.getPrivate(__instance, DailyScreen.class, "currentDay");
+            LeaderboardBuffer buffer = (LeaderboardBuffer) Output.buffers.getBuffer("leaderboard");
+            if (__instance.waiting) {
+                buffer.clear();
+                return;
+            } else if (currentDay != prevDay) {
+                Output.textLocalized("ui.screens.dailyScreen.scoreDateString", false, "date",
+                        TimeHelper.getDate(currentDay));
+                prevDay = currentDay;
+                setupLeaderboardBuffer(__instance, buffer);
+            } else if (__instance.currentStartIndex != prevStartIndex) {
+                Output.textLocalized("ui.screens.dailyScreen.scoreIndicesString", false, "start",
+                        __instance.currentStartIndex, "end",
+                        __instance.currentStartIndex + __instance.entries.size() - 1);
+                setupLeaderboardBuffer(__instance, buffer);
+                prevStartIndex = __instance.currentStartIndex;
+            }
         }
     }
 }
