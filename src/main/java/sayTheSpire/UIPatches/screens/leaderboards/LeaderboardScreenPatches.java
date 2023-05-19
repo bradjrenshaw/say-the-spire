@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import com.megacrit.cardcrawl.screens.leaderboards.FilterButton;
+import com.megacrit.cardcrawl.screens.leaderboards.LeaderboardEntry;
 import com.megacrit.cardcrawl.screens.leaderboards.LeaderboardScreen;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import sayTheSpire.ui.elements.ButtonElement;
@@ -10,6 +11,15 @@ import sayTheSpire.Output;
 import sayTheSpire.buffers.LeaderboardBuffer;
 
 public class LeaderboardScreenPatches {
+
+    public static int prevIndex = -1;
+
+    public static void updateLeaderboardBuffer(LeaderboardScreen screen, LeaderboardBuffer buffer) {
+        buffer.clear();
+        for (LeaderboardEntry entry : screen.entries) {
+            buffer.add(entry);
+        }
+    }
 
     public static void registerButtonList(ArrayList<FilterButton> buttons, String filterName) {
         int count = buttons.size();
@@ -42,4 +52,21 @@ public class LeaderboardScreenPatches {
         }
     }
 
+    @SpirePatch(clz = LeaderboardScreen.class, method = "update")
+    public static class UpdatePatch {
+
+        public static void Postfix(LeaderboardScreen __instance) {
+            LeaderboardBuffer buffer = (LeaderboardBuffer) Output.buffers.getBuffer("leaderboard");
+            if (__instance.waiting) {
+                buffer.clear();
+                prevIndex = -1;
+            } else if (__instance.currentStartIndex != prevIndex) {
+                Output.textLocalized("ui.screens.dailyScreen.scoreIndicesString", false, "start",
+                        __instance.currentStartIndex, "end",
+                        __instance.currentStartIndex + __instance.entries.size() - 1);
+                updateLeaderboardBuffer(__instance, buffer);
+                prevIndex = __instance.currentStartIndex;
+            }
+        }
+    }
 }

@@ -23,7 +23,7 @@
       "localizedName": "leaderboard",
       "content": {
         "scoreEntry": "{rank}: {name}, score {score}",
-        "timeEntry": "{rank}: {name}, time {time}"
+        "timeEntry": "{rank}: {name}, time {date}"
       }
     },
     "monster": {

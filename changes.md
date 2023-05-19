@@ -2,9 +2,9 @@
 
 ## 0.5.0-beta
 
-* Added: Support for the leaderboard screens (currently only filter buttons)
 * Fixed: The daily run screen will no longer constantly force the buffer focus onto the UI buffer.
 * Added: The daily leaderboard is now supported.
+* Added: The leaderboards screen is now supported.
 
 ## 0.4.3-Beta
 
