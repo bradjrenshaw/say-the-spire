@@ -3,13 +3,13 @@ package sayTheSpire.ui.elements;
 import java.util.ArrayList;
 import com.megacrit.cardcrawl.screens.leaderboards.FilterButton;
 import sayTheSpire.ui.positions.Position;
-import sayTheSpire.Output;
 import sayTheSpire.buffers.BufferManager;
+import sayTheSpire.buffers.LeaderboardBuffer;
+import sayTheSpire.Output;
 
 public class LeaderboardFilterButtonElement extends UIElement {
 
     private FilterButton button;
-    private Position position;
     private Boolean prevActive;
 
     public LeaderboardFilterButtonElement(FilterButton button, Position position) {
@@ -31,6 +31,8 @@ public class LeaderboardFilterButtonElement extends UIElement {
         FilterButton button = this.getButton();
         if (button.hb.justHovered) {
             Output.setUI(this);
+            LeaderboardBuffer buffer = (LeaderboardBuffer) Output.buffers.getBuffer("leaderboard");
+            buffer.setEnabled(true);
         }
         Boolean currentActive = this.getEnabled();
         if (currentActive != prevActive) {

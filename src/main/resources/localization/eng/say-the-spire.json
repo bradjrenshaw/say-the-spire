@@ -295,6 +295,11 @@
   "ExhaustPileViewScreen": {
     "title": "Exhaust pile view, {cards} cards"
   },
+  "LeaderboardScreen": {
+    "character buttons": "character buttons",
+    "region buttons": "region buttons",
+    "type buttons": "type buttons"
+  },
   "MasterDeckViewScreen": {
     "title": "Master deck view, {cards} cards"
   },

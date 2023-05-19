@@ -7,6 +7,7 @@ import sayTheSpire.ui.elements.LeaderboardFilterButtonElement;
 import sayTheSpire.ui.positions.CategoryListPosition;
 import sayTheSpire.ui.UIRegistry;
 import sayTheSpire.Output;
+import sayTheSpire.buffers.LeaderboardBuffer;
 
 public class LeaderboardScreenPatches {
 
@@ -16,8 +17,18 @@ public class LeaderboardScreenPatches {
             return;
         for (int i = 0; i < count; i++) {
             FilterButton button = buttons.get(i);
-            CategoryListPosition position = new CategoryListPosition(i, count, filterName);
+            CategoryListPosition position = new CategoryListPosition(i, count,
+                    Output.localization.localize("ui.screens.LeaderboardScreen." + filterName));
             UIRegistry.register(button, new LeaderboardFilterButtonElement(button, position));
+        }
+    }
+
+    @SpirePatch(clz = LeaderboardScreen.class, method = "hide")
+    public static class HidePatch {
+
+        public static void Postfix(LeaderboardScreen __instance) {
+            LeaderboardBuffer buffer = (LeaderboardBuffer) Output.buffers.getBuffer("leaderboard");
+            buffer.setEnabled(false);
         }
     }
 
