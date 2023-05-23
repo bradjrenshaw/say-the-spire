@@ -6,6 +6,7 @@
 * Added: The daily leaderboard is now supported.
 * Added: The leaderboards screen is now supported.
 * Added: The credits are now read out.
+* Added: The patch notes screen is now supported.
 
 ## 0.4.3-Beta
 

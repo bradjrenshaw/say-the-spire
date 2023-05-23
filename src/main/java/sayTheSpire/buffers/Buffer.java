@@ -128,4 +128,10 @@ public class Buffer {
     public int getPosition() {
         return this.position;
     }
+
+    public void setPosition(int position) {
+        if (position < 0 || position >= this.size())
+            return;
+        this.position = position;
+    }
 }
