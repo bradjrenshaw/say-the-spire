@@ -1,14 +1,17 @@
 # Change Log
 
-## 0.5.0-beta
+## 0.5.0-beta (2023-05-24)
 
+This is the last major UI patch before version 1.0. This adds support for the few remaining inaccessible screens and fixes missing unlock texts. Note that, despite the leaderboard and daily leaderboard screens being supported, your own scores will not be automatically uploaded due to Slay the Spire preventing modded games from posting scores.
+
+* Added: Unlock texts (such as cards, characters, and relics being unlocked) will now be read correctly. Note that you can't view information on what you just unlocked on the unlock screen; this is a game limitation as far as I can tell and everyone has to check other screens for that info.
 * Fixed: The daily run screen will no longer constantly force the buffer focus onto the UI buffer.
 * Added: The daily leaderboard is now supported.
 * Added: The leaderboards screen is now supported.
 * Added: The credits are now read out.
 * Added: The patch notes screen is now supported.
 
-## 0.4.3-Beta
+## 0.4.3-Beta (2023-5-10)
 
 * Added: The run history screen is now fully supported.
 * Fixed: element types (such as button) will now actually be localized
