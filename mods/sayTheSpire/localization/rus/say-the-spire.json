@@ -1,0 +1,343 @@
+{
+  "buffers": {
+    "blight": {
+      "localizedName": "проклятая реликвия",
+      "noObj": "Проклятые реликвии недоступны; сообщите разработчику мода."
+    },
+    "card": {
+      "faceDown": "карта рубашкой вверх",
+      "localizedName": "описание карты",
+      "localizedNameUpgraded": "обзор улучшения",
+      "noFurtherUpgrade": "Эту карту больше нельзя улучшить.",
+      "noObj": "Карты недоступны; сообщите разработчику мода.",
+      "content": {
+        "cost": "{cost} энергии",
+        "typeAndRarity": "{type}, {rarity}",
+        "unknownKeyword": "Неизвестное ключевое слово {unknownKeyword}; сообщите разработчику мода."
+      }
+    },
+    "event": {
+      "localizedName": "событие"
+    },
+    "monster": {
+     "localizedName": "враг",
+     "noObj": "Враги недоступны; сообщите разработчику мода.",
+     "content": {
+      "hp": "{hp}/{hpMax} оз",
+      "block": "{block} защиты"
+     }
+    },
+    "orb": {
+      "localizedName": "сфера",
+      "noObj": "Сферы недоступны; сообщите разработчику мода."
+    },
+    "player": {
+      "localizedName": "игрок",
+      "noObj": "Игрок недоступен; сообщите разработчику мода.",
+      "content": {
+"hp": "{hp}/{hpMax} оз",
+"energy": "{energy} энергии",
+"block": "{block} защиты",
+"gold": "{gold} золота"
+      }
+    },
+   "potion": {
+    "localizedName": "зелье",
+    "noObj": "Зелья недоступны; сообщите разработчику мода.",
+    "content": {
+      "nameAndRarity": "{name}, {rarity}"
+    }
+   },
+   "relic": {
+    "localizedName": "реликвия",
+    "noObj": "Реликвии недоступны; сообщите разработчику мода.",
+    "content": {
+      "nameAndRarity": "{name}, {rarity}",
+      "counter": "{counter} счетчик"
+    }
+   }
+  },
+  "errors": {
+    "not in combat": "Вы не в бою.",
+    "not in run":"Вы не в забеге.",
+    "unknownGremlinMatchCard": "Ошибка: неизвестная карта Игры Гремлина, сообщите разработчику мода."
+  },
+  "events": {
+    "combatCardText": {
+"addedToDiscard": "{target} добавляется в сброс",
+"addedToDraw": "{target} добавляется в добор",
+"addedToHand": "{target} добавляется в руку",
+"discardShuffledIntoDraw": "Сброс замешивается в добор",
+"exhausted": "{target} сжигается"
+    },
+    "combatMonster": {
+      "defeated": "{target} погибает"
+    },
+    "combatOrb": {
+      "channel": "{target} заряжается в слот {slot}",
+      "evoke": "{target} в слоте {slot} разряжается",
+      "unknown": "Неизвестное действие сферы на цель {target}"
+    },
+    "dialogue": {
+      "text": "{source} {dialogueType}: {message}"
+    },
+"gainBlock": {
+"text": "{target} +{amount} защиты"
+},
+"misc": {
+"cardRemovedFromDeck": "{target} удаляется из колоды",
+"cardShownBriefly": "{target} предпросмотр"
+},
+"obtain": {
+  "cardAddedToDeck": "{target} добавляется в колоду",
+  "gold": "+{amount} золота",
+  "object": "{target} получено"
+},
+"power": {
+  "text": "{target} {message}"
+},
+"textAboveCreature": {
+  "text": "{target}: {message}"
+}
+  },
+  "misc": {
+    "versionString": "ИСпользуется Say the Spire версии {version}."
+  },
+  "map": {
+    "names": {
+      "boss": "босс",
+      "elite monster": "элитный враг",
+      "merchant": "торговец",
+      "monster": "враг",
+      "rest": "отдых",
+      "start location": "начальная точка",
+      "treasure": "сокровище",
+      "unknown": "неизвестно"
+    },
+    "navigators": {
+      "tree": {
+        "choice": "развилка",
+        "error focus null": "Нулевая пометка; сообщите разработчику мода",
+        "no path": "нет пути"
+      }
+    },
+    "tags": {
+      "burning icon": "пометка огня",
+      "player location": "{player} здесь",
+      "requires flight": "полёт"
+    }
+  },
+  "substitutions": {
+    "monster names": {
+      "SlaverBlue": "Синий Работорговец",
+      "SlaverRed": "Красный Работорговец"
+    }
+  },
+  "text": {
+    "accessibility notes": {
+      "keyboard": "Примечание доступности: Введите текст с клавиатуры"
+    },
+    "actions": {
+      "ShowMoveName": "{source}. {text}"
+    },
+    "buffers": {
+      "bufferIsEmpty": "{buffer}: буфер пуст",
+      "currentItem": "{buffer}: {item}",
+      "currentItemIsNull": "Нулевой объект буфера {buffer}, сообщите разработчику мода",
+"noBuffersAvailable": "Нет доступных буферов.",
+"noBufferSelected": "Буфер не выбран."
+    },
+    "cardRarity": {
+"basic": "базовая",
+"common": "обычная",
+"uncommon": "необычная",
+"rare": "редкая",
+"special": "особая",
+"curse": "проклятие"
+    },
+    "dialogueTypes": {
+"says": "говорит",
+"shouts": "кричит"
+    },
+    "npcNames": {
+      "merchant": "Торговец"
+    },
+"potionRarity": {
+  "placeholder": "карман",
+  "common": "обычное",
+  "uncommon": "необычное",
+  "rare": "редкое"
+},
+  "powers": {
+    "no powers": "Нет эффектов.",
+    "powerLabel": "{power} {amount}",
+    "powerListString": "{powers}, эффекты"
+  },
+"relicRarity": {
+  "deprecated": "устаревшая",
+  "starter": "начальная",
+  "common": "обычная",
+  "uncommon": "необычная",
+  "rare": "редкая",
+  "special": "особая",
+  "boss": "реликвия босса",
+  "shop": "покупная"
+}
+  },
+  "ui": {
+    "elements": {
+      "Card": {
+"face down": "рубашкой вверх"
+      },
+      "character button": {
+        "buffer gold": "{gold} золота",
+        "buffer health": "{health} здоровья",
+        "buffer max ascension": "{maxAscension} максимальное возвышение",
+        "buffer unlocks remaining": "{unlocksRemaining} предметов закрыто",
+"unknown unlock": "Неизвестный текст закрытого предмета; сообщите разработчику мода."
+      },
+      "CustomMod": {
+        "disabledOther": "{target} откл."
+      },
+      "gremlin match card": {
+        "flipped face down": "{target} переворачивается рубашкой вверх.",
+        "revealed card": "Перевернутая карта: {target}."
+      },
+      "game stat": {
+        "label": "{name}: {value}"
+      },
+      "monster": {
+        "hidden intent": "скрытое намерение",
+        "shortString": "{monster}, {intent}, защита {block}, {currentHealth}/{maxHealth}"
+      },
+      "relic": {
+        "counterString": "{counter} счетчик"
+      },
+      "shop item": {
+        "priceString": "({price} золота)",
+        "priceSaleString": "({price} золота, скидка)"
+      },
+      "slider": {
+        "statusString": "{value}%",
+        "unknownType": "Неизвестный тип ползунка; сообщите разработчику мода."
+      },
+      "toggle button": {
+        "unknownType": "Неизвестный тип переключателя; сообщите разработчику мода."
+      },
+      "treasure chest": {
+        "types": {
+          "small": "маленький",
+          "medium": "средний",
+          "large": "большой",
+          "boss": "сокровище босса",
+          "unknown": "неизвестный"
+        }
+      }
+    },
+    "misc info": {
+      "hiddenIntents": "скрытые намерения",
+      "incomingDamage": "{damage} входящего урона",
+      "noMonsters": "нет врагов",
+      "playerBlock": "{block} защиты",
+      "playerEnergy": "{energy} энергии",
+      "playerGold": "{gold} золота",
+      "playerHealth": "{hp}/{hpMax} оз"
+    },
+    "positions": {
+      "categoryList": "{position} из {total} {category}",
+      "grid": "{x}, {y}",
+      "list": "{position} из {total}"
+    },
+    "screens": {
+      "CardLibraryScreen": {
+        "categoryLabel": "{category} карты",
+        "types": {
+          "red": "красные",
+          "blue": "синие",
+          "green": "зелёные",
+          "purple": "пурпурные",
+          "curse": "проклятые",
+          "status": "статусные",
+          "unknown": "неизвестные"
+        }
+      },
+      "CharacterSelectScreen": {
+        "ascension off": "{label} откл."
+      },
+      "CustomModeScreen": {
+        "AN_seed": "Примечание доступности: Текущее зерно - {seed}.",
+          "seedString": "{label} ({seed})"
+      },
+  "dailyScreen": {
+    "characterString": "{label} {name}",
+    "modString": "{name}: {description}",
+    "offlineDateString": "{date} {label}",
+    "timeRemainingString": "{label} {time}"
+  },
+  "DiscardPileViewScreen": {
+    "title": "Стопка сброса, {cards} карт"
+  },
+  "DrawPileViewScreen": {
+    "title": "Стопка добора, {cards} карт"
+  },
+  "DungeonMapScreen": {
+    "boss scroll": "Карта прокручивается сверху вниз, показывая силуэт босса {boss}."
+  },
+  "ExhaustPileViewScreen": {
+    "title": "Сожженные карты, {cards} карт"
+  },
+  "MasterDeckViewScreen": {
+    "title": "Просмотр колоды, {cards} карт"
+  },
+  "PotionViewScreen": {
+    "categoryLabel": "{category} зелья",
+    "types": {
+      "common": "обычные",
+      "uncommon": "необычные",
+      "rare": "редкие",
+      "unknown": "неизвестные"
+    }
+  },
+  "RelicViewScreen": {
+    "categoryLabel": "{category} реликвии",
+    "types": {
+      "starter": "начальные",
+      "common": "обычные",
+      "uncommon": "необычные",
+      "rare": "редкие",
+      "boss": "реликвии босса",
+      "special": "особые",
+      "shop": "покупные"
+    }
+  }
+    },
+    "status": {
+      "ascending": "повышается",
+      "descending": "понижается",
+      "disabled": "не активно",
+      "locked": "закрыто",
+      "off": "выкл.",
+      "on": "вкл.",
+      "selected": "выбрано",
+      "unlocked": "открыто",
+      "unselected": "не выбрано"
+    },
+    "types": {
+      "achievement": "достижение",
+      "blight": "проклятая реликвия",
+      "button": "кнопка",
+      "card": "карта",
+      "character button": "персонаж",
+      "character stats": "параметры персонажа",
+      "dropdown": "список",
+      "monster": "враг",
+      "orb": "сфера",
+      "potion": "зелье",
+      "relic": "реликвия",
+      "slider": "ползунок",
+      "toggle button": "переключатель",
+      "treasure chest": "сундук с сокровищами",
+      "unknown": "неизвестно"
+    }
+  }
+}

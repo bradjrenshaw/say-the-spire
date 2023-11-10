@@ -15,6 +15,7 @@ public abstract class UIElement {
     protected String elementType = null;
     protected Position position;
     protected final LocalizationContext localization;
+    protected Boolean shouldUseBaseLocalization;
 
     public UIElement(String type) {
         this(type, null);
@@ -24,6 +25,7 @@ public abstract class UIElement {
         this.elementType = elementType;
         this.position = position;
         this.localization = Output.localization.getContext("ui.elements." + elementType);
+        this.shouldUseBaseLocalization = true;
     }
 
     /**
@@ -58,9 +60,11 @@ public abstract class UIElement {
         if (Output.config.getBoolean("ui.read_types", true)) {
             String type = this.getTypeString();
             if (type != null && !Output.config.getExcludedTypenames().contains(type)) {
-                String localizedType = Output.localization.localize("ui.types." + type);
-                if (localizedType != null)
-                    type = localizedType;
+                if (this.shouldUseBaseLocalization) {
+                    String localizedType = Output.localization.localize("ui.types." + type);
+                    if (localizedType != null)
+                        type = localizedType;
+                }
                 sb.append(" " + type);
             }
         }
