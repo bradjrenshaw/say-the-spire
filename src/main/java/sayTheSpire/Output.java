@@ -187,7 +187,8 @@ public class Output {
         Buffer buffer = buffers.getBuffer("UI");
         buffer.clear();
         for (String s : contents) {
-            buffer.add(s);
+            if (s != null)
+                buffer.add(s);
         }
         buffers.enableBuffer("UI", true);
         BufferControls.setCurrentBuffer("UI");
