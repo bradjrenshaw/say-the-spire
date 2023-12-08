@@ -59,12 +59,13 @@ public class InputActionCollection {
                 .mapping(Keys.DOWN).action("left").mapping(Keys.LEFT).action("right").mapping(Keys.RIGHT)
                 .action("inspect up").mapping(Keys.CONTROL_LEFT, Keys.UP).action("inspect down")
                 .mapping(Keys.CONTROL_LEFT, Keys.DOWN).action("inspect left").mapping(Keys.CONTROL_LEFT, Keys.LEFT)
-                .action("inspect right").mapping(Keys.CONTROL_LEFT, Keys.RIGHT).action("read player block")
-                .mapping(Keys.CONTROL_LEFT, Keys.B).action("read player energy").mapping(Keys.CONTROL_LEFT, Keys.Y)
-                .action("read player gold").mapping(Keys.CONTROL_LEFT, Keys.G).action("read player hp")
-                .mapping(Keys.CONTROL_LEFT, Keys.H).action("read summarized intents").mapping(Keys.CONTROL_LEFT, Keys.I)
-                .action("read detailed intents").mapping(Keys.ALT_LEFT, Keys.I).action("read act boss")
-                .mapping(Keys.CONTROL_LEFT, Keys.N).action("read player powers").mapping(Keys.CONTROL_LEFT, Keys.P);
+                .action("inspect right").mapping(Keys.CONTROL_LEFT, Keys.RIGHT).action("mod menu")
+                .mapping(Keys.CONTROL_LEFT, Keys.M).action("read player block").mapping(Keys.CONTROL_LEFT, Keys.B)
+                .action("read player energy").mapping(Keys.CONTROL_LEFT, Keys.Y).action("read player gold")
+                .mapping(Keys.CONTROL_LEFT, Keys.G).action("read player hp").mapping(Keys.CONTROL_LEFT, Keys.H)
+                .action("read summarized intents").mapping(Keys.CONTROL_LEFT, Keys.I).action("read detailed intents")
+                .mapping(Keys.ALT_LEFT, Keys.I).action("read act boss").mapping(Keys.CONTROL_LEFT, Keys.N)
+                .action("read player powers").mapping(Keys.CONTROL_LEFT, Keys.P);
     }
 
     private void buildControllerDefaults(MappingBuilder builder) {

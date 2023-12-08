@@ -12,4 +12,11 @@ public class ListPosition extends Position {
         this.context.put("total", totalCount);
     }
 
+    public int getIndex() {
+        return this.index;
+    }
+
+    public int getTotalCount() {
+        return this.totalCount;
+    }
 }

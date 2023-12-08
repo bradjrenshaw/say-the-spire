@@ -68,6 +68,9 @@ public class GameContext extends Context {
     public Boolean onJustPress(InputAction action) {
         Output.silenceSpeech();
         switch (action.getName()) {
+        case "mod menu":
+            Output.text("mod menu hasn't yet been implemented.", false);
+            return true;
         case "read act boss":
         case "read player block":
         case "read player energy":
