@@ -7,6 +7,7 @@ import sayTheSpire.ui.dynamic.events.UnfocusEvent;
 import sayTheSpire.Output;
 import sayTheSpire.buffers.BufferManager;
 import sayTheSpire.ui.elements.UIElement;
+import sayTheSpire.ui.input.InputAction;
 import sayTheSpire.ui.positions.Position;
 
 /**
@@ -64,7 +65,6 @@ public abstract class DynamicElement extends UIElement {
     DynamicElement(DynamicElement parent, String type, String label, String description, Position position) {
         super(type, position);
         this.parent = parent;
-        this.shouldUseBaseLocalization = false;
         this.label = label;
         this.description = description;
         this.focus = new SingleEventDispatcher<FocusEvent>();
@@ -112,33 +112,15 @@ public abstract class DynamicElement extends UIElement {
         this.unfocus.dispatch(new UnfocusEvent(this));
     }
 
-    /**
-     * Executes code when a cancel input is received by the current element (IE it is focused by its parent element)
-     * 
-     * @return True if input should be propigated to parent elements; false otherwise.
-     */
-    public Boolean processCancelInput() {
+    public Boolean processInputPressed(InputAction action) {
         return false;
     }
 
-    /**
-     * Executes code when a confirm input is received by the current element (IE it is focused by its parent element)
-     * 
-     * @return True if input should be propigated to parent elements; false otherwise.
-     */
-    public Boolean processConfirmInput() {
+    public Boolean processInputJustPressed(InputAction action) {
         return false;
     }
 
-    /**
-     * Executes code when a direction input is received by the current element (IE it is focused by its parent element)
-     * 
-     * @param direction
-     *            The directional input pressed
-     * 
-     * @return True if input should be propigated to parent elements; false otherwise. * @param direction
-     */
-    public Boolean processDirectionInput(Direction direction) {
+    public Boolean processInputReleased(InputAction action) {
         return false;
     }
 

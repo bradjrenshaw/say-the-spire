@@ -15,50 +15,25 @@ public class UIContext extends Context {
         this.containerStack = new Stack();
     }
 
-    private void processCancelInput() {
+    public Boolean onPress(InputAction action) {
         if (this.containerStack.empty())
-            return;
-        ElementContainer container = this.containerStack.peek();
-        container.processCancelInput();
-    }
-
-    private void processConfirmInput() {
-        if (this.containerStack.empty())
-            return;
-        ElementContainer container = this.containerStack.peek();
-        container.processConfirmInput();
-    }
-
-    private void processInputDirection(Direction direction) {
-        if (this.containerStack.empty())
-            return;
-        ElementContainer container = this.containerStack.peek();
-        container.processDirectionInput(direction);
+            return false;
+        ElementContainer focus = this.containerStack.peek();
+        return focus.processInputPressed(action);
     }
 
     public Boolean onJustPress(InputAction action) {
-        switch (action.getName()) {
-        case "confirm":
-            this.processConfirmInput();
-            return true;
-        case "up":
-        case "alt up":
-            this.processInputDirection(Direction.UP);
-            return true;
-        case "down":
-        case "alt down":
-            this.processInputDirection(Direction.DOWN);
-            return true;
-        case "left":
-        case "alt left":
-            this.processInputDirection(Direction.LEFT);
-            return true;
-        case "right":
-        case "alt right":
-            this.processInputDirection(Direction.RIGHT);
-            return true;
-        }
-        return true;
+        if (this.containerStack.empty())
+            return false;
+        ElementContainer focus = this.containerStack.peek();
+        return focus.processInputJustPressed(action);
+    }
+
+    public Boolean onRelease(InputAction action) {
+        if (this.containerStack.empty())
+            return false;
+        ElementContainer focus = this.containerStack.peek();
+        return focus.processInputReleased(action);
     }
 
 }

@@ -3,6 +3,7 @@ package sayTheSpire.ui.dynamic.elements;
 import java.util.ArrayList;
 import sayTheSpire.ui.positions.Position;
 import sayTheSpire.ui.Direction;
+import sayTheSpire.ui.input.InputAction;
 import sayTheSpire.ui.positions.GridPosition;
 import sayTheSpire.ui.positions.ListPosition;
 
@@ -32,6 +33,8 @@ public class ListContainer extends ElementContainer {
     }
 
     public void enterFocus(Position position, Direction direction) {
+        super.enterFocus(position, direction);
+        this.focusIndex = -1;
         if (position == null || this.children.isEmpty())
             return;
         if ((this.vertical && direction == Direction.DOWN) || (!this.vertical && direction == Direction.RIGHT)) {
@@ -75,6 +78,22 @@ public class ListContainer extends ElementContainer {
         return false;
     }
 
+    public Boolean processInputJustPressed(InputAction action) {
+        if (super.processInputJustPressed(action))
+            return true;
+        switch (action.getName()) {
+        case "up":
+            return this.processDirectionInput(Direction.UP);
+        case "down":
+            return this.processDirectionInput(Direction.DOWN);
+        case "left":
+            return this.processDirectionInput(Direction.LEFT);
+        case "right":
+            return this.processDirectionInput(Direction.RIGHT);
+        }
+        return false;
+    }
+
     public Boolean remove(DynamicElement element) {
         ListPosition position = (ListPosition) this.getChildPosition(element);
         if (position == null)
@@ -114,4 +133,5 @@ public class ListContainer extends ElementContainer {
     public DynamicElement getFocus() {
         return this.children.get(this.focusIndex);
     }
+
 }

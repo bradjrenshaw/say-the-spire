@@ -2,6 +2,7 @@ package sayTheSpire.ui.dynamic.elements;
 
 import sayTheSpire.ui.positions.Position;
 import sayTheSpire.ui.Direction;
+import sayTheSpire.ui.input.InputAction;
 
 public abstract class ElementContainer extends DynamicElement {
 
@@ -15,25 +16,11 @@ public abstract class ElementContainer extends DynamicElement {
 
     public abstract DynamicElement getFocus();
 
-    public Boolean processCancelInput() {
+    public Boolean processInputJustPressed(InputAction action) {
         DynamicElement focus = this.getFocus();
         if (focus == null)
             return false;
-        return focus.processCancelInput();
-    }
-
-    public Boolean processConfirmInput() {
-        DynamicElement focus = this.getFocus();
-        if (focus == null)
-            return false;
-        return focus.processConfirmInput();
-    }
-
-    public Boolean processDirectionInput(Direction direction) {
-        DynamicElement focus = this.getFocus();
-        if (focus == null)
-            return false;
-        return focus.processDirectionInput(direction);
+        return focus.processInputJustPressed(action);
     }
 
     public abstract Boolean remove(DynamicElement element);
