@@ -186,4 +186,21 @@ public class InputAction {
         }
         return mappingsArray;
     }
+
+    public Boolean isUIAction() {
+        switch (this.getName()) {
+        case "up":
+        case "alt up":
+        case "down":
+        case "alt down":
+        case "left":
+        case "alt left":
+        case "right":
+        case "alt right":
+        case "select":
+        case "cancel":
+            return true;
+        }
+        return false;
+    }
 }

@@ -65,13 +65,13 @@ public class UIManager {
         }
         this.inputManager.clearActionStates();
         this.contexts.add(0, context);
-        context.onFocus();
+        context.onPush();
     }
 
     public void popContext() {
         if (this.contexts.size() > 0) {
             Context context = this.contexts.get(0);
-            context.onUnfocus();
+            context.onPop();
             this.contexts.remove(0);
         }
         this.inputManager.clearActionStates();

@@ -88,7 +88,7 @@ public abstract class DynamicElement extends UIElement {
      * Triggers when the element is unfocused (for example you move to a different element)
      */
     public void exitFocus() {
-        this.onUnfocus();
+        this.onUnfocus(true);
     }
 
     /**
@@ -101,14 +101,15 @@ public abstract class DynamicElement extends UIElement {
      *            The directional input pressed to reach this element.
      */
     public void enterFocus(Position position, Direction direction) {
-        this.onFocus();
+        this.onFocus(true);
     }
 
-    public void onFocus() {
+    public void onFocus(Boolean moved) {
+        Output.setUI(this);
         this.focus.dispatch(new FocusEvent(this));
     }
 
-    public void onUnfocus() {
+    public void onUnfocus(Boolean moved) {
         this.unfocus.dispatch(new UnfocusEvent(this));
     }
 

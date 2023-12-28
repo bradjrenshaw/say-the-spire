@@ -6,6 +6,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.controller.CInputAction;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+
+import sayTheSpire.ui.dynamic.contexts.ModMenuContext;
 import sayTheSpire.ui.elements.MonsterElement;
 import sayTheSpire.Output;
 import sayTheSpire.utils.MapUtils;
@@ -69,7 +71,7 @@ public class GameContext extends Context {
         Output.silenceSpeech();
         switch (action.getName()) {
         case "mod menu":
-            Output.text("mod menu hasn't yet been implemented.", false);
+            Output.uiManager.pushContext(new ModMenuContext());
             return true;
         case "read act boss":
         case "read player block":

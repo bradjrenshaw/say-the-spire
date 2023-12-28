@@ -7,6 +7,12 @@ public class Context {
     protected Boolean shouldForceControllerMode = false;
     protected Boolean allowVirtualInput = true;
 
+    public void onPush() {
+    };
+
+    public void onPop() {
+    };
+
     public Boolean getAllowVirtualInput() {
         return this.allowVirtualInput;
     }

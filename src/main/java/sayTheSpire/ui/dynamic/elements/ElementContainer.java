@@ -1,20 +1,43 @@
 package sayTheSpire.ui.dynamic.elements;
 
 import sayTheSpire.ui.positions.Position;
+import sayTheSpire.Output;
 import sayTheSpire.ui.Direction;
 import sayTheSpire.ui.input.InputAction;
 
 public abstract class ElementContainer extends DynamicElement {
 
-    ElementContainer(DynamicElement parent, String type, String label) {
+    public ElementContainer(DynamicElement parent, String type, String label) {
         super(parent, type, label, null, null);
     }
 
     public abstract Boolean add(DynamicElement element);
 
+    public void enterFocus(Position position, Direction direction) {
+    };
+
     public abstract Position getChildPosition(DynamicElement element);
 
     public abstract DynamicElement getFocus();
+
+    public void onFocus(Boolean moved) {
+        Output.text(this.getLabel(), false);
+        if (!moved) {
+            DynamicElement childFocus = this.getFocus();
+            if (childFocus == null)
+                return;
+            childFocus.onFocus(false);
+        }
+    }
+
+    public void onUnfocus(Boolean moved) {
+        if (!moved) {
+            DynamicElement childFocus = this.getFocus();
+            if (childFocus == null)
+                return;
+            childFocus.onUnfocus(moved);
+        }
+    }
 
     public Boolean processInputJustPressed(InputAction action) {
         DynamicElement focus = this.getFocus();

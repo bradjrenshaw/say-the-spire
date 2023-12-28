@@ -34,9 +34,14 @@ public class ListContainer extends ElementContainer {
 
     public void enterFocus(Position position, Direction direction) {
         super.enterFocus(position, direction);
+        this.onFocus(true);
         this.focusIndex = -1;
-        if (position == null || this.children.isEmpty())
+        if (this.children.isEmpty())
             return;
+        if (position == null) {
+            this.moveFocusIndex(0, true);
+            return;
+        }
         if ((this.vertical && direction == Direction.DOWN) || (!this.vertical && direction == Direction.RIGHT)) {
             this.moveFocusIndex(0, true);
             return;
@@ -70,7 +75,7 @@ public class ListContainer extends ElementContainer {
             focus.exitFocus();
             this.move((ListPosition) focus.getPosition(), this.prevDirection);
             return true;
-        } else if (direction == this.nextDirection && this.focusIndex < this.children.size()) {
+        } else if (direction == this.nextDirection && this.focusIndex < this.children.size() - 1) {
             focus.exitFocus();
             this.move((ListPosition) focus.getPosition(), this.nextDirection);
             return true;
@@ -83,12 +88,16 @@ public class ListContainer extends ElementContainer {
             return true;
         switch (action.getName()) {
         case "up":
+        case "alt up":
             return this.processDirectionInput(Direction.UP);
         case "down":
+        case "alt down":
             return this.processDirectionInput(Direction.DOWN);
         case "left":
+        case "alt left":
             return this.processDirectionInput(Direction.LEFT);
         case "right":
+        case "alt right":
             return this.processDirectionInput(Direction.RIGHT);
         }
         return false;
