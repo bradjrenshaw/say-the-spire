@@ -8,7 +8,7 @@ public class DynamicButton extends DynamicElement {
 
     public final SingleEventDispatcher<ClickEvent> click;
 
-    public DynamicButton(DynamicElement parent, String label, String description) {
+    public DynamicButton(ElementContainer parent, String label, String description) {
         super(parent, "button", label, description);
         this.click = new SingleEventDispatcher<>();
     }

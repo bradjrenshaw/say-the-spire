@@ -229,6 +229,8 @@
         "unknownType": "Unknown slider type; report to mod developer."
       },
       "toggle button": {
+        "enabled": "enabled",
+        "disabled": "disabled",
         "unknownType": "Unknown toggle button type; report to mod developer."
       },
       "treasure chest": {

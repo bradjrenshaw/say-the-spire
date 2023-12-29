@@ -16,7 +16,7 @@ import sayTheSpire.ui.positions.Position;
 public abstract class DynamicElement extends UIElement {
 
     protected String label, description;
-    protected DynamicElement parent;
+    protected ElementContainer parent;
     public SingleEventDispatcher<FocusEvent> focus;
     public SingleEventDispatcher<UnfocusEvent> unfocus;
 
@@ -29,7 +29,7 @@ public abstract class DynamicElement extends UIElement {
      * @param label
      *            The display name of this element (IE "Settings")
      */
-    DynamicElement(DynamicElement parent, String type, String label) {
+    DynamicElement(ElementContainer parent, String type, String label) {
         this(parent, type, label, null, null);
     }
 
@@ -44,7 +44,7 @@ public abstract class DynamicElement extends UIElement {
      * @param description
      *            Additional info about the element (a tooltip) viewable in the UI buffer
      */
-    DynamicElement(DynamicElement parent, String type, String label, String description) {
+    DynamicElement(ElementContainer parent, String type, String label, String description) {
         this(parent, type, label, description, null);
     }
 
@@ -62,7 +62,7 @@ public abstract class DynamicElement extends UIElement {
      *            A position object. It is recommended that you do not use this and let the element dynamically
      *            determine its own position.
      */
-    DynamicElement(DynamicElement parent, String type, String label, String description, Position position) {
+    DynamicElement(ElementContainer parent, String type, String label, String description, Position position) {
         super(type, position);
         this.parent = parent;
         this.label = label;
@@ -129,12 +129,12 @@ public abstract class DynamicElement extends UIElement {
         return this.description;
     }
 
-    public DynamicElement getParent() {
+    public ElementContainer getParent() {
         return this.parent;
     }
 
     public Position getPosition() {
-        ElementContainer parent = (ElementContainer) this.getParent();
+        ElementContainer parent = this.getParent();
         if (parent != null) {
             return parent.getChildPosition(this);
         }

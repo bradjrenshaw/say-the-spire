@@ -11,4 +11,5 @@ public class DynamicEvent {
         this.type = type;
         this.target = target;
     }
+
 }

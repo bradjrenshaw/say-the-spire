@@ -1,6 +1,0 @@
-This is where all of your resources will go such as images, ModTheSpire json config file, and custom strings
-you may use for your mod. (I suggest looking at how other mods use their resource file. A list of mods is found at
-the wiki for ModTheSpire)
-
-An example ModTheSpire.json config is in this folder. Change it to match your needs. A more detailed explanation about
-this file can be found on the ModTheSpire GitHub.

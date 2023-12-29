@@ -7,7 +7,7 @@ import sayTheSpire.ui.input.InputAction;
 
 public abstract class ElementContainer extends DynamicElement {
 
-    public ElementContainer(DynamicElement parent, String type, String label) {
+    public ElementContainer(ElementContainer parent, String type, String label) {
         super(parent, type, label, null, null);
     }
 
