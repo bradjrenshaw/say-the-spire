@@ -10,7 +10,7 @@ public class CInputHelperPatch {
     public static class InitializeIfAblePatch {
 
         public static void Postfix() {
-            if (Output.config.getBoolean("input.virtual_input", false) && CInputHelper.controller == null) {
+            if (Output.config.getBoolean("input.virtual_input") && CInputHelper.controller == null) {
                 CInputHelper.model = CInputHelper.ControllerModel.XBOX_ONE;
                 ImageMaster.loadControllerImages(CInputHelper.ControllerModel.XBOX_ONE);
             }

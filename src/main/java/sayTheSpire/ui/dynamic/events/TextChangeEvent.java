@@ -4,7 +4,7 @@ import sayTheSpire.ui.dynamic.elements.DynamicElement;
 
 public class TextChangeEvent extends DynamicEvent {
 
-    public String value;
+    public final String value;
 
     public TextChangeEvent(DynamicElement target, String value) {
         super("textChange", target);

@@ -67,8 +67,8 @@ public class SpeechManager {
 
     private void reorderHandlerList() {
         ArrayList<String> preferedOrder = (ArrayList<String>) Output.config
-                .getList("advanced.prefered_speech_handler_order", null);
-        if (preferedOrder == null || preferedOrder.size() == 0)
+                .getList("advanced.prefered_speech_handler_order");
+        if (preferedOrder.size() == 0)
             return;
         HashMap<String, SpeechHandler> reorderedHandlers = new HashMap();
         ListIterator iter = this.handlers.listIterator();

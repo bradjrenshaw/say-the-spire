@@ -152,7 +152,7 @@ public class Output {
     public static Boolean getAllowVirtualInput() {
         if (uiManager == null)
             return false;
-        return uiManager.getAllowVirtualInput() && config.getBoolean("input.virtual_input", false);
+        return uiManager.getAllowVirtualInput() && config.getBoolean("input.virtual_input");
     }
 
     public static void setupBuffers(MapRoomNode node, Boolean isHovered, Boolean shouldAnnounce) {

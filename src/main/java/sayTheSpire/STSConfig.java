@@ -7,25 +7,29 @@ import java.util.HashSet;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.evacipated.cardcrawl.modthespire.lib.ConfigUtils;
-import com.moandjiezana.toml.Toml;
-import com.moandjiezana.toml.TomlWriter;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import sayTheSpire.ui.input.InputManager;
+import sayTheSpire.config.Setting;
+import sayTheSpire.config.SettingsManager;
 import sayTheSpire.ui.input.InputActionCollection;
 
 public class STSConfig {
 
     private static final Logger logger = LogManager.getLogger(STSConfig.class.getName());
 
-    private Toml settingsToml;
+    private SettingsManager settings;
+    private JsonElement settingsElement;
     private HashSet<String> excludedTypenames;
     private JsonObject inputObj;
 
@@ -52,44 +56,39 @@ public class STSConfig {
 
     private void loadSettings() {
         File file = new File(getSettingsFilePath());
-        HashMap<String, Object> defaults = this.getDefaults();
+        this.settings = new SettingsManager();
+        Boolean shouldCreateFile = false;
         try {
-            HashMap<String, Object> fileSettings = (HashMap<String, Object>) new Toml().read(file).toMap();
-            merge(defaults, fileSettings);
-            this.settingsToml = new Toml().read(new TomlWriter().write(defaults));
-            logger.info("Config loaded from existing file.");
-        } catch (Exception e) {
-            logger.info("No config file found, using defaults.");
-            this.settingsToml = new Toml().read(new TomlWriter().write(defaults));
-        }
-    }
-
-    public static void merge(HashMap<String, Object> base, HashMap<String, Object> merger) {
-        for (Map.Entry<String, Object> entry : merger.entrySet()) {
-            String key = entry.getKey();
-            Object value = entry.getValue();
-            if (base.containsKey(key) && base.get(key) instanceof HashMap && value instanceof HashMap) {
-                merge((HashMap<String, Object>) base.get(key), (HashMap<String, Object>) value);
+            if (file.exists()) {
+                JsonParser parser = new JsonParser();
+                JsonElement root = parser.parse(new FileReader(this.getSettingsFilePath()));
+                this.settingsElement = root;
+                this.settings.fromJsonElement(root);
+                logger.info("Config loaded from existing file.");
             } else {
-                base.put(key, value);
+                logger.info("settings.json does not exist; creating.");
+                shouldCreateFile = true;
+            }
+        } catch (Exception e) {
+            logger.error("Issue parsing settings.json; recreating file with defaults.", e);
+        } finally {
+            if (shouldCreateFile) {
+                this.saveSettings();
             }
         }
     }
 
     public void save() throws IOException {
-        try (FileWriter file = new FileWriter(getSettingsFilePath())) {
-            TomlWriter writer = new TomlWriter();
-            writer.write(this.settingsToml.toMap(), file);
-            file.flush();
-            logger.info("Successfully wrote settings file.");
-        } catch (Exception e) {
-            logger.error("Issue writing to settings file.");
-            e.printStackTrace();
-        }
+        this.saveSettings();
+        this.saveInput();
+    }
+
+    public void saveInput() {
         try (FileWriter file = new FileWriter(getInputFilePath())) {
             InputActionCollection actions = Output.inputManager.getActionCollection();
             JsonElement json = actions.toJsonElement();
-            file.write(json.toString());
+            Gson gson = (new GsonBuilder()).setPrettyPrinting().create();
+            file.write(gson.toJson(json));
             file.flush();
             logger.info("Successfully wrote input mappings file.");
         } catch (Exception e) {
@@ -98,51 +97,21 @@ public class STSConfig {
         }
     }
 
-    public static HashMap<String, Object> getDefaults() {
-        HashMap<String, Object> defaults = new HashMap();
-
-        HashMap<String, Object> resourceDefaults = new HashMap();
-        resourceDefaults.put("dispose_resource_files", true);
-        resourceDefaults.put("unload_native_libs", true);
-
-        HashMap<String, Object> uiDefaults = new HashMap();
-        uiDefaults.put("read_positions", true);
-        uiDefaults.put("read_banner_text", true);
-        uiDefaults.put("read_proceed_text", true);
-        uiDefaults.put("read_types", true);
-        uiDefaults.put("exclude_read_typenames", new ArrayList<String>());
-        uiDefaults.put("read_obtain_events", true);
-
-        HashMap<String, Object> mapDefaults = new HashMap();
-        mapDefaults.put("read_reversed_paths", true);
-
-        HashMap<String, Object> combatDefaults = new HashMap();
-        combatDefaults.put("block_text", true);
-        combatDefaults.put("buff_debuff_text", true);
-        combatDefaults.put("card_events", true);
-        combatDefaults.put("orb_events", true);
-
-        HashMap<String, Object> inputDefaults = new HashMap();
-        inputDefaults.put("virtual_input", true);
-
-        HashMap<String, Object> advancedDefaults = new HashMap();
-        advancedDefaults.put("use_updated_card_description", false);
-        advancedDefaults.put("prefered_speech_handler_order", new ArrayList<String>());
-        advancedDefaults.put("speech_handler_force_system_speech", false);
-
-        defaults.put("resources", resourceDefaults);
-        defaults.put("ui", uiDefaults);
-        defaults.put("map", mapDefaults);
-        defaults.put("combat", combatDefaults);
-        defaults.put("input", inputDefaults);
-        defaults.put("advanced", advancedDefaults);
-        return defaults;
+    public void saveSettings() {
+        try (FileWriter file = new FileWriter(getSettingsFilePath())) {
+            JsonElement json = settings.toJsonElement();
+            Gson gson = (new GsonBuilder()).setPrettyPrinting().create();
+            file.write(gson.toJson(json));
+            file.flush();
+            logger.info("Successfully wrote settings file.");
+        } catch (Exception e) {
+            logger.error("Error writing to settings file.", e);
+        }
     }
 
     public HashSet<String> getExcludedTypenames() {
         if (this.excludedTypenames == null) {
-            this.excludedTypenames = new HashSet<String>(
-                    this.getList("ui.exclude_read_typenames", new ArrayList<String>()));
+            this.excludedTypenames = new HashSet<String>(this.getList("ui.exclude_read_typenames"));
         }
         return this.excludedTypenames;
     }
@@ -160,46 +129,30 @@ public class STSConfig {
     }
 
     public static String getSettingsFilePath() {
-        return getDirectoryPath() + "settings.ini";
+        return getDirectoryPath() + "settings.json";
     }
 
     public String getString(String key) {
-        return this.settingsToml.getString(key);
-    }
-
-    public String getString(String key, String defaultValue) {
-        return this.settingsToml.getString(key, defaultValue);
-    }
-
-    public Long getLong(String key) {
-        return this.settingsToml.getLong(key);
-    }
-
-    public Long getLong(String key, Long defaultValue) {
-        return this.settingsToml.getLong(key, defaultValue);
+        Setting setting = this.settings.getBaseSetting(key);
+        return setting.getValue().toString();
     }
 
     public Boolean getBoolean(String key) {
-        return this.settingsToml.getBoolean(key);
-    }
-
-    public Boolean getBoolean(String key, Boolean defaultValue) {
-        return this.settingsToml.getBoolean(key, defaultValue);
-    }
-
-    public Double getDouble(String key) {
-        return this.settingsToml.getDouble(key);
-    }
-
-    public Double getDouble(String key, Double defaultValue) {
-        return this.settingsToml.getDouble(key, defaultValue);
+        Setting setting = this.settings.getBaseSetting(key);
+        Object value = setting.getValue();
+        if (!(value instanceof Boolean)) {
+            throw new RuntimeException("Value is not of type Boolean.");
+        }
+        return (Boolean) value;
     }
 
     public List getList(String key) {
-        return this.settingsToml.getList(key);
+        Setting setting = this.settings.getBaseSetting(key);
+        Object value = setting.getValue();
+        if (!(value instanceof List)) {
+            throw new RuntimeException("Value is not of type List.");
+        }
+        return (List<String>) value;
     }
 
-    public List getList(String key, List defaultValue) {
-        return this.settingsToml.getList(key, defaultValue);
-    }
 }

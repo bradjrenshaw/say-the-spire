@@ -42,6 +42,6 @@ public class CombatCardTextEvent extends Event {
     }
 
     public Boolean shouldAbandon() {
-        return !Output.config.getBoolean("combat.card_events", true);
+        return !Output.config.getBoolean("combat.card_events");
     }
 }

@@ -35,6 +35,6 @@ public class CombatOrbEvent extends Event {
     }
 
     public Boolean shouldAbandon() {
-        return !Output.config.getBoolean("combat.orb_events", true);
+        return !Output.config.getBoolean("combat.orb_events");
     }
 }

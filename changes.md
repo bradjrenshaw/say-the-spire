@@ -5,6 +5,7 @@
 ### Users
 
 * Fixed: Prevent rare instances of UI buffer containing "null".
+* Changed: The config manager has received behind the scenes code changes. As a result, the settings file format is now .json instead of .ini. You will need to update your settings.json file as it is not compatible with the old format.
 
 ## 0.5.0-beta (2023-05-24)
 

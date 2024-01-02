@@ -48,6 +48,6 @@ public class ObtainEvent extends Event {
     }
 
     public Boolean shouldAbandon() {
-        return !Output.config.getBoolean("ui.read_obtain_events", true);
+        return !Output.config.getBoolean("ui.read_obtain_events");
     }
 }

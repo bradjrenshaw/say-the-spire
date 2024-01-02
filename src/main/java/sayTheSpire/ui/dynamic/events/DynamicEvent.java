@@ -4,8 +4,8 @@ import sayTheSpire.ui.dynamic.elements.DynamicElement;
 
 public class DynamicEvent {
 
-    public String type;
-    public DynamicElement target;
+    public final String type;
+    public final DynamicElement target;
 
     DynamicEvent(String type, DynamicElement target) {
         this.type = type;

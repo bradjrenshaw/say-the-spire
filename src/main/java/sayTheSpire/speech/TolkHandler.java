@@ -24,7 +24,7 @@ public class TolkHandler extends SpeechHandler {
 
     public Boolean load() {
         Tolk.load();
-        Tolk.preferSAPI(Output.config.getBoolean("advanced.speech_handler_force_system_speech", false));
+        Tolk.preferSAPI(Output.config.getBoolean("advanced.speech_handler_force_system_speech"));
         return true;
     }
 

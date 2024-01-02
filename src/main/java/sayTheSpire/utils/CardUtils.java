@@ -42,7 +42,7 @@ public class CardUtils {
 
     public static String getCardDescriptionString(AbstractCard card) {
         String description;
-        if (Output.config.getBoolean("advanced.use_updated_card_description", false))
+        if (Output.config.getBoolean("advanced.use_updated_card_description"))
             description = extractUpdatedDescription(card);
         else
             description = card.rawDescription;
