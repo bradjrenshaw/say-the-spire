@@ -26,6 +26,9 @@ public class UIManager {
     }
 
     public void emitAction(InputAction action, String reason) {
+        if (reason.equals("justPressed")) {
+            Output.silenceSpeech();
+        }
         for (Context context : this.contexts) {
             Boolean result = false;
             if (reason.equals("justPressed"))
