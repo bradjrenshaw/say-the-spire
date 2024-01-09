@@ -66,7 +66,116 @@
   },
   "config": {
     "settings": {
-      
+      "base": {
+        "label": "Settings",
+        "description": "Settings for the base Say the Spire mod.",
+        "settings": {
+          "advanced": {
+            "label": "Advanced",
+            "description": "Advanced settings related to the internals of the mod.",
+            "settings": {
+              "use_updated_card_description": {
+                "label": "Use Updated Card Description",
+                "description": "whether or not to use a different internal property to get card descriptions. This should be enabled if you are trying to use mods that do not have properly rendered card descriptions. This may break depending on your current game language so use this with caution."
+              },
+              "prefered_speech_handler_order": {
+                "label": "Prefered Speech Handler Order",
+                "description": "Your prefered order of speech handlers. For more information, see the documentation on speech handlers."
+              },
+              "speech_handler_force_system_speech": {
+                "label": "Force System Speech for Speech Handlers",
+                "description": "Whether or not system speech (for example SAPI) is used (if your speech handler supports it.)"
+              }
+            }
+          },
+          "combat": {
+            "label": "Combat",
+            "description": "Settings related to reading of combat events.",
+            "settings": {
+              "block_text": {
+                "label": "Read Block Text",
+                "description": "Whether or not to read when a creature gains block."
+              },
+              "buff_debuff_text": {
+                "label": "Read Buff and Debuff Text",
+                "description": "Whether or not to read when a creature gains a buff or debuff."
+              },
+              "card_events": {
+                "label": "Read Card Events",
+                "description": "Whether or not card events are read. These include cards being added to draw, discard, etc as well as cards being exhausted."
+              },
+              "orb_events": {
+                "label": "Read Orb Events",
+                "description": "Whether or not orb events are read. This includes when orbs are channeled and evoked."
+              }
+            }
+          },
+          "input": {
+            "label": "Input",
+            "description": "Settings related to virtual input.",
+            "settings": {
+              "virtual_input": {
+                "label": "Virtual Input",
+                "description": "Whether or not virtual input is enabled."
+              }
+            }
+          },
+          "map": {
+            "label": "Map",
+            "description": "Settings related to map reading.",
+            "settings": {
+              "read_reversed_paths": {
+                "label": "Read Reversed Paths",
+                "description": "Whether or not to read the path in reverse when moving backward on the map, as if you were tracing it visually. Many people prefer to disable this to save time but it is enabled by default for clarity."
+              }
+            }
+          },
+          "ui": {
+            "label": "UI",
+            "description": "Contains settings related to the game's UI and how certain elements are read out.",
+            "settings": {
+              "read_proceed_text": {
+                "label": "Read Proceed Text",
+                "description": "Whether or not to read the proceed text when the option is available (for example to skip a combat reward.)"
+              },
+              "read_banner_text": {
+                "label": "Read Banner Text",
+                "description": "Whether or not banner text is read. Banner text appears at the top of the screen and generally acts as a screen title."
+              },
+              "read_positions": {
+                "label": "Read Positions",
+                "description": "Whether or not to read the position of an element (for example 1 of 3 in a list.)"
+              },
+              "read_types": {
+                "label": "Read Element Types",
+                "description": "Whether or not element types, such as button, are read for each UI element."
+              },
+              "read_obtain_events": {
+                "label": "Read Obtain Events",
+                "description": "Whether or not the mod notifies you when you obtain an object (such as a card, potion, relic, etc.)"
+              },
+              "exclude_read_typenames": {
+                "label": "Exclude Specific Element Typenames",
+                "description": "A list of types to not be read. For example if you do not want cards and relics to say card or relic after their name, you could add card or button to the list and they would not be read out, leaving all other element types to be read."
+              }
+            }
+          },
+          "resources": {
+            "label": "Resources",
+            "description": "Settings related to how resources are loaded and unloaded. If you are experiencing a crash when closing the game, set both of these to false.",
+            "settings": {
+              "unload_native_libs": {
+                "label": "Unload Native Libraries",
+                "description": "Whether or not to unload the screen reader libraries from memory when the game closes."
+              },
+              "dispose_resource_files": {
+                "label": "Dispose Resource Files",
+                "description": "Whether or not to delete the screen reader dll files in the slay the Spire root directory after the game closes and they are unloaded from memory. Do not enable this unless unload_native_libs is enabled or it won't work."
+              }
+            }
+          }
+        }
+      }
     }
   },
   "errors": {

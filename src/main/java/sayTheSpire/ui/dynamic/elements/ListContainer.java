@@ -14,12 +14,12 @@ public class ListContainer extends ElementContainer {
     private int focusIndex;
     private Direction prevDirection, nextDirection;
 
-    public ListContainer(ElementContainer parent, String label) {
-        this(parent, label, true);
+    public ListContainer(String label) {
+        this(label, true);
     }
 
-    public ListContainer(ElementContainer parent, String label, Boolean vertical) {
-        super(parent, "list", label);
+    public ListContainer(String label, Boolean vertical) {
+        super("list", label);
         this.children = new ArrayList();
         this.vertical = vertical;
         this.focusIndex = -1;
@@ -29,6 +29,7 @@ public class ListContainer extends ElementContainer {
 
     public Boolean add(DynamicElement element) {
         this.children.add(element);
+        element.setParent(this);
         return true;
     }
 

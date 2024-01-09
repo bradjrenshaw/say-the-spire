@@ -1,10 +1,13 @@
 package sayTheSpire.ui.dynamic.screens;
 
 import sayTheSpire.Output;
+import sayTheSpire.config.SettingCategory;
+import sayTheSpire.ui.dynamic.contexts.SettingsContext;
 import sayTheSpire.ui.dynamic.contexts.UIContext;
 import sayTheSpire.ui.dynamic.elements.DynamicButton;
 import sayTheSpire.ui.dynamic.elements.DynamicToggleButton;
 import sayTheSpire.ui.dynamic.elements.ListContainer;
+import sayTheSpire.ui.dynamic.events.ClickEvent;
 import sayTheSpire.ui.dynamic.events.EventHandler;
 import sayTheSpire.ui.dynamic.events.ToggleChangeEvent;
 import sayTheSpire.ui.input.InputAction;
@@ -16,9 +19,17 @@ public class ModMenuScreen extends Screen {
     }
 
     protected void setup() {
-        ListContainer children = new ListContainer(null, "Mod Menu", true);
-        children.add(new DynamicButton(children, Output.modVersion, null));
-        children.add(new DynamicButton(children, "Settings", "Settings not yet implemented."));
+        ListContainer children = new ListContainer("Mod Menu", true);
+        children.add(new DynamicButton(Output.modVersion, null));
+        DynamicButton settings = new DynamicButton("settings");
+        settings.click.registerHandler(new EventHandler<ClickEvent>() {
+            public Boolean execute(ClickEvent event) {
+                SettingCategory category = Output.config.getSettings().getRoot();
+                Output.uiManager.pushContext(new SettingsContext(category));
+                return true;
+            }
+        });
+        children.add(settings);
         this.setPrimaryContainer(children);
     }
 

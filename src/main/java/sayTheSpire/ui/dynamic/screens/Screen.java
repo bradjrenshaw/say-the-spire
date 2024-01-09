@@ -12,7 +12,6 @@ public class Screen {
     public Screen(UIContext context) {
         this.context = context;
         this.primaryContainer = null;
-        this.setup();
     }
 
     protected void setup() {
@@ -34,6 +33,7 @@ public class Screen {
     }
 
     public void onPush() {
+        this.setup();
         ElementContainer container = this.getPrimaryContainer();
         if (container == null)
             return;
@@ -77,6 +77,10 @@ public class Screen {
             throw new RuntimeException("Cannot change primary container of screen after being set.");
         }
         this.primaryContainer = container;
+    }
+
+    public UIContext getContext() {
+        return this.context;
     }
 
 }

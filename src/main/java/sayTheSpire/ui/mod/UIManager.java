@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.megacrit.cardcrawl.core.Settings;
+
+import sayTheSpire.Output;
 import sayTheSpire.STSConfig;
 import sayTheSpire.ui.input.InputAction;
 import sayTheSpire.ui.input.InputManager;

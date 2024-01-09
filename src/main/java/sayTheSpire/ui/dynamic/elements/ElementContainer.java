@@ -7,8 +7,8 @@ import sayTheSpire.ui.input.InputAction;
 
 public abstract class ElementContainer extends DynamicElement {
 
-    public ElementContainer(ElementContainer parent, String type, String label) {
-        super(parent, type, label, null, null);
+    public ElementContainer(String type, String label) {
+        super(type, label, null, null);
     }
 
     public abstract Boolean add(DynamicElement element);

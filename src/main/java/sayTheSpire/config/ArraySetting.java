@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 
+import sayTheSpire.ui.dynamic.elements.DynamicButton;
+import sayTheSpire.ui.dynamic.elements.DynamicElement;
+import sayTheSpire.ui.dynamic.screens.Screen;
+
 public class ArraySetting extends Setting {
 
     private ArrayList<String> defaultValues;
@@ -22,6 +26,10 @@ public class ArraySetting extends Setting {
             this.defaultValues = new ArrayList();
         }
         this.items = this.defaultValues;
+    }
+
+    public DynamicElement getDynamicElement(Screen screen) {
+        return new DynamicButton("Array will go here");
     }
 
     public void addValue(String value) {

@@ -13,20 +13,20 @@ public class DynamicToggleButton extends DynamicElement {
     public SingleEventDispatcher<ClickEvent> click;
     public SingleEventDispatcher<ToggleChangeEvent> toggleChange;
 
-    public DynamicToggleButton(ElementContainer parent, String label) {
-        this(parent, label, null, false);
+    public DynamicToggleButton(String label) {
+        this(label, null, false);
     }
 
-    public DynamicToggleButton(ElementContainer parent, String label, Boolean enabled) {
-        this(parent, label, null, false);
+    public DynamicToggleButton(String label, Boolean enabled) {
+        this(label, null, false);
     }
 
-    public DynamicToggleButton(ElementContainer parent, String label, String description) {
-        this(parent, label, description, false);
+    public DynamicToggleButton(String label, String description) {
+        this(label, description, false);
     }
 
-    public DynamicToggleButton(ElementContainer parent, String label, String description, Boolean enabled) {
-        super(parent, "toggle button", label, description, null);
+    public DynamicToggleButton(String label, String description, Boolean enabled) {
+        super("toggle button", label, description, null);
         this.setEnabled(enabled);
         this.click = new SingleEventDispatcher<>();
         this.toggleChange = new SingleEventDispatcher<>();

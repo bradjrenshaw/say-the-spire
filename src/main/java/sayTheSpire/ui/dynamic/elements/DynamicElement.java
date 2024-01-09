@@ -29,8 +29,8 @@ public abstract class DynamicElement extends UIElement {
      * @param label
      *            The display name of this element (IE "Settings")
      */
-    DynamicElement(ElementContainer parent, String type, String label) {
-        this(parent, type, label, null, null);
+    DynamicElement(String type, String label) {
+        this(type, label, null, null);
     }
 
     /**
@@ -44,8 +44,8 @@ public abstract class DynamicElement extends UIElement {
      * @param description
      *            Additional info about the element (a tooltip) viewable in the UI buffer
      */
-    DynamicElement(ElementContainer parent, String type, String label, String description) {
-        this(parent, type, label, description, null);
+    DynamicElement(String type, String label, String description) {
+        this(type, label, description, null);
     }
 
     /**
@@ -62,9 +62,10 @@ public abstract class DynamicElement extends UIElement {
      *            A position object. It is recommended that you do not use this and let the element dynamically
      *            determine its own position.
      */
-    DynamicElement(ElementContainer parent, String type, String label, String description, Position position) {
+    DynamicElement(String type, String label, String description, Position position) {
         super(type, position);
-        this.parent = parent;
+        // Any add methods must set the parent of their elements
+        this.parent = null;
         this.label = label;
         this.description = description;
         this.focus = new SingleEventDispatcher<FocusEvent>();
@@ -123,6 +124,10 @@ public abstract class DynamicElement extends UIElement {
 
     public Boolean processInputReleased(InputAction action) {
         return false;
+    }
+
+    public void setParent(ElementContainer parent) {
+        this.parent = parent;
     }
 
     public String getDescription() {

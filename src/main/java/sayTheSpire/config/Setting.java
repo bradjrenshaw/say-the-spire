@@ -1,9 +1,10 @@
 package sayTheSpire.config;
 
 import com.google.gson.JsonElement;
-
 import sayTheSpire.Output;
 import sayTheSpire.localization.LocalizationContext;
+import sayTheSpire.ui.dynamic.elements.DynamicElement;
+import sayTheSpire.ui.dynamic.screens.Screen;;
 
 public abstract class Setting {
 
@@ -16,6 +17,8 @@ public abstract class Setting {
         this.name = name;
         this.localization = Output.localization.getContext(this.getLocalizationPath());
     }
+
+    public abstract DynamicElement getDynamicElement(Screen screen);
 
     public abstract void fromJsonElement(JsonElement json);
 
@@ -36,7 +39,7 @@ public abstract class Setting {
     public String getLocalizationPath() {
         SettingCategory parent = this.getParent();
         if (parent == null) {
-            return ".config.settings";
+            return "config.settings.base";
         }
         return parent.getLocalizationPath() + ".settings." + this.getName();
     }

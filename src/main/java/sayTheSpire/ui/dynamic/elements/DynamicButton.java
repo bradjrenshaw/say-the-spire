@@ -8,14 +8,22 @@ public class DynamicButton extends DynamicElement {
 
     public final SingleEventDispatcher<ClickEvent> click;
 
-    public DynamicButton(ElementContainer parent, String label, String description) {
-        super(parent, "button", label, description);
+    public DynamicButton(String label) {
+        this(label, null);
+    }
+
+    public DynamicButton(String label, String description) {
+        super("button", label, description);
         this.click = new SingleEventDispatcher<>();
     }
 
+    public void onClick() {
+        this.click.dispatch(new ClickEvent(this));
+    }
+
     public Boolean processInputJustPressed(InputAction action) {
-        if (action.getName() == "confirm") {
-            this.click.dispatch(new ClickEvent(this));
+        if (action.getName() == "select") {
+            this.onClick();
             return true;
         }
         return false;

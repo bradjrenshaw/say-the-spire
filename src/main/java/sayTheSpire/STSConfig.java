@@ -128,6 +128,10 @@ public class STSConfig {
         return this.inputObj;
     }
 
+    public SettingsManager getSettings() {
+        return this.settings;
+    }
+
     public static String getSettingsFilePath() {
         return getDirectoryPath() + "settings.json";
     }

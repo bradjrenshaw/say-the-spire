@@ -7,6 +7,10 @@ import java.util.Map;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import sayTheSpire.ui.dynamic.elements.DynamicElement;
+import sayTheSpire.ui.dynamic.elements.settings.DynamicSettingsCategoryButton;
+import sayTheSpire.ui.dynamic.screens.Screen;
+
 public class SettingCategory extends Setting {
 
     private LinkedHashMap<String, Setting> settings;
@@ -14,6 +18,10 @@ public class SettingCategory extends Setting {
     public SettingCategory(SettingCategory parent, String name) {
         super(parent, name);
         this.settings = new LinkedHashMap();
+    }
+
+    public DynamicElement getDynamicElement(Screen screen) {
+        return new DynamicSettingsCategoryButton(screen.getContext(), this);
     }
 
     public void add(Setting setting) {
@@ -88,4 +96,7 @@ public class SettingCategory extends Setting {
         throw new RuntimeException("Setting category has no value to set.");
     }
 
+    public LinkedHashMap<String, Setting> getSettings() {
+        return this.settings;
+    }
 }

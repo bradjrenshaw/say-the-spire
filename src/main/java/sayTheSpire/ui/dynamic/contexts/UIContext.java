@@ -4,6 +4,7 @@ import java.util.Stack;
 import sayTheSpire.ui.mod.Context;
 import sayTheSpire.ui.input.InputAction;
 import sayTheSpire.ui.dynamic.elements.ElementContainer;
+import sayTheSpire.Output;
 import sayTheSpire.ui.Direction;
 import sayTheSpire.ui.dynamic.screens.Screen;
 
@@ -14,6 +15,20 @@ public class UIContext extends Context {
     public UIContext() {
         super();
         this.screens = new Stack();
+    }
+
+    public void onFocus() {
+        if (this.screens.empty())
+            return;
+        Screen top = this.screens.peek();
+        top.onFocus(false);
+    }
+
+    public void onUnfocus() {
+        if (this.screens.empty())
+            return;
+        Screen top = this.screens.peek();
+        top.onUnfocus(false);
     }
 
     public Screen popScreen() {
