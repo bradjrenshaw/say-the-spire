@@ -1,5 +1,7 @@
 package sayTheSpire.speech;
 
+import sayTheSpire.Output;
+
 /**
  * A SpeechHandler represents some form of accessibility output (screen reader library, multiple libraries in one
  * (Tolk), etc)
@@ -14,6 +16,10 @@ public abstract class SpeechHandler {
 
     public String getName() {
         return this.name;
+    }
+
+    public String getLabel() {
+        return Output.localization.localize("ui.speech handlers." + this.getName() + ".label");
     }
 
     protected void setName(String name) {

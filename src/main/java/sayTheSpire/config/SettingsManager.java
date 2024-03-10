@@ -55,7 +55,7 @@ public class SettingsManager {
         advanced.addChoiceArray("prefered_speech_handler_order", new Supplier<Set<LocalizedStringIdentifier>>() {
             public Set<LocalizedStringIdentifier> get() {
                 return Output.speechManager.getHandlers().stream()
-                        .map(t -> new LocalizedStringIdentifier(t.getName(), t.getName())).collect(Collectors.toSet());
+                        .map(t -> new LocalizedStringIdentifier(t.getName(), t.getLabel())).collect(Collectors.toSet());
             }
         });
         advanced.addBoolean("speech_handler_force_system_speech", false);
