@@ -2,6 +2,7 @@ package sayTheSpire.speech;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.ListIterator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,6 +32,10 @@ public class SpeechManager {
         if (this.currentHandler == null)
             return;
         this.currentHandler.disposeResources();
+    }
+
+    public List<SpeechHandler> getHandlers() {
+        return this.handlers;
     }
 
     /**

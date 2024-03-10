@@ -1,13 +1,23 @@
 package sayTheSpire.ui;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import sayTheSpire.Output;
+import sayTheSpire.localization.LocalizedStringIdentifier;
 import sayTheSpire.ui.elements.UIElement;
 
-/** The UIRegistry allows you to associate in game objects with virtual UI elements */
+/**
+ * The UIRegistry allows you to associate in game objects with virtual UI elements. Also contains a registry of
+ * typenames.
+ */
 public class UIRegistry {
 
     private static HashMap<Object, UIElement> entries = new HashMap();
+    private static HashSet<LocalizedStringIdentifier> registeredTypenames = new HashSet<>();
 
     /**
      * Returns the object associated with a UIElement instance (inverts the object->UIElement mapping)
@@ -52,6 +62,38 @@ public class UIRegistry {
             return true;
         }
         return false;
+    }
+
+    public static void registerTypename(String typename, String localized) {
+        registeredTypenames.add(new LocalizedStringIdentifier(typename, localized));
+    }
+
+    private static void registerBaseTypenames(String... typenames) {
+        // handle localization of element types from Say the Spire itself
+        for (String base : typenames) {
+            String localized = base;
+            String result = Output.localization.getStringAtPath("ui.types." + base);
+            if (result != null)
+                localized = result;
+            registerTypename(base, localized);
+        }
+    }
+
+    public static void registerDefaultTypenames() {
+        registerBaseTypenames("achievement", "blight", "button", "card", "character button", "dropdown", "monster",
+                "orb", "potion", "relic", "toggle button", "slider", "character stats", "treasure chest");
+    }
+
+    public static Set<String> getRegisteredTypenames() {
+        return registeredTypenames.stream().map(t -> t.getKey()).collect(Collectors.toSet());
+    }
+
+    public static Set<LocalizedStringIdentifier> getRegisteredTypenameIdentifiers() {
+        return registeredTypenames;
+    }
+
+    public static void setup() {
+        registerDefaultTypenames();
     }
 
     /** Updates all UIElements in the registry */

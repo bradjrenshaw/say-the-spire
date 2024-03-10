@@ -2,7 +2,6 @@ package sayTheSpire.config;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonPrimitive;
-
 import sayTheSpire.ui.dynamic.elements.DynamicElement;
 import sayTheSpire.ui.dynamic.elements.DynamicToggleButton;
 import sayTheSpire.ui.dynamic.elements.settings.DynamicSettingsToggleButtonElement;
@@ -26,7 +25,7 @@ public class BooleanSetting extends Setting {
     }
 
     public void fromJsonElement(JsonElement json) {
-        this.setValue(json.getAsBoolean());
+        this.setValue(json.getAsBoolean(), true);
     }
 
     public JsonElement toJsonElement() {
@@ -37,7 +36,9 @@ public class BooleanSetting extends Setting {
         return this.value;
     }
 
-    public void setValue(Object value) {
+    protected void setValue(Object value, Boolean ignoreLock) {
+        if (this.getLocked() && !ignoreLock)
+            return;
         this.value = (Boolean) value;
     }
 

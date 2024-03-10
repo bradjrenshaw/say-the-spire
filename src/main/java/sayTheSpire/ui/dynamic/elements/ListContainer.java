@@ -40,14 +40,14 @@ public class ListContainer extends ElementContainer {
         if (this.children.isEmpty())
             return;
         if (position == null) {
-            this.moveFocusIndex(0, true);
+            this.moveFocusIndex(0, this.nextDirection, true);
             return;
         }
         if ((this.vertical && direction == Direction.DOWN) || (!this.vertical && direction == Direction.RIGHT)) {
-            this.moveFocusIndex(0, true);
+            this.moveFocusIndex(0, direction, true);
             return;
-        } else if ((this.vertical && direction == Direction.UP) && (!this.vertical && direction == Direction.LEFT)) {
-            this.moveFocusIndex(this.children.size() - 1, true);
+        } else if ((this.vertical && direction == Direction.UP) || (!this.vertical && direction == Direction.LEFT)) {
+            this.moveFocusIndex(this.children.size() - 1, direction, true);
             return;
         }
         int testIndex = -1;
@@ -63,25 +63,18 @@ public class ListContainer extends ElementContainer {
             testIndex = list.getIndex();
         }
 
-        if (testIndex > 0 && testIndex < this.children.size()) {
-            this.moveFocusIndex(testIndex, true);
+        if (testIndex >= 0 && testIndex < this.children.size()) {
+            this.moveFocusIndex(testIndex, direction, true);
         }
     }
 
     public Boolean processDirectionInput(Direction direction) {
-        DynamicElement focus = this.getFocus();
-        if (focus == null)
-            return false;
-        if (direction == this.prevDirection && this.focusIndex > 0) {
-            focus.exitFocus();
-            this.move((ListPosition) focus.getPosition(), this.prevDirection);
-            return true;
-        } else if (direction == this.nextDirection && this.focusIndex < this.children.size() - 1) {
-            focus.exitFocus();
-            this.move((ListPosition) focus.getPosition(), this.nextDirection);
-            return true;
+        if (direction == this.prevDirection) {
+            return this.moveFocusIndex(this.focusIndex - 1, this.prevDirection, true);
+        } else if (direction == this.nextDirection) {
+            return this.moveFocusIndex(this.focusIndex + 1, this.nextDirection, true);
         }
-        return false;
+        return true;
     }
 
     public Boolean processInputJustPressed(InputAction action) {
@@ -108,18 +101,50 @@ public class ListContainer extends ElementContainer {
         ListPosition position = (ListPosition) this.getChildPosition(element);
         if (position == null)
             return false;
-        element.exitFocus();
         int elementIndex = position.getIndex();
+        if (this.focusIndex == elementIndex) {
+            element.exitFocus();
+        }
         this.children.remove(element);
-        if (elementIndex >= this.focusIndex) {
-            this.move(position, this.prevDirection);
+        if (elementIndex > this.focusIndex) {
+            return true;
+        } else if (elementIndex == this.focusIndex) {
+            if (this.focusIndex >= this.children.size()) {
+                this.moveFocusIndex(this.children.size() - 1, this.prevDirection, true);
+            } else {
+                DynamicElement focus = this.getFocus();
+                focus.enterFocus(position, this.nextDirection);
+            }
+        } else {
+            this.moveFocusIndex(this.focusIndex - 1, this.prevDirection, false);
+            DynamicElement focus = this.getFocus();
+            if (focus != null) {
+                focus.enterFocus(position, this.prevDirection);
+            }
         }
         return true;
     }
 
-    private void moveFocusIndex(int index, Boolean shouldFocus) {
+    private Boolean moveFocusIndex(int index, Direction direction, Boolean handleFocus) {
+        if (index == this.focusIndex)
+            return true;
+        DynamicElement focus = this.getFocus();
+        Position focusPosition = null;
+        if (focus != null) {
+            if (handleFocus) {
+                focus.exitFocus();
+            }
+            focusPosition = focus.getPosition();
+        }
         this.focusIndex = index;
-        this.getFocus().enterFocus(null, this.nextDirection);
+        if (index >= 0 && index < this.children.size()) {
+            if (handleFocus) {
+                DynamicElement target = this.getFocus();
+                target.enterFocus(focusPosition, direction);
+            }
+            return true;
+        }
+        return false;
     }
 
     private void move(ListPosition position, Direction direction) {
@@ -141,6 +166,15 @@ public class ListContainer extends ElementContainer {
     }
 
     public DynamicElement getFocus() {
+        if (this.children.isEmpty()) {
+            this.focusIndex = -1;
+            return null;
+        }
+        if (this.focusIndex < 0) {
+            this.focusIndex = 0;
+        } else if (this.focusIndex >= this.children.size()) {
+            this.focusIndex = this.children.size() - 1;
+        }
         return this.children.get(this.focusIndex);
     }
 

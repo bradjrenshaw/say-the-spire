@@ -1,7 +1,17 @@
 package sayTheSpire.config;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+
+import sayTheSpire.Output;
+import sayTheSpire.localization.LocalizedStringIdentifier;
+import sayTheSpire.speech.SpeechHandler;
+import sayTheSpire.ui.UIRegistry;
 
 public class SettingsManager {
 
@@ -22,7 +32,8 @@ public class SettingsManager {
         combat.addBoolean("orb_events", true);
 
         SettingCategory input = root.addCategory("input");
-        input.addBoolean("virtual_input", true);
+        // This shouldn't be changed mid-game and should only be changed by the user as a last resort
+        input.addBoolean("virtual_input", true).setLocked(true);
 
         SettingCategory map = root.addCategory("map");
         map.addBoolean("read_reversed_paths", true);
@@ -33,11 +44,20 @@ public class SettingsManager {
         ui.addBoolean("read_positions", true);
         ui.addBoolean("read_types", true);
         ui.addBoolean("read_obtain_events", true);
-        ui.addArray("exclude_read_typenames");
+        ui.addChoiceArray("exclude_read_typenames", new Supplier<Set<LocalizedStringIdentifier>>() {
+            public Set<LocalizedStringIdentifier> get() {
+                return UIRegistry.getRegisteredTypenameIdentifiers();
+            }
+        });
 
         SettingCategory advanced = root.addCategory("advanced");
         advanced.addBoolean("use_updated_card_description", false);
-        advanced.addArray("prefered_speech_handler_order");
+        advanced.addChoiceArray("prefered_speech_handler_order", new Supplier<Set<LocalizedStringIdentifier>>() {
+            public Set<LocalizedStringIdentifier> get() {
+                return Output.speechManager.getHandlers().stream()
+                        .map(t -> new LocalizedStringIdentifier(t.getName(), t.getName())).collect(Collectors.toSet());
+            }
+        });
         advanced.addBoolean("speech_handler_force_system_speech", false);
 
         SettingCategory resources = root.addCategory("resources");

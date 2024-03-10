@@ -3,10 +3,13 @@ package sayTheSpire.config;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.function.Supplier;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import sayTheSpire.localization.LocalizedStringIdentifier;
 import sayTheSpire.ui.dynamic.elements.DynamicElement;
 import sayTheSpire.ui.dynamic.elements.settings.DynamicSettingsCategoryButton;
 import sayTheSpire.ui.dynamic.screens.Screen;
@@ -48,6 +51,12 @@ public class SettingCategory extends Setting {
         SettingCategory category = new SettingCategory(this, name);
         this.add(category);
         return category;
+    }
+
+    public ChoiceArraySetting addChoiceArray(String name, Supplier<Set<LocalizedStringIdentifier>> choicesFunc) {
+        ChoiceArraySetting setting = new ChoiceArraySetting(this, name, choicesFunc);
+        this.add(setting);
+        return setting;
     }
 
     public Setting get(String name) {
@@ -92,7 +101,7 @@ public class SettingCategory extends Setting {
         return null;
     }
 
-    public void setValue(Object value) {
+    public void setValue(Object value, Boolean locked) {
         throw new RuntimeException("Setting category has no value to set.");
     }
 

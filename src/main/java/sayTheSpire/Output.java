@@ -59,6 +59,7 @@ public class Output {
 
         localization.postSetupLoad();
 
+        UIRegistry.setup();
         // Effects manager
         effects = new EffectManager();
 
@@ -78,7 +79,6 @@ public class Output {
         speechManager.setup();
         tolkSetup = true;
 
-        // localization = new LocalizationManager();
         setupBuffers();
     }
 

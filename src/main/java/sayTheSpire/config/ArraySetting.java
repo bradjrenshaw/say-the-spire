@@ -36,7 +36,16 @@ public class ArraySetting extends Setting {
         this.items.add(value);
     }
 
+    public Boolean removeValue(String value) {
+        if (this.items.indexOf(value) >= 0) {
+            this.items.remove(value);
+            return true;
+        }
+        return false;
+    }
+
     public void fromJsonElement(JsonElement json) {
+        System.out.println("Parsing setting from config " + this.getLabel());
         this.items.clear();
         for (JsonElement e : json.getAsJsonArray()) {
             this.addValue(e.getAsString());
@@ -55,7 +64,9 @@ public class ArraySetting extends Setting {
         return this.items;
     }
 
-    public void setValue(Object value) {
+    protected void setValue(Object value, Boolean ignoreLock) {
+        if (this.getLocked() && !ignoreLock)
+            return;
         ArrayList<String> values = (ArrayList<String>) value;
         this.items = values;
     }

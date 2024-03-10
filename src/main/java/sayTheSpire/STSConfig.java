@@ -2,7 +2,6 @@ package sayTheSpire;
 
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
@@ -10,16 +9,12 @@ import org.apache.logging.log4j.Logger;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.evacipated.cardcrawl.modthespire.lib.ConfigUtils;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import sayTheSpire.ui.input.InputManager;
 import sayTheSpire.config.Setting;
 import sayTheSpire.config.SettingsManager;
 import sayTheSpire.ui.input.InputActionCollection;
@@ -29,8 +24,6 @@ public class STSConfig {
     private static final Logger logger = LogManager.getLogger(STSConfig.class.getName());
 
     private SettingsManager settings;
-    private JsonElement settingsElement;
-    private HashSet<String> excludedTypenames;
     private JsonObject inputObj;
 
     public STSConfig() {
@@ -38,13 +31,12 @@ public class STSConfig {
         dir.mkdirs();
         this.loadInput();
         this.loadSettings();
-        this.excludedTypenames = null;
     }
 
     private void loadInput() {
         try {
             JsonParser parser = new JsonParser();
-            JsonElement root = parser.parse(new FileReader(this.getInputFilePath()));
+            JsonElement root = parser.parse(new FileReader(getInputFilePath()));
             this.inputObj = root.getAsJsonObject();
             logger.info("Input settings file loaded successfully.");
         } catch (Exception e) {
@@ -61,8 +53,7 @@ public class STSConfig {
         try {
             if (file.exists()) {
                 JsonParser parser = new JsonParser();
-                JsonElement root = parser.parse(new FileReader(this.getSettingsFilePath()));
-                this.settingsElement = root;
+                JsonElement root = parser.parse(new FileReader(getSettingsFilePath()));
                 this.settings.fromJsonElement(root);
                 logger.info("Config loaded from existing file.");
             } else {
@@ -71,6 +62,7 @@ public class STSConfig {
             }
         } catch (Exception e) {
             logger.error("Issue parsing settings.json; recreating file with defaults.", e);
+            shouldCreateFile = true;
         } finally {
             if (shouldCreateFile) {
                 this.saveSettings();
@@ -110,10 +102,7 @@ public class STSConfig {
     }
 
     public HashSet<String> getExcludedTypenames() {
-        if (this.excludedTypenames == null) {
-            this.excludedTypenames = new HashSet<String>(this.getList("ui.exclude_read_typenames"));
-        }
-        return this.excludedTypenames;
+        return new HashSet<String>(this.getList("ui.exclude_read_typenames"));
     }
 
     public static String getDirectoryPath() {

@@ -107,4 +107,5 @@ public class UIManager {
             this.inputManager.updateLast();
         }
     }
+
 }

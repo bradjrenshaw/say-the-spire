@@ -11,10 +11,12 @@ public abstract class Setting {
     protected LocalizationContext localization;
     private SettingCategory parent;
     private String name;
+    private Boolean locked;
 
     public Setting(SettingCategory parent, String name) {
         this.parent = parent;
         this.name = name;
+        this.locked = false;
         this.localization = Output.localization.getContext(this.getLocalizationPath());
     }
 
@@ -26,7 +28,11 @@ public abstract class Setting {
 
     public abstract Object getValue();
 
-    public abstract void setValue(Object value);
+    public void setValue(Object value) {
+        setValue(value, false);
+    }
+
+    protected abstract void setValue(Object value, Boolean ignoreLock);
 
     public String getDescription() {
         return this.localization.localize("description");
@@ -42,6 +48,14 @@ public abstract class Setting {
             return "config.settings.base";
         }
         return parent.getLocalizationPath() + ".settings." + this.getName();
+    }
+
+    public Boolean getLocked() {
+        return this.locked;
+    }
+
+    public void setLocked(Boolean value) {
+        this.locked = value;
     }
 
     public String getName() {
