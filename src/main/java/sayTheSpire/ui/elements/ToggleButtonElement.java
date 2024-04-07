@@ -47,7 +47,7 @@ public class ToggleButtonElement extends UIElement {
     }
 
     public String getLabel() {
-        return this.getDescriptor().getName();
+        return this.getDescriptor().getKey();
     }
 
     public String getStatusString() {

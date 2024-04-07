@@ -89,7 +89,7 @@ public class SettingsToggleButtonElement extends ToggleButtonElement {
     }
 
     public String getLabel() {
-        return TextParser.parse(this.getDescriptor().getName());
+        return TextParser.parse(this.getDescriptor().getKey());
     }
 
     public Boolean getEnabled() {
