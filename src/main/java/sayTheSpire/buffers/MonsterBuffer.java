@@ -1,11 +1,6 @@
 package sayTheSpire.buffers;
 
-import basemod.ReflectionHacks;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.helpers.PowerTip;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import java.util.ArrayList;
-import sayTheSpire.utils.OutputUtils;
 import sayTheSpire.TextParser;
 import sayTheSpire.ui.elements.MonsterElement;
 

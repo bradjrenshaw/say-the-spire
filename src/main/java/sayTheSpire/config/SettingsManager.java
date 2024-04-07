@@ -1,6 +1,5 @@
 package sayTheSpire.config;
 
-import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -55,7 +54,7 @@ public class SettingsManager {
         advanced.addChoiceArray("prefered_speech_handler_order", new Supplier<Set<LocalizedStringIdentifier>>() {
             public Set<LocalizedStringIdentifier> get() {
                 return Output.speechManager.getHandlers().stream()
-                        .map(t -> new LocalizedStringIdentifier(t.getName(), t.getLabel())).collect(Collectors.toSet());
+                        .map(t -> new LocalizedStringIdentifier(t.getKey(), t.getLabel())).collect(Collectors.toSet());
             }
         });
         advanced.addBoolean("speech_handler_force_system_speech", false);

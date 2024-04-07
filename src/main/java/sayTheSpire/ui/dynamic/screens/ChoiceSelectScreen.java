@@ -42,6 +42,7 @@ public class ChoiceSelectScreen extends Screen {
                 }
             });
         }
+        this.setPrimaryContainer(choiceContainer);
     }
 
 }

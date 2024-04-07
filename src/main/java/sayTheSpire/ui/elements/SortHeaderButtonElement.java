@@ -1,9 +1,10 @@
 package sayTheSpire.ui.elements;
 
-import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.screens.mainMenu.SortHeaderButton;
-import sayTheSpire.buffers.BufferManager;
+
+import basemod.ReflectionHacks;
 import sayTheSpire.Output;
+import sayTheSpire.buffers.BufferManager;
 
 public class SortHeaderButtonElement extends UIElement {
 

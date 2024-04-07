@@ -22,7 +22,7 @@ public class DynamicButton extends DynamicElement {
     }
 
     public Boolean processInputJustPressed(InputAction action) {
-        if (action.getName() == "select") {
+        if (action.getKey() == "select") {
             this.onClick();
             return true;
         }

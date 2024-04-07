@@ -3,14 +3,12 @@ package sayTheSpire.map;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.map.MapEdge;
+
 import com.megacrit.cardcrawl.map.MapRoomNode;
+import sayTheSpire.Output;
 import sayTheSpire.localization.LocalizationContext;
 import sayTheSpire.utils.MapUtils;
 import sayTheSpire.utils.OutputUtils;
-import sayTheSpire.Output;
 
 /**
  * Represents a room node from the base game.
@@ -85,7 +83,7 @@ public class BaseRoomNode extends VirtualMapNode {
         return this.node;
     }
 
-    public String getName() {
+    public String getRoomTypeKey() {
         MapRoomNode node = this.getGameNode();
         if (node == null)
             return "unknown";
@@ -105,7 +103,7 @@ public class BaseRoomNode extends VirtualMapNode {
     }
 
     public String getLabel() {
-        return this.localization.localize("names." + this.getName());
+        return this.localization.localize("names." + this.getRoomTypeKey());
     }
 
     public HashSet<String> getTags() {

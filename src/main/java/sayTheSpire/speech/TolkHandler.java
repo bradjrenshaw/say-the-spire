@@ -7,7 +7,7 @@ public class TolkHandler extends SpeechHandler {
 
     public TolkHandler() {
         super();
-        this.setName("tolk");
+        this.setKey("tolk");
     }
 
     public Boolean detect() {

@@ -1,20 +1,20 @@
 package sayTheSpire.ui.mod;
 
 import java.util.ArrayList;
+
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.controller.CInputAction;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
+import sayTheSpire.InfoControls;
+import sayTheSpire.Output;
 import sayTheSpire.ui.dynamic.contexts.ModMenuContext;
 import sayTheSpire.ui.elements.MonsterElement;
-import sayTheSpire.Output;
+import sayTheSpire.ui.input.InputAction;
 import sayTheSpire.utils.MapUtils;
 import sayTheSpire.utils.OutputUtils;
-import sayTheSpire.ui.elements.MonsterElement;
-import sayTheSpire.ui.input.InputAction;
-import sayTheSpire.InfoControls;
 
 public class GameContext extends Context {
 
@@ -68,7 +68,7 @@ public class GameContext extends Context {
     }
 
     public Boolean onJustPress(InputAction action) {
-        switch (action.getName()) {
+        switch (action.getKey()) {
         case "mod menu":
             Output.uiManager.pushContext(new ModMenuContext());
             return true;
@@ -78,7 +78,7 @@ public class GameContext extends Context {
         case "read player gold":
         case "read player hp":
         case "read player powers":
-            this.readPlayerAttribute(action.getName());
+            this.readPlayerAttribute(action.getKey());
             return true;
         case "read summarized intents":
             this.readSummarizedIntents();

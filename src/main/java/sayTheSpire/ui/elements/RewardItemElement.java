@@ -2,10 +2,9 @@ package sayTheSpire.ui.elements;
 
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rewards.RewardItem;
-import com.megacrit.cardcrawl.screens.CombatRewardScreen;
 import sayTheSpire.buffers.BufferManager;
-import sayTheSpire.ui.positions.Position;
 import sayTheSpire.ui.positions.ListPosition;
+import sayTheSpire.ui.positions.Position;
 
 public class RewardItemElement extends UIElement {
 

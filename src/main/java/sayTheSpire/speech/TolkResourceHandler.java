@@ -16,7 +16,7 @@ public class TolkResourceHandler extends TolkHandler {
 
     public TolkResourceHandler() {
         super();
-        this.setName("tolk_resources");
+        this.setKey("tolk_resources");
     }
 
     public void disposeResources() {

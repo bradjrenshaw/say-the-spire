@@ -1,12 +1,12 @@
 package sayTheSpire.ui.mod;
 
 import java.util.ArrayList;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import com.megacrit.cardcrawl.core.Settings;
 
+import com.megacrit.cardcrawl.core.Settings;
 import sayTheSpire.Output;
-import sayTheSpire.STSConfig;
 import sayTheSpire.ui.input.InputAction;
 import sayTheSpire.ui.input.InputManager;
 
@@ -38,7 +38,7 @@ public class UIManager {
             else if (reason.equals("justReleased"))
                 result = context.onJustRelease(action);
             else
-                throw new RuntimeException("Invalud emit action " + reason + " for " + action.getName());
+                throw new RuntimeException("Invalud emit action " + reason + " for " + action.getKey());
             if (result == true) { // input stopped
                 break;
             }

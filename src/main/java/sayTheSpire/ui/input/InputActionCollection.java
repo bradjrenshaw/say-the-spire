@@ -3,16 +3,13 @@ package sayTheSpire.ui.input;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Map;
+
+import com.badlogic.gdx.Input.Keys;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.badlogic.gdx.Input.Keys;
 import com.megacrit.cardcrawl.helpers.Prefs;
 import com.megacrit.cardcrawl.helpers.SaveHelper;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 /** Manages stored input mappings as well as assigning those and default mappings to actions */
 public class InputActionCollection {
@@ -109,7 +106,7 @@ public class InputActionCollection {
     public JsonElement toJsonElement() {
         JsonObject obj = new JsonObject();
         for (InputAction action : this.actions.values()) {
-            obj.add(action.getName(), action.toJsonElement());
+            obj.add(action.getKey(), action.toJsonElement());
         }
         return obj;
     }

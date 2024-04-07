@@ -1,6 +1,5 @@
 package sayTheSpire.ui.elements;
 
-import java.util.ArrayList;
 import com.megacrit.cardcrawl.screens.leaderboards.FilterButton;
 import sayTheSpire.ui.positions.Position;
 import sayTheSpire.buffers.BufferManager;

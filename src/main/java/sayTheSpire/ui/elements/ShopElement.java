@@ -17,7 +17,6 @@ public class ShopElement extends UIElement {
         BUTTON, CARD, POTION, PURGE_BUTTON, RELIC
     }
 
-    private ShopScreen screen;
     private ShopElementType elementType;
     private AbstractCard card;
     private StorePotion storePotion;

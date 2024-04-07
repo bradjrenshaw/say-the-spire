@@ -12,7 +12,10 @@
 * Changed: Speech is now interrupted sooner on key press. This should not have a noticeable effect but please report any oddities with speech interruption on key presses.
 * Added: A dynamic UI system has been added, allowing both Say the Spire and developers interfacing with Say the Spire to provide accessible additional UI:
   * The mod menu: The mod menu allows you to access additional Say the Spire features, such as editing of mod settings and keybindings. This can be accessed with the hotkey control m; a method to access this with controller is being worked on.
-  
+
+### Developers
+* Changed: Various methods have been changed to increase consistency and to make it more obvious when certain string returning methods should be localized. In particular, getName() has been replaced with getKey() in most circumstances (unless the actual returned value is an actual name such as for MonsterElement.) The GetKey() method should never be localized.
+
 ## 0.5.0-beta (2023-05-24)
 
 This is the last major UI patch before version 1.0. This adds support for the few remaining inaccessible screens and fixes missing unlock texts. Note that, despite the leaderboard and daily leaderboard screens being supported, your own scores will not be automatically uploaded due to Slay the Spire preventing modded games from posting scores.

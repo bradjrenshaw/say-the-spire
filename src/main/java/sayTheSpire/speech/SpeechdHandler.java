@@ -11,7 +11,7 @@ public class SpeechdHandler extends SpeechHandler {
 
     public SpeechdHandler() {
         super();
-        this.setName("speech-dispatcher");
+        this.setKey("speech-dispatcher");
     }
 
     public Boolean detect() {

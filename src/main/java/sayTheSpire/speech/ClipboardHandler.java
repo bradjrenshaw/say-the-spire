@@ -10,7 +10,7 @@ public class ClipboardHandler extends SpeechHandler {
 
     public ClipboardHandler() {
         super();
-        this.setName("clipboard");
+        this.setKey("clipboard");
     }
 
     public Boolean detect() {

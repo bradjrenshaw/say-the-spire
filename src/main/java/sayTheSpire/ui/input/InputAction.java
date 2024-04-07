@@ -1,27 +1,27 @@
 package sayTheSpire.ui.input;
 
 import java.util.ArrayList;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonArray;
-import basemod.ReflectionHacks;
-import com.megacrit.cardcrawl.helpers.controller.CInputAction;
-import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.megacrit.cardcrawl.helpers.controller.CInputAction;
+import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
+
+import basemod.ReflectionHacks;
 import sayTheSpire.Output;
 
 public class InputAction {
 
     private static final Logger logger = LogManager.getLogger(InputAction.class.getName());
 
-    private String name;
+    private String key;
     private InputManager inputManager;
     private Boolean isJustPressed, isPressed, isJustReleased;
     private ArrayList<InputMapping> mappings;
 
-    public InputAction(String name, InputManager inputManager) {
-        this.name = name;
+    public InputAction(String key, InputManager inputManager) {
+        this.key = key;
         this.mappings = new ArrayList();
         this.inputManager = inputManager;
         this.isJustPressed = false;
@@ -47,7 +47,7 @@ public class InputAction {
     }
 
     public CInputAction getGameControllerAction() {
-        switch (this.name) {
+        switch (this.getKey()) {
         case "select":
             return CInputActionSet.select;
         case "cancel":
@@ -99,8 +99,8 @@ public class InputAction {
         }
     }
 
-    public String getName() {
-        return this.name;
+    public String getKey() {
+        return this.key;
     }
 
     public ArrayList<InputMapping> getMappings() {
@@ -188,7 +188,7 @@ public class InputAction {
     }
 
     public Boolean isUIAction() {
-        switch (this.getName()) {
+        switch (this.getKey()) {
         case "up":
         case "alt up":
         case "down":

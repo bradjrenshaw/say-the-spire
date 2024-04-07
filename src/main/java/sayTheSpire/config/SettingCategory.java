@@ -28,7 +28,7 @@ public class SettingCategory extends Setting {
     }
 
     public void add(Setting setting) {
-        this.settings.put(setting.getName(), setting);
+        this.settings.put(setting.getKey(), setting);
     }
 
     public ArraySetting addArray(String name) {
@@ -92,7 +92,7 @@ public class SettingCategory extends Setting {
     public JsonElement toJsonElement() {
         JsonObject obj = new JsonObject();
         for (Setting setting : this.settings.values()) {
-            obj.add(setting.getName(), setting.toJsonElement());
+            obj.add(setting.getKey(), setting.toJsonElement());
         }
         return obj;
     }

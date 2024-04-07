@@ -2,8 +2,6 @@ package sayTheSpire.map;
 
 import java.util.HashSet;
 import java.util.List;
-import com.megacrit.cardcrawl.map.MapRoomNode;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 /**
  * Represents a node on the map. This could be a room from the base game or possibly another type (for example a node in
@@ -26,10 +24,10 @@ public abstract class VirtualMapNode {
         return false;
     }
 
-    public abstract String getName();
+    public abstract String getRoomTypeKey();
 
     public String getLabel() {
-        return this.getName();
+        return this.getRoomTypeKey();
     }
 
     public HashSet<String> getTags() {
@@ -76,6 +74,6 @@ public abstract class VirtualMapNode {
         if (this.getClass() != o.getClass())
             return false;
         VirtualMapNode n = (VirtualMapNode) o;
-        return this.getName().equals(n.getName()) && this.getX() == n.getX() && this.getY() == n.getY();
+        return this.getRoomTypeKey().equals(n.getRoomTypeKey()) && this.getX() == n.getX() && this.getY() == n.getY();
     }
 }

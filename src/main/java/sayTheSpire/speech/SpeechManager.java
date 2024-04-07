@@ -66,7 +66,7 @@ public class SpeechManager {
         if (this.handlers.contains(handler))
             return false;
         this.handlers.add(handler);
-        logger.info("Registered speech handler " + handler.getName());
+        logger.info("Registered speech handler " + handler.getKey());
         return true;
     }
 
@@ -79,9 +79,9 @@ public class SpeechManager {
         ListIterator iter = this.handlers.listIterator();
         while (iter.hasNext()) {
             SpeechHandler handler = (SpeechHandler) iter.next();
-            if (preferedOrder.contains(handler.getName())) {
+            if (preferedOrder.contains(handler.getKey())) {
                 iter.remove();
-                reorderedHandlers.put(handler.getName(), handler);
+                reorderedHandlers.put(handler.getKey(), handler);
             }
         }
         iter = preferedOrder.listIterator(preferedOrder.size());
@@ -101,19 +101,19 @@ public class SpeechManager {
         this.reorderHandlerList();
         for (SpeechHandler handler : this.handlers) {
             if (!handler.detect()) {
-                logger.info("Speech handler " + handler.getName() + " detect returned false.");
+                logger.info("Speech handler " + handler.getKey() + " detect returned false.");
                 continue;
             }
             if (!handler.loadResources()) {
-                logger.info("Speech handler " + handler.getName() + " failed to load resources");
+                logger.info("Speech handler " + handler.getKey() + " failed to load resources");
                 continue;
             }
             if (!handler.load()) {
-                logger.info("Speech handler " + handler.getName() + " failed to load.");
+                logger.info("Speech handler " + handler.getKey() + " failed to load.");
                 continue;
             }
             this.currentHandler = handler;
-            logger.info("Speech handler " + handler.getName() + " successfully loaded.");
+            logger.info("Speech handler " + handler.getKey() + " successfully loaded.");
             return true;
         }
         return false;

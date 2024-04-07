@@ -80,7 +80,7 @@ public class ListContainer extends ElementContainer {
     public Boolean processInputJustPressed(InputAction action) {
         if (super.processInputJustPressed(action))
             return true;
-        switch (action.getName()) {
+        switch (action.getKey()) {
         case "up":
         case "alt up":
             return this.processDirectionInput(Direction.UP);

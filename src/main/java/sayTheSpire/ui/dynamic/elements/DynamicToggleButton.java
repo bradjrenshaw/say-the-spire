@@ -40,7 +40,7 @@ public class DynamicToggleButton extends DynamicElement {
     }
 
     public Boolean processInputJustPressed(InputAction action) {
-        if (action.getName() == "select") {
+        if (action.getKey() == "select") {
             this.onToggle();
             return true;
         }

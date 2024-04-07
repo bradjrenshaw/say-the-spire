@@ -12,7 +12,7 @@ import sayTheSpire.Output;
 public class Buffer {
 
     protected String type;
-    private String name;
+    private String key;
     protected int position;
     private Boolean enabled;
     private ArrayList<String> contents;
@@ -22,10 +22,10 @@ public class Buffer {
         this("unknown", "");
     }
 
-    public Buffer(String type, String name) {
+    public Buffer(String type, String key) {
         this.contents = new ArrayList<String>();
         this.type = type;
-        this.name = name;
+        this.key = key;
         this.position = 0;
         this.enabled = false;
         if (type == null || type.equals("")) {
@@ -100,21 +100,21 @@ public class Buffer {
         this.enabled = enabled;
     }
 
-    public String getName() {
-        return this.name;
+    public String getKey() {
+        return this.key;
     }
 
-    public String getLocalizedName() {
+    public String getLabel() {
         if (this.type == "unknown")
-            return this.getName();
+            return this.getKey();
         String name = this.context.localize("localizedName");
         if (name == null)
-            return this.getName();
+            return this.getKey();
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setKey(String name) {
+        this.key = name;
     }
 
     public Object getObject() {

@@ -8,22 +8,22 @@ import sayTheSpire.Output;
  */
 public abstract class SpeechHandler {
 
-    private String name;
+    private String key;
 
     public SpeechHandler() {
-        this.setName(null);
+        this.setKey(null);
     }
 
-    public String getName() {
-        return this.name;
+    public String getKey() {
+        return this.key;
     }
 
     public String getLabel() {
-        return Output.localization.localize("ui.speech handlers." + this.getName() + ".label");
+        return Output.localization.localize("ui.speech handlers." + this.getKey() + ".label");
     }
 
-    protected void setName(String name) {
-        this.name = name;
+    protected void setKey(String name) {
+        this.key = name;
     }
 
     /**

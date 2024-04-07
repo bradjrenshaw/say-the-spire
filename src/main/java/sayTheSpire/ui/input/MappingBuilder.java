@@ -11,7 +11,6 @@ import java.util.HashSet;
 public class MappingBuilder {
 
     private HashMap<String, ArrayList<InputMapping>> mappings;
-    private InputMapping lastMapping;
     private ArrayList<InputMapping> currentActionList;
     private String currentActionName, defaultInputType;
     private Boolean isDefault;
@@ -21,7 +20,6 @@ public class MappingBuilder {
         this.currentActionList = null;
         this.currentActionName = null;
         this.defaultInputType = "keyboard";
-        this.lastMapping = null;
         this.isDefault = false;
     }
 
@@ -44,7 +42,6 @@ public class MappingBuilder {
         HashSet<Integer> mappingCodes = new HashSet(Arrays.asList(keys));
         InputMapping mapping = new InputMapping(this.currentActionName, this.defaultInputType, this.isDefault,
                 mappingCodes);
-        this.lastMapping = mapping;
         this.currentActionList.add(mapping);
         return this;
     }

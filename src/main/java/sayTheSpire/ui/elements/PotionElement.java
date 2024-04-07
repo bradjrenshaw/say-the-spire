@@ -1,15 +1,11 @@
 package sayTheSpire.ui.elements;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
-import com.megacrit.cardcrawl.rewards.RewardItem;
-import sayTheSpire.ui.positions.Position;
-import sayTheSpire.ui.positions.GridPosition;
-import sayTheSpire.ui.positions.ListPosition;
-import sayTheSpire.utils.OutputUtils;
 import sayTheSpire.buffers.BufferManager;
-import sayTheSpire.Output;
+import sayTheSpire.ui.positions.ListPosition;
+import sayTheSpire.ui.positions.Position;
+import sayTheSpire.utils.OutputUtils;
 
 public class PotionElement extends GameObjectElement {
 

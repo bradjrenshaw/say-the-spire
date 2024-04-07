@@ -1,12 +1,12 @@
 package sayTheSpire.utils;
 
-import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.common.ShowMoveNameAction;
+
+import basemod.ReflectionHacks;
+import sayTheSpire.Output;
 import sayTheSpire.TextParser;
 import sayTheSpire.events.DialogueEvent;
-import sayTheSpire.Output;
-import sayTheSpire.utils.OutputUtils;
 
 public class ActionUtils {
 

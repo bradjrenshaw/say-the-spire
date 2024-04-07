@@ -36,9 +36,9 @@ public class ModMenuScreen extends Screen {
     public Boolean processInputJustPressed(InputAction action) {
         if (super.processInputJustPressed(action))
             return true;
-        if (action.getName() == "mod menu")
+        if (action.getKey() == "mod menu")
             return true;
-        if (action.getName() == "cancel") {
+        if (action.getKey() == "cancel") {
             Output.uiManager.popContext();
             Output.text("Mod menu closed.", false);
             return true;

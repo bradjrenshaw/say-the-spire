@@ -21,7 +21,7 @@ public class BaseBossNode extends BaseRoomNode {
         return new ArrayList<VirtualMapEdge>();
     }
 
-    public String getName() {
+    public String getRoomTypeKey() {
         return "boss";
     }
 

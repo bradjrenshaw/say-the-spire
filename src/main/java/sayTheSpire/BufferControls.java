@@ -35,7 +35,7 @@ public class BufferControls {
     public static void reportCurrentBuffer() {
         Buffer current = buffers.getCurrentBuffer();
         LocalizationContext context = Output.localization.getContext("text.buffers");
-        context.put("buffer", current.getLocalizedName());
+        context.put("buffer", current.getLabel());
         String currentItem = current.getCurrentItem();
         context.put("item", currentItem);
         if (current == null) {
@@ -59,7 +59,7 @@ public class BufferControls {
             Output.textLocalized("noBufferSelected", false, context);
             return;
         }
-        context.put("buffer", buffer.getLocalizedName());
+        context.put("buffer", buffer.getLabel());
         String currentItem = buffer.getCurrentItem();
         context.put("item", currentItem);
         if (buffer.isEmpty()) {

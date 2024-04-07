@@ -27,7 +27,7 @@ public class BaseStartNode extends BaseRoomNode {
         return true;
     }
 
-    public String getName() {
+    public String getRoomTypeKey() {
         return "start location";
     }
 }

@@ -86,7 +86,7 @@ public class BufferManager {
 
     public Buffer getBuffer(String name) {
         for (Buffer buffer : this.buffers) {
-            if (buffer.getName().equals(name))
+            if (buffer.getKey().equals(name))
                 return buffer;
         }
         return null;
@@ -108,7 +108,7 @@ public class BufferManager {
     public void setCurrentBuffer(String name) {
         for (int b = 0; b < this.buffers.size(); b++) {
             Buffer test = this.buffers.get(b);
-            if (test.getName().equals(name)) {
+            if (test.getKey().equals(name)) {
                 test.update();
                 this.position = b;
                 return;

@@ -89,7 +89,7 @@ public abstract class UIElement {
 
     /**
      * Returns the label of the element (usually the name). Note that any getLabel() should be assumed to be localized;
-     * any getName() should not.
+     * any getKey() should not.
      */
     public String getLabel() {
         return null;

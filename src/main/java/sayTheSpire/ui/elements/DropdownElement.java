@@ -1,18 +1,12 @@
 package sayTheSpire.ui.elements;
 
 import java.lang.reflect.Field;
+
 import com.megacrit.cardcrawl.helpers.Hitbox;
-import basemod.ReflectionHacks;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.TutorialStrings;
-import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.screens.options.DropdownMenu;
-import sayTheSpire.buffers.BufferManager;
+
 import sayTheSpire.Output;
-import sayTheSpire.TextParser;
-import sayTheSpire.utils.OutputUtils;
+import sayTheSpire.buffers.BufferManager;
 
 public class DropdownElement extends UIElement {
 

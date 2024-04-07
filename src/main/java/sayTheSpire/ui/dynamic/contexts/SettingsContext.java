@@ -31,7 +31,7 @@ public class SettingsContext extends UIContext {
 
     public Boolean onJustPress(InputAction action) {
         Boolean result = super.onJustPress(action);
-        if (action.getName() == "cancel") {
+        if (action.getKey() == "cancel") {
             this.handleCancel();
             return true;
         }

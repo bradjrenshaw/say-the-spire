@@ -1,25 +1,16 @@
 package sayTheSpire.ui.navigators;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import java.util.ListIterator;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.map.MapRoomNode;
-import net.arikia.dev.drpc.callbacks.JoinRequestCallback;
-import sayTheSpire.localization.LocalizationContext;
+
+import sayTheSpire.InfoControls;
 import sayTheSpire.Output;
-import sayTheSpire.map.BaseMap;
+import sayTheSpire.localization.LocalizationContext;
 import sayTheSpire.map.BaseMapEdge;
 import sayTheSpire.map.VirtualMap;
 import sayTheSpire.map.VirtualMapEdge;
 import sayTheSpire.map.VirtualMapNode;
-import sayTheSpire.utils.MapUtils;
-import sayTheSpire.utils.OutputUtils;
-import sayTheSpire.InfoControls;
 
 public class TreeNavigator extends MapNavigator {
 
@@ -61,7 +52,6 @@ public class TreeNavigator extends MapNavigator {
             return path;
         while (true) {
             VirtualMapEdge edge = null;
-            VirtualMapNode node = null;
             if (!this.viewingPath.empty()) {
                 edge = this.viewingPath.pop().invert();
             } else {
@@ -122,7 +112,6 @@ public class TreeNavigator extends MapNavigator {
             Output.text(this.localization.localize("error focus null"), false);
             return;
         }
-        VirtualMapNode targetNode = node;
         VirtualMapNode playerNode = this.getMap().getPlayerNode();
         if (playerNode != null && isHovered) {
             this.viewingPath.clear();
