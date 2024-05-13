@@ -54,7 +54,7 @@ public class KeyArraySettingScreen extends Screen {
         DynamicButton addButton = new DynamicButton("Add");
         addButton.click.registerHandler(new EventHandler<ClickEvent>() {
             public Boolean execute(ClickEvent event) {
-                ChoiceSelectScreen selectScreen = new ChoiceSelectScreen(getContext(), "Select typename to exclude");
+                ChoiceSelectScreen selectScreen = new ChoiceSelectScreen(getContext(), setting.getChoicePrompt());
                 for (IUIInfo choice : setting.getChoices().values()) {
                     selectScreen.addChoice(choice);
                 }

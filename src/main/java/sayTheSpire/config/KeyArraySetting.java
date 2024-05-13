@@ -26,6 +26,10 @@ public class KeyArraySetting extends Setting {
         this.choices = new HashMap();
     }
 
+    public String getChoicePrompt() {
+        return this.localization.localize("choicePrompt");
+    }
+
     public DynamicElement getDynamicElement(Screen screen) {
         return new DynamicSettingsKeyArrayButton(screen.getContext(), this);
     }

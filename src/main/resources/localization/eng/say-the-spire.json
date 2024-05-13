@@ -80,7 +80,8 @@
               },
               "prefered_speech_handler_order": {
                 "label": "Prefered Speech Handler Order",
-                "description": "Your prefered order of speech handlers. For more information, see the documentation on speech handlers."
+                "description": "Your prefered order of speech handlers. Speech handlers will be loaded in the order listed. For more information, see the documentation on speech handlers.",
+"choicePrompt": "Select a speech handler to add to the list."
               },
               "speech_handler_force_system_speech": {
                 "label": "Force System Speech for Speech Handlers",
@@ -116,7 +117,7 @@
             "settings": {
               "virtual_input": {
                 "label": "Virtual Input",
-                "description": "Whether or not virtual input is enabled."
+                "description": "Whether or not virtual input is enabled. This must be changed from the settings.json file and should only be done if absolutely necessary (see documentation for more info.)"
               }
             }
           },
@@ -156,7 +157,8 @@
               },
               "exclude_read_typenames": {
                 "label": "Exclude Specific Element Typenames",
-                "description": "A list of types to not be read. For example if you do not want cards and relics to say card or relic after their name, you could add card or button to the list and they would not be read out, leaving all other element types to be read."
+                "description": "A list of types to not be read. For example if you do not want cards and relics to say card or relic after their name, you could add card or button to the list and they would not be read out, leaving all other element types to be read.",
+                "choicePrompt": "Select a type to exclude"
               }
             }
           },
