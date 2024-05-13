@@ -24,7 +24,4 @@ public class DropdownRowElement extends UIElement {
         }
     }
 
-    public String handleBuffers(BufferManager buffers) {
-        return null;
-    }
 }

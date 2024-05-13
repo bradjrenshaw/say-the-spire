@@ -17,7 +17,7 @@ import sayTheSpire.ui.elements.UIElement;
 public class UIRegistry {
 
     private static HashMap<Object, UIElement> entries = new HashMap();
-    private static HashSet<LocalizedStringIdentifier> registeredTypenames = new HashSet<>();
+    private static HashMap<String, IUIInfo> registeredTypenames = new HashMap<>();
 
     /**
      * Returns the object associated with a UIElement instance (inverts the object->UIElement mapping)
@@ -64,18 +64,27 @@ public class UIRegistry {
         return false;
     }
 
-    public static void registerTypename(String typename, String localized) {
-        registeredTypenames.add(new LocalizedStringIdentifier(typename, localized));
+    public static void registerTypename(String typename, IUIInfo data) {
+        registeredTypenames.put(typename, data);
     }
 
     private static void registerBaseTypenames(String... typenames) {
         // handle localization of element types from Say the Spire itself
         for (String base : typenames) {
-            String localized = base;
-            String result = Output.localization.getStringAtPath("ui.types." + base);
-            if (result != null)
-                localized = result;
-            registerTypename(base, localized);
+            IUIInfo data = new IUIInfo() {
+                public String getKey() {
+                    return base;
+                }
+
+                public String getLabel() {
+                    String result = Output.localization.getStringAtPath("ui.types." + base);
+                    if (result == null) {
+                        return getKey();
+                    }
+                    return result;
+                }
+            };
+            registerTypename(base, data);
         }
     }
 
@@ -85,10 +94,10 @@ public class UIRegistry {
     }
 
     public static Set<String> getRegisteredTypenames() {
-        return registeredTypenames.stream().map(t -> t.getKey()).collect(Collectors.toSet());
+        return registeredTypenames.keySet();
     }
 
-    public static Set<LocalizedStringIdentifier> getRegisteredTypenameIdentifiers() {
+    public static HashMap<String, IUIInfo> getRegisteredTypenameData() {
         return registeredTypenames;
     }
 

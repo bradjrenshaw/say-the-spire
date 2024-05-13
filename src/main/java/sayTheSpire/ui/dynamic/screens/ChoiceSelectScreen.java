@@ -2,6 +2,7 @@ package sayTheSpire.ui.dynamic.screens;
 
 import java.util.ArrayList;
 
+import sayTheSpire.ui.IUIInfo;
 import sayTheSpire.ui.dynamic.contexts.UIContext;
 import sayTheSpire.ui.dynamic.elements.DynamicButton;
 import sayTheSpire.ui.dynamic.elements.ListContainer;
@@ -13,7 +14,7 @@ import sayTheSpire.ui.dynamic.events.SingleEventDispatcher;
 public class ChoiceSelectScreen extends Screen {
 
     private String prompt;
-    private ArrayList<String> choices;
+    private ArrayList<IUIInfo> choices;
     public final SingleEventDispatcher<ChoiceSelectEvent> select;
 
     public ChoiceSelectScreen(UIContext context, String prompt) {
@@ -23,8 +24,8 @@ public class ChoiceSelectScreen extends Screen {
         this.select = new SingleEventDispatcher<>();
     }
 
-    public void addChoice(String text) {
-        this.choices.add(text);
+    public void addChoice(IUIInfo choice) {
+        this.choices.add(choice);
     }
 
     public void setup() {
@@ -32,7 +33,8 @@ public class ChoiceSelectScreen extends Screen {
 
         int choiceCount = this.choices.size();
         for (int c = 0; c < choiceCount; c++) {
-            String label = this.choices.get(c);
+            IUIInfo choice = choices.get(c);
+            String label = choice.getLabel();
             int index = c;
             DynamicButton button = new DynamicButton(label);
             button.click.registerHandler(new EventHandler<ClickEvent>() {

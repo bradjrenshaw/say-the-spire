@@ -5,19 +5,21 @@ import java.util.List;
 import java.util.Map;
 
 import sayTheSpire.Output;
-import sayTheSpire.config.ChoiceArraySetting;
+import sayTheSpire.Output;
+import sayTheSpire.config.KeyArraySetting;
+import sayTheSpire.ui.IUIInfo;
 import sayTheSpire.ui.dynamic.contexts.UIContext;
 import sayTheSpire.ui.dynamic.elements.DynamicButton;
 import sayTheSpire.ui.dynamic.elements.ListContainer;
 import sayTheSpire.ui.dynamic.events.ClickEvent;
 import sayTheSpire.ui.dynamic.events.EventHandler;
 
-public class ChoiceArraySettingScreen extends Screen {
+public class KeyArraySettingScreen extends Screen {
 
-    private ChoiceArraySetting setting;
+    private KeyArraySetting setting;
     private ListContainer valueContainer;
 
-    public ChoiceArraySettingScreen(UIContext context, ChoiceArraySetting setting) {
+    public KeyArraySettingScreen(UIContext context, KeyArraySetting setting) {
         super(context);
         this.setting = setting;
     }
@@ -27,15 +29,13 @@ public class ChoiceArraySettingScreen extends Screen {
 
         // todo localize this
         this.valueContainer = new ListContainer("values");
-        ArrayList<String> settingValues = (ArrayList<String>) this.setting.getValue();
-        Map<String, String> choices = this.setting.getChoices();
-        for (String value : settingValues) {
-            DynamicButton button = new DynamicButton(choices.get(value));
+        for (IUIInfo item : this.setting.getItems().values()) {
+            DynamicButton button = new DynamicButton(item.getLabel());
             button.click.registerHandler(new EventHandler<ClickEvent>() {
                 public Boolean execute(ClickEvent event) {
-                    if (setting.removeValue(event.target.getLabel())) {
+                    if (setting.remove(item.getKey())) {
                         // todo localize this
-                        Output.text(value + " removed", false);
+                        Output.text(item.getLabel() + " removed", false);
                         valueContainer.remove(event.target);
                     }
                     return false;

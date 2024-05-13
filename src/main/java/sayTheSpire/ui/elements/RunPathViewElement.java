@@ -39,7 +39,7 @@ public class RunPathViewElement extends UIElement {
         }
     }
 
-    public String getTypeString() {
+    public String getTypeKey() {
         return null;
     }
 }

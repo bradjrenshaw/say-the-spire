@@ -24,11 +24,6 @@ public class ButtonElement extends UIElement {
         this.description = description;
     }
 
-    public String handleBuffers(BufferManager buffers) {
-        Output.setupUIBufferMany(this.name, this.description);
-        return null;
-    }
-
     public String getLabel() {
         return this.name;
     }

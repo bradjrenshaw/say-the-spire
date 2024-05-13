@@ -20,7 +20,7 @@ public class TextElement extends UIElement {
         return null;
     }
 
-    public String getTypeString() {
+    public String getTypeKey() {
         return null;
     }
 }

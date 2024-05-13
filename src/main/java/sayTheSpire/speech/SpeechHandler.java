@@ -1,12 +1,13 @@
 package sayTheSpire.speech;
 
 import sayTheSpire.Output;
+import sayTheSpire.ui.IUIInfo;
 
 /**
  * A SpeechHandler represents some form of accessibility output (screen reader library, multiple libraries in one
  * (Tolk), etc)
  */
-public abstract class SpeechHandler {
+public abstract class SpeechHandler implements IUIInfo {
 
     private String key;
 
@@ -22,8 +23,8 @@ public abstract class SpeechHandler {
         return Output.localization.localize("ui.speech handlers." + this.getKey() + ".label");
     }
 
-    protected void setKey(String name) {
-        this.key = name;
+    protected void setKey(String key) {
+        this.key = key;
     }
 
     /**

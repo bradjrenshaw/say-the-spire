@@ -31,12 +31,12 @@ public class SettingCategory extends Setting {
         this.settings.put(setting.getKey(), setting);
     }
 
-    public ArraySetting addArray(String name) {
+    public KeyArraySetting addArray(String name) {
         return this.addArray(name, null);
     }
 
-    public ArraySetting addArray(String name, ArrayList<String> defaultValues) {
-        ArraySetting setting = new ArraySetting(this, name, defaultValues);
+    public KeyArraySetting addArray(String name, ArrayList<String> defaultValues) {
+        KeyArraySetting setting = new KeyArraySetting(this, name, defaultValues);
         this.add(setting);
         return setting;
     }
@@ -53,8 +53,8 @@ public class SettingCategory extends Setting {
         return category;
     }
 
-    public ChoiceArraySetting addChoiceArray(String name, Supplier<Set<LocalizedStringIdentifier>> choicesFunc) {
-        ChoiceArraySetting setting = new ChoiceArraySetting(this, name, choicesFunc);
+    public KeyArraySetting addKeyArray(String name) {
+        KeyArraySetting setting = new KeyArraySetting(this, name);
         this.add(setting);
         return setting;
     }

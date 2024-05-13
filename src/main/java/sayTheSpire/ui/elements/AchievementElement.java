@@ -24,7 +24,7 @@ public class AchievementElement extends UIElement {
         return null;
     }
 
-    private String getDescription() {
+    public String getDescription() {
         return (String) ReflectionHacks.getPrivate(this.achievement, AchievementItem.class, "desc");
     }
 

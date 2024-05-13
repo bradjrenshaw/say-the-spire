@@ -1,16 +1,16 @@
 package sayTheSpire.ui.elements;
 
-import sayTheSpire.buffers.BufferManager;
-import sayTheSpire.localization.LocalizationContext;
-import sayTheSpire.ui.positions.Position;
 import sayTheSpire.Output;
+import sayTheSpire.localization.LocalizationContext;
+import sayTheSpire.ui.IUIInfo;
+import sayTheSpire.ui.positions.Position;
 
 /**
  * A virtual UI element represents a game object and various properties it may have. Virtual UI Elements also include
  * handling for being interacted with that the game does not have (for example, a UI virtual toggle button may announce
  * the status when clicked) Any virtual UI elements should inherit this base class
  */
-public abstract class UIElement {
+public abstract class UIElement implements IUIInfo {
 
     protected String elementType = null;
     protected Position position;
@@ -36,7 +36,6 @@ public abstract class UIElement {
      * 
      * @return A String with a buffer name to set as the focus, or null to leave that up to other sources
      */
-    public abstract String handleBuffers(BufferManager buffers);
 
     /**
      * Updates any needed values and performs any triggers on UI elements. Note that this won't do anything unless the
@@ -45,7 +44,7 @@ public abstract class UIElement {
     public void update() {
     }
 
-    public String getElementType() {
+    public String getElementTypeKey() {
         return this.elementType;
     }
 
@@ -58,7 +57,7 @@ public abstract class UIElement {
         if (extras != null)
             sb.append(" " + extras);
         if (Output.config.getBoolean("ui.read_types")) {
-            String type = this.getTypeString();
+            String type = this.getTypeKey();
             if (type != null && !Output.config.getExcludedTypenames().contains(type)) {
                 if (this.shouldUseBaseLocalization) {
                     String localizedType = Output.localization.localize("ui.types." + type);
@@ -112,7 +111,7 @@ public abstract class UIElement {
     }
 
     /** Returns the type of the element (such as "button"). The output of this method is assumed to be localized. */
-    public String getTypeString() {
+    public String getTypeKey() {
         return elementType;
     }
 }

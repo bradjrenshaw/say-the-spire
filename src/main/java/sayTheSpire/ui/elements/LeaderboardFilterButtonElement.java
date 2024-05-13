@@ -21,11 +21,6 @@ public class LeaderboardFilterButtonElement extends UIElement {
         return this.button;
     }
 
-    public String handleBuffers(BufferManager buffers) {
-        Output.setupUIBufferMany(this.getLabel());
-        return null;
-    }
-
     public void update() {
         FilterButton button = this.getButton();
         if (button.hb.justHovered) {

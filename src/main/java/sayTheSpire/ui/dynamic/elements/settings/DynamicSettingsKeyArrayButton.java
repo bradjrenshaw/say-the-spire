@@ -2,17 +2,17 @@ package sayTheSpire.ui.dynamic.elements.settings;
 
 import java.util.ArrayList;
 
-import sayTheSpire.config.ChoiceArraySetting;
+import sayTheSpire.config.KeyArraySetting;
 import sayTheSpire.ui.dynamic.contexts.UIContext;
 import sayTheSpire.ui.dynamic.elements.DynamicButton;
-import sayTheSpire.ui.dynamic.screens.ChoiceArraySettingScreen;
+import sayTheSpire.ui.dynamic.screens.KeyArraySettingScreen;
 
-public class DynamicSettingsChoiceArrayButton extends DynamicButton {
+public class DynamicSettingsKeyArrayButton extends DynamicButton {
 
     private UIContext context;
-    private ChoiceArraySetting setting;
+    private KeyArraySetting setting;
 
-    public DynamicSettingsChoiceArrayButton(UIContext context, ChoiceArraySetting setting) {
+    public DynamicSettingsKeyArrayButton(UIContext context, KeyArraySetting setting) {
         super(setting.getLabel());
         this.context = context;
         this.setting = setting;
@@ -20,7 +20,7 @@ public class DynamicSettingsChoiceArrayButton extends DynamicButton {
 
     public void onClick() {
         super.onClick();
-        this.context.pushScreen(new ChoiceArraySettingScreen(this.context, this.setting));
+        this.context.pushScreen(new KeyArraySettingScreen(this.context, this.setting));
     }
 
     public String getDescription() {
