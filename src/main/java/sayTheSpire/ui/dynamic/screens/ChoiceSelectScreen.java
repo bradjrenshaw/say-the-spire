@@ -40,7 +40,7 @@ public class ChoiceSelectScreen extends Screen {
             button.setInfo(choice);
             button.click.registerHandler(new EventHandler<ClickEvent>() {
                 public Boolean execute(ClickEvent event) {
-                    select.dispatch(new ChoiceSelectEvent(button, label, index));
+                    select.dispatch(new ChoiceSelectEvent(button, choice, index));
                     return false;
                 }
             });
