@@ -2,6 +2,7 @@ package sayTheSpire.ui;
 
 import sayTheSpire.Output;
 import sayTheSpire.buffers.BufferManager;
+import sayTheSpire.ui.positions.Position;
 
 public interface IUIInfo {
 
@@ -23,12 +24,16 @@ public interface IUIInfo {
         return null;
     }
 
+    default Position getPosition() {
+        return null;
+    }
+
     default String getStatusString() {
         return null;
     }
 
     default String handleBuffers(BufferManager buffers) {
-        Output.setupUIBufferMany(this.getLabel(), this.getDescription());
+        Output.setupUIBufferMany(getLabel(), getDescription());
         return null;
     }
 

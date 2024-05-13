@@ -23,6 +23,10 @@ public abstract class SpeechHandler implements IUIInfo {
         return Output.localization.localize("ui.speech handlers." + this.getKey() + ".label");
     }
 
+    public String getDescription() {
+        return Output.localization.localize("ui.speech handlers." + this.getKey() + ".description");
+    }
+
     protected void setKey(String key) {
         this.key = key;
     }

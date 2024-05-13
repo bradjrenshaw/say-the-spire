@@ -1,6 +1,7 @@
 package sayTheSpire.ui.dynamic.elements;
 
 import sayTheSpire.ui.Direction;
+import sayTheSpire.ui.IUIInfo;
 import sayTheSpire.ui.dynamic.events.FocusEvent;
 import sayTheSpire.ui.dynamic.events.SingleEventDispatcher;
 import sayTheSpire.ui.dynamic.events.UnfocusEvent;
@@ -17,6 +18,8 @@ public abstract class DynamicElement extends UIElement {
 
     protected String label, description;
     protected ElementContainer parent;
+    private IUIInfo info;
+
     public SingleEventDispatcher<FocusEvent> focus;
     public SingleEventDispatcher<UnfocusEvent> unfocus;
 
@@ -68,6 +71,7 @@ public abstract class DynamicElement extends UIElement {
         this.parent = null;
         this.label = label;
         this.description = description;
+        this.info = null;
         this.focus = new SingleEventDispatcher<FocusEvent>();
         this.unfocus = new SingleEventDispatcher<UnfocusEvent>();
     }
@@ -81,6 +85,9 @@ public abstract class DynamicElement extends UIElement {
      * @return A string corresponding to the buffer name to focus or null to not change the focus
      */
     public String handleBuffers(BufferManager buffers) {
+        if (this.info != null) {
+            return this.info.handleBuffers(buffers);
+        }
         Output.setupUIBufferMany(this.getLabel(), this.getDescription());
         return null;
     }
@@ -130,7 +137,17 @@ public abstract class DynamicElement extends UIElement {
         this.parent = parent;
     }
 
+    public void setInfo(IUIInfo info) {
+        System.out.println("setInfo called");
+        this.info = info;
+    }
+
     public String getDescription() {
+        if (this.info != null) {
+            String infoDescription = this.info.getDescription();
+            if (infoDescription != null)
+                return infoDescription;
+        }
         return this.description;
     }
 
@@ -139,6 +156,11 @@ public abstract class DynamicElement extends UIElement {
     }
 
     public Position getPosition() {
+        if (this.info != null) {
+            Position infoPosition = this.info.getPosition();
+            if (infoPosition != null)
+                return infoPosition;
+        }
         ElementContainer parent = this.getParent();
         if (parent != null) {
             return parent.getChildPosition(this);
@@ -147,6 +169,11 @@ public abstract class DynamicElement extends UIElement {
     }
 
     public String getLabel() {
+        if (this.info != null) {
+            String infoLabel = this.info.getLabel();
+            if (infoLabel != null)
+                return infoLabel;
+        }
         return this.label;
     }
 }

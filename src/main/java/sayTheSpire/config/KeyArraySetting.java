@@ -34,6 +34,10 @@ public class KeyArraySetting extends Setting {
         return this.items;
     }
 
+    public HashMap<String, IUIInfo> getChoices() {
+        return this.choices;
+    }
+
     public Boolean add(String key) {
         if (this.items.containsKey(key)) {
             return false;

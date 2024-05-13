@@ -31,6 +31,7 @@ public class KeyArraySettingScreen extends Screen {
         this.valueContainer = new ListContainer("values");
         for (IUIInfo item : this.setting.getItems().values()) {
             DynamicButton button = new DynamicButton(item.getLabel());
+            button.setInfo(item);
             button.click.registerHandler(new EventHandler<ClickEvent>() {
                 public Boolean execute(ClickEvent event) {
                     if (setting.remove(item.getKey())) {
@@ -49,8 +50,10 @@ public class KeyArraySettingScreen extends Screen {
         addButton.click.registerHandler(new EventHandler<ClickEvent>() {
             public Boolean execute(ClickEvent event) {
                 ChoiceSelectScreen selectScreen = new ChoiceSelectScreen(getContext(), "Select typename to exclude");
-                List<String> settingValues = (List<String>) setting.getValue();
-
+                for (IUIInfo choice : setting.getChoices().values()) {
+                    selectScreen.addChoice(choice);
+                }
+                context.pushScreen(selectScreen);
                 return false;
             }
         });

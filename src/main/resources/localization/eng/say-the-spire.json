@@ -454,16 +454,20 @@
     },
     "speech handlers": {
       "clipboard": {
-        "label": "Clipboard (all platforms)"
+        "label": "Clipboard (all platforms)",
+        "description": "Sends all text output to the clipboard. This is useful for translation or for some specific screen readers."
       },
       "speech-dispatcher": {
-        "label": "Speech Dispatcher (Linux)"
+        "label": "Speech Dispatcher (Linux)",
+        "description": "This is the recommended screenreader output handler for Linux. Uses Speech-Dispatcher (screen reader output) library for Linux. This requires some initial setup; please see the documentation for more information."
       },
       "tolk": {
-        "label": "Tolk (Windows)"
+        "label": "Tolk (Windows)",
+        "description": "Uses the Tolk (screen reader output) library for Windows. You will need to copy required screenreader dll files to the game directory to use this handler."
       },
       "tolk_resources": {
-        "label": "Tolk with Bundled Resource Files (Windows)"
+        "label": "Tolk with Bundled Resource Files (Windows)",
+        "description": "this is the recommended Windows Tolk library. Uses the Tolk (screen reader output) library for Windows and automatically extracts dlls needed at runtime. Dll files are removed when the game is closed."
       }
     },
     "types": {

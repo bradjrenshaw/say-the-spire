@@ -37,12 +37,14 @@ public class ChoiceSelectScreen extends Screen {
             String label = choice.getLabel();
             int index = c;
             DynamicButton button = new DynamicButton(label);
+            button.setInfo(choice);
             button.click.registerHandler(new EventHandler<ClickEvent>() {
                 public Boolean execute(ClickEvent event) {
                     select.dispatch(new ChoiceSelectEvent(button, label, index));
                     return false;
                 }
             });
+            choiceContainer.add(button);
         }
         this.setPrimaryContainer(choiceContainer);
     }
