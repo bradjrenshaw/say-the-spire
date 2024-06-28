@@ -7,7 +7,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.megacrit.cardcrawl.helpers.controller.CInputAction;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
-
 import basemod.ReflectionHacks;
 import sayTheSpire.Output;
 

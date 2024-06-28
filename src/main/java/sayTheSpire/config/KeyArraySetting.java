@@ -22,8 +22,8 @@ public class KeyArraySetting extends Setting {
 
     public KeyArraySetting(SettingCategory parent, String name, ArrayList<String> defaultKeys) {
         super(parent, name);
-        this.items = new LinkedHashMap();
-        this.choices = new HashMap();
+        this.items = new LinkedHashMap<>();
+        this.choices = new HashMap<>();
     }
 
     public String getChoicePrompt() {
