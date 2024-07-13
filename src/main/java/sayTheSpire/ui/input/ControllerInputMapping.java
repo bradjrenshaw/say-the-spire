@@ -27,7 +27,9 @@ public class ControllerInputMapping extends InputMapping {
     }
 
     public void handleKeycodePress(int keycode) {
-        this.isDown = (keycode == this.getKeycode());
+        if (keycode == this.getKeycode()) {
+            this.isDown = true;
+        }
     }
 
     public void handleKeycodeRelease(int keycode) {
@@ -37,7 +39,7 @@ public class ControllerInputMapping extends InputMapping {
     }
 
     public void updateFirst() {
-        if (isDown && !this.pressed) {
+        if (this.isDown && !this.pressed) {
             this.justPressed = true;
             this.pressed = true;
         } else if (this.isDown && this.justPressed) {
