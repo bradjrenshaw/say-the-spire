@@ -1,153 +1,91 @@
 package sayTheSpire.ui.input;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-
 import sayTheSpire.Output;
 
 public class InputManager {
-    private static final Logger logger = LogManager.getLogger(InputManager.class.getName());
-    private HashMap<Integer, Boolean> controllerPressed, keyboardPressed;
-    private HashSet<Integer> keysToCheck;
-    private HashSet<InputMapping.Modifiers> keyboardPressedModifiers;
-    private InputActionCollection actionCollection;
-    static final String actionNames[] = { "select", "cancel", "top panel", "proceed", "peek", "page left", "page right",
-            "draw pile", "discard pile", "map", "settings", "up", "down", "left", "right", "alt up", "alt down",
-            "alt left", "alt right", "inspect up", "inspect down", "inspect left", "inspect right", "mod menu",
-            "read player block", "read player energy", "read player gold", "read player hp", "read summarized intents",
-            "read player powers", "read detailed intents", "read act boss" };
 
-    public InputManager(JsonObject inputObj) {
-        if (inputObj != null) {
-            this.actionCollection = new InputActionCollection(this, inputObj);
-        } else {
-            this.actionCollection = new InputActionCollection(this);
-        }
-        this.keysToCheck = new HashSet();
-        this.controllerPressed = new HashMap();
-        this.keyboardPressed = new HashMap();
-        this.keyboardPressedModifiers = new HashSet();
-        this.determineKeysToCheck();
-    }
+    private static final Logger logger = LogManager.getLogger(InputManager.class.getName());
+    private InputActionCollection baseActionCollection;
+    private ArrayList<ControllerInputMapping> controllerMappings;
 
     public InputManager() {
-        this(null);
+        this.controllerMappings = new ArrayList();
+        this.baseActionCollection = this.buildBaseActionCollection();
+    }
+
+    public void RegisterControllerMappingIfValid(InputMapping mapping) {
+        if (!(mapping instanceof ControllerInputMapping)) {
+            return;
+        }
+        this.controllerMappings.add((ControllerInputMapping) mapping);
+    }
+
+    public void unregisterControllerMappingIfValid(InputMapping mapping) {
+        if (this.controllerMappings.contains(mapping)) {
+            this.controllerMappings.remove(mapping);
+        }
     }
 
     public void clearActionStates() {
-        if (this.controllerPressed != null)
-            this.controllerPressed.clear();
-        if (this.keyboardPressed != null)
-            this.keyboardPressed.clear();
-        for (InputAction action : this.actionCollection.getActions()) {
+        for (InputAction action : this.baseActionCollection.getActions()) {
             action.clearStates();
         }
     }
 
-    public InputActionCollection getActionCollection() {
-        return this.actionCollection;
-    }
-
-    private void determineKeysToCheck() {
-        this.keysToCheck.clear();
-        for (InputAction action : this.actionCollection.getActions()) {
-            for (InputMapping mapping : action.getMappings()) {
-                int keycode = mapping.getKeycode();
-                this.keysToCheck.add(keycode);
-            }
-        }
+    private InputActionCollection buildBaseActionCollection() {
+        return InputBuilder.buildBaseActions(this);
     }
 
     public void handleControllerKeycodePress(int keycode) {
-        this.controllerPressed.put(keycode, true);
+        Output.text("pressed keycode " + keycode, false);
+        for (ControllerInputMapping mapping : this.controllerMappings) {
+            mapping.handleKeycodePress(keycode);
+        }
     }
 
     public void handleControllerKeycodeRelease(int keycode) {
-        this.controllerPressed.remove(keycode);
-    }
-
-    private Boolean isMappingJustPressedController(InputMapping mapping) {
-        int keycode = mapping.getKeycode();
-        return this.controllerPressed.getOrDefault(keycode, false);
-    }
-
-    private Boolean isMappingPressedController(InputMapping mapping) {
-        int keycode = mapping.getKeycode();
-        return this.controllerPressed.containsKey(keycode);
-    }
-
-    private Boolean isMappingJustPressedKeyboard(InputMapping mapping) {
-        return mapping.getModifiers().equals(this.keyboardPressedModifiers)
-                && this.keyboardPressed.getOrDefault(mapping.getKeycode(), false);
-    }
-
-    private Boolean isMappingPressedKeyboard(InputMapping mapping) {
-        return mapping.getModifiers().equals(this.keyboardPressedModifiers)
-                && this.keyboardPressed.containsKey(mapping.getKeycode());
-    }
-
-    public Boolean isMappingJustPressed(InputMapping mapping) {
-        switch (mapping.getInputType()) {
-        case "controller":
-            return this.isMappingJustPressedController(mapping);
-        case "keyboard":
-            return this.isMappingJustPressedKeyboard(mapping);
-        default:
-            return false;
-        }
-    }
-
-    public Boolean isMappingPressed(InputMapping mapping) {
-        switch (mapping.getInputType()) {
-        case "controller":
-            return this.isMappingPressedController(mapping);
-        case "keyboard":
-            return this.isMappingPressedKeyboard(mapping);
-        default:
-            return false;
-        }
-    }
-
-    private void updateKeyboardState() {
-        this.keyboardPressedModifiers.clear();
-        if (Gdx.input.isKeyPressed(Keys.CONTROL_LEFT) || Gdx.input.isKeyPressed(Keys.CONTROL_RIGHT))
-            this.keyboardPressedModifiers.add(InputMapping.Modifiers.CONTROL);
-        if (Gdx.input.isKeyPressed(Keys.SHIFT_LEFT) || Gdx.input.isKeyPressed(Keys.SHIFT_RIGHT))
-            this.keyboardPressedModifiers.add(InputMapping.Modifiers.SHIFT);
-        if (Gdx.input.isKeyPressed(Keys.ALT_LEFT) || Gdx.input.isKeyPressed(Keys.ALT_RIGHT))
-            this.keyboardPressedModifiers.add(InputMapping.Modifiers.ALT);
-        for (int keycode : this.keysToCheck) {
-            if (Gdx.input.isKeyPressed(keycode))
-                this.keyboardPressed.put(keycode, Gdx.input.isKeyJustPressed(keycode));
-            else
-                this.keyboardPressed.remove(keycode);
+        Output.text("Released keycode " + keycode, false);
+        for (ControllerInputMapping mapping : this.controllerMappings) {
+            mapping.handleKeycodeRelease(keycode);
         }
     }
 
     public void updateFirst() {
         if (!Output.config.getBoolean("input.virtual_input"))
             return;
-        this.updateKeyboardState();
-        for (InputAction action : this.actionCollection.getActions()) {
-            action.update();
+        for (InputAction action : this.baseActionCollection.getActions()) {
+            action.updateFirst();
         }
     }
 
     public void updateLast() {
         if (!Output.config.getBoolean("input.virtual_input"))
             return;
-        for (Map.Entry<Integer, Boolean> entry : this.controllerPressed.entrySet()) {
-            if (entry.getValue()) {
-                entry.setValue(false); // change just pressed to pressed
-            }
+        for (InputAction action : this.baseActionCollection.getActions()) {
+            action.updateLast();
         }
+    }
+
+    public void fromJson(JsonElement json) {
+        JsonObject obj = json.getAsJsonObject();
+        JsonObject baseObj = obj.get("base").getAsJsonObject();
+        this.baseActionCollection.fromJson(baseObj);
+    }
+
+    public JsonElement toJsonElement() {
+        JsonObject obj = new JsonObject();
+        obj.add("base", this.baseActionCollection.toJsonElement());
+        return obj;
     }
 }

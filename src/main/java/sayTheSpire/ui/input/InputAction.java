@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.megacrit.cardcrawl.helpers.controller.CInputAction;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
 import basemod.ReflectionHacks;
@@ -17,22 +18,56 @@ public class InputAction {
     private String key;
     private InputManager inputManager;
     private Boolean isJustPressed, isPressed, isJustReleased;
-    private ArrayList<InputMapping> mappings;
+    private ArrayList<InputMapping> mappings, defaultMappings;
 
     public InputAction(String key, InputManager inputManager) {
         this.key = key;
         this.mappings = new ArrayList();
+        this.defaultMappings = new ArrayList();
         this.inputManager = inputManager;
         this.isJustPressed = false;
         this.isPressed = false;
         this.isJustReleased = false;
     }
 
-    public InputAction(String name, InputManager manager, JsonArray mappings) {
+    public InputAction(String name, InputManager manager, ArrayList<InputMapping> defaultMappings) {
         this(name, manager);
-        for (JsonElement mappingElement : mappings) {
-            InputMapping mapping = new InputMapping(mappingElement.getAsJsonObject());
-            this.mappings.add(mapping);
+        for (InputMapping mapping : defaultMappings) {
+            this.addMapping(mapping.copy());
+        }
+    }
+
+    public void addMapping(InputMapping mapping) {
+        this.mappings.add(mapping);
+        this.inputManager.RegisterControllerMappingIfValid(mapping);
+    }
+
+    public void removeMapping(InputMapping mapping) {
+        this.mappings.remove(mapping);
+        this.inputManager.unregisterControllerMappingIfValid(mapping);
+    }
+
+    public InputAction addControllerMapping(int keycode) {
+        ControllerInputMapping mapping = new ControllerInputMapping(this.getKey(), keycode);
+        this.addMapping(mapping);
+        return this;
+    }
+
+    public InputAction addKeyboardMapping(Boolean control, Boolean shift, Boolean alt, int keycode) {
+        KeyboardInputMapping mapping = new KeyboardInputMapping(this.getKey(), control, shift, alt, keycode);
+        this.addMapping(mapping);
+        return this;
+    }
+
+    public InputMapping getInputMappingFromJson(JsonObject json) {
+        String inputType = json.get("inputType").getAsString();
+        switch (inputType) {
+        case "keyboard":
+            return new KeyboardInputMapping(json);
+        case "controller":
+            return new ControllerInputMapping(json);
+        default:
+            return null;
         }
     }
 
@@ -138,18 +173,19 @@ public class InputAction {
 
     void setMappings(ArrayList<InputMapping> mappings) {
         for (InputMapping mapping : mappings) {
-            this.mappings.add(new InputMapping(mapping));
+            this.mappings.add(mapping.copy());
         }
     }
 
     private void updateStates() {
         for (InputMapping mapping : this.mappings) {
-            if (!this.isPressed && this.inputManager.isMappingJustPressed(mapping)) {
+            mapping.updateFirst();
+            if (!this.isPressed && mapping.isJustPressed()) {
                 this.isJustPressed = true;
                 this.isPressed = true;
                 this.isJustReleased = false;
                 return;
-            } else if (this.isJustPressed && this.inputManager.isMappingPressed(mapping)) {
+            } else if (this.isJustPressed && mapping.isPressed()) {
                 this.isJustPressed = false;
                 this.isPressed = true;
                 this.isJustReleased = false;
@@ -167,7 +203,7 @@ public class InputAction {
         }
     }
 
-    public void update() {
+    public void updateFirst() {
         this.updateStates();
         if (this.isJustPressed()) {
             Output.uiManager.emitAction(this, "justPressed");
@@ -175,6 +211,38 @@ public class InputAction {
             Output.uiManager.emitAction(this, "pressed");
         } else if (this.isJustReleased()) {
             Output.uiManager.emitAction(this, "justReleased");
+        }
+    }
+
+    public void updateLast() {
+        for (InputMapping mapping : this.mappings) {
+            mapping.updateLast();
+        }
+        if (this.isJustReleased()) {
+            this.setGameControllerActionJustReleased(true);
+        }
+    }
+
+    public void fromJson(JsonArray mappings) {
+        if (mappings == null)
+            return;
+
+        // Check all mappings are valid before committing to adding any
+        ArrayList<InputMapping> tempMappings = new ArrayList();
+        for (JsonElement mappingElement : mappings) {
+            InputMapping mapping = this.getInputMappingFromJson(mappingElement.getAsJsonObject());
+            if (mapping != null) {
+                tempMappings.add(mapping);
+            } else {
+                // This probably means the input mapping config is irrepperably broken
+                throw new RuntimeException("Invalid inputType for mapping.");
+            }
+        }
+
+        // Remove defaults
+        this.mappings.clear();
+        for (InputMapping mapping : tempMappings) {
+            this.addMapping(mapping);
         }
     }
 

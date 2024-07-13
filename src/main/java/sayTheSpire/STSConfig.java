@@ -77,8 +77,7 @@ public class STSConfig {
 
     public void saveInput() {
         try (FileWriter file = new FileWriter(getInputFilePath())) {
-            InputActionCollection actions = Output.inputManager.getActionCollection();
-            JsonElement json = actions.toJsonElement();
+            JsonElement json = Output.inputManager.toJsonElement();
             Gson gson = (new GsonBuilder()).setPrettyPrinting().create();
             file.write(gson.toJson(json));
             file.flush();

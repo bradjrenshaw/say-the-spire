@@ -64,17 +64,18 @@ public class Output {
 
         // Effects manager
         effects = new EffectManager();
+        inputManager = new InputManager();
 
         // initialize config
         try {
             config = new STSConfig();
-            inputManager = new InputManager(config.getInputObj());
+            inputManager.fromJson(config.getInputObj());
             config.save();
         } catch (Exception e) {
             logger.error(e.getMessage());
             e.printStackTrace();
-            inputManager = new InputManager();
         }
+
         mapManager = new MapManager();
         uiManager = new UIManager(inputManager, mapManager);
         speechManager.setup();
