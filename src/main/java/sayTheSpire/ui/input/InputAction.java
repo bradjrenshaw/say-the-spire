@@ -218,9 +218,7 @@ public class InputAction {
         for (InputMapping mapping : this.mappings) {
             mapping.updateLast();
         }
-        if (this.isJustReleased()) {
-            this.setGameControllerActionJustReleased(true);
-        }
+
     }
 
     public void fromJson(JsonArray mappings) {

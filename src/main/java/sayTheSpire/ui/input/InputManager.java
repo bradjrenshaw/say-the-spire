@@ -48,14 +48,12 @@ public class InputManager {
     }
 
     public void handleControllerKeycodePress(int keycode) {
-        Output.text("pressed keycode " + keycode, false);
         for (ControllerInputMapping mapping : this.controllerMappings) {
             mapping.handleKeycodePress(keycode);
         }
     }
 
     public void handleControllerKeycodeRelease(int keycode) {
-        Output.text("Released keycode " + keycode, false);
         for (ControllerInputMapping mapping : this.controllerMappings) {
             mapping.handleKeycodeRelease(keycode);
         }

@@ -13,6 +13,8 @@ public class ControllerInputMapping extends InputMapping {
         super(actionName);
         this.keycode = keycode;
         this.isDown = false;
+        this.justPressed = false;
+        this.pressed = false;
     }
 
     public ControllerInputMapping(JsonObject obj) {
@@ -20,6 +22,8 @@ public class ControllerInputMapping extends InputMapping {
         int keycode = obj.get("keycode").getAsInt();
         this.keycode = keycode;
         this.isDown = false;
+        this.justPressed = false;
+        this.pressed = false;
     }
 
     public InputMapping copy() {
@@ -29,24 +33,32 @@ public class ControllerInputMapping extends InputMapping {
     public void handleKeycodePress(int keycode) {
         if (keycode == this.getKeycode()) {
             this.isDown = true;
+            this.justPressed = true;
+            this.pressed = true;
         }
     }
 
     public void handleKeycodeRelease(int keycode) {
-        if (keycode == this.getKeycode()) {
+        if (this.isDown && keycode == this.getKeycode()) {
+            this.justPressed = false;
+            this.pressed = false;
             this.isDown = false;
         }
     }
 
     public void updateFirst() {
-        if (this.isDown && !this.pressed) {
-            this.justPressed = true;
-            this.pressed = true;
-        } else if (this.isDown && this.justPressed) {
+        /**
+         * Normally this code would check pressed and justPressed states. Due to some inconsistent code within the base
+         * game of Slay the Spire, this isn't an option. Instead the only state to check for controller mappings is
+         * justPressed. if (this.isDown && !this.pressed) { this.justPressed = true; this.pressed = true; } else if
+         * (this.isDown && this.justPressed) { this.justPressed = false; } else if (!this.isDown) { this.justPressed =
+         * false; this.pressed = false; }
+         */
+    }
+
+    public void updateLast() {
+        if (this.justPressed) {
             this.justPressed = false;
-        } else if (!this.isDown) {
-            this.justPressed = false;
-            this.pressed = false;
         }
     }
 
