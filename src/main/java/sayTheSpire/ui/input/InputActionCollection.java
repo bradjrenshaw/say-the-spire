@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-
 import com.badlogic.gdx.Input.Keys;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -19,10 +18,16 @@ public class InputActionCollection {
     private InputManager inputManager;
     private HashMap<String, InputAction> actions;
     private HashMap<String, ArrayList<InputMapping>> defaults;
+    private Boolean isActive;
 
-    public InputActionCollection(InputManager manager) {
+    public InputActionCollection(InputManager manager, Boolean isActive) {
         this.inputManager = manager;
         this.actions = new HashMap();
+        this.isActive = isActive;
+    }
+
+    public InputActionCollection(InputManager manager) {
+        this(manager, true);
     }
 
     public InputAction addAction(String key) {
@@ -31,8 +36,21 @@ public class InputActionCollection {
         return action;
     }
 
+    public InputAction addAction(InputAction action) {
+        this.actions.put(action.getKey(), action);
+        return action;
+    }
+
     public Collection<InputAction> getActions() {
         return this.actions.values();
+    }
+
+    public InputActionCollection copy(Boolean isActive) {
+        InputActionCollection newCollection = new InputActionCollection(this.inputManager);
+        for (InputAction action : this.actions.values()) {
+            newCollection.addAction(action.copy(isActive));
+        }
+        return newCollection;
     }
 
     public void fromJson(JsonObject obj) {

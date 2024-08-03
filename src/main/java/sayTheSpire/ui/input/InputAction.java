@@ -19,32 +19,43 @@ public class InputAction {
     private InputManager inputManager;
     private Boolean isJustPressed, isPressed, isJustReleased;
     private ArrayList<InputMapping> mappings, defaultMappings;
+    private Boolean isActive;
 
-    public InputAction(String key, InputManager inputManager) {
+    public InputAction(String key, InputManager inputManager, Boolean isActive) {
         this.key = key;
         this.mappings = new ArrayList();
-        this.defaultMappings = new ArrayList();
         this.inputManager = inputManager;
         this.isJustPressed = false;
         this.isPressed = false;
         this.isJustReleased = false;
+        this.isActive = isActive;
     }
 
-    public InputAction(String name, InputManager manager, ArrayList<InputMapping> defaultMappings) {
-        this(name, manager);
+    public InputAction(String key, InputManager inputManager) {
+        this(key, inputManager, true);
+    }
+
+    public InputAction(String key, InputManager manager, ArrayList<InputMapping> defaultMappings, Boolean isActive) {
+        this(key, manager, isActive);
         for (InputMapping mapping : defaultMappings) {
             this.addMapping(mapping.copy());
         }
     }
 
+    public InputAction(String key, InputManager manager, ArrayList<InputMapping> defaultMappings) {
+        this(key, manager, defaultMappings, true);
+    }
+
     public void addMapping(InputMapping mapping) {
         this.mappings.add(mapping);
-        this.inputManager.RegisterControllerMappingIfValid(mapping);
+        if (this.isActive)
+            this.inputManager.RegisterControllerMappingIfValid(mapping);
     }
 
     public void removeMapping(InputMapping mapping) {
         this.mappings.remove(mapping);
-        this.inputManager.unregisterControllerMappingIfValid(mapping);
+        if (this.isActive)
+            this.inputManager.unregisterControllerMappingIfValid(mapping);
     }
 
     public InputAction addControllerMapping(int keycode) {
@@ -267,5 +278,21 @@ public class InputAction {
             return true;
         }
         return false;
+    }
+
+    public InputAction copy(Boolean isActive) {
+        InputAction newAction = new InputAction(this.getKey(), this.inputManager, isActive);
+        for (InputMapping mapping : this.getMappings()) {
+            newAction.addMapping(mapping);
+        }
+        return newAction;
+    }
+
+    public String getLabel() {
+        return Output.localization.localize("input.actions." + this.getKey() + ".label");
+    }
+
+    public String getDescription() {
+        return Output.localization.localize("input.actions." + this.getKey() + ".description");
     }
 }
