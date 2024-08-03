@@ -30,6 +30,9 @@ public class ModMenuScreen extends Screen {
             }
         });
         children.add(settings);
+
+        DynamicButton inputConfig = new DynamicButton("Input Config");
+        children.add(inputConfig);
         this.setPrimaryContainer(children);
     }
 

@@ -223,6 +223,122 @@
       "text": "{target}: {message}"
     }
   },
+  "input": {
+    "actions": {
+      "select": {
+        "label": "Select",
+        "description": "Confirm menu selection, play cards, etc."
+      },
+      "cancel": {
+        "label": "Cancel",
+        "description": "Cancel a confirmation prompt, go back in menus, etc."
+      },
+      "top panel": {
+        "label": "Top Panel",
+        "description": "Navigate to the top panel in game, as well as providing various functionality within some menus."
+      },
+      "proceed": {
+        "Label": "Proceed",
+        "description": "Confirm certain prompts, skip rewards, etc."
+      },
+      "peek": {
+        "Label": "Peek",
+        "description": "Hide card selection prompts to view the whole screen. This seems to be a visual only effect."
+      },
+      "page left": {
+        "label": "page left",
+        "description": "View deck, previous UI tab, etc."
+      },
+      "page right": {
+        "label": "Page Right",
+        "description": "View exhaust pile, next UI tab, etc."
+      },
+      "draw pile": {
+        "label": "Draw Pile",
+        "description": "View draw pile."
+      },
+      "discard pile": {
+        "label": "Discard Pile",
+        "description": "View discard pile."
+      },
+      "map": {
+        "Label": "Map",
+        "description": "View map; additional functionality in certain menus."
+      },
+      "settings": {
+        "label": "Settings",
+        "description": "View settings."
+      },
+      "up": {
+        "label": "Up",
+        "description": "UI cursor up."
+      },
+      "down": {
+        "label": "Down",
+        "description": "UI cursor down."
+      },
+      "left": {
+        "label": "Left",
+        "description": "UI cursor left."
+      },
+      "right": {
+        "label": "Right",
+        "description": "UI cursor right."
+      },
+      "inspect up": {
+        "label": "Inspect Up",
+        "description": "Next buffer item; map viewer up."
+      },
+      "inspect down": {
+        "label": "Inspect Down",
+        "description": "Previous buffer item; map viewer down."
+      },
+      "inspect left": {
+        "label": "Inspect Left",
+        "description": "Previous buffer; map viewer left."
+      },
+      "inspect right": {
+        "label": "Inspect Right",
+        "description": "Next buffer; map viewer right."
+      },
+      "mod menu": {
+        "label": "Mod Menu",
+        "description": "Access the mod menu to interface with editional on-screen elements, modify Say the Spire settings, etc."
+      },
+      "read player block": {
+        "label": "Read Player Block",
+        "description": "Read the current block of the player."
+      },
+      "read player energy": {
+        "label": "Read Player Energy",
+        "description": "Read the current energy of the player."
+      },
+      "read player gold": {
+        "label": "Read Player Gold",
+        "description": "Read the current gold of the player."
+      },
+      "read player hp": {
+        "label": "Read Player HP",
+        "description": "Read the current hp of the player."
+      },
+      "read summarized intents": {
+        "label": "Read Summarized Enemy Intents",
+        "description": "Read the summarized intents of all enemies (sums enemy damage.)"
+      },
+      "read detailed intents": {
+"label": "Read Detailed Intents",
+"description": "Reads the intent of all enemies in sequence."
+      },
+      "read act boss": {
+        "label": "Read Act Boss",
+        "description": "Read the name of the boss of the current act."
+      },
+      "read player powers": {
+        "Label": "Read Player Powers",
+        "description": "Read player powers and their stacks."
+      }
+    }
+  },
   "misc": {
     "versionString": "Using Say the Spire version {version}."
   },
