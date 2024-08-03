@@ -9,6 +9,8 @@
   * The settings file format is now .json instead of .ini. This means that your settings have been reset to defaults; this should be the last time this happens.
   * Mod settings can now be changed in game; see below. You no longer need to edit the config files directly unless you want to modify locked settings (such as virtual input.)
   * If you do want to edit the config files directly, the json files should now be easier to read as they are now better formatted.
+* Virtual Input:
+  * Fixed: The virtual input code has been completely refactored. This should fix any remaining oddities with controller input.
 * Changed: Speech is now interrupted sooner on key press. This should not have a noticeable effect but please report any oddities with speech interruption on key presses.
 * Added: A dynamic UI system has been added, allowing both Say the Spire and developers interfacing with Say the Spire to provide accessible additional UI:
   * The mod menu: The mod menu allows you to access additional Say the Spire features, such as editing of mod settings and keybindings. This can be accessed with the hotkey control m; a method to access this with controller is being worked on.
