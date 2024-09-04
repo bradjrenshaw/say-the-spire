@@ -155,6 +155,10 @@
                 "label": "Read Obtain Events",
                 "description": "Whether or not the mod notifies you when you obtain an object (such as a card, potion, relic, etc.)"
               },
+              "read_relic_flashes": {
+                "label": "Read Relic Flashes",
+                "description": "Whether or not relic flashes are read out. Relic flashes indicate a relic's effect will trigger soon or has just triggered depending on the relic."
+              },
               "exclude_read_typenames": {
                 "label": "Exclude Specific Element Typenames",
                 "description": "A list of types to not be read. For example if you do not want cards and relics to say card or relic after their name, you could add card or button to the list and they would not be read out, leaving all other element types to be read.",
@@ -218,6 +222,9 @@
     },
     "power": {
       "text": "{target} {message}"
+    },
+    "relicFlash": {
+      "text": "{target} flashes."
     },
     "textAboveCreature": {
       "text": "{target}: {message}"

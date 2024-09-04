@@ -44,6 +44,8 @@ public class SettingsManager {
         ui.addBoolean("read_positions", true);
         ui.addBoolean("read_types", true);
         ui.addBoolean("read_obtain_events", true);
+        ui.addBoolean("read_relic_flashes", true);
+
         KeyArraySetting excludedTypenamesArray = ui.addKeyArray("exclude_read_typenames");
         for (IUIInfo data : UIRegistry.getRegisteredTypenameData().values()) {
             excludedTypenamesArray.addChoice(data);
