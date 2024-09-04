@@ -16,46 +16,30 @@ public class InputAction {
     private static final Logger logger = LogManager.getLogger(InputAction.class.getName());
 
     private String key;
-    private InputManager inputManager;
     private Boolean isJustPressed, isPressed, isJustReleased;
     private ArrayList<InputMapping> mappings, defaultMappings;
-    private Boolean isActive;
 
-    public InputAction(String key, InputManager inputManager, Boolean isActive) {
+    public InputAction(String key) {
         this.key = key;
         this.mappings = new ArrayList();
-        this.inputManager = inputManager;
         this.isJustPressed = false;
         this.isPressed = false;
         this.isJustReleased = false;
-        this.isActive = isActive;
     }
 
-    public InputAction(String key, InputManager inputManager) {
-        this(key, inputManager, true);
-    }
-
-    public InputAction(String key, InputManager manager, ArrayList<InputMapping> defaultMappings, Boolean isActive) {
-        this(key, manager, isActive);
+    public InputAction(String key, ArrayList<InputMapping> defaultMappings) {
+        this(key);
         for (InputMapping mapping : defaultMappings) {
             this.addMapping(mapping.copy());
         }
     }
 
-    public InputAction(String key, InputManager manager, ArrayList<InputMapping> defaultMappings) {
-        this(key, manager, defaultMappings, true);
-    }
-
     public void addMapping(InputMapping mapping) {
         this.mappings.add(mapping);
-        if (this.isActive)
-            this.inputManager.RegisterControllerMappingIfValid(mapping);
     }
 
     public void removeMapping(InputMapping mapping) {
         this.mappings.remove(mapping);
-        if (this.isActive)
-            this.inputManager.unregisterControllerMappingIfValid(mapping);
     }
 
     public InputAction addControllerMapping(int keycode) {
@@ -280,12 +264,22 @@ public class InputAction {
         return false;
     }
 
-    public InputAction copy(Boolean isActive) {
-        InputAction newAction = new InputAction(this.getKey(), this.inputManager, isActive);
+    public InputAction copy() {
+        InputAction newAction = new InputAction(this.getKey());
         for (InputMapping mapping : this.getMappings()) {
             newAction.addMapping(mapping);
         }
         return newAction;
+    }
+
+    public ArrayList<ControllerInputMapping> getControllerMappings() {
+        ArrayList<ControllerInputMapping> mappings = new ArrayList<>();
+        for (InputMapping mapping : this.getMappings()) {
+            if (mapping instanceof ControllerInputMapping) {
+                mappings.add((ControllerInputMapping) mapping);
+            }
+        }
+        return mappings;
     }
 
     public String getLabel() {

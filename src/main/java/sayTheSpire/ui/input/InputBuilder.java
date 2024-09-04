@@ -8,8 +8,8 @@ public class InputBuilder {
 
     private static final Prefs controllerPrefs = SaveHelper.getPrefs("STSInputSettings_Controller");
 
-    public static InputActionCollection buildBaseActions(InputManager manager) {
-        InputActionCollection actions = new InputActionCollection(manager);
+    public static InputActionCollection buildBaseActionCollection() {
+        InputActionCollection actions = new InputActionCollection();
 
         // base Slay the Spire actions
         // The ControllerPrefs allow retrieval of the game's default controller input for the given action

@@ -15,23 +15,16 @@ import com.megacrit.cardcrawl.helpers.SaveHelper;
 public class InputActionCollection {
 
     private static final Prefs controllerPrefs = SaveHelper.getPrefs("STSInputSettings_Controller");
-    private InputManager inputManager;
     private HashMap<String, InputAction> actions;
     private HashMap<String, ArrayList<InputMapping>> defaults;
     private Boolean isActive;
 
-    public InputActionCollection(InputManager manager, Boolean isActive) {
-        this.inputManager = manager;
+    public InputActionCollection() {
         this.actions = new HashMap();
-        this.isActive = isActive;
-    }
-
-    public InputActionCollection(InputManager manager) {
-        this(manager, true);
     }
 
     public InputAction addAction(String key) {
-        InputAction action = new InputAction(key, this.inputManager);
+        InputAction action = new InputAction(key);
         this.actions.put(action.getKey(), action);
         return action;
     }
@@ -45,10 +38,10 @@ public class InputActionCollection {
         return this.actions.values();
     }
 
-    public InputActionCollection copy(Boolean isActive) {
-        InputActionCollection newCollection = new InputActionCollection(this.inputManager);
+    public InputActionCollection copy() {
+        InputActionCollection newCollection = new InputActionCollection();
         for (InputAction action : this.actions.values()) {
-            newCollection.addAction(action.copy(isActive));
+            newCollection.addAction(action.copy());
         }
         return newCollection;
     }
