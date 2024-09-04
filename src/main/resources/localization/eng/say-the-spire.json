@@ -368,6 +368,8 @@
   },
   "substitutions": {
     "monster names": {
+      "FuzzyLouseNormal": "Red Louse",
+      "FuzzyLouseDefensive": "Green Louse",
       "SlaverBlue": "Blue Slaver",
       "SlaverRed": "Red Slaver"
     }
