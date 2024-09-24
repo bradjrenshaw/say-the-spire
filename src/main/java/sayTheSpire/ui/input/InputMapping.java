@@ -51,4 +51,8 @@ public abstract class InputMapping {
 
     public abstract JsonElement toJsonElement();
 
+    public String toString() {
+        return this.getInputType();
+    }
+
 }

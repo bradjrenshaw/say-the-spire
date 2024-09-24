@@ -86,4 +86,8 @@ public class ControllerInputMapping extends InputMapping {
         return obj;
     }
 
+    public String toString() {
+        return super.toString() + this.keycode;
+    }
+
 }

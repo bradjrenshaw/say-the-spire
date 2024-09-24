@@ -66,4 +66,16 @@ public class KeyboardInputMapping extends InputMapping {
         return obj;
     }
 
+    public String toString() {
+        StringBuilder sb = new StringBuilder(super.toString());
+        if (this.modControl)
+            sb.append(Keys.toString(Keys.CONTROL_LEFT));
+        if (this.modShift)
+            sb.append(Keys.SHIFT_LEFT);
+        if (this.modAlt)
+            sb.append(Keys.ALT_LEFT);
+        sb.append(Keys.toString(this.keycode));
+        return sb.toString();
+    }
+
 }

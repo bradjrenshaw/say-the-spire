@@ -1,7 +1,6 @@
 package sayTheSpire.events;
 
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-
 import sayTheSpire.Output;
 
 public class RelicFlashEvent extends Event {
