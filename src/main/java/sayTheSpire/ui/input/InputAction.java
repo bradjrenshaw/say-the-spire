@@ -267,7 +267,7 @@ public class InputAction {
     public InputAction copy() {
         InputAction newAction = new InputAction(this.getKey());
         for (InputMapping mapping : this.getMappings()) {
-            newAction.addMapping(mapping);
+            newAction.addMapping(mapping.copy());
         }
         return newAction;
     }

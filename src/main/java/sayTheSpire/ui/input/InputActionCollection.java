@@ -16,8 +16,6 @@ public class InputActionCollection {
 
     private static final Prefs controllerPrefs = SaveHelper.getPrefs("STSInputSettings_Controller");
     private HashMap<String, InputAction> actions;
-    private HashMap<String, ArrayList<InputMapping>> defaults;
-    private Boolean isActive;
 
     public InputActionCollection() {
         this.actions = new HashMap();
