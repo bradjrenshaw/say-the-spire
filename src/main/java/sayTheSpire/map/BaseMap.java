@@ -8,11 +8,14 @@ import com.megacrit.cardcrawl.map.MapRoomNode;
 import sayTheSpire.localization.LocalizationContext;
 import sayTheSpire.utils.MapUtils;
 import sayTheSpire.Output;
+import downfall.patches.EvilModeCharacterSelect;
+import com.evacipated.cardcrawl.modthespire.Loader;
 
 public class BaseMap extends VirtualMap {
 
     // Each id should be unique to the map
     private String id;
+    public static boolean downfall = Loader.isModLoaded("downfall");
 
     public BaseMap() {
         this.id = "base." + AbstractDungeon.id;
@@ -62,10 +65,19 @@ public class BaseMap extends VirtualMap {
         if (y >= map.size())
             return null;
 
-        for (MapRoomNode node : map.get(y)) {
-            // If the node does not have edges it should not be on the map
-            if (node.x == x && node.y == y && node.hasEdges()) {
-                return new BaseRoomNode(node);
+        if (downfall && EvilModeCharacterSelect.evilMode) {
+            for (MapRoomNode node : map.get(AbstractDungeon.currMapNode.y - 1)) {
+                // If the node does not have edges it should not be on the map
+                if (node.x == x && node.y == y && node.hasEdges()) {
+                    return new BaseRoomNode(node);
+                }
+            }
+        } else {
+            for (MapRoomNode node : map.get(y)) {
+                // If the node does not have edges it should not be on the map
+                if (node.x == x && node.y == y && node.hasEdges()) {
+                    return new BaseRoomNode(node);
+                }
             }
         }
         return null;

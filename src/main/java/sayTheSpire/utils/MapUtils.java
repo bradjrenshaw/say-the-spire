@@ -37,7 +37,7 @@ public class MapUtils {
         case "The Heart":
             return getMonsterName("CorruptHeart");
         default:
-            return name;
+            return "Unknown, report to developer";
         }
     }
 
