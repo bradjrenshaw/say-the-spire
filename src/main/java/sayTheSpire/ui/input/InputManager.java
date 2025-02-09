@@ -96,4 +96,8 @@ public class InputManager {
         obj.add("base", this.activeActionCollection.toJsonElement());
         return obj;
     }
+
+    public InputActionCollection getActiveActionCollection() {
+        return this.activeActionCollection;
+    }
 }

@@ -15,26 +15,9 @@ public class SettingsContext extends UIContext {
         this.root = root;
     }
 
-    private void handleCancel() {
-        if (!this.screens.empty()) {
-            this.popScreen();
-            if (this.screens.empty()) {
-                Output.uiManager.popContext();
-            }
-        }
-    }
-
     public void onPush() {
         SettingsCategoryScreen screen = new SettingsCategoryScreen(this, this.root);
         this.pushScreen(screen);
     }
 
-    public Boolean onJustPress(InputAction action) {
-        Boolean result = super.onJustPress(action);
-        if (action.getKey() == "cancel") {
-            this.handleCancel();
-            return true;
-        }
-        return result;
-    }
 }

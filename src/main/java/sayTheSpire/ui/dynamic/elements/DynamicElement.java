@@ -138,7 +138,6 @@ public abstract class DynamicElement extends UIElement {
     }
 
     public void setInfo(IUIInfo info) {
-        System.out.println("setInfo called");
         this.info = info;
     }
 

@@ -2,6 +2,7 @@ package sayTheSpire.ui.dynamic.elements;
 
 import java.util.ArrayList;
 import sayTheSpire.ui.positions.Position;
+import sayTheSpire.Output;
 import sayTheSpire.ui.Direction;
 import sayTheSpire.ui.input.InputAction;
 import sayTheSpire.ui.positions.GridPosition;
@@ -70,29 +71,47 @@ public class ListContainer extends ElementContainer {
 
     public Boolean processDirectionInput(Direction direction) {
         if (direction == this.prevDirection) {
-            return this.moveFocusIndex(this.focusIndex - 1, this.prevDirection, true);
+            if (this.moveFocusIndex(this.focusIndex - 1, this.prevDirection, true)) {
+                return true;
+            }
         } else if (direction == this.nextDirection) {
-            return this.moveFocusIndex(this.focusIndex + 1, this.nextDirection, true);
+            if (this.moveFocusIndex(this.focusIndex + 1, this.nextDirection, true)) {
+                return true;
+            }
         }
-        return true;
+        return false;
     }
 
     public Boolean processInputJustPressed(InputAction action) {
-        if (super.processInputJustPressed(action))
+        DynamicElement focus = this.getFocus();
+        if (focus != null && focus.processInputJustPressed(action)) {
             return true;
+        }
         switch (action.getKey()) {
         case "up":
         case "alt up":
-            return this.processDirectionInput(Direction.UP);
+            if (this.processDirectionInput(Direction.UP)) {
+                return true;
+            }
+            break;
         case "down":
         case "alt down":
-            return this.processDirectionInput(Direction.DOWN);
+            if (this.processDirectionInput(Direction.DOWN)) {
+                return true;
+            }
+            break;
         case "left":
         case "alt left":
-            return this.processDirectionInput(Direction.LEFT);
+            if (this.processDirectionInput(Direction.LEFT)) {
+                return true;
+            }
+            break;
         case "right":
         case "alt right":
-            return this.processDirectionInput(Direction.RIGHT);
+            if (this.processDirectionInput(Direction.RIGHT)) {
+                return true;
+            }
+            break;
         }
         return false;
     }
@@ -127,7 +146,7 @@ public class ListContainer extends ElementContainer {
 
     private Boolean moveFocusIndex(int index, Direction direction, Boolean handleFocus) {
         if (index == this.focusIndex)
-            return true;
+            return false;
         DynamicElement focus = this.getFocus();
         Position focusPosition = null;
         if (focus != null) {
@@ -136,8 +155,8 @@ public class ListContainer extends ElementContainer {
             }
             focusPosition = focus.getPosition();
         }
-        this.focusIndex = index;
         if (index >= 0 && index < this.children.size()) {
+            this.focusIndex = index;
             if (handleFocus) {
                 DynamicElement target = this.getFocus();
                 target.enterFocus(focusPosition, direction);
@@ -145,17 +164,6 @@ public class ListContainer extends ElementContainer {
             return true;
         }
         return false;
-    }
-
-    private void move(ListPosition position, Direction direction) {
-        if (direction == this.prevDirection) {
-            this.focusIndex--;
-        } else if (direction == this.nextDirection) {
-            this.focusIndex++;
-        }
-        if (this.focusIndex >= 0 && this.focusIndex < this.children.size()) {
-            this.getFocus().enterFocus(position, direction);
-        }
     }
 
     public Position getChildPosition(DynamicElement element) {
@@ -167,14 +175,10 @@ public class ListContainer extends ElementContainer {
 
     public DynamicElement getFocus() {
         if (this.children.isEmpty()) {
-            this.focusIndex = -1;
             return null;
         }
-        if (this.focusIndex < 0) {
-            this.focusIndex = 0;
-        } else if (this.focusIndex >= this.children.size()) {
-            this.focusIndex = this.children.size() - 1;
-        }
+        if (this.focusIndex < 0 || this.focusIndex >= this.children.size())
+            return null;
         return this.children.get(this.focusIndex);
     }
 

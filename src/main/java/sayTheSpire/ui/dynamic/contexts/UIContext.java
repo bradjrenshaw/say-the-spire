@@ -50,25 +50,47 @@ public class UIContext extends Context {
         screen.onPush();
     }
 
+    private void handleCancel() {
+        if (!this.screens.empty()) {
+            this.popScreen();
+            if (this.screens.empty()) {
+                Output.uiManager.popContext();
+            }
+        }
+    }
+
     public Boolean onPress(InputAction action) {
-        if (this.screens.empty())
-            return false;
-        Screen screen = this.screens.peek();
-        return screen.processInputPressed(action) || action.isUIAction();
+        if (!this.screens.empty()) {
+            Screen screen = this.screens.peek();
+            if (screen.processInputPressed(action)) {
+                return true;
+            }
+        }
+        return action.isBaseGameAction();
     }
 
     public Boolean onJustPress(InputAction action) {
-        if (this.screens.empty())
-            return false;
-        Screen screen = this.screens.peek();
-        return screen.processInputJustPressed(action) || action.isUIAction();
+        if (!this.screens.empty()) {
+            Screen screen = this.screens.peek();
+            if (screen.processInputJustPressed(action)) {
+                return true;
+            }
+        }
+        if (action.getKey().equals("cancel")) {
+            this.handleCancel();
+            return true;
+        }
+        return action.isBaseGameAction();
     }
 
     public Boolean onRelease(InputAction action) {
-        if (this.screens.empty())
-            return false;
-        Screen screen = this.screens.peek();
-        return screen.processInputReleased(action) || action.isUIAction();
+        if (!this.screens.empty()) {
+            Screen screen = this.screens.peek();
+            if (screen.processInputReleased(action)) {
+                return true;
+            }
+        }
+        return action.isBaseGameAction();
     }
 
 }

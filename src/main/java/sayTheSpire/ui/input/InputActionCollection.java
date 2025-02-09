@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.LinkedHashMap;
 import com.badlogic.gdx.Input.Keys;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -15,10 +16,10 @@ import com.megacrit.cardcrawl.helpers.SaveHelper;
 public class InputActionCollection {
 
     private static final Prefs controllerPrefs = SaveHelper.getPrefs("STSInputSettings_Controller");
-    private HashMap<String, InputAction> actions;
+    private LinkedHashMap<String, InputAction> actions;
 
     public InputActionCollection() {
-        this.actions = new HashMap();
+        this.actions = new LinkedHashMap();
     }
 
     public InputAction addAction(String key) {

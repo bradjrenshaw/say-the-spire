@@ -1,3 +1,4 @@
+//todo localize
 package sayTheSpire.ui.dynamic.screens;
 
 import sayTheSpire.Output;
@@ -32,6 +33,14 @@ public class ModMenuScreen extends Screen {
         children.add(settings);
 
         DynamicButton inputConfig = new DynamicButton("Input Config");
+        inputConfig.click.registerHandler(new EventHandler<ClickEvent>() {
+            public Boolean execute(ClickEvent event) {
+                Screen subscreen = new InputActionsScreen(context,
+                        Output.inputManager.getActiveActionCollection().copy());
+                context.pushScreen(subscreen);
+                return true;
+            }
+        });
         children.add(inputConfig);
         this.setPrimaryContainer(children);
     }

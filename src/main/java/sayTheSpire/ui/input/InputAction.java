@@ -18,6 +18,7 @@ public class InputAction {
     private String key;
     private Boolean isJustPressed, isPressed, isJustReleased;
     private ArrayList<InputMapping> mappings, defaultMappings;
+    private String label, description;
 
     public InputAction(String key) {
         this.key = key;
@@ -25,6 +26,8 @@ public class InputAction {
         this.isJustPressed = false;
         this.isPressed = false;
         this.isJustReleased = false;
+        this.label = null;
+        this.description = null;
     }
 
     public InputAction(String key, ArrayList<InputMapping> defaultMappings) {
@@ -247,7 +250,7 @@ public class InputAction {
         return mappingsArray;
     }
 
-    public Boolean isUIAction() {
+    public Boolean isBaseGameAction() {
         switch (this.getKey()) {
         case "up":
         case "alt up":
@@ -259,6 +262,15 @@ public class InputAction {
         case "alt right":
         case "select":
         case "cancel":
+        case "top panel":
+        case "proceed":
+        case "peek":
+        case "page left":
+        case "page right":
+        case "draw pile":
+        case "discard pile":
+        case "map":
+        case "settings":
             return true;
         }
         return false;
@@ -283,10 +295,27 @@ public class InputAction {
     }
 
     public String getLabel() {
-        return Output.localization.localize("input.actions." + this.getKey() + ".label");
+        String label = this.label;
+        if (label == null) {
+            label = Output.localization.localize("input.actions." + this.getKey() + ".label");
+        }
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
     }
 
     public String getDescription() {
-        return Output.localization.localize("input.actions." + this.getKey() + ".description");
+        String label = this.description;
+        if (label == null) {
+            label = Output.localization.localize("input.actions." + this.getKey() + ".description");
+        }
+        return label;
     }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 }

@@ -245,11 +245,11 @@
         "description": "Navigate to the top panel in game, as well as providing various functionality within some menus."
       },
       "proceed": {
-        "Label": "Proceed",
+        "label": "Proceed",
         "description": "Confirm certain prompts, skip rewards, etc."
       },
       "peek": {
-        "Label": "Peek",
+        "label": "Peek",
         "description": "Hide card selection prompts to view the whole screen. This seems to be a visual only effect."
       },
       "page left": {
@@ -269,7 +269,7 @@
         "description": "View discard pile."
       },
       "map": {
-        "Label": "Map",
+        "label": "Map",
         "description": "View map; additional functionality in certain menus."
       },
       "settings": {
@@ -341,7 +341,7 @@
         "description": "Read the name of the boss of the current act."
       },
       "read player powers": {
-        "Label": "Read Player Powers",
+        "label": "Read Player Powers",
         "description": "Read player powers and their stacks."
       }
     }
