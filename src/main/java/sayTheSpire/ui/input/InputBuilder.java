@@ -14,10 +14,10 @@ public class InputBuilder {
         // base Slay the Spire actions
         // The ControllerPrefs allow retrieval of the game's default controller input for the given action
         actions.addAction("select").addKeyboardMapping(false, false, false, Keys.ENTER)
-                .addControllerMapping(controllerPrefs.getInteger("SELECT", 0));
+                .addControllerMapping(controllerPrefs.getInteger("SELECT", 0)).setRequired();
 
         actions.addAction("cancel").addKeyboardMapping(false, false, false, Keys.ESCAPE)
-                .addControllerMapping(controllerPrefs.getInteger("CANCEL", 1));
+                .addControllerMapping(controllerPrefs.getInteger("CANCEL", 1)).setRequired();
 
         actions.addAction("top panel").addKeyboardMapping(false, false, false, Keys.T)
                 .addControllerMapping(controllerPrefs.getInteger("VIEW", 2));
@@ -48,19 +48,19 @@ public class InputBuilder {
 
         actions.addAction("up").addKeyboardMapping(false, false, false, Keys.UP)
                 .addControllerMapping(controllerPrefs.getInteger("LS_Y_POSITIVE", -1000))
-                .addControllerMapping(controllerPrefs.getInteger("D_NORTH", -2000));
+                .addControllerMapping(controllerPrefs.getInteger("D_NORTH", -2000)).setRequired();
 
         actions.addAction("down").addKeyboardMapping(false, false, false, Keys.DOWN)
                 .addControllerMapping(controllerPrefs.getInteger("LS_Y_NEGATIVE", 1000))
-                .addControllerMapping(controllerPrefs.getInteger("D_SOUTH", 2000));
+                .addControllerMapping(controllerPrefs.getInteger("D_SOUTH", 2000)).setRequired();
 
         actions.addAction("left").addKeyboardMapping(false, false, false, Keys.LEFT)
                 .addControllerMapping(controllerPrefs.getInteger("LS_X_NEGATIVE", -1001))
-                .addControllerMapping(controllerPrefs.getInteger("D_WEST", -2001));
+                .addControllerMapping(controllerPrefs.getInteger("D_WEST", -2001)).setRequired();
 
         actions.addAction("right").addKeyboardMapping(false, false, false, Keys.RIGHT)
                 .addControllerMapping(controllerPrefs.getInteger("LS_X_POSITIVE", 1001))
-                .addControllerMapping(controllerPrefs.getInteger("D_EAST", 2001));
+                .addControllerMapping(controllerPrefs.getInteger("D_EAST", 2001)).setRequired();
 
         actions.addAction("inspect up").addKeyboardMapping(true, false, false, Keys.UP)
                 .addControllerMapping(controllerPrefs.getInteger("RS_Y_POSITIVE", -1002));
@@ -75,7 +75,7 @@ public class InputBuilder {
                 .addControllerMapping(controllerPrefs.getInteger("RS_X_NEGATIVE", 1003));
 
         // mod specific actions
-        actions.addAction("mod menu").addKeyboardMapping(true, false, false, Keys.M);
+        actions.addAction("mod menu").addKeyboardMapping(true, false, false, Keys.M).setRequired();
 
         actions.addAction("read player block").addKeyboardMapping(true, false, false, Keys.B);
 

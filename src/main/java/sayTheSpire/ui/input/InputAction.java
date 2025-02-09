@@ -19,6 +19,7 @@ public class InputAction {
     private Boolean isJustPressed, isPressed, isJustReleased;
     private ArrayList<InputMapping> mappings, defaultMappings;
     private String label, description;
+    private boolean required;
 
     public InputAction(String key) {
         this.key = key;
@@ -28,6 +29,7 @@ public class InputAction {
         this.isJustReleased = false;
         this.label = null;
         this.description = null;
+        this.required = false;
     }
 
     public InputAction(String key, ArrayList<InputMapping> defaultMappings) {
@@ -316,6 +318,15 @@ public class InputAction {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Boolean getRequired() {
+        return this.required;
+    }
+
+    public InputAction setRequired() {
+        this.required = true;
+        return this;
     }
 
 }
