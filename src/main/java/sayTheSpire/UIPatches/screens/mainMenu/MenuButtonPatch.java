@@ -3,9 +3,9 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.screens.mainMenu.MainMenuScreen;
 import com.megacrit.cardcrawl.screens.mainMenu.MenuButton;
-import sayTheSpire.ui.elements.ButtonElement;
 import sayTheSpire.Output;
 import sayTheSpire.TextParser;
+import sayTheSpire.ui.elements.ButtonElement;
 
 @SpirePatch(clz = MenuButton.class, method = "update")
 public class MenuButtonPatch {

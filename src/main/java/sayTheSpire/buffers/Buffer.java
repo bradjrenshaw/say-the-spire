@@ -2,8 +2,8 @@ package sayTheSpire.buffers;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import sayTheSpire.localization.LocalizationContext;
 import sayTheSpire.Output;
+import sayTheSpire.localization.LocalizationContext;
 
 /**
  * A buffer represents a list of data about a given UI Element or in game display. Buffers are often associated with a

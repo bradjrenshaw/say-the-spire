@@ -1,8 +1,7 @@
 package sayTheSpire.map;
 
-import java.util.List;
 import java.util.ArrayList;
-import com.megacrit.cardcrawl.map.MapRoomNode;
+import java.util.List;
 
 public class BaseStartNode extends BaseRoomNode {
 

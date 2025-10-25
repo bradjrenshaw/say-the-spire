@@ -1,8 +1,8 @@
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
-import sayTheSpire.ui.elements.MonsterElement;
 import sayTheSpire.Output;
+import sayTheSpire.ui.elements.MonsterElement;
 
 @SpirePatch(clz = MonsterGroup.class, method = "update")
 public class MonsterGroupPatch {

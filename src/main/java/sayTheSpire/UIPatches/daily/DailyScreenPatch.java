@@ -7,7 +7,6 @@ import com.megacrit.cardcrawl.daily.TimeHelper;
 import com.megacrit.cardcrawl.daily.mods.AbstractDailyMod;
 import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.screens.leaderboards.LeaderboardEntry;
-
 import java.util.ArrayList;
 import sayTheSpire.Output;
 import sayTheSpire.TextParser;

@@ -1,7 +1,7 @@
 package sayTheSpire.ui.positions;
 
-import sayTheSpire.localization.LocalizationContext;
 import sayTheSpire.Output;
+import sayTheSpire.localization.LocalizationContext;
 
 public class Position {
 

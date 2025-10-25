@@ -1,13 +1,11 @@
 package sayTheSpire.ui.effects;
 
-import java.io.Console;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.HashSet;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import sayTheSpire.ui.effects.handlers.*;
-import sayTheSpire.Output;
 
 /**
  * This manages effects and mod related triggers for them.

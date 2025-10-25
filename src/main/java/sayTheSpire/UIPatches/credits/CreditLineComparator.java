@@ -1,8 +1,8 @@
 package sayTheSpire.UIPatches.credits;
 
-import java.util.Comparator;
-import com.megacrit.cardcrawl.credits.CreditLine;
 import basemod.ReflectionHacks;
+import com.megacrit.cardcrawl.credits.CreditLine;
+import java.util.Comparator;
 
 public class CreditLineComparator implements Comparator<CreditLine> {
 

@@ -3,10 +3,10 @@ package sayTheSpire.ui.elements;
 import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.screens.custom.CustomMod;
 import java.util.HashSet;
-import sayTheSpire.localization.LocalizationContext;
-import sayTheSpire.buffers.BufferManager;
 import sayTheSpire.Output;
 import sayTheSpire.TextParser;
+import sayTheSpire.buffers.BufferManager;
+import sayTheSpire.localization.LocalizationContext;
 
 public class CustomModElement extends UIElement {
 

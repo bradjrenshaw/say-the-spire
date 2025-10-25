@@ -1,16 +1,13 @@
 package sayTheSpire.map;
 
+import com.megacrit.cardcrawl.map.MapRoomNode;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.map.MapEdge;
-import com.megacrit.cardcrawl.map.MapRoomNode;
+import sayTheSpire.Output;
 import sayTheSpire.localization.LocalizationContext;
 import sayTheSpire.utils.MapUtils;
 import sayTheSpire.utils.OutputUtils;
-import sayTheSpire.Output;
 
 /**
  * Represents a room node from the base game.

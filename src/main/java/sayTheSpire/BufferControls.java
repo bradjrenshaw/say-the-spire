@@ -1,7 +1,7 @@
 package sayTheSpire;
 
-import sayTheSpire.buffers.BufferManager;
 import sayTheSpire.buffers.Buffer;
+import sayTheSpire.buffers.BufferManager;
 import sayTheSpire.localization.LocalizationContext;
 
 public class BufferControls {

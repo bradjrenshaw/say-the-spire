@@ -1,7 +1,6 @@
 package sayTheSpire.map;
 
 import java.util.HashSet;
-import com.megacrit.cardcrawl.map.MapRoomNode;
 
 public class BaseMapEdge extends VirtualMapEdge {
 

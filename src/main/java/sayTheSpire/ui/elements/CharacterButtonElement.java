@@ -1,13 +1,13 @@
 package sayTheSpire.ui.elements;
 
-import java.util.ArrayList;
 import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
+import java.util.ArrayList;
 import sayTheSpire.Output;
-import sayTheSpire.buffers.BufferManager;
 import sayTheSpire.TextParser;
+import sayTheSpire.buffers.BufferManager;
 
 public class CharacterButtonElement extends UIElement {
 

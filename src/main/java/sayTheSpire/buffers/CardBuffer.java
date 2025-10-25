@@ -2,8 +2,8 @@ package sayTheSpire.buffers;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.GameDictionary;
-import sayTheSpire.utils.CardUtils;
 import sayTheSpire.TextParser;
+import sayTheSpire.utils.CardUtils;
 
 public class CardBuffer extends Buffer {
 

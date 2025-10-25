@@ -1,9 +1,9 @@
 package sayTheSpire.ui.elements;
 
+import sayTheSpire.Output;
 import sayTheSpire.buffers.BufferManager;
 import sayTheSpire.localization.LocalizationContext;
 import sayTheSpire.ui.positions.Position;
-import sayTheSpire.Output;
 
 /**
  * A virtual UI element represents a game object and various properties it may have. Virtual UI Elements also include

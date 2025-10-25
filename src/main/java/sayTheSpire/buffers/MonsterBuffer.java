@@ -1,26 +1,18 @@
 package sayTheSpire.buffers;
 
-import basemod.ReflectionHacks;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.helpers.PowerTip;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.orbs.Dark;
-import com.megacrit.cardcrawl.stances.NeutralStance;
 import charbosses.bosses.AbstractCharBoss;
 import charbosses.stances.AbstractEnemyStance;
 import charbosses.ui.EnemyEnergyPanel;
-import downfall.patches.EvilModeCharacterSelect;
 import com.evacipated.cardcrawl.modthespire.Loader;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.helpers.PowerTip;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.orbs.Dark;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-
-import java.util.ArrayList;
-import sayTheSpire.utils.OutputUtils;
+import downfall.patches.EvilModeCharacterSelect;
 import sayTheSpire.TextParser;
 import sayTheSpire.ui.elements.MonsterElement;
-
-//downfall specific imports so we don'tget random numbers and stuff like that in the middle of the descriptions
+// downfall specific imports so we don'tget random numbers and stuff like that in the middle of the descriptions
 import sayTheSpire.utils.CardUtils;
 import sayTheSpire.utils.RelicUtils;
 

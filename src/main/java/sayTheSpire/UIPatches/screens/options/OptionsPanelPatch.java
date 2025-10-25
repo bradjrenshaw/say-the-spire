@@ -1,20 +1,15 @@
 import basemod.ReflectionHacks;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.TutorialStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.screens.options.DropdownMenu;
 import com.megacrit.cardcrawl.screens.options.OptionsPanel;
 import com.megacrit.cardcrawl.screens.options.Slider;
-import sayTheSpire.Output;
-import sayTheSpire.buffers.BufferManager;
-import sayTheSpire.Output;
+import sayTheSpire.InfoControls;
 import sayTheSpire.TextParser;
 import sayTheSpire.ui.UIRegistry;
 import sayTheSpire.ui.elements.DropdownElement;
-import sayTheSpire.InfoControls;
 
 public class OptionsPanelPatch {
 

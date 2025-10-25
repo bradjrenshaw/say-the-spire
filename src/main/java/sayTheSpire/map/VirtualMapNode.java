@@ -2,8 +2,6 @@ package sayTheSpire.map;
 
 import java.util.HashSet;
 import java.util.List;
-import com.megacrit.cardcrawl.map.MapRoomNode;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 /**
  * Represents a node on the map. This could be a room from the base game or possibly another type (for example a node in

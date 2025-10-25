@@ -3,9 +3,9 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
+import sayTheSpire.Output;
 import sayTheSpire.ui.elements.CardElement;
 import sayTheSpire.ui.positions.GridPosition;
-import sayTheSpire.Output;
 
 public class GridCardSelectScreenPatch {
 

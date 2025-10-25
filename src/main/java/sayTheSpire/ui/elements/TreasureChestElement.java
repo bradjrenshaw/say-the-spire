@@ -1,7 +1,6 @@
 package sayTheSpire.ui.elements;
 
 import com.megacrit.cardcrawl.rewards.chests.*;
-
 import sayTheSpire.Output;
 import sayTheSpire.buffers.BufferManager;
 

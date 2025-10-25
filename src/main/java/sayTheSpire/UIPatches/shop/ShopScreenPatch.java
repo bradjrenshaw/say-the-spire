@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.HashMap;
 import basemod.ReflectionHacks;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -7,17 +5,17 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.shop.OnSaleTag;
 import com.megacrit.cardcrawl.shop.ShopScreen;
 import com.megacrit.cardcrawl.shop.StorePotion;
 import com.megacrit.cardcrawl.shop.StoreRelic;
-import sayTheSpire.ui.positions.GridPosition;
-import sayTheSpire.ui.elements.ButtonElement;
-import sayTheSpire.ui.elements.ShopElement;
-import sayTheSpire.ui.elements.UIElement;
+import java.util.ArrayList;
+import java.util.HashMap;
 import sayTheSpire.Output;
 import sayTheSpire.TextParser;
 import sayTheSpire.events.DialogueEvent;
+import sayTheSpire.ui.elements.ButtonElement;
+import sayTheSpire.ui.elements.ShopElement;
+import sayTheSpire.ui.positions.GridPosition;
 
 public class ShopScreenPatch {
 

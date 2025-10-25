@@ -1,7 +1,5 @@
 package sayTheSpire.map;
 
-import java.util.List;
-
 public abstract class VirtualMap {
 
     public abstract String getId();

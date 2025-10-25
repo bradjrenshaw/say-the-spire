@@ -1,8 +1,6 @@
 package sayTheSpire.utils;
 
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.shop.StoreRelic;
-
 import sayTheSpire.Output;
 import sayTheSpire.TextParser;
 

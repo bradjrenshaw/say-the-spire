@@ -1,15 +1,12 @@
 package sayTheSpire.map;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
-import sayTheSpire.localization.LocalizationContext;
-import sayTheSpire.utils.MapUtils;
-import sayTheSpire.Output;
 import downfall.patches.EvilModeCharacterSelect;
-import com.evacipated.cardcrawl.modthespire.Loader;
+import java.util.ArrayList;
+import sayTheSpire.utils.MapUtils;
 
 public class BaseMap extends VirtualMap {
 

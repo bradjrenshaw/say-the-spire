@@ -1,6 +1,6 @@
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.unlock.AbstractUnlock;
 import com.megacrit.cardcrawl.unlock.UnlockCharacterScreen;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import sayTheSpire.Output;
 
 public class UnlockCharacterScreenPatches {

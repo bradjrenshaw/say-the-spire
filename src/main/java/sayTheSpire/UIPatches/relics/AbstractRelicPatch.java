@@ -1,14 +1,12 @@
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.mainMenu.MainMenuScreen;
-import basemod.patches.com.megacrit.cardcrawl.relics.AbstractRelic.ObtainRelicGetHook;
+import sayTheSpire.Output;
 import sayTheSpire.events.ObtainEvent;
 import sayTheSpire.ui.elements.RelicElement;
 import sayTheSpire.utils.OutputUtils;
-import sayTheSpire.Output;
 
 public class AbstractRelicPatch {
 

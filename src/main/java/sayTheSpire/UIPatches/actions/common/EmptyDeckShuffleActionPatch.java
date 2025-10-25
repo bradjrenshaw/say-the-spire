@@ -1,8 +1,8 @@
-import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import basemod.ReflectionHacks;
-import sayTheSpire.events.CombatCardTextEvent;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
 import sayTheSpire.Output;
+import sayTheSpire.events.CombatCardTextEvent;
 
 public class EmptyDeckShuffleActionPatch {
 

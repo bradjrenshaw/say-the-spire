@@ -1,12 +1,12 @@
-import java.util.ArrayList;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
+import java.util.ArrayList;
 import sayTheSpire.Output;
-import sayTheSpire.ui.positions.ListPosition;
 import sayTheSpire.ui.elements.CardElement;
+import sayTheSpire.ui.positions.ListPosition;
 
 public class CardRewardScreenPatch {
 

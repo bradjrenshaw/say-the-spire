@@ -1,17 +1,11 @@
 package sayTheSpire.ui.elements;
 
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.rewards.RewardItem;
-import com.megacrit.cardcrawl.screens.CombatRewardScreen;
 import sayTheSpire.buffers.BufferManager;
-import sayTheSpire.ui.positions.Position;
-import sayTheSpire.ui.positions.GridPosition;
 import sayTheSpire.ui.positions.ListPosition;
-import sayTheSpire.utils.RelicUtils;
+import sayTheSpire.ui.positions.Position;
 import sayTheSpire.utils.OutputUtils;
-import sayTheSpire.Output;
 
 public class RelicElement extends GameObjectElement {
 

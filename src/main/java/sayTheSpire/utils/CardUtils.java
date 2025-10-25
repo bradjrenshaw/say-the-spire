@@ -1,12 +1,12 @@
 package sayTheSpire.utils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DescriptionLine;
-import sayTheSpire.ui.positions.GridPosition;
-import sayTheSpire.TextParser;
+import java.util.ArrayList;
+import java.util.HashMap;
 import sayTheSpire.Output;
+import sayTheSpire.TextParser;
+import sayTheSpire.ui.positions.GridPosition;
 
 public class CardUtils {
 

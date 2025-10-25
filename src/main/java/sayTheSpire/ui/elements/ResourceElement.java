@@ -1,8 +1,8 @@
 package sayTheSpire.ui.elements;
 
+import sayTheSpire.Output;
 import sayTheSpire.buffers.BufferManager;
 import sayTheSpire.ui.positions.Position;
-import sayTheSpire.Output;
 
 public class ResourceElement extends UIElement {
 

@@ -3,8 +3,8 @@ package sayTheSpire.ui.elements;
 import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import sayTheSpire.buffers.BufferManager;
-import sayTheSpire.ui.positions.Position;
 import sayTheSpire.ui.positions.ListPosition;
+import sayTheSpire.ui.positions.Position;
 import sayTheSpire.utils.BlightUtils;
 import sayTheSpire.utils.OutputUtils;
 

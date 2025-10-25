@@ -1,10 +1,9 @@
 package sayTheSpire.ui.navigators;
 
-import sayTheSpire.map.VirtualMap;
-import sayTheSpire.map.VirtualMapEdge;
-import sayTheSpire.map.VirtualMapNode;
 import sayTheSpire.InfoControls;
 import sayTheSpire.Output;
+import sayTheSpire.map.VirtualMap;
+import sayTheSpire.map.VirtualMapNode;
 
 /**
  * This class is responsible for all handling of viewing the map. Different MapNavigators are used for different

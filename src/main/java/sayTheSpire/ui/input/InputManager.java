@@ -2,14 +2,13 @@ package sayTheSpire.ui.input;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.google.gson.JsonObject;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import com.google.gson.JsonObject;
 import sayTheSpire.Output;
-import sayTheSpire.ui.mod.Context;
 
 public class InputManager {
     private static final Logger logger = LogManager.getLogger(InputManager.class.getName());

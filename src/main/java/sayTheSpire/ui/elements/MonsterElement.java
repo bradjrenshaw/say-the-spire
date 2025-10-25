@@ -1,6 +1,6 @@
 package sayTheSpire.ui.elements;
 
-import java.util.ArrayList;
+import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -8,13 +8,13 @@ import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
-import basemod.ReflectionHacks;
+import java.util.ArrayList;
+import sayTheSpire.TextParser;
 import sayTheSpire.buffers.BufferManager;
-import sayTheSpire.ui.positions.Position;
 import sayTheSpire.ui.positions.ListPosition;
+import sayTheSpire.ui.positions.Position;
 import sayTheSpire.utils.MonsterUtils;
 import sayTheSpire.utils.OutputUtils;
-import sayTheSpire.TextParser;
 
 public class MonsterElement extends UIElement {
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("AbstractMonster");

@@ -1,9 +1,8 @@
 package sayTheSpire.speech;
 
-import speechd.ssip.SSIPException;
 import speechd.ssip.SSIPClient;
+import speechd.ssip.SSIPException;
 import speechd.ssip.SSIPPriority;
-import sayTheSpire.Output;
 
 public class SpeechdHandler extends SpeechHandler {
 

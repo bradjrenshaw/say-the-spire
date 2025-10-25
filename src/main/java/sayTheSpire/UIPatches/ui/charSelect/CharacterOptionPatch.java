@@ -1,8 +1,7 @@
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
-import sayTheSpire.ui.elements.CharacterButtonElement;
 import sayTheSpire.Output;
-import sayTheSpire.TextParser;
+import sayTheSpire.ui.elements.CharacterButtonElement;
 
 @SpirePatch(clz = CharacterOption.class, method = "update")
 public class CharacterOptionPatch {

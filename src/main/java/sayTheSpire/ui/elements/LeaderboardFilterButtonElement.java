@@ -1,11 +1,10 @@
 package sayTheSpire.ui.elements;
 
-import java.util.ArrayList;
 import com.megacrit.cardcrawl.screens.leaderboards.FilterButton;
-import sayTheSpire.ui.positions.Position;
+import sayTheSpire.Output;
 import sayTheSpire.buffers.BufferManager;
 import sayTheSpire.buffers.LeaderboardBuffer;
-import sayTheSpire.Output;
+import sayTheSpire.ui.positions.Position;
 
 public class LeaderboardFilterButtonElement extends UIElement {
 

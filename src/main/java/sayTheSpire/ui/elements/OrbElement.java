@@ -3,9 +3,8 @@ package sayTheSpire.ui.elements;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import sayTheSpire.buffers.BufferManager;
-import sayTheSpire.Output;
-import sayTheSpire.ui.positions.Position;
 import sayTheSpire.ui.positions.ListPosition;
+import sayTheSpire.ui.positions.Position;
 import sayTheSpire.utils.OutputUtils;
 
 public class OrbElement extends UIElement {

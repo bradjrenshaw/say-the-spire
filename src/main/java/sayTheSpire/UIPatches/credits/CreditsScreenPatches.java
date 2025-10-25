@@ -1,13 +1,12 @@
 package sayTheSpire.UIPatches.credits;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.TreeSet;
+import basemod.ReflectionHacks;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.credits.CreditLine;
 import com.megacrit.cardcrawl.credits.CreditsScreen;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import basemod.ReflectionHacks;
+import java.util.ArrayList;
+import java.util.TreeSet;
 import sayTheSpire.Output;
 
 public class CreditsScreenPatches {

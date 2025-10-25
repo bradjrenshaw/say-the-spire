@@ -128,6 +128,22 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>net.revelc.code</groupId>
+                <artifactId>impsort-maven-plugin</artifactId>
+                <version>1.6.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>sort</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <removeUnused>true</removeUnused> <!-- Entfernt unbenutzte Imports -->
+                    <staticAfter>true</staticAfter> <!-- Statische Imports am Ende -->
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
