@@ -31,13 +31,24 @@ public class BaseMap extends VirtualMap {
             return null;
         if (!(obj instanceof MapRoomNode))
             return null;
-        return new BaseRoomNode((MapRoomNode) obj);
+        VirtualMapNode node = getNodeAt(((MapRoomNode) obj).x, ((MapRoomNode) obj).y);
+
+        if (node == null)
+            return new BaseRoomNode((MapRoomNode) obj);
+        return node;
     }
 
     public VirtualMapEdge getParentEdge(VirtualMapNode node) {
         if (node == null)
             return null;
-        for (int y = node.getY(); y > -1; y--) {
+        int direction = -1;
+        int end = 0;
+        if (downfall && EvilModeCharacterSelect.evilMode) {
+            direction = 1;
+            end = 14;
+        }
+
+        for (int y = node.getY(); y >= end; y += direction) {
             for (int x = 0; x <= 6; x++) {
                 VirtualMapNode source = this.getNodeAt(x, y);
                 if (source == null)
@@ -62,19 +73,10 @@ public class BaseMap extends VirtualMap {
         if (y >= map.size())
             return null;
 
-        if (downfall && EvilModeCharacterSelect.evilMode) {
-            for (MapRoomNode node : map.get(AbstractDungeon.currMapNode.y - 1)) {
-                // If the node does not have edges it should not be on the map
-                if (node.x == x && node.y == y && node.hasEdges()) {
-                    return new BaseRoomNode(node);
-                }
-            }
-        } else {
-            for (MapRoomNode node : map.get(y)) {
-                // If the node does not have edges it should not be on the map
-                if (node.x == x && node.y == y && node.hasEdges()) {
-                    return new BaseRoomNode(node);
-                }
+        for (MapRoomNode node : map.get(y)) {
+            // If the node does not have edges it should not be on the map
+            if (node.x == x && node.y == y && node.hasEdges()) {
+                return new BaseRoomNode(node);
             }
         }
         return null;
@@ -87,5 +89,4 @@ public class BaseMap extends VirtualMap {
         }
         return this.getNodeAt(node.x, node.y);
     }
-
 }

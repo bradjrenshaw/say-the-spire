@@ -1,5 +1,6 @@
 package sayTheSpire.ui.navigators;
 
+import com.evacipated.cardcrawl.modthespire.Loader;
 import java.util.ArrayList;
 import java.util.Stack;
 import java.util.stream.Collectors;
@@ -12,6 +13,7 @@ import sayTheSpire.map.VirtualMapEdge;
 import sayTheSpire.map.VirtualMapNode;
 
 public class TreeNavigator extends MapNavigator {
+    public static boolean downfall = Loader.isModLoaded("downfall");
 
     private ArrayList<VirtualMapEdge> pathChoices;
     private Stack<VirtualMapEdge> viewingPath;

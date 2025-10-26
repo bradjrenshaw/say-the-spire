@@ -13,5 +13,13 @@ public class DungeonMapScreenPatch {
                     MapUtils.getLocalizedBossName());
         }
         Output.setupBuffers(MapUtils.getCurrentNode(), false, true);
+
+        /*
+         * if (Loader.isModLoaded("downfall") && EvilModeCharacterSelect.evilMode && !AbstractDungeon.firstRoomChosen) {
+         * for (MapRoomNode node : CardCrawlGame.dungeon.getMap().get(14)) { if (node.hasEdges()) { node.hb.hovered =
+         * true; node.hb.clickStarted = true; Gdx.input.setCursorPosition((int) node.hb.cX, Settings.HEIGHT - (int)
+         * node.hb.cY); ReflectionHacks.privateMethod(MapRoomNode.class, "playNodeHoveredSound").invoke(node); break; }
+         * } }
+         */
     }
 }

@@ -1,8 +1,10 @@
 package sayTheSpire.utils;
 
+import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
+import downfall.patches.EvilModeCharacterSelect;
 import sayTheSpire.map.BaseRoomNode;
 
 public class MapUtils {
@@ -46,6 +48,10 @@ public class MapUtils {
     }
 
     public static Boolean isBossAvailable(BaseRoomNode node) {
-        return node.getY() == AbstractDungeon.map.size() - 1;
+        if (Loader.isModLoaded("downfall") && EvilModeCharacterSelect.evilMode) {
+            return node.getY() == 0;
+        } else {
+            return node.getY() == AbstractDungeon.map.size() - 1;
+        }
     }
 }
