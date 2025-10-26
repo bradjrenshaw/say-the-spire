@@ -5,7 +5,7 @@
 
     <groupId>saythespire</groupId>
     <artifactId>sayTheSpire</artifactId>
-    <version>0.5.0</version>
+    <version>0.5.0.1</version>
     <packaging>jar</packaging>
     <name>sayTheSpire</name>
     <description>A mod to add screen reader accessibility to Slay the Spire.</description>

@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.5.0.1-beta (2025-10-26)
+
+This release adds basic support for Downfall. The reversed map is supported, but certainly not all new features have been tested.
+
 ## 0.5.0-beta (2023-05-24)
 
 This is the last major UI patch before version 1.0. This adds support for the few remaining inaccessible screens and fixes missing unlock texts. Note that, despite the leaderboard and daily leaderboard screens being supported, your own scores will not be automatically uploaded due to Slay the Spire preventing modded games from posting scores.
