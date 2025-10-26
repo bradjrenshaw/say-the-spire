@@ -59,6 +59,10 @@ public class CharacterButtonElement extends UIElement {
         return "UI";
     }
 
+    public CharacterOption getCharacterOption() {
+        return character;
+    }
+
     public String getLabel() {
         if (this.character.locked) {
             return TEXT[0];
