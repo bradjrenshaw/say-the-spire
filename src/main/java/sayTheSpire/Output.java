@@ -19,8 +19,6 @@ import sayTheSpire.ui.mod.UIManager;
 
 public class Output {
 
-    public static String modVersion = "0.5.0-beta";
-
     private static Logger logger = LogManager.getLogger(Output.class.getName());
 
     public static BufferManager buffers = new BufferManager();
@@ -36,8 +34,12 @@ public class Output {
     public static UIElement currentUI = null;
     public static STSConfig config = null;
 
+    public static String getModVersion() {
+        return Output.class.getPackage().getImplementationVersion() + "-beta";
+    }
+
     public static void announceVersion() {
-        Output.text(localization.localize("misc.versionString", "version", modVersion), false);
+        Output.text(localization.localize("misc.versionString", "version", Output.getModVersion()), false);
     }
 
     public static void preSetup() {

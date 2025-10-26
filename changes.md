@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.5.0.2-beta (2025-10-26)
+
+This release fixes characters on the character selection screen not being read by screen readers while Downfall is loaded.
+For devs: the version of the mod is now only specified within the pom.xml file and gets automatically populated to the ModTheSpire.json and the mod itself.
+
 ## 0.5.0.1-beta (2025-10-26)
 
 This release adds basic support for Downfall. The reversed map is supported, but certainly not all new features have been tested.

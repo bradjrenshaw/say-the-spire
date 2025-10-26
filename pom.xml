@@ -5,7 +5,7 @@
 
     <groupId>saythespire</groupId>
     <artifactId>sayTheSpire</artifactId>
-    <version>0.5.0.1</version>
+    <version>0.5.0.2</version>
     <packaging>jar</packaging>
     <name>sayTheSpire</name>
     <description>A mod to add screen reader accessibility to Slay the Spire.</description>
@@ -59,7 +59,7 @@
             <artifactId>Downfall</artifactId>
             <version>2.0.34}</version>
             <scope>system</scope>
-<systemPath>${basedir}/lib/Downfall.jar</systemPath>
+            <systemPath>${basedir}/lib/Downfall.jar</systemPath>
         </dependency>
 
     </dependencies>
@@ -90,7 +90,7 @@
                                     <include>com.davykager.tolk</include>
                                     <include>speechd</include>
                                     <include>com.moandjiezana.toml</include>
-<include>org.bigtesting:interpolatd</include>
+                                    <include>org.bigtesting:interpolatd</include>
                                 </includes>
 
                             </artifactSet>
@@ -144,6 +144,59 @@
                     <staticAfter>true</staticAfter> <!-- Statische Imports am Ende -->
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Implementation-Version>${project.version}</Implementation-Version>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+                <executions>
+                    <execution>
+                        <id>filter-modthespire-json</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources</directory>
+                                    <includes>
+                                        <include>ModTheSpire.json</include>
+                                    </includes>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>ModTheSpire.json</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <excludes>
+                    <exclude>ModTheSpire.json</exclude>
+                </excludes>
+            </resource>
+        </resources>
     </build>
 </project>
