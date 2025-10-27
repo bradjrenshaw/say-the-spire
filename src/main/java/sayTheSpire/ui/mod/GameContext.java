@@ -1,5 +1,6 @@
 package sayTheSpire.ui.mod;
 
+import collector.util.NewReserves;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.controller.CInputAction;
@@ -38,7 +39,8 @@ public class GameContext extends Context {
             return;
         case "read player energy":
             if (OutputUtils.isInCombat()) {
-                Output.textLocalized("ui.misc info.playerEnergy", false, "energy", EnergyPanel.totalCount);
+                Output.textLocalized("ui.misc info.playerEnergy", false, "energy",
+                        EnergyPanel.totalCount + NewReserves.reserveCount());
             } else {
                 Output.textLocalized("errors.not in combat", false);
             }
