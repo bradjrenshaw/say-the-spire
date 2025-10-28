@@ -1,5 +1,6 @@
 package sayTheSpire.buffers;
 
+import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -44,7 +45,14 @@ public class PlayerBuffer extends Buffer {
         this.add(CardCrawlGame.playerName);
         this.addLocalized("content.hp");
         if (OutputUtils.isInCombat()) {
-            this.context.put("energy", EnergyPanel.totalCount);
+            int reserves = 0;
+            try {
+                Class<?> newReserves = Class.forName("collector.util.NewReserves");
+                reserves = ReflectionHacks.privateStaticMethod(newReserves, "reserveCount").invoke();
+            } catch (Throwable ignored) {
+            }
+
+            this.context.put("energy", EnergyPanel.totalCount + reserves);
             this.context.put("block", player.currentBlock);
             this.addLocalized("content.energy");
             this.addLocalized("content.block");
