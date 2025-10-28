@@ -1,5 +1,7 @@
 package sayTheSpire.ui.elements;
 
+import basemod.ReflectionHacks;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import sayTheSpire.buffers.BufferManager;
@@ -22,20 +24,34 @@ public class RewardItemElement extends UIElement {
     }
 
     private void setupUIElement() {
-        switch (this.reward.type) {
-        case POTION:
+        RewardItem.RewardType collectorType = null;
+
+        try {
+            Class<?> patch = Class.forName("downfall.patches.RewardItemTypeEnumPatch");
+            collectorType = ReflectionHacks.getPrivateStatic(patch, "COLLECTOR_COLLECTIBLECARDREWARD");
+        } catch (Throwable ignored) {
+            collectorType = null;
+        }
+
+        if (this.reward.type == RewardItem.RewardType.POTION) {
             this.rewardUIElement = new PotionElement(this.reward.potion, PotionElement.PotionLocation.COMBAT_REWARDS);
-            break;
-        case RELIC:
+        } else if (this.reward.type == RewardItem.RewardType.RELIC) {
             this.rewardUIElement = new RelicElement(this.reward.relic, RelicElement.RelicLocation.COMBAT_REWARDS);
-            break;
-        default:
+        } else if (this.reward.type == collectorType) {
+            this.rewardUIElement = new CardElement(
+                    (AbstractCard) ReflectionHacks.getPrivate(this.reward, this.reward.getClass(), "card"),
+                    CardElement.CardLocation.CARD_REWARD, this.getPosition());
+        } else {
             this.rewardUIElement = new ButtonElement(this.reward.text);
         }
     }
 
     public String getLabel() {
         return this.rewardUIElement.getLabel();
+    }
+
+    public RewardItem getRewardItem() {
+        return reward;
     }
 
     public Position getPosition() {
