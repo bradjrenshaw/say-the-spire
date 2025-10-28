@@ -27,12 +27,12 @@
       }
     },
     "monster": {
-     "localizedName": "monster",
-     "noObj": "No monster available; report to mod developer.",
-     "content": {
-      "hp": "{hp}/{hpMax} hp",
-      "block": "{block} block"
-     }
+      "localizedName": "monster",
+      "noObj": "No monster available; report to mod developer.",
+      "content": {
+        "hp": "{hp}/{hpMax} hp",
+        "block": "{block} block"
+      }
     },
     "orb": {
       "localizedName": "orb",
@@ -42,40 +42,41 @@
       "localizedName": "player",
       "noObj": "No player available; report to mod developer.",
       "content": {
-"hp": "{hp}/{hpMax} hp",
-"energy": "{energy} energy",
-"block": "{block} block",
-"gold": "{gold} gold"
+        "hp": "{hp}/{hpMax} hp",
+        "energy": "{energy} energy",
+        "block": "{block} block",
+        "gold": "{gold} gold",
+        "essences": "{essences} essences"
       }
     },
-   "potion": {
-    "localizedName": "potion",
-    "noObj": "No potion available; report to mod developer.",
-    "content": {
-      "nameAndRarity": "{name}, {rarity} rarity"
+    "potion": {
+      "localizedName": "potion",
+      "noObj": "No potion available; report to mod developer.",
+      "content": {
+        "nameAndRarity": "{name}, {rarity} rarity"
+      }
+    },
+    "relic": {
+      "localizedName": "relic",
+      "noObj": "No relic available; report to mod developer.",
+      "content": {
+        "nameAndRarity": "{name}, {rarity} rarity",
+        "counter": "{counter} counter"
+      }
     }
-   },
-   "relic": {
-    "localizedName": "relic",
-    "noObj": "No relic available; report to mod developer.",
-    "content": {
-      "nameAndRarity": "{name}, {rarity} rarity",
-      "counter": "{counter} counter"
-    }
-   }
   },
   "errors": {
     "not in combat": "Not currently in combat.",
-    "not in run":"Not currently in a run.",
+    "not in run": "Not currently in a run.",
     "unknownGremlinMatchCard": "Error: Unknown gremlin match game card, report to mod dev."
   },
   "events": {
     "combatCardText": {
-"addedToDiscard": "{target} added to discard",
-"addedToDraw": "{target} added to draw",
-"addedToHand": "{target} added to hand",
-"discardShuffledIntoDraw": "discard shuffled into draw",
-"exhausted": "{target} exhausted"
+      "addedToDiscard": "{target} added to discard",
+      "addedToDraw": "{target} added to draw",
+      "addedToHand": "{target} added to hand",
+      "discardShuffledIntoDraw": "discard shuffled into draw",
+      "exhausted": "{target} exhausted"
     },
     "combatMonster": {
       "defeated": "{target} defeated"
@@ -88,24 +89,24 @@
     "dialogue": {
       "text": "{source} {dialogueType}: {message}"
     },
-"gainBlock": {
-"text": "{target} +{amount} block"
-},
-"misc": {
-"cardRemovedFromDeck": "{target} removed from deck",
-"cardShownBriefly": "{target} shown briefly"
-},
-"obtain": {
-  "cardAddedToDeck": "{target} added to deck",
-  "gold": "+{amount} gold",
-  "object": "{target} obtained"
-},
-"power": {
-  "text": "{target} {message}"
-},
-"textAboveCreature": {
-  "text": "{target}: {message}"
-}
+    "gainBlock": {
+      "text": "{target} +{amount} block"
+    },
+    "misc": {
+      "cardRemovedFromDeck": "{target} removed from deck",
+      "cardShownBriefly": "{target} shown briefly"
+    },
+    "obtain": {
+      "cardAddedToDeck": "{target} added to deck",
+      "gold": "+{amount} gold",
+      "object": "{target} obtained"
+    },
+    "power": {
+      "text": "{target} {message}"
+    },
+    "textAboveCreature": {
+      "text": "{target}: {message}"
+    }
   },
   "misc": {
     "versionString": "Using Say the Spire version {version}."
@@ -151,57 +152,57 @@
       "bufferIsEmpty": "{buffer} is empty",
       "currentItem": "{buffer}: {item}",
       "currentItemIsNull": "Buffer {buffer} current item is null, report to mod developer",
-"noBuffersAvailable": "No buffers available.",
-"noBufferSelected": "No buffer selected."
+      "noBuffersAvailable": "No buffers available.",
+      "noBufferSelected": "No buffer selected."
     },
     "cardRarity": {
-"basic": "basic",
-"common": "common",
-"uncommon": "uncommon",
-"rare": "rare",
-"special": "special",
-"curse": "curse"
+      "basic": "basic",
+      "common": "common",
+      "uncommon": "uncommon",
+      "rare": "rare",
+      "special": "special",
+      "curse": "curse"
     },
     "dialogueTypes": {
-"says": "says",
-"shouts": "shouts"
+      "says": "says",
+      "shouts": "shouts"
     },
     "npcNames": {
       "merchant": "Merchant"
     },
-"potionRarity": {
-  "placeholder": "placeholder",
-  "common": "common",
-  "uncommon": "uncommon",
-  "rare": "rare"
-},
-  "powers": {
-    "no powers": "No current powers.",
-    "powerLabel": "{power} {amount}",
-    "powerListString": "{powers}, powers"
-  },
-"relicRarity": {
-  "deprecated": "deprecated",
-  "starter": "starter",
-  "common": "common",
-  "uncommon": "uncommon",
-  "rare": "rare",
-  "special": "special",
-  "boss": "boss",
-  "shop": "shop"
-}
+    "potionRarity": {
+      "placeholder": "placeholder",
+      "common": "common",
+      "uncommon": "uncommon",
+      "rare": "rare"
+    },
+    "powers": {
+      "no powers": "No current powers.",
+      "powerLabel": "{power} {amount}",
+      "powerListString": "{powers}, powers"
+    },
+    "relicRarity": {
+      "deprecated": "deprecated",
+      "starter": "starter",
+      "common": "common",
+      "uncommon": "uncommon",
+      "rare": "rare",
+      "special": "special",
+      "boss": "boss",
+      "shop": "shop"
+    }
   },
   "ui": {
     "elements": {
       "Card": {
-"face down": "face down"
+        "face down": "face down"
       },
       "character button": {
         "buffer gold": "{gold} gold",
         "buffer health": "{health} health",
         "buffer max ascension": "{maxAscension} max ascension",
         "buffer unlocks remaining": "{unlocksRemaining} unlocks remaining",
-"unknown unlock": "Unknown unlock text; report to mod developer."
+        "unknown unlock": "Unknown unlock text; report to mod developer."
       },
       "CustomMod": {
         "disabledOther": "{target} disabled."
@@ -273,57 +274,57 @@
       },
       "CustomModeScreen": {
         "AN_seed": "Accessibility note: Current seed is {seed}.",
-          "seedString": "{label} ({seed})"
+        "seedString": "{label} ({seed})"
       },
-  "dailyScreen": {
-    "characterString": "{label} {name}",
-    "modString": "{name}: {description}",
-    "offlineDateString": "{date} {label}",
-    "scoreDateString": "Viewing scores from {date}",
-    "scoreIndicesString": "Displaying ranks {start} to {end}",
-    "timeRemainingString": "{label} {time}"
-  },
-  "DiscardPileViewScreen": {
-    "title": "Discard pile view, {cards} cards"
-  },
-  "DrawPileViewScreen": {
-    "title": "Draw pile view, {cards} cards"
-  },
-  "DungeonMapScreen": {
-    "boss scroll": "The map scrolls from top to bottom, briefly revealing the sketched outline of {boss}."
-  },
-  "ExhaustPileViewScreen": {
-    "title": "Exhaust pile view, {cards} cards"
-  },
-  "LeaderboardScreen": {
-    "character buttons": "character buttons",
-    "region buttons": "region buttons",
-    "type buttons": "type buttons"
-  },
-  "MasterDeckViewScreen": {
-    "title": "Master deck view, {cards} cards"
-  },
-  "PotionViewScreen": {
-    "categoryLabel": "{category} potions",
-    "types": {
-      "common": "common",
-      "uncommon": "uncommon",
-      "rare": "rare",
-      "unknown": "unknown"
-    }
-  },
-  "RelicViewScreen": {
-    "categoryLabel": "{category} relics",
-    "types": {
-      "starter": "starter",
-      "common": "common",
-      "uncommon": "uncommon",
-      "rare": "rare",
-      "boss": "boss",
-      "special": "special",
-      "shop": "shop"
-    }
-  }
+      "dailyScreen": {
+        "characterString": "{label} {name}",
+        "modString": "{name}: {description}",
+        "offlineDateString": "{date} {label}",
+        "scoreDateString": "Viewing scores from {date}",
+        "scoreIndicesString": "Displaying ranks {start} to {end}",
+        "timeRemainingString": "{label} {time}"
+      },
+      "DiscardPileViewScreen": {
+        "title": "Discard pile view, {cards} cards"
+      },
+      "DrawPileViewScreen": {
+        "title": "Draw pile view, {cards} cards"
+      },
+      "DungeonMapScreen": {
+        "boss scroll": "The map scrolls from top to bottom, briefly revealing the sketched outline of {boss}."
+      },
+      "ExhaustPileViewScreen": {
+        "title": "Exhaust pile view, {cards} cards"
+      },
+      "LeaderboardScreen": {
+        "character buttons": "character buttons",
+        "region buttons": "region buttons",
+        "type buttons": "type buttons"
+      },
+      "MasterDeckViewScreen": {
+        "title": "Master deck view, {cards} cards"
+      },
+      "PotionViewScreen": {
+        "categoryLabel": "{category} potions",
+        "types": {
+          "common": "common",
+          "uncommon": "uncommon",
+          "rare": "rare",
+          "unknown": "unknown"
+        }
+      },
+      "RelicViewScreen": {
+        "categoryLabel": "{category} relics",
+        "types": {
+          "starter": "starter",
+          "common": "common",
+          "uncommon": "uncommon",
+          "rare": "rare",
+          "boss": "boss",
+          "special": "special",
+          "shop": "shop"
+        }
+      }
     },
     "status": {
       "ascending": "ascending",
