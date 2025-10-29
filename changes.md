@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.5.0.3-beta (2025-10-29)
+
+* Added support for displaying temporary hp via ctrl + h and within the player buffer
+* Added support for reserves and essences (collector downfall character)
+* Added support for reading out downfall boss names
+
 ## 0.5.0.2-beta (2025-10-26)
 
 This release fixes characters on the character selection screen not being read by screen readers while Downfall is loaded.
