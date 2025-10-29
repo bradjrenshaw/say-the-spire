@@ -51,11 +51,27 @@ public class PlayerBuffer extends Buffer {
             return;
         }
         AbstractPlayer player = AbstractDungeon.player;
+
+        int tempHp = 0;
+
+        try {
+            Class<?> cls = Class
+                    .forName("com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField");
+            Object spireField = cls.getField("tempHp").get(null);
+            tempHp = (int) spireField.getClass().getMethod("get", Object.class).invoke(spireField, player);
+        } catch (Throwable t) {
+        }
+
         this.context.put("hp", player.currentHealth);
+        this.context.put("tempHp", tempHp);
         this.context.put("hpMax", player.maxHealth);
         this.context.put("gold", player.gold);
         this.add(CardCrawlGame.playerName);
-        this.addLocalized("content.hp");
+        if (tempHp > 0) {
+            this.addLocalized("content.hpAndTempHp");
+        } else {
+            this.addLocalized("content.hp");
+        }
         if (OutputUtils.isInCombat()) {
             int reserves = 0;
             try {

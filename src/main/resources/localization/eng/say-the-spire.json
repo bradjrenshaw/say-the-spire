@@ -43,6 +43,7 @@
       "noObj": "No player available; report to mod developer.",
       "content": {
         "hp": "{hp}/{hpMax} hp",
+        "hpAndTempHp": "{hp} (+{tempHp})/{hpMax} hp",
         "energy": "{energy} energy",
         "block": "{block} block",
         "gold": "{gold} gold",
@@ -249,7 +250,8 @@
       "playerBlock": "{block} block",
       "playerEnergy": "{energy} energy",
       "playerGold": "{gold} gold",
-      "playerHealth": "{hp}/{hpMax} hp"
+      "playerHealth": "{hp}/{hpMax} hp",
+      "playerHealthAndTempHp": "{hp} (+{tempHp})/{hpMax} hp"
     },
     "positions": {
       "categoryList": "{position} of {total} {category}",

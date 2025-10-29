@@ -54,8 +54,23 @@ public class GameContext extends Context {
             Output.textLocalized("ui.misc info.playerGold", false, "gold", player.gold);
             return;
         case "read player hp":
-            Output.textLocalized("ui.misc info.playerHealth", false, "hp", player.currentHealth, "hpMax",
-                    player.maxHealth);
+            int tempHp = 0;
+
+            try {
+                Class<?> cls = Class
+                        .forName("com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField");
+                Object spireField = cls.getField("tempHp").get(null);
+                tempHp = (int) spireField.getClass().getMethod("get", Object.class).invoke(spireField, player);
+            } catch (Throwable t) {
+            }
+
+            if (tempHp > 0) {
+                Output.textLocalized("ui.misc info.playerHealthAndTempHp", false, "hp", player.currentHealth, "hpMax",
+                        player.maxHealth, "tempHp", tempHp);
+            } else {
+                Output.textLocalized("ui.misc info.playerHealth", false, "hp", player.currentHealth, "hpMax",
+                        player.maxHealth);
+            }
             return;
         case "read player powers":
             if (OutputUtils.isInCombat()) {
