@@ -55,4 +55,8 @@ public abstract class InputMapping {
         return this.getInputType();
     }
 
+    public String getLabel() {
+        return this.toString();
+    }
+
 }

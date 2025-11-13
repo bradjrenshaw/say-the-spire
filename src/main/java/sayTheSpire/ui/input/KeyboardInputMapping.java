@@ -75,7 +75,7 @@ public class KeyboardInputMapping extends InputMapping {
         if (this.modAlt)
             sb.append(Keys.ALT_LEFT);
         sb.append(Keys.toString(this.keycode));
-        return sb.toString();
+        return super.toString() + sb.toString();
     }
 
 }
