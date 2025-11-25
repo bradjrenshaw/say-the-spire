@@ -1,5 +1,6 @@
 package sayTheSpire.buffers;
 
+import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -32,19 +33,54 @@ public class PlayerBuffer extends Buffer {
     }
 
     public void update() {
+
+        Boolean isCollector = false;
+
+        try {
+            Class<?> enumPatch = Class.forName("collector.CollectorChar$Enums");
+            if (AbstractDungeon.player.chosenClass == (AbstractPlayer.PlayerClass) ReflectionHacks
+                    .getPrivateStatic(enumPatch, "THE_COLLECTOR")) {
+                isCollector = true;
+            }
+        } catch (Throwable ignored) {
+        }
+
         this.clear();
         if (!OutputUtils.canGetPlayer()) {
             this.addLocalized("noObj");
             return;
         }
         AbstractPlayer player = AbstractDungeon.player;
+
+        int tempHp = 0;
+
+        try {
+            Class<?> cls = Class
+                    .forName("com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField");
+            Object spireField = cls.getField("tempHp").get(null);
+            tempHp = (int) spireField.getClass().getMethod("get", Object.class).invoke(spireField, player);
+        } catch (Throwable t) {
+        }
+
         this.context.put("hp", player.currentHealth);
+        this.context.put("tempHp", tempHp);
         this.context.put("hpMax", player.maxHealth);
         this.context.put("gold", player.gold);
         this.add(CardCrawlGame.playerName);
-        this.addLocalized("content.hp");
+        if (tempHp > 0) {
+            this.addLocalized("content.hpAndTempHp");
+        } else {
+            this.addLocalized("content.hp");
+        }
         if (OutputUtils.isInCombat()) {
-            this.context.put("energy", EnergyPanel.totalCount);
+            int reserves = 0;
+            try {
+                Class<?> newReserves = Class.forName("collector.util.NewReserves");
+                reserves = ReflectionHacks.privateStaticMethod(newReserves, "reserveCount").invoke();
+            } catch (Throwable ignored) {
+            }
+
+            this.context.put("energy", EnergyPanel.totalCount + reserves);
             this.context.put("block", player.currentBlock);
             this.addLocalized("content.energy");
             this.addLocalized("content.block");
@@ -57,5 +93,17 @@ public class PlayerBuffer extends Buffer {
             }
         }
         this.addLocalized("content.gold");
+        if (isCollector) {
+            int essences = 0;
+
+            try {
+                essences = ReflectionHacks
+                        .privateStaticMethod(Class.forName("collector.util.EssenceSystem"), "essenceCount").invoke();
+            } catch (Throwable ignored) {
+            }
+
+            this.context.put("essences", essences);
+            this.addLocalized("content.essences");
+        }
     }
 }
