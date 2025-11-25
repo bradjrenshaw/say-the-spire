@@ -67,4 +67,4 @@ To compile the mod, run
 mvn package
 ```
 
-This should compile the mod and bundle all needed screenreader library files and other dependencies into the main .jar file. After that, copy target/sayTheSpire.jar to your Slay the Spire mods directory. If you're running SayTheSpire through the Steam Workshop already, Maven will have done so for you already.
+This should compile the mod and bundle all needed screenreader library files and other dependencies into the main .jar file. After that, copy mods/sayTheSpire.jar to your Slay the Spire mods directory.

@@ -9,6 +9,7 @@ Say the Spire is a screen reader accessibility mod for Slay the Spire. It provid
 - A buffer system for browsing game elements
 - In-game narration of events
 - Dynamic UI system for mod settings and menus
+- Downfall mod compatibility (reversed map, reserves, essence, tempHp, boss names)
 
 **Version**: 0.5.1-beta (targeting 1.0)
 **Language**: Java 8
@@ -25,7 +26,8 @@ Say the Spire is a screen reader accessibility mod for Slay the Spire. It provid
 1. **Slay the Spire** (`lib/desktop-1.0.jar`) - The base game JAR containing all game code
 2. **ModTheSpire** (`lib/ModTheSpire.jar`) - The mod loader framework that enables runtime bytecode patching
 3. **BaseMod** (`lib/BaseMod.jar`) - A utility mod providing hooks and helpers for mod development
-4. **Say the Spire** (this project) - Patches game classes to add accessibility features
+4. **Downfall** (`lib/Downfall.jar`) - Optional mod for compilation; Say the Spire has compatibility features for Downfall
+5. **Say the Spire** (this project) - Patches game classes to add accessibility features
 
 ### The Patching System
 
@@ -372,17 +374,38 @@ String parsed = TextParser.parse(text, "card", dynamicVariablesMap);
 
 ### 8. Input Actions
 
-**Adding new input actions:**
+Input actions are defined in `InputBuilder.java` and processed through the context system.
+
+**Adding new input actions** (in `InputBuilder.buildBaseActionCollection()`):
 ```java
-InputAction myAction = new InputAction("action_identifier", "Display Name", isRequired);
-myAction.addMapping(new KeyboardInputMapping(Input.Keys.SOME_KEY));
-myAction.addMapping(new ControllerInputMapping(ControllerButton.SOME_BUTTON));
-InputManager.addAction(myAction);
+// Basic action with keyboard mapping (ctrl=true, shift=false, alt=false, key)
+actions.addAction("my action").addKeyboardMapping(true, false, false, Keys.X);
+
+// Action with controller mapping
+actions.addAction("my action")
+    .addKeyboardMapping(false, false, false, Keys.M)
+    .addControllerMapping(controllerPrefs.getInteger("MAP", 6));
+
+// Required action (must have at least one mapping)
+actions.addAction("my action").addKeyboardMapping(true, false, false, Keys.M).setRequired();
 ```
 
-**Checking input:**
+**Handling input in a Context** (in `GameContext.java` or custom context):
 ```java
-if (InputManager.getAction("action_identifier").isJustPressed()) {
+public Boolean onJustPress(InputAction action) {
+    switch (action.getKey()) {
+    case "my action":
+        // Handle the action
+        return true;
+    }
+    return true;
+}
+```
+
+**Checking input directly:**
+```java
+InputAction action = Output.inputManager.getActiveActionCollection().getAction("my action");
+if (action != null && action.isJustPressed()) {
     // Handle input
 }
 ```
@@ -519,6 +542,38 @@ String text = Output.localization.localize("combat.damage_taken",
 // With localization file: "combat": { "damage_taken": "Took {amount} damage from {source}" }
 ```
 
+### Pattern 5: Optional Mod Compatibility with ReflectionHacks
+When adding features that depend on other mods (like Downfall), use reflection to avoid hard dependencies:
+
+```java
+// Check if a mod is loaded and call its methods without compile-time dependency
+int reserves = 0;
+try {
+    // Load the class dynamically - fails gracefully if mod not present
+    Class<?> newReserves = Class.forName("collector.util.NewReserves");
+    // Call static method via ReflectionHacks
+    reserves = ReflectionHacks.privateStaticMethod(newReserves, "reserveCount").invoke();
+} catch (Throwable ignored) {
+    // Mod not loaded or method not found - use default value
+}
+
+// For accessing fields on objects
+try {
+    Class<?> cls = Class.forName("com.evacipated.cardcrawl.mod.stslib.patches.core.AbstractCreature.TempHPField");
+    Object spireField = cls.getField("tempHp").get(null);
+    int tempHp = (int) spireField.getClass().getMethod("get", Object.class).invoke(spireField, player);
+} catch (Throwable t) {
+    // Feature not available
+}
+```
+
+**Key principles:**
+- Always wrap in try-catch with `Throwable` to handle any reflection errors
+- Use `Class.forName()` to check if mod classes exist at runtime
+- Use `ReflectionHacks` from BaseMod for calling private/static methods
+- Provide sensible defaults when the optional mod isn't present
+- This pattern is used for Downfall support (reserves, essence, tempHp, reversed map detection)
+
 ## Build and Development Workflow
 
 ### Building
@@ -527,8 +582,8 @@ mvn clean package
 ```
 - Compiles code
 - Bundles dependencies (Tolk, speechd, interpolatd)
-- Copies to `./mods/sayTheSpire.jar`
-- Format code automatically
+- Outputs to `./mods/sayTheSpire.jar`
+- Formats code automatically
 
 ### Manual Formatting
 ```bash
@@ -539,6 +594,7 @@ mvn formatter:format
 - **ModTheSpire** (lib/ModTheSpire.jar) - Mod loading framework
 - **BaseMod** (lib/BaseMod.jar) - Mod utilities and hooks
 - **Slay the Spire** (lib/desktop-1.0.jar) - Game JAR
+- **Downfall** (lib/Downfall.jar) - Optional; enables Downfall-specific accessibility features
 - **Tolk** - Windows screen reader library
 - **speechd** - Linux speech dispatcher
 - **interpolatd** - String interpolation
@@ -552,10 +608,10 @@ mvn formatter:format
 From README and changes.md:
 1. **Steam library cleanup bug** - Rare crash on close; set `resources.dispose_resource_files` and `resources.unload_native_libs` to false if occurs
 2. **No automated testing** - Manual testing required (game UI dependent)
-3. **Some screens partial support** - Daily climb leaderboard, input settings, credits (being worked on)
-4. **Controller required inputs** - Not yet fully accessible
-5. **Card hand navigation** - Cards can be read multiple times due to game behavior
-6. **Resolution dropdown buggy** - Game issue, not mod issue
+3. **Controller mod menu access** - Controller method to access mod menu (ctrl+m) is being worked on
+4. **Card hand navigation** - Cards can be read multiple times due to game behavior
+5. **Resolution dropdown buggy** - Game issue, not mod issue
+6. **Downfall partial support** - Basic Downfall features work (reversed map, reserves, essence, boss names) but not all Downfall content has been tested
 
 ## Future Considerations
 
@@ -575,6 +631,9 @@ From README and changes.md:
 - **DynamicElement.java** - Base class for mod's own UI
 - **BufferManager.java** - Buffer system
 - **EventManager.java** - Event queue and dispatch
+- **InputBuilder.java** - Defines all input actions and their default mappings
+- **GameContext.java** - Handles input actions during normal gameplay
+- **MapUtils.java** - Map utilities including Downfall detection
 
 ## Quick Reference: Common Tasks
 
