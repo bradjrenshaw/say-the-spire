@@ -1,5 +1,6 @@
 package sayTheSpire.utils;
 
+import basemod.ReflectionHacks;
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -16,7 +17,7 @@ public class MapUtils {
     public static String getLocalizedBossName() {
         if (AbstractDungeon.bossList == null || AbstractDungeon.bossList.isEmpty())
             return "unknown";
-        String name = AbstractDungeon.bossList.get(0);
+        String name = AbstractDungeon.bossKey;
         switch (name) {
         case "The Guardian":
             return getMonsterName("TheGuardian");
@@ -38,6 +39,34 @@ public class MapUtils {
             return getMonsterName("Donu") + ", " + getMonsterName("Deca");
         case "The Heart":
             return getMonsterName("CorruptHeart");
+        case "downfall:Silent":
+            try {
+                Class<?> cls = Class.forName("charbosses.bosses.Silent.CharBossSilent");
+                return ReflectionHacks.getPrivateStatic(cls, "NAME");
+            } catch (Throwable ignored) {
+                return "Unknown, report to developer";
+            }
+        case "downfall:Defect":
+            try {
+                Class<?> cls = Class.forName("charbosses.bosses.Defect.CharBossDefect");
+                return ReflectionHacks.getPrivateStatic(cls, "NAME");
+            } catch (Throwable ignored) {
+                return "Unknown, report to developer";
+            }
+        case "downfall:Watcher":
+            try {
+                Class<?> cls = Class.forName("charbosses.bosses.Watcher.CharBossWatcher");
+                return ReflectionHacks.getPrivateStatic(cls, "NAME");
+            } catch (Throwable ignored) {
+                return "Unknown, report to developer";
+            }
+        case "downfall:Hermit":
+            try {
+                Class<?> cls = Class.forName("charbosses.bosses.Hermit.CharBossHermit");
+                return ReflectionHacks.getPrivateStatic(cls, "NAME");
+            } catch (Throwable ignored) {
+                return "Unknown, report to developer";
+            }
         default:
             return "Unknown, report to developer";
         }
