@@ -16,6 +16,11 @@
   * The mod menu: The mod menu allows you to access additional Say the Spire features, such as editing of mod settings and keybindings. This can be accessed with the hotkey control m; a method to access this with controller is being worked on.
 * Added: Red and Green lice? Louses? are now correctly differentiated.
 * Added: Relic flashes are now announced. This can be disabled in settings.
+* Added: Basic support for Downfall. The reversed map is supported, but certainly not all new features have been tested.
+* Fixed: Characters on the character selection screen are now correctly read by screen readers while Downfall is loaded.
+* Added: Temporary HP is now displayed via ctrl+h and within the player buffer.
+* Added: Support for reserves and essences (Collector Downfall character).
+* Added: Downfall boss names are now correctly read out.
 
 ### Developers
 * Changed: Various methods have been changed to increase consistency and to make it more obvious when certain string returning methods should be localized. In particular, getName() has been replaced with getKey() in most circumstances (unless the actual returned value is an actual name such as for MonsterElement.) The GetKey() method should never be localized; it is an identifier.

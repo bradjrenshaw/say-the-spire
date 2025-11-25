@@ -1,4 +1,4 @@
-    # Config Files and Changing Mod Settings
+# Config Files and Changing Mod Settings
 After first launching the game, two config files are created that allow you to
 modify certain aspects of the mod. These files can be found at:
 
