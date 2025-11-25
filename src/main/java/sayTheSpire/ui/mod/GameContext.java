@@ -2,6 +2,7 @@ package sayTheSpire.ui.mod;
 
 import java.util.ArrayList;
 
+import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.controller.CInputAction;
@@ -41,7 +42,13 @@ public class GameContext extends Context {
             return;
         case "read player energy":
             if (OutputUtils.isInCombat()) {
-                Output.textLocalized("ui.misc info.playerEnergy", false, "energy", EnergyPanel.totalCount);
+                int reserves = 0;
+                try {
+                    Class<?> newReserves = Class.forName("collector.util.NewReserves");
+                    reserves = ReflectionHacks.privateStaticMethod(newReserves, "reserveCount").invoke();
+                } catch (Throwable ignored) {
+                }
+                Output.textLocalized("ui.misc info.playerEnergy", false, "energy", EnergyPanel.totalCount + reserves);
             } else {
                 Output.textLocalized("errors.not in combat", false);
             }
