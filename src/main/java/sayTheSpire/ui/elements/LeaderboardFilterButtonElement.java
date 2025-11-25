@@ -1,10 +1,9 @@
 package sayTheSpire.ui.elements;
 
 import com.megacrit.cardcrawl.screens.leaderboards.FilterButton;
-import sayTheSpire.ui.positions.Position;
-import sayTheSpire.buffers.BufferManager;
-import sayTheSpire.buffers.LeaderboardBuffer;
 import sayTheSpire.Output;
+import sayTheSpire.buffers.LeaderboardBuffer;
+import sayTheSpire.ui.positions.Position;
 
 public class LeaderboardFilterButtonElement extends UIElement {
 

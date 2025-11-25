@@ -1,12 +1,11 @@
 package sayTheSpire.config;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import sayTheSpire.ui.IUIInfo;
-import sayTheSpire.ui.dynamic.elements.DynamicButton;
 import sayTheSpire.ui.dynamic.elements.DynamicElement;
 import sayTheSpire.ui.dynamic.elements.settings.DynamicSettingsKeyArrayButton;
 import sayTheSpire.ui.dynamic.screens.Screen;

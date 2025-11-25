@@ -1,14 +1,14 @@
 package sayTheSpire.ui.mod;
 
+import com.megacrit.cardcrawl.map.MapRoomNode;
 import java.util.HashMap;
 import java.util.HashSet;
-import com.megacrit.cardcrawl.map.MapRoomNode;
-import sayTheSpire.ui.navigators.*;
+import sayTheSpire.InfoControls;
+import sayTheSpire.map.BaseMap;
 import sayTheSpire.map.VirtualMap;
 import sayTheSpire.map.VirtualMapNode;
-import sayTheSpire.map.BaseMap;
+import sayTheSpire.ui.navigators.*;
 import sayTheSpire.utils.OutputUtils;
-import sayTheSpire.InfoControls;
 
 public class MapManager {
 

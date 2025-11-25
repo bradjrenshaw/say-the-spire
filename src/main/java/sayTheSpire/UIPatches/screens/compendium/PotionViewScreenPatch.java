@@ -1,12 +1,12 @@
-import java.util.ArrayList;
+import basemod.ReflectionHacks;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.screens.compendium.PotionViewScreen;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import basemod.ReflectionHacks;
+import java.util.ArrayList;
+import sayTheSpire.Output;
 import sayTheSpire.localization.LocalizationContext;
 import sayTheSpire.ui.elements.PotionElement;
 import sayTheSpire.ui.positions.CategoryListPosition;
-import sayTheSpire.Output;
 
 public class PotionViewScreenPatch {
 

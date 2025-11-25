@@ -6,11 +6,9 @@ import sayTheSpire.config.SettingCategory;
 import sayTheSpire.ui.dynamic.contexts.SettingsContext;
 import sayTheSpire.ui.dynamic.contexts.UIContext;
 import sayTheSpire.ui.dynamic.elements.DynamicButton;
-import sayTheSpire.ui.dynamic.elements.DynamicToggleButton;
 import sayTheSpire.ui.dynamic.elements.ListContainer;
 import sayTheSpire.ui.dynamic.events.ClickEvent;
 import sayTheSpire.ui.dynamic.events.EventHandler;
-import sayTheSpire.ui.dynamic.events.ToggleChangeEvent;
 import sayTheSpire.ui.input.InputAction;
 
 public class ModMenuScreen extends Screen {

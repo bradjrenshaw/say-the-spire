@@ -1,7 +1,6 @@
 package sayTheSpire.ui.dynamic.screens;
 
 import java.util.ArrayList;
-
 import sayTheSpire.ui.IUIInfo;
 import sayTheSpire.ui.dynamic.contexts.UIContext;
 import sayTheSpire.ui.dynamic.elements.DynamicButton;

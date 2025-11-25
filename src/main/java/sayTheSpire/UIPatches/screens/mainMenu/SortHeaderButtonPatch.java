@@ -1,8 +1,8 @@
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.screens.mainMenu.SortHeaderButton;
 import sayTheSpire.Output;
-import sayTheSpire.ui.elements.SortHeaderButtonElement;
 import sayTheSpire.ui.UIRegistry;
+import sayTheSpire.ui.elements.SortHeaderButtonElement;
 
 public class SortHeaderButtonPatch {
 

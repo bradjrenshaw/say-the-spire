@@ -1,8 +1,8 @@
 package sayTheSpire.localization;
 
+import java.util.HashMap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import java.util.HashMap;
 import org.bigtesting.interpolatd.Interpolator;
 import org.bigtesting.interpolatd.Substitutor;
 

@@ -1,12 +1,12 @@
 package sayTheSpire.ui.dynamic.elements;
 
+import sayTheSpire.Output;
+import sayTheSpire.buffers.BufferManager;
 import sayTheSpire.ui.Direction;
 import sayTheSpire.ui.IUIInfo;
 import sayTheSpire.ui.dynamic.events.FocusEvent;
 import sayTheSpire.ui.dynamic.events.SingleEventDispatcher;
 import sayTheSpire.ui.dynamic.events.UnfocusEvent;
-import sayTheSpire.Output;
-import sayTheSpire.buffers.BufferManager;
 import sayTheSpire.ui.elements.UIElement;
 import sayTheSpire.ui.input.InputAction;
 import sayTheSpire.ui.positions.Position;

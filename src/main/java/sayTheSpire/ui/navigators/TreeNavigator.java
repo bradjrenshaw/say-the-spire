@@ -1,10 +1,9 @@
 package sayTheSpire.ui.navigators;
 
+import com.evacipated.cardcrawl.modthespire.Loader;
 import java.util.ArrayList;
 import java.util.Stack;
 import java.util.stream.Collectors;
-
-import com.evacipated.cardcrawl.modthespire.Loader;
 import sayTheSpire.InfoControls;
 import sayTheSpire.Output;
 import sayTheSpire.localization.LocalizationContext;

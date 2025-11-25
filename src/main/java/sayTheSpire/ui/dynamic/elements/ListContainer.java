@@ -1,12 +1,11 @@
 package sayTheSpire.ui.dynamic.elements;
 
 import java.util.ArrayList;
-import sayTheSpire.ui.positions.Position;
-import sayTheSpire.Output;
 import sayTheSpire.ui.Direction;
 import sayTheSpire.ui.input.InputAction;
 import sayTheSpire.ui.positions.GridPosition;
 import sayTheSpire.ui.positions.ListPosition;
+import sayTheSpire.ui.positions.Position;
 
 public class ListContainer extends ElementContainer {
 

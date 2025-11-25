@@ -1,7 +1,6 @@
 package sayTheSpire.ui.dynamic.elements.settings;
 
 import java.util.ArrayList;
-
 import sayTheSpire.config.KeyArraySetting;
 import sayTheSpire.ui.dynamic.contexts.UIContext;
 import sayTheSpire.ui.dynamic.elements.DynamicButton;

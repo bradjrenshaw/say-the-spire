@@ -1,12 +1,12 @@
 package sayTheSpire.ui.effects.handlers;
 
+import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.ObtainKeyEffect;
-import basemod.ReflectionHacks;
+import sayTheSpire.Output;
+import sayTheSpire.events.ObtainEvent;
 import sayTheSpire.ui.effects.EffectHandler;
 import sayTheSpire.ui.effects.EffectManager;
-import sayTheSpire.events.ObtainEvent;
-import sayTheSpire.Output;
 
 public class ObtainKeyEffectHandler extends EffectHandler {
 

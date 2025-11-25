@@ -1,8 +1,8 @@
 package sayTheSpire;
 
 import basemod.BaseMod;
-import basemod.interfaces.PostInitializeSubscriber;
 import basemod.interfaces.PostDrawSubscriber;
+import basemod.interfaces.PostInitializeSubscriber;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInitializer;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 

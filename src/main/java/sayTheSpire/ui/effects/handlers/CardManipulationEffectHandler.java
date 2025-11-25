@@ -1,19 +1,18 @@
 package sayTheSpire.ui.effects.handlers;
 
+import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.vfx.cardManip.*;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.FastCardObtainEffect;
-import basemod.ReflectionHacks;
-import sayTheSpire.ui.effects.EffectHandler;
-import sayTheSpire.ui.effects.EffectManager;
+import com.megacrit.cardcrawl.vfx.cardManip.*;
+import sayTheSpire.Output;
 import sayTheSpire.events.CombatCardTextEvent;
 import sayTheSpire.events.Event;
 import sayTheSpire.events.MiscCardEvent;
 import sayTheSpire.events.ObtainEvent;
 import sayTheSpire.events.TextEvent;
-import sayTheSpire.utils.OutputUtils;
-import sayTheSpire.Output;
+import sayTheSpire.ui.effects.EffectHandler;
+import sayTheSpire.ui.effects.EffectManager;
 
 public class CardManipulationEffectHandler extends EffectHandler {
 

@@ -2,7 +2,7 @@ package sayTheSpire.ui.dynamic.elements;
 
 import sayTheSpire.ui.dynamic.events.ClickEvent;
 import sayTheSpire.ui.dynamic.events.SingleEventDispatcher;
-import sayTheSpire.ui.input.InputAction;;
+import sayTheSpire.ui.input.InputAction;
 
 public class DynamicButton extends DynamicElement {
 

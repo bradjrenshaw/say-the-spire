@@ -1,9 +1,8 @@
 package sayTheSpire.ui.elements;
 
 import java.lang.reflect.Field;
-import sayTheSpire.buffers.BufferManager;
-import sayTheSpire.ui.positions.ListPosition;
 import sayTheSpire.TextParser;
+import sayTheSpire.ui.positions.ListPosition;
 
 public class DropdownRowElement extends UIElement {
 

@@ -1,13 +1,9 @@
 package sayTheSpire.ui;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
-
 import sayTheSpire.Output;
-import sayTheSpire.localization.LocalizedStringIdentifier;
 import sayTheSpire.ui.elements.UIElement;
 
 /**

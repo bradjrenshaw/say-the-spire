@@ -1,7 +1,6 @@
 package sayTheSpire.ui.dynamic.elements.settings;
 
 import sayTheSpire.config.BooleanSetting;
-import sayTheSpire.config.Setting;
 import sayTheSpire.ui.dynamic.elements.DynamicToggleButton;
 
 public class DynamicSettingsToggleButtonElement extends DynamicToggleButton {

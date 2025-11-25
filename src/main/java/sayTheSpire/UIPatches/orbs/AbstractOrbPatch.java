@@ -1,7 +1,7 @@
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import sayTheSpire.ui.elements.OrbElement;
 import sayTheSpire.Output;
+import sayTheSpire.ui.elements.OrbElement;
 
 public class AbstractOrbPatch {
 

@@ -1,0 +1,76 @@
+================================================================================
+MERGE TRACKING: Porting Downfall features to features/dynamicElements
+================================================================================
+Started: 2025-11-25
+Status: IN PROGRESS
+
+================================================================================
+PHASE 1: SETUP
+================================================================================
+[ ] Checkout features/dynamicElements branch
+
+================================================================================
+PHASE 2: CLEAN FILE COPIES (new files from master)
+================================================================================
+Files to copy directly from master:
+
+UIPatches (new files):
+[ ] src/main/java/sayTheSpire/UIPatches/rewards/CollectibleCardRewardPatch.java
+[ ] src/main/java/sayTheSpire/UIPatches/rewards/EssenceRewardPatch.java
+
+Tools:
+[ ] src/main/java/tools/PrettyPrintJson.java
+
+================================================================================
+PHASE 3: MANUAL PORTS (files exist on both branches)
+================================================================================
+
+--- COMMIT 857acca: Character screen fix ---
+Files:
+[ ] Output.java - MINOR: check what changed
+[ ] CharacterButtonElement.java - check changes
+
+--- COMMIT 60ba87e: Map fixes for Downfall ---
+Files:
+[ ] BaseMap.java
+[ ] BaseRoomNode.java
+[ ] BaseStartNode.java
+[ ] VirtualMapNode.java
+[ ] TreeNavigator.java
+[ ] MapUtils.java
+
+--- COMMIT 7dcb975 + 9378840: Reserve energy support ---
+Files:
+[ ] GameContext.java - add reserve energy reading
+[ ] RewardItemElement.java - collector rewards
+
+--- COMMIT 3ebf1f6 + 9ebbb86 + f786e41: PlayerBuffer features ---
+Files:
+[ ] PlayerBuffer.java - add reserves, essence, tempHp
+
+--- COMMIT 118facc: Boss name support ---
+Files:
+[ ] MapUtils.java - boss name handling
+
+================================================================================
+PHASE 4: LOCALIZATION MERGE
+================================================================================
+[ ] src/main/resources/localization/eng/say-the-spire.json
+[ ] src/main/resources/localization/rus/say-the-spire.json
+
+================================================================================
+PHASE 5: POM.XML AND BUILD
+================================================================================
+[ ] Ensure pom.xml has formatter/impsort plugins
+[ ] Run mvn package to verify build
+
+================================================================================
+COMMITS MADE
+================================================================================
+(Will be updated as commits are made)
+
+================================================================================
+ISSUES ENCOUNTERED
+================================================================================
+(Will be updated if issues arise)
+

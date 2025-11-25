@@ -6,7 +6,6 @@ import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 import sayTheSpire.utils.CardUtils;
 import sayTheSpire.utils.OutputUtils;
 

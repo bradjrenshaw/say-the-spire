@@ -2,7 +2,6 @@ package sayTheSpire.events;
 
 import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.PowerBuffEffect;
 import com.megacrit.cardcrawl.vfx.combat.PowerDebuffEffect;

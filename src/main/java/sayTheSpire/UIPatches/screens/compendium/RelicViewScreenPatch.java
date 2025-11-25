@@ -1,12 +1,12 @@
-import java.util.ArrayList;
+import basemod.ReflectionHacks;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.compendium.RelicViewScreen;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import basemod.ReflectionHacks;
-import sayTheSpire.localization.LocalizationContext;
-import sayTheSpire.ui.positions.CategoryListPosition;
-import sayTheSpire.ui.elements.RelicElement;
+import java.util.ArrayList;
 import sayTheSpire.Output;
+import sayTheSpire.localization.LocalizationContext;
+import sayTheSpire.ui.elements.RelicElement;
+import sayTheSpire.ui.positions.CategoryListPosition;
 
 public class RelicViewScreenPatch {
 

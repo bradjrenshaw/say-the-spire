@@ -1,7 +1,3 @@
-import java.util.ArrayList;
-import org.apache.logging.log4j.LogManager;
-import javassist.CannotCompileException;
-import javassist.CtBehavior;
 import com.evacipated.cardcrawl.modthespire.lib.LineFinder;
 import com.evacipated.cardcrawl.modthespire.lib.Matcher;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInsertLocator;
@@ -9,6 +5,10 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import java.util.ArrayList;
+import javassist.CannotCompileException;
+import javassist.CtBehavior;
+import org.apache.logging.log4j.LogManager;
 import sayTheSpire.Output;
 import sayTheSpire.TextParser;
 import sayTheSpire.events.EventTextEvent;

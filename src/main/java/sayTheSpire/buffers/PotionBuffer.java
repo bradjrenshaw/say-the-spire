@@ -1,9 +1,8 @@
 package sayTheSpire.buffers;
 
-import java.util.ListIterator;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
-import com.megacrit.cardcrawl.potions.PotionSlot;
+import java.util.ListIterator;
 import sayTheSpire.TextParser;
 
 public class PotionBuffer extends Buffer {

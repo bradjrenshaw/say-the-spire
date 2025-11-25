@@ -4,13 +4,10 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.chests.AbstractChest;
 import com.megacrit.cardcrawl.rewards.chests.BossChest;
-import com.megacrit.cardcrawl.rewards.chests.LargeChest;
-import com.megacrit.cardcrawl.rewards.chests.MediumChest;
-import com.megacrit.cardcrawl.rewards.chests.SmallChest;
+import sayTheSpire.Output;
 import sayTheSpire.ui.elements.RelicElement;
 import sayTheSpire.ui.elements.TreasureChestElement;
 import sayTheSpire.ui.positions.ListPosition;
-import sayTheSpire.Output;
 
 public class AbstractChestPatch {
 

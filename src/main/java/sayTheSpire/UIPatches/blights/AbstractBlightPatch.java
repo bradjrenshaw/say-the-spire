@@ -1,9 +1,9 @@
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import sayTheSpire.Output;
 import sayTheSpire.ui.elements.BlightElement;
 import sayTheSpire.utils.OutputUtils;
-import sayTheSpire.Output;
 
 public class AbstractBlightPatch {
 

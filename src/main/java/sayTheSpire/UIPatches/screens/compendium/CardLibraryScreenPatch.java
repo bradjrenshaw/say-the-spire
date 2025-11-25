@@ -1,14 +1,13 @@
-import java.util.ArrayList;
+import basemod.ReflectionHacks;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.screens.compendium.CardLibraryScreen;
 import com.megacrit.cardcrawl.screens.mainMenu.ColorTabBar;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import basemod.ReflectionHacks;
-import sayTheSpire.localization.LocalizationContext;
-import sayTheSpire.ui.positions.CategoryListPosition;
-import sayTheSpire.ui.elements.CardElement;
 import sayTheSpire.Output;
+import sayTheSpire.localization.LocalizationContext;
+import sayTheSpire.ui.elements.CardElement;
+import sayTheSpire.ui.positions.CategoryListPosition;
 
 public class CardLibraryScreenPatch {
 

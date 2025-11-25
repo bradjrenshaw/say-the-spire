@@ -1,7 +1,7 @@
 package sayTheSpire.events;
 
-import sayTheSpire.localization.LocalizationContext;
 import sayTheSpire.Output;
+import sayTheSpire.localization.LocalizationContext;
 
 /** Events are an abstraction for handling messages sent to the user in a number of instances. */
 public class Event {

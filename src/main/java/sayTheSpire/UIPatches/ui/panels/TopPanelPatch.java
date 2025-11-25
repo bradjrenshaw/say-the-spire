@@ -1,16 +1,15 @@
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import basemod.ReflectionHacks;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
-import com.megacrit.cardcrawl.potions.PotionSlot;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import com.megacrit.cardcrawl.ui.panels.TopPanel;
+import sayTheSpire.Output;
+import sayTheSpire.TextParser;
 import sayTheSpire.ui.elements.PotionElement;
 import sayTheSpire.ui.elements.ResourceElement;
 import sayTheSpire.utils.OutputUtils;
-import sayTheSpire.Output;
-import sayTheSpire.TextParser;
 
 @SpirePatch(clz = TopPanel.class, method = "updatePotions")
 public class TopPanelPatch {

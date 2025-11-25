@@ -5,7 +5,6 @@ import sayTheSpire.ui.dynamic.events.ClickEvent;
 import sayTheSpire.ui.dynamic.events.SingleEventDispatcher;
 import sayTheSpire.ui.dynamic.events.ToggleChangeEvent;
 import sayTheSpire.ui.input.InputAction;
-import sayTheSpire.ui.positions.Position;
 
 public class DynamicToggleButton extends DynamicElement {
 

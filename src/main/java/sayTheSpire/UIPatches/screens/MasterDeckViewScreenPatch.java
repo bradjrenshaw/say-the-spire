@@ -1,14 +1,14 @@
-import java.util.ArrayList;
+import basemod.ReflectionHacks;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.screens.MasterDeckViewScreen;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import basemod.ReflectionHacks;
+import java.util.ArrayList;
+import sayTheSpire.Output;
 import sayTheSpire.ui.elements.CardElement;
 import sayTheSpire.ui.positions.GridPosition;
 import sayTheSpire.utils.CardUtils;
 import sayTheSpire.utils.OutputUtils;
-import sayTheSpire.Output;
 
 public class MasterDeckViewScreenPatch {
 

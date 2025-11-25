@@ -1,8 +1,5 @@
 package sayTheSpire.UIPatches.Characters;
 
-import java.util.ArrayList;
-import javassist.CannotCompileException;
-import javassist.CtBehavior;
 import com.evacipated.cardcrawl.modthespire.lib.LineFinder;
 import com.evacipated.cardcrawl.modthespire.lib.Matcher;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInsertLocator;
@@ -15,10 +12,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
+import java.util.ArrayList;
+import javassist.CannotCompileException;
+import javassist.CtBehavior;
+import sayTheSpire.Output;
 import sayTheSpire.events.CombatOrbEvent;
 import sayTheSpire.events.ObtainEvent;
 import sayTheSpire.ui.elements.CardElement;
-import sayTheSpire.Output;
 
 public class AbstractPlayerPatch {
 

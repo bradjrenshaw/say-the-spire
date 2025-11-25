@@ -1,12 +1,12 @@
 package sayTheSpire.ui.elements;
 
-import java.util.ArrayList;
-import com.megacrit.cardcrawl.screens.stats.CharStat;
 import basemod.ReflectionHacks;
-import sayTheSpire.buffers.BufferManager;
-import sayTheSpire.ui.positions.Position;
+import com.megacrit.cardcrawl.screens.stats.CharStat;
+import java.util.ArrayList;
 import sayTheSpire.Output;
 import sayTheSpire.TextParser;
+import sayTheSpire.buffers.BufferManager;
+import sayTheSpire.ui.positions.Position;
 
 public class StatElement extends UIElement {
 

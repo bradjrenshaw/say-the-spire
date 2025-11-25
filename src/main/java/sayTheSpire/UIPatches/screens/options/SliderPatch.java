@@ -1,8 +1,8 @@
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.screens.options.Slider;
 import sayTheSpire.Output;
-import sayTheSpire.ui.elements.SliderElement;
 import sayTheSpire.ui.UIRegistry;
+import sayTheSpire.ui.elements.SliderElement;
 
 public class SliderPatch {
 

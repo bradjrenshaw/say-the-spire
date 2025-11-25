@@ -1,12 +1,11 @@
 package sayTheSpire.ui.elements;
 
-import java.util.ArrayList;
-
+import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.screens.select.HandCardSelectScreen;
-import basemod.ReflectionHacks;
+import java.util.ArrayList;
 import sayTheSpire.buffers.BufferManager;
 import sayTheSpire.ui.positions.ListPosition;
 import sayTheSpire.ui.positions.Position;

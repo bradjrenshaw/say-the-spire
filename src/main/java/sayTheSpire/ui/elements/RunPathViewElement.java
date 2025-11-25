@@ -1,12 +1,12 @@
 package sayTheSpire.ui.elements;
 
-import java.lang.reflect.Method;
-import com.megacrit.cardcrawl.screens.runHistory.RunPathElement;
 import basemod.ReflectionHacks;
-import sayTheSpire.buffers.BufferManager;
-import sayTheSpire.ui.positions.Position;
+import com.megacrit.cardcrawl.screens.runHistory.RunPathElement;
+import java.lang.reflect.Method;
 import sayTheSpire.Output;
 import sayTheSpire.TextParser;
+import sayTheSpire.buffers.BufferManager;
+import sayTheSpire.ui.positions.Position;
 
 public class RunPathViewElement extends UIElement {
 

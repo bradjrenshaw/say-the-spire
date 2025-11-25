@@ -1,10 +1,7 @@
 package sayTheSpire.ui.input;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.badlogic.gdx.Input.Keys;
-import java.util.HashSet;
 
 public abstract class InputMapping {
 

@@ -1,7 +1,6 @@
 package sayTheSpire.events;
 
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import sayTheSpire.utils.OutputUtils;
 
 public class DialogueEvent extends Event {

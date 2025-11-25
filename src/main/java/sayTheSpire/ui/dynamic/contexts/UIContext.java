@@ -1,12 +1,10 @@
 package sayTheSpire.ui.dynamic.contexts;
 
 import java.util.Stack;
-import sayTheSpire.ui.mod.Context;
-import sayTheSpire.ui.input.InputAction;
-import sayTheSpire.ui.dynamic.elements.ElementContainer;
 import sayTheSpire.Output;
-import sayTheSpire.ui.Direction;
 import sayTheSpire.ui.dynamic.screens.Screen;
+import sayTheSpire.ui.input.InputAction;
+import sayTheSpire.ui.mod.Context;
 
 public class UIContext extends Context {
 

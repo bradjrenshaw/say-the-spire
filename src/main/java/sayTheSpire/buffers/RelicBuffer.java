@@ -3,8 +3,8 @@ package sayTheSpire.buffers;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import java.util.ListIterator;
-import sayTheSpire.utils.RelicUtils;
 import sayTheSpire.TextParser;
+import sayTheSpire.utils.RelicUtils;
 
 public class RelicBuffer extends Buffer {
 

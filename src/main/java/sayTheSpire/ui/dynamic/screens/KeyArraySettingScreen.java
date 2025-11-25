@@ -1,10 +1,5 @@
 package sayTheSpire.ui.dynamic.screens;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import sayTheSpire.Output;
 import sayTheSpire.Output;
 import sayTheSpire.config.KeyArraySetting;
 import sayTheSpire.ui.IUIInfo;

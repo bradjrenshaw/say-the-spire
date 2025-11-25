@@ -1,8 +1,5 @@
 package sayTheSpire.ui.dynamic.contexts;
 
-import sayTheSpire.ui.dynamic.screens.SettingsCategoryScreen;
-import sayTheSpire.ui.input.InputAction;
-import sayTheSpire.Output;
 import sayTheSpire.config.SettingCategory;
 import sayTheSpire.ui.dynamic.screens.SettingsCategoryScreen;
 

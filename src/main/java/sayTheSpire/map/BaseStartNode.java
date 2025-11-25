@@ -1,11 +1,9 @@
 package sayTheSpire.map;
 
-import java.util.List;
-import java.util.ArrayList;
-
 import com.evacipated.cardcrawl.modthespire.Loader;
-import com.megacrit.cardcrawl.map.MapRoomNode;
 import downfall.patches.EvilModeCharacterSelect;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BaseStartNode extends BaseRoomNode {
     public static boolean downfall = Loader.isModLoaded("downfall");

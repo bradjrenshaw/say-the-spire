@@ -1,10 +1,10 @@
 package sayTheSpire.buffers;
 
-import java.util.ListIterator;
-import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.blights.AbstractBlight;
-import sayTheSpire.utils.BlightUtils;
+import com.megacrit.cardcrawl.helpers.PowerTip;
+import java.util.ListIterator;
 import sayTheSpire.TextParser;
+import sayTheSpire.utils.BlightUtils;
 
 public class BlightBuffer extends Buffer {
 

@@ -1,8 +1,6 @@
 package sayTheSpire.ui.elements;
 
-import sayTheSpire.buffers.BufferManager;
 import sayTheSpire.ui.positions.Position;
-import sayTheSpire.Output;
 
 public class ButtonElement extends UIElement {
 

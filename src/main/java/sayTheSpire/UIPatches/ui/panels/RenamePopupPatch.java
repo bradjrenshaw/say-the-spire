@@ -1,5 +1,5 @@
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import basemod.ReflectionHacks;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.ui.panels.RenamePopup;

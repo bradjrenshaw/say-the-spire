@@ -1,0 +1,200 @@
+================================================================================
+BRANCH MERGE ANALYSIS: master <- features/dynamicElements
+================================================================================
+
+OVERVIEW
+--------
+- Common ancestor: d830b86 (Fix incorrect mod version in pom.xml)
+- Commits on master since divergence: 19
+- Commits on features/dynamicElements since divergence: 33
+- Total files with differences: 245 files (+13,497 / -10,995 lines)
+- Files changed ONLY on master: ~140 files
+- Files changed ONLY on features branch: ~40 files
+- Files changed on BOTH branches (conflict zone): ~50 files
+
+================================================================================
+WHAT'S ON MASTER (from PR #27 - Timtam's Downfall support)
+================================================================================
+
+The master branch received significant Downfall mod support:
+
+1. DOWNFALL MOD SUPPORT:
+   - Boss name support for Downfall bosses
+   - Temporary HP display (ctrl+h and player buffer)
+   - Reserves and essences support (Collector character)
+   - Character screen fixes when Downfall is loaded
+   - Map support for Downfall's reversed map
+   - Downfall-collector-specific rewards
+
+2. NEW FILES (master only):
+   - Many UIPatches (screen patches, action patches, monster patches, etc.)
+   - tools/PrettyPrintJson.java (auto-formats JSON files)
+   - Various event handlers and buffer improvements
+   - Essence/reserves reward patches
+
+3. KEY CHANGES IN SHARED FILES:
+   - PlayerBuffer.java: Added Collector reserves, tempHp, essence display
+   - MonsterBuffer.java: Downfall boss support
+   - Various Utils files: Downfall compatibility
+
+================================================================================
+WHAT'S ON features/dynamicElements
+================================================================================
+
+The features branch has major architectural changes:
+
+1. NEW SETTINGS SYSTEM (5 new files):
+   - config/Setting.java (base class)
+   - config/BooleanSetting.java
+   - config/KeyArraySetting.java
+   - config/SettingCategory.java
+   - config/SettingsManager.java
+
+   Changes config from TOML (.ini) to JSON format with in-game editing!
+
+2. NEW DYNAMIC UI SYSTEM (26 new files):
+   Contexts:
+   - ui/dynamic/contexts/ModMenuContext.java
+   - ui/dynamic/contexts/SettingsContext.java
+   - ui/dynamic/contexts/UIContext.java
+
+   Elements:
+   - ui/dynamic/elements/DynamicButton.java
+   - ui/dynamic/elements/DynamicElement.java
+   - ui/dynamic/elements/DynamicToggleButton.java
+   - ui/dynamic/elements/ElementContainer.java
+   - ui/dynamic/elements/ListContainer.java
+   - ui/dynamic/elements/settings/* (3 files)
+
+   Events:
+   - ui/dynamic/events/* (9 event classes)
+
+   Screens:
+   - ui/dynamic/screens/ChoiceSelectScreen.java
+   - ui/dynamic/screens/InputActionsScreen.java
+   - ui/dynamic/screens/KeyArraySettingScreen.java
+   - ui/dynamic/screens/ModMenuScreen.java
+   - ui/dynamic/screens/Screen.java
+   - ui/dynamic/screens/SettingsCategoryScreen.java
+
+3. INPUT SYSTEM REFACTORING:
+   - New ControllerInputMapping.java
+   - New KeyboardInputMapping.java
+   - New InputBuilder.java
+   - Removed MappingBuilder.java
+   - Major refactoring of InputAction.java, InputActionCollection.java, InputManager.java
+
+4. OTHER NEW FEATURES:
+   - RelicFlashEvent.java (announces relic flashes)
+   - Monster name substitutions (red/green lice differentiation)
+   - CLAUDE.md documentation file
+
+================================================================================
+CONFLICT ANALYSIS - FILES CHANGED IN BOTH BRANCHES
+================================================================================
+
+HIGH CONFLICT RISK (completely different approaches):
+-----------------------------------------------------
+1. STSConfig.java
+   - Master: TOML-based config
+   - Features: JSON-based config with SettingsManager integration
+
+2. Output.java
+   - Different initialization, different manager references
+
+3. InputManager.java, InputAction.java, InputActionCollection.java
+   - Features branch has major refactoring
+
+MEDIUM CONFLICT RISK (both made changes, may be reconcilable):
+--------------------------------------------------------------
+4. PlayerBuffer.java
+   - Master: Added Downfall reserves/essence/tempHp
+   - Features: Structural changes
+
+5. BufferManager.java, Buffer.java, CardBuffer.java, MonsterBuffer.java
+   - Various changes in both branches
+
+6. UI Elements (CardElement, RelicElement, PotionElement, etc.)
+   - Both branches modified these
+
+7. MapNavigator.java, TreeNavigator.java
+   - Both branches have modifications
+
+8. GameContext.java, UIManager.java
+   - Core UI management changed in both
+
+LOW CONFLICT RISK (mostly additive or localization):
+----------------------------------------------------
+9. Localization files (say-the-spire.json)
+   - Both added strings, should be mergeable
+
+================================================================================
+RECOMMENDED MERGE STRATEGY
+================================================================================
+
+OPTION A: REBASE features/dynamicElements onto master (RECOMMENDED)
+-------------------------------------------------------------------
+1. Checkout features/dynamicElements
+2. Rebase onto master
+3. Resolve conflicts one commit at a time
+4. Key conflict resolutions needed:
+   - Port Downfall support INTO the new config/settings system
+   - Port Downfall PlayerBuffer changes INTO the features branch structure
+   - Merge localization strings
+
+OPTION B: MERGE master into features/dynamicElements
+----------------------------------------------------
+1. Checkout features/dynamicElements
+2. Merge master
+3. Resolve all conflicts at once (harder but preserves history)
+
+OPTION C: CHERRY-PICK Downfall changes onto features branch
+-----------------------------------------------------------
+1. Stay on features/dynamicElements
+2. Cherry-pick specific Downfall commits:
+   - 7dcb975: reserve energy support
+   - 9378840: energy reserves + collector rewards
+   - 3ebf1f6: reserves in player buffer
+   - 9ebbb86: essence display + PrettyPrintJson
+   - f786e41: temporary HP support
+   - 118facc: boss names for Downfall
+   - 857acca: character screen fix
+   - 60ba87e: map fixes for Downfall
+3. This preserves features branch as the new master
+
+================================================================================
+SPECIFIC MERGE TASKS
+================================================================================
+
+1. CONFIG SYSTEM:
+   - Keep features branch JSON config system
+   - Ensure all master settings are present in new system
+
+2. PLAYER BUFFER:
+   - Port Downfall's reserves/essence/tempHp code
+   - Adapt to features branch's structural changes
+
+3. INPUT SYSTEM:
+   - Keep features branch refactored input system
+   - Ensure no functionality lost from master
+
+4. DOWNFALL PATCHES:
+   - Many UIPatches only exist on master
+   - These should apply cleanly (new files)
+
+5. LOCALIZATION:
+   - Merge both sets of new strings
+   - Features has more strings (settings UI)
+   - Master has Downfall-related strings
+
+================================================================================
+ESTIMATED EFFORT
+================================================================================
+
+- Conflict resolution: ~15-25 files need manual merging
+- Testing required: Full regression testing of both Downfall and new UI features
+- Risk level: MEDIUM-HIGH (both branches have significant structural changes)
+
+The features/dynamicElements branch appears to be the "future" architecture,
+so the recommended approach is to bring master's Downfall features INTO
+features/dynamicElements rather than the reverse.

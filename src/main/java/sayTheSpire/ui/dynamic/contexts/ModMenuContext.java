@@ -1,6 +1,5 @@
 package sayTheSpire.ui.dynamic.contexts;
 
-import sayTheSpire.Output;
 import sayTheSpire.ui.dynamic.screens.ModMenuScreen;
 
 public class ModMenuContext extends UIContext {

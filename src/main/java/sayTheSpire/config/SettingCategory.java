@@ -1,15 +1,10 @@
 package sayTheSpire.config;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Set;
-import java.util.function.Supplier;
-
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-
-import sayTheSpire.localization.LocalizedStringIdentifier;
 import sayTheSpire.ui.dynamic.elements.DynamicElement;
 import sayTheSpire.ui.dynamic.elements.settings.DynamicSettingsCategoryButton;
 import sayTheSpire.ui.dynamic.screens.Screen;

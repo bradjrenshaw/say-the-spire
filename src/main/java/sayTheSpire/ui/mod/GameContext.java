@@ -1,14 +1,12 @@
 package sayTheSpire.ui.mod;
 
-import java.util.ArrayList;
-
 import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.controller.CInputAction;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
-
+import java.util.ArrayList;
 import sayTheSpire.InfoControls;
 import sayTheSpire.Output;
 import sayTheSpire.ui.dynamic.contexts.ModMenuContext;

@@ -4,7 +4,7 @@ import com.google.gson.JsonElement;
 import sayTheSpire.Output;
 import sayTheSpire.localization.LocalizationContext;
 import sayTheSpire.ui.dynamic.elements.DynamicElement;
-import sayTheSpire.ui.dynamic.screens.Screen;;
+import sayTheSpire.ui.dynamic.screens.Screen;
 
 public abstract class Setting {
 

@@ -1,12 +1,11 @@
 package sayTheSpire.map;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import downfall.patches.EvilModeCharacterSelect;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import sayTheSpire.Output;
 import sayTheSpire.localization.LocalizationContext;
 import sayTheSpire.utils.MapUtils;

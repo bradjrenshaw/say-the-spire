@@ -5,9 +5,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.TutorialStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.screens.options.ToggleButton;
-import sayTheSpire.buffers.BufferManager;
 import sayTheSpire.Output;
 import sayTheSpire.TextParser;
+import sayTheSpire.buffers.BufferManager;
 
 public class SettingsToggleButtonElement extends ToggleButtonElement {
 

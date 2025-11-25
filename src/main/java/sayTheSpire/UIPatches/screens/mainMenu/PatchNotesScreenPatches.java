@@ -1,9 +1,8 @@
+import basemod.ReflectionHacks;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.megacrit.cardcrawl.screens.mainMenu.PatchNotesScreen;
 import java.util.ArrayList;
 import java.util.Collections;
-
-import com.megacrit.cardcrawl.screens.mainMenu.PatchNotesScreen;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import basemod.ReflectionHacks;
 import sayTheSpire.Output;
 import sayTheSpire.buffers.Buffer;
 

@@ -1,10 +1,8 @@
 package sayTheSpire.ui.elements;
 
-import java.lang.reflect.Field;
-
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.screens.options.DropdownMenu;
-
+import java.lang.reflect.Field;
 import sayTheSpire.Output;
 import sayTheSpire.buffers.BufferManager;
 

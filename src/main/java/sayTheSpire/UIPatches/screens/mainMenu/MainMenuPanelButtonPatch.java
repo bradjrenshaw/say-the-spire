@@ -1,9 +1,9 @@
 import basemod.ReflectionHacks;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.screens.mainMenu.MainMenuPanelButton;
-import sayTheSpire.ui.elements.ButtonElement;
 import sayTheSpire.Output;
 import sayTheSpire.TextParser;
+import sayTheSpire.ui.elements.ButtonElement;
 
 @SpirePatch(clz = MainMenuPanelButton.class, method = "update")
 public class MainMenuPanelButtonPatch {

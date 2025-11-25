@@ -1,6 +1,5 @@
 package sayTheSpire.events;
 
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import sayTheSpire.Output;
 

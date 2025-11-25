@@ -6,9 +6,9 @@ import com.megacrit.cardcrawl.localization.TutorialStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.ui.panels.PotionPopUp;
-import sayTheSpire.ui.elements.ButtonElement;
 import sayTheSpire.Output;
 import sayTheSpire.TextParser;
+import sayTheSpire.ui.elements.ButtonElement;
 
 @SpirePatch(clz = PotionPopUp.class, method = "update")
 public class PotionPopUpPatch {

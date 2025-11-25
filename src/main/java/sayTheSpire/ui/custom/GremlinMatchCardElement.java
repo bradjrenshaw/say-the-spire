@@ -1,11 +1,9 @@
 package sayTheSpire.ui.custom;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.events.shrines.GremlinMatchGame;
-import basemod.ReflectionHacks;
 import sayTheSpire.Output;
-import sayTheSpire.ui.positions.Position;
 import sayTheSpire.ui.elements.CardElement;
+import sayTheSpire.ui.positions.Position;
 
 public class GremlinMatchCardElement extends CardElement {
 

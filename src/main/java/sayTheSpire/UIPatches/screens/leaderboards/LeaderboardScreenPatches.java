@@ -1,14 +1,13 @@
-import java.util.ArrayList;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.screens.leaderboards.FilterButton;
 import com.megacrit.cardcrawl.screens.leaderboards.LeaderboardEntry;
 import com.megacrit.cardcrawl.screens.leaderboards.LeaderboardScreen;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import sayTheSpire.ui.elements.ButtonElement;
-import sayTheSpire.ui.elements.LeaderboardFilterButtonElement;
-import sayTheSpire.ui.positions.CategoryListPosition;
-import sayTheSpire.ui.UIRegistry;
+import java.util.ArrayList;
 import sayTheSpire.Output;
 import sayTheSpire.buffers.LeaderboardBuffer;
+import sayTheSpire.ui.UIRegistry;
+import sayTheSpire.ui.elements.LeaderboardFilterButtonElement;
+import sayTheSpire.ui.positions.CategoryListPosition;
 
 public class LeaderboardScreenPatches {
 

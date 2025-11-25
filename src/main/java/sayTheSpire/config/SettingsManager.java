@@ -1,14 +1,8 @@
 package sayTheSpire.config;
 
-import java.util.Set;
-import java.util.function.Supplier;
-import java.util.stream.Collectors;
-
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-
 import sayTheSpire.Output;
-import sayTheSpire.localization.LocalizedStringIdentifier;
 import sayTheSpire.speech.SpeechHandler;
 import sayTheSpire.ui.IUIInfo;
 import sayTheSpire.ui.UIRegistry;

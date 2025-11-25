@@ -1,16 +1,15 @@
-import java.util.ArrayList;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.screens.stats.AchievementItem;
 import com.megacrit.cardcrawl.screens.stats.CharStat;
 import com.megacrit.cardcrawl.screens.stats.StatsScreen;
-import org.apache.commons.lang3.ObjectUtils.Null;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import sayTheSpire.ui.positions.CategoryListPosition;
+import java.util.ArrayList;
+import sayTheSpire.Output;
 import sayTheSpire.ui.elements.AchievementElement;
 import sayTheSpire.ui.elements.StatElement;
 import sayTheSpire.ui.elements.UIElement;
-import sayTheSpire.Output;
+import sayTheSpire.ui.positions.CategoryListPosition;
 
 public class StatsScreenPatch {
 

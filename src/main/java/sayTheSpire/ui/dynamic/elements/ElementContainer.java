@@ -1,9 +1,9 @@
 package sayTheSpire.ui.dynamic.elements;
 
-import sayTheSpire.ui.positions.Position;
 import sayTheSpire.Output;
 import sayTheSpire.ui.Direction;
 import sayTheSpire.ui.input.InputAction;
+import sayTheSpire.ui.positions.Position;
 
 public abstract class ElementContainer extends DynamicElement {
 

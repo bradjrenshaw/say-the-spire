@@ -1,16 +1,12 @@
 package sayTheSpire.map;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import downfall.patches.EvilModeCharacterSelect;
-import sayTheSpire.localization.LocalizationContext;
+import java.util.ArrayList;
 import sayTheSpire.utils.MapUtils;
-import sayTheSpire.Output;
 
 public class BaseMap extends VirtualMap {
     public static boolean downfall = Loader.isModLoaded("downfall");

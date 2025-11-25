@@ -1,11 +1,9 @@
 package sayTheSpire.ui.mod;
 
+import com.megacrit.cardcrawl.core.Settings;
 import java.util.ArrayList;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import com.megacrit.cardcrawl.core.Settings;
 import sayTheSpire.Output;
 import sayTheSpire.ui.input.InputAction;
 import sayTheSpire.ui.input.InputManager;

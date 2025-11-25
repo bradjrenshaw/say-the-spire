@@ -1,8 +1,7 @@
 package sayTheSpire.ui.elements;
 
-import com.megacrit.cardcrawl.screens.mainMenu.SortHeaderButton;
-
 import basemod.ReflectionHacks;
+import com.megacrit.cardcrawl.screens.mainMenu.SortHeaderButton;
 import sayTheSpire.Output;
 import sayTheSpire.buffers.BufferManager;
 

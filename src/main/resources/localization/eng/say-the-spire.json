@@ -83,7 +83,7 @@
               "prefered_speech_handler_order": {
                 "label": "Prefered Speech Handler Order",
                 "description": "Your prefered order of speech handlers. Speech handlers will be loaded in the order listed. For more information, see the documentation on speech handlers.",
-"choicePrompt": "Select a speech handler to add to the list."
+                "choicePrompt": "Select a speech handler to add to the list."
               },
               "speech_handler_force_system_speech": {
                 "label": "Force System Speech for Speech Handlers",
@@ -135,7 +135,7 @@
           },
           "ui": {
             "label": "UI",
-            "description": "Contains settings related to the game's UI and how certain elements are read out.",
+            "description": "Contains settings related to the game\u0027s UI and how certain elements are read out.",
             "settings": {
               "read_proceed_text": {
                 "label": "Read Proceed Text",
@@ -159,7 +159,7 @@
               },
               "read_relic_flashes": {
                 "label": "Read Relic Flashes",
-                "description": "Whether or not relic flashes are read out. Relic flashes indicate a relic's effect will trigger soon or has just triggered depending on the relic."
+                "description": "Whether or not relic flashes are read out. Relic flashes indicate a relic\u0027s effect will trigger soon or has just triggered depending on the relic."
               },
               "exclude_read_typenames": {
                 "label": "Exclude Specific Element Typenames",
@@ -178,7 +178,7 @@
               },
               "dispose_resource_files": {
                 "label": "Dispose Resource Files",
-                "description": "Whether or not to delete the screen reader dll files in the slay the Spire root directory after the game closes and they are unloaded from memory. Do not enable this unless unload_native_libs is enabled or it won't work."
+                "description": "Whether or not to delete the screen reader dll files in the slay the Spire root directory after the game closes and they are unloaded from memory. Do not enable this unless unload_native_libs is enabled or it won\u0027t work."
               }
             }
           }
@@ -335,8 +335,8 @@
         "description": "Read the summarized intents of all enemies (sums enemy damage.)"
       },
       "read detailed intents": {
-"label": "Read Detailed Intents",
-"description": "Reads the intent of all enemies in sequence."
+        "label": "Read Detailed Intents",
+        "description": "Reads the intent of all enemies in sequence."
       },
       "read act boss": {
         "label": "Read Act Boss",

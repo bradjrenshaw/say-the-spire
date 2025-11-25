@@ -1,14 +1,14 @@
 package sayTheSpire.ui.input;
 
-import java.util.ArrayList;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import basemod.ReflectionHacks;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.megacrit.cardcrawl.helpers.controller.CInputAction;
 import com.megacrit.cardcrawl.helpers.controller.CInputActionSet;
-import basemod.ReflectionHacks;
+import java.util.ArrayList;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import sayTheSpire.Output;
 
 public class InputAction {

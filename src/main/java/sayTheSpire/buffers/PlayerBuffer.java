@@ -7,8 +7,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.stances.NeutralStance;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
-import sayTheSpire.utils.OutputUtils;
 import sayTheSpire.TextParser;
+import sayTheSpire.utils.OutputUtils;
 
 public class PlayerBuffer extends Buffer {
 
