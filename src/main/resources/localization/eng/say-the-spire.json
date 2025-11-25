@@ -43,9 +43,11 @@
       "noObj": "No player available; report to mod developer.",
       "content": {
         "hp": "{hp}/{hpMax} hp",
+        "hpAndTempHp": "{hp} (+{tempHp})/{hpMax} hp",
         "energy": "{energy} energy",
         "block": "{block} block",
-        "gold": "{gold} gold"
+        "gold": "{gold} gold",
+        "essences": "{essences} essences"
       }
     },
     "potion": {
