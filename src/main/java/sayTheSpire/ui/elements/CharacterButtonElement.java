@@ -43,6 +43,10 @@ public class CharacterButtonElement extends UIElement {
         }
     }
 
+    public CharacterOption getCharacterOption() {
+        return character;
+    }
+
     public String handleBuffers(BufferManager buffers) {
         if (this.character.locked) {
             Output.setupUIBufferMany(TEXT[0], this.getUnlockText());

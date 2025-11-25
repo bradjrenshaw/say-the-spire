@@ -175,6 +175,10 @@ public class Output {
         BufferControls.setCurrentBuffer(current);
     }
 
+    public static UIElement getUI() {
+        return currentUI;
+    }
+
     public static void setupUIBuffer(ArrayList<String> contents) {
         InfoControls.bufferContext = "buffers";
         Buffer buffer = buffers.getBuffer("UI");

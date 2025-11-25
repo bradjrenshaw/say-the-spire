@@ -8,7 +8,8 @@ import sayTheSpire.TextParser;
 public class CharacterOptionPatch {
 
     public static void Prefix(CharacterOption __instance) {
-        if (__instance.hb.justHovered) {
+        if (__instance.hb.hovered && (!(Output.getUI() instanceof CharacterButtonElement)
+                || ((CharacterButtonElement) Output.getUI()).getCharacterOption() != __instance)) {
             CharacterButtonElement button = new CharacterButtonElement(__instance);
             Output.setUI(button);
         }
