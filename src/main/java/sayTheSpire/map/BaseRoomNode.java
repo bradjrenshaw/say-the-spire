@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.map.MapRoomNode;
+import downfall.patches.EvilModeCharacterSelect;
 import sayTheSpire.Output;
 import sayTheSpire.localization.LocalizationContext;
 import sayTheSpire.utils.MapUtils;
@@ -14,6 +16,7 @@ import sayTheSpire.utils.OutputUtils;
  * Represents a room node from the base game.
  */
 public class BaseRoomNode extends VirtualMapNode {
+    public static boolean downfall = Loader.isModLoaded("downfall");
 
     private MapRoomNode node;
     private LocalizationContext localization;
@@ -38,6 +41,10 @@ public class BaseRoomNode extends VirtualMapNode {
 
         VirtualMap map = this.getMap();
         int targetY = this.getY() + 1;
+
+        if (downfall && EvilModeCharacterSelect.evilMode)
+            targetY = this.getY() - 1;
+
         if (MapUtils.isBossAvailable(this)) {
             BaseBossNode bossNode = new BaseBossNode(-1, targetY, MapUtils.getLocalizedBossName());
             edges.add(new BaseMapEdge(this, bossNode));

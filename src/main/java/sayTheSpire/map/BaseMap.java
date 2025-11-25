@@ -2,14 +2,18 @@ package sayTheSpire.map;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.evacipated.cardcrawl.modthespire.Loader;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.map.MapRoomNode;
+import downfall.patches.EvilModeCharacterSelect;
 import sayTheSpire.localization.LocalizationContext;
 import sayTheSpire.utils.MapUtils;
 import sayTheSpire.Output;
 
 public class BaseMap extends VirtualMap {
+    public static boolean downfall = Loader.isModLoaded("downfall");
 
     // Each id should be unique to the map
     private String id;
@@ -31,13 +35,24 @@ public class BaseMap extends VirtualMap {
             return null;
         if (!(obj instanceof MapRoomNode))
             return null;
-        return new BaseRoomNode((MapRoomNode) obj);
+        VirtualMapNode node = getNodeAt(((MapRoomNode) obj).x, ((MapRoomNode) obj).y);
+
+        if (node == null)
+            return new BaseRoomNode((MapRoomNode) obj);
+        return node;
     }
 
     public VirtualMapEdge getParentEdge(VirtualMapNode node) {
         if (node == null)
             return null;
-        for (int y = node.getY(); y > -1; y--) {
+        int direction = -1;
+        int end = 0;
+        if (downfall && EvilModeCharacterSelect.evilMode) {
+            direction = 1;
+            end = 14;
+        }
+
+        for (int y = node.getY(); y >= end; y += direction) {
             for (int x = 0; x <= 6; x++) {
                 VirtualMapNode source = this.getNodeAt(x, y);
                 if (source == null)

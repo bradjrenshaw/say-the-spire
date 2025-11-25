@@ -9,7 +9,7 @@ import java.util.List;
  */
 public abstract class VirtualMapNode {
 
-    private final int x, y;
+    public final int x, y;
 
     public VirtualMapNode(int x, int y) {
         this.x = x;
